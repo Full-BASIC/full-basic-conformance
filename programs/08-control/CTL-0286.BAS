@@ -1,0 +1,16 @@
+1 REM FBCS CTL-0286
+2 REM CLAIM A-8.4.2-TR152
+3 REM TYPE OUTPUT
+4 REM 8.4.2 l.3953-3962: a branch may jump within itself, out of the structure and to its end-if-line.
+10 LET K = 2
+20 IF K = 1 THEN
+30 PRINT "T"
+40 ELSEIF K = 2 THEN
+50 GOTO 70
+60 PRINT "NO"
+70 PRINT "EI"
+80 GOTO 100
+90 PRINT "NO2"
+100 END IF
+110 PRINT "FIN"
+120 END

@@ -1,0 +1,16 @@
+1 REM FBCS SEG-0530
+2 REM CLAIM A-9.2.2-TR137
+3 REM TYPE REJECT
+4 REM 9.2.2 l.4522-4526: the declare-statement of the main program does not cover the CALL of an EXTERNAL picture; the
+5 REM picture declares nothing: the program is rejected.
+6 PRINT "EXECUTED"
+10 DECLARE EXTERNAL PICTURE P
+15 DECLARE EXTERNAL SUB S
+20 DRAW P
+30 END
+100 EXTERNAL PICTURE P
+110 CALL S
+120 END PICTURE
+200 EXTERNAL SUB S
+210 PRINT "S"
+220 END SUB

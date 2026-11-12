@@ -1,0 +1,12 @@
+1 REM FBCS PRG-0089
+2 REM CLAIM A-4.2.2-TR153
+3 REM TYPE REJECT
+4 REM 4.2.2 l.1312-1320: line numbers ascend and are unique over the whole program (when-block disorder).
+100 PRINT "EXECUTED"
+110 WHEN EXCEPTION IN
+130 PRINT "A"
+120 PRINT "B"
+140 USE
+150 PRINT "U"
+160 END WHEN
+170 END

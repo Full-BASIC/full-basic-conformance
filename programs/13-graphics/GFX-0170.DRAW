@@ -1,0 +1,7 @@
+DRAW_LINES (0,1) (-1,0)
+DRAW_LINES (-1,0) (0,-1)
+DRAW_LINES (0,-1) (1,0)
+DRAW_LINES (1,0) (0,1)
+DRAW_LINES (0,-1) (1,0)
+DRAW_LINES (0,1) (-1,0)
+DRAW_LINES (1,0) (0,1)

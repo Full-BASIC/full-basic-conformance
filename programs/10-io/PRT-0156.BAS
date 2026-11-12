@@ -1,0 +1,10 @@
+1 REM FBCS PRT-0156
+2 REM CLAIM D-5.4-6
+3 REM TYPE OUTPUT
+100 REM Half-up tie-break in the i/f/e-format items (10.4.4.3 l.5722, l.5725-5727, l.5737-5745)
+110 PRINT USING "#.#": 1.25
+120 PRINT USING "##.##": 1.005
+130 PRINT USING "#.##": .125
+140 PRINT USING "#.##^^^^": 1.005
+150 PRINT USING "###": 2.5
+160 END

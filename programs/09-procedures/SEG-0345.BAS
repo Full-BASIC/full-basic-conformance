@@ -1,0 +1,15 @@
+1 REM FBCS SEG-0345
+2 REM CLAIM A-9.1.4.1-02
+3 REM TYPE SELF
+100 REM The same actual array bound to two formal arrays gives two
+110 REM distinct arrays DURING the invocation (9.1.4.1 l.4306-4312, 9.1.4.3 l.4373-4377)
+120 DIM A(2)
+130 LET A(1) = 1
+140 DECLARE FUNCTION F
+150 LET R = F(A, A)
+160 IF R = 1 AND A(1) = 1 THEN PRINT "*** TEST PASSED ***" ELSE PRINT "*** TEST FAILED ***"; R; A(1)
+170 FUNCTION F(X(), Y())
+180 LET X(1) = 50
+190 LET F = Y(1)
+200 END FUNCTION
+210 END

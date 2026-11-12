@@ -1,0 +1,7 @@
+1 REM FBCS NUM-0118
+2 REM CLAIM A-5.3.2-01
+3 REM TYPE REJECT
+4 REM STD 5.3.2 l.1775-1777, 5.4.4 (MOD(X,Y)): the second argument is also numeric.
+100 PRINT "EXECUTED"
+110 PRINT MOD(5, "b")
+120 END

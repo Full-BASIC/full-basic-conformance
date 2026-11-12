@@ -1,0 +1,11 @@
+1 REM FBCS SEG-0631
+2 REM CLAIM A-4.4.2-TR165
+3 REM TYPE OUTPUT
+4 REM 4.4.2 l.1460-1470: a variable and an internal SUB of the main program may have the same name.
+10 SUB TOTAL
+20 PRINT "S"
+30 END SUB
+40 LET TOTAL = 3
+50 CALL TOTAL
+60 PRINT TOTAL
+90 END

@@ -1,0 +1,13 @@
+1 REM FBCS PRG-0065
+2 REM CLAIM A-4.4.4-07
+3 REM TYPE OUTPUT
+100 REM A formal array parameter SIN() of SUB S overrides the supplied SIN inside S only
+109 DECLARE SUB S
+110 DIM A(2)
+120 LET A(1) = 5
+130 CALL S(A)
+140 PRINT SIN(0)
+150 SUB S(SIN())
+160 PRINT SIN(1)
+170 END SUB
+180 END

@@ -1,0 +1,17 @@
+1 REM FBCS GFX-0275
+2 REM CLAIM A-13.5.2-TR159
+3 REM TYPE REJECT
+4 REM STD 13.5.2 l.10506-10525: within a program-unit no more than one picture of a given name is declared
+5 REM or defined: DECLARE EXTERNAL PICTURE Q together with an internal picture Q in the same unit is
+6 REM rejected.
+8 PRINT "EXECUTED"
+10 DECLARE EXTERNAL PICTURE Q
+20 SET WINDOW 0,10,0,10
+30 PICTURE Q
+40 PLOT POINTS: 1,1
+50 END PICTURE
+60 DRAW Q
+70 END
+200 EXTERNAL PICTURE Q
+230 PLOT POINTS: 2,2
+250 END PICTURE

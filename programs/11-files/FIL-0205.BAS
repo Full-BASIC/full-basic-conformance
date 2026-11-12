@@ -1,0 +1,19 @@
+1 REM FBCS FIL-0205
+2 REM CLAIM A-11.3.4-TR48
+3 REM TYPE OUTPUT
+4 REM STD 10.3.4.4 l.5486-5489: during the generation of a print-item, a character
+5 REM that would appear beyond the margin is preceded by an end-of-line (in a
+6 REM DISPLAY file, an end-of-record, 11.3.4.1 l.7557-7561); the margin comes from
+7 REM SET #n: MARGIN (11.3.4.3 l.7597-7605). With MARGIN 5, PRINT #1: "ABCDEFG"
+8 REM creates the records ABCDE and FG, as on the console.
+10 OPEN #1: NAME "FIL0205.DAT", ACCESS OUTIN, ORGANIZATION SEQUENTIAL, RECTYPE DISPLAY
+20 SET #1: ZONEWIDTH 5
+30 SET #1: MARGIN 5
+40 PRINT #1: "ABCDEFG"
+50 CLOSE #1
+60 OPEN #1: NAME "FIL0205.DAT", ACCESS INPUT, ORGANIZATION SEQUENTIAL, RECTYPE DISPLAY
+70 SET #1: POINTER BEGIN
+80 LINE INPUT #1, IF MISSING THEN 120: X$
+90 PRINT "["; X$; "]"
+100 GOTO 80
+120 END

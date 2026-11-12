@@ -1,0 +1,9 @@
+1 REM FBCS PRT-0141
+2 REM CLAIM A-10.4.3-EX
+3 REM TYPE OUTPUT
+100 REM EXAMPLES 3, 6 AND 7 OF 10.4.3 (l.5630-5664), LITERAL OUTPUTS VERIFIED AGAINST PDF p.123
+110 LET A$ = "<##### ####.#### ####.####^^^^"
+120 PRINT USING A$ : 1, 1, 1
+130 PRINT USING "<%%.## >---$##.## $$$+***": 3.1, -1234.567, 2
+140 PRINT USING "<$$$$.## $$$$.###^^^^^": -.02, -.02
+150 END

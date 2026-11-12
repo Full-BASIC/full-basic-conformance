@@ -1,0 +1,11 @@
+1 REM FBCS SEG-0633
+2 REM CLAIM A-4.4.2-TR165
+3 REM TYPE OUTPUT
+4 REM 4.4.2 l.1460-1470: a variable and an internal PICTURE of the main program may have the same name.
+10 PICTURE Q
+20 PRINT "P"
+30 END PICTURE
+40 LET Q = 3
+50 DRAW Q
+60 PRINT Q
+90 END

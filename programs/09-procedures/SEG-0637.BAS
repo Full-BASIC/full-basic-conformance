@@ -1,0 +1,12 @@
+1 REM FBCS SEG-0637
+2 REM CLAIM A-4.4.2-TR166
+3 REM TYPE OUTPUT
+4 REM 4.4.2 l.1460-1474: a variable of the main program may have the name of an external SUB (declared and called).
+10 DECLARE EXTERNAL SUB Q
+20 LET Q = 3
+30 CALL Q
+40 PRINT Q
+90 END
+200 EXTERNAL SUB Q
+210 PRINT "EXT"
+220 END SUB

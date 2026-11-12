@@ -1,0 +1,12 @@
+1 REM FBCS STR-0053
+2 REM CLAIM A-6.6.4-02
+3 REM TYPE SELF
+100 REM Without a COLLATE option the program-unit uses the STANDARD collating
+110 REM sequence (Table 8): "A" < "a", ORD("A") = 65.
+120 LET FAIL = 0
+130 IF NOT ("A" < "a") THEN LET FAIL = FAIL + 1
+140 IF NOT ("Z" < "a") THEN LET FAIL = FAIL + 1
+150 IF ORD("A") <> 65 THEN LET FAIL = FAIL + 1
+160 IF CHR$(65) <> "A" THEN LET FAIL = FAIL + 1
+170 IF FAIL = 0 THEN PRINT "*** TEST PASSED ***" ELSE PRINT "*** TEST FAILED ***"
+180 END

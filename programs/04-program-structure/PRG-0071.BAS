@@ -1,0 +1,9 @@
+1 REM FBCS PRG-0071
+2 REM CLAIM A-4.4.4-10
+3 REM TYPE OUTPUT
+100 REM Supplied functions keep working where they are not overridden: SIZE, TAB, MAX, ANGLE
+110 DIM A(4)
+120 PRINT SIZE(A)
+130 PRINT TAB(5);"X"
+140 PRINT MAX(1,2); ANGLE(1,0)
+150 END

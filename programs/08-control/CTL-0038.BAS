@@ -1,0 +1,18 @@
+1 REM FBCS CTL-0038
+2 REM CLAIM A-8.3.4-05
+3 REM TYPE SELF
+100 REM transfer to the for-line = first assignment; to the next-line = last assignment (l.3869-3871)
+110 LET C = 0
+120 LET DONE = 0
+130 FOR I = 1 TO 10
+140   LET C = C + 1
+150   IF I = 3 AND DONE = 0 THEN LET DONE = 1
+160   IF DONE = 1 AND I = 3 AND C = 3 THEN GOTO 130
+170 NEXT I
+180 LET S = 0
+190 FOR K = 1 TO 9 STEP 3
+200   LET S = S + K
+210   IF K = 1 THEN GOTO 220
+220 NEXT K
+230 IF C = 13 AND I = 11 AND S = 12 THEN PRINT "*** TEST PASSED ***" ELSE PRINT "*** TEST FAILED ***"; C; I; S
+240 END

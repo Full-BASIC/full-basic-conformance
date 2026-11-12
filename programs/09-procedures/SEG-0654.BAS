@@ -1,0 +1,18 @@
+1 REM FBCS SEG-0654
+2 REM CLAIM A-4.4.2-TR169
+3 REM TYPE SELF
+4 REM 5.3.2 l.1786-1789: a variable read before assignment in a unit that does not declare the function Q is a variable.
+10 DECLARE EXTERNAL SUB E
+20 DECLARE EXTERNAL FUNCTION Q
+30 CALL E
+40 IF Q <> 42 THEN PRINT "*** TEST FAILED *** main call"
+50 PRINT "*** TEST PASSED ***"
+90 END
+100 EXTERNAL SUB E
+110 IF Q <> 0 THEN PRINT "*** TEST FAILED *** unassigned"
+120 LET Q = 5
+130 IF Q <> 5 THEN PRINT "*** TEST FAILED *** assigned"
+140 END SUB
+200 EXTERNAL FUNCTION Q
+210 LET Q = 42
+220 END FUNCTION

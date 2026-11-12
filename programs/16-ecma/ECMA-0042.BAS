@@ -1,0 +1,7 @@
+1 REM FBCS ECMA-0042
+2 REM CLAIM A-ECMA-22
+3 REM TYPE SELF
+100 DEF FNA$(S$, T$) = S$ & T$
+110 DEF Right$(A$, N) = A$(LEN(A$)-N+1 : LEN(A$))
+120 IF FNA$("ab", "cd") = "abcd" AND Right$("HELLO", 3) = "LLO" THEN PRINT "*** TEST PASSED ***" ELSE PRINT "*** TEST FAILED ***"
+130 END

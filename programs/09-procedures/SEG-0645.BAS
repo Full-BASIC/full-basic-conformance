@@ -1,0 +1,8 @@
+1 REM FBCS SEG-0645
+2 REM CLAIM A-4.4.2-TR167
+3 REM TYPE REJECT
+4 REM 9.2.2 l.4489: a CALL names a subprogram; a DEF is not one.
+6 PRINT "EXECUTED"
+10 DEF Q(X) = X
+20 CALL Q(1)
+90 END

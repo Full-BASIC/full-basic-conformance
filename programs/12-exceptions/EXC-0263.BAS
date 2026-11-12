@@ -1,0 +1,18 @@
+1 REM FBCS EXC-0263
+2 REM CLAIM A-12.1.2-E26
+3 REM TYPE SELF
+4 REM 12.1.2 l.8689-8691 (dynamic reading, owner decision 2026-11-09): a DEF or an internal multi-line FUNCTION that uses
+5 REM EXTYPE/EXLINE and is invoked from an exception-handler invokes them within that handler.
+100 DEF F = EXTYPE
+110 FUNCTION G
+120   LET G = EXTYPE + 1
+130 END FUNCTION
+140 LET OK = 1
+200 WHEN EXCEPTION IN
+210   CAUSE EXCEPTION 3001
+220 USE
+230   IF F <> 3001 THEN LET OK = 0
+240   IF G <> 3002 THEN LET OK = 0
+250 END WHEN
+800 IF OK = 1 THEN PRINT "*** TEST PASSED ***" ELSE PRINT "*** TEST FAILED ***"
+810 END

@@ -1,0 +1,14 @@
+1 REM FBCS PRT-0411
+2 REM CLAIM A-10.4.4.5-03
+3 REM TYPE SELF
+4 REM 10.4.4.5 l.5822-5823: the margin never wraps formatted output, also on a DISPLAY file (PRINT #, USING):
+5 REM a 20-character field is written as one record although the margin of the file is 10.
+100 OPEN #1: NAME "PRT0411.DAT", ACCESS OUTIN, ORGANIZATION SEQUENTIAL, RECTYPE DISPLAY
+110 SET #1: ZONEWIDTH 5
+120 SET #1: MARGIN 10
+130 PRINT #1, USING "####################": 12345
+140 SET #1: POINTER BEGIN
+150 LINE INPUT #1: L$
+160 CLOSE #1
+170 IF LEN(L$) = 20 AND L$(16:20) = "12345" THEN PRINT "*** TEST PASSED ***" ELSE PRINT "*** TEST FAILED ***"
+180 END

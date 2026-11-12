@@ -1,0 +1,24 @@
+1 REM FBCS EXC-0214
+2 REM CLAIM A-12.2.4-TR134
+3 REM TYPE SELF
+4 REM 12.2.4 l.9138-9143 (point 2), D-12.2-2: the trace reports the assignment to a parameter of an
+5 REM internal SUB (by reference) with its name and its value, as it does for any other variable.
+10 OPEN #3: NAME "EXC0214.TXT", ACCESS OUTPUT
+20 DEBUG ON
+30 TRACE ON TO #3
+40 SUB S(K)
+50   LET K = K + 1
+60 END SUB
+70 LET B = 4
+80 CALL S(B)
+90 TRACE OFF
+95 CLOSE #3
+300 OPEN #3: NAME "EXC0214.TXT", ACCESS INPUT
+310 LET FOUND = 0
+320 FOR K = 1 TO 30
+330   LINE INPUT #3, IF MISSING THEN EXIT FOR: L$
+340   IF POS(L$, "K=5") > 0 THEN LET FOUND = 1
+350 NEXT K
+360 CLOSE #3
+370 IF FOUND = 1 THEN PRINT "*** TEST PASSED ***" ELSE PRINT "*** TEST FAILED ***"
+400 END

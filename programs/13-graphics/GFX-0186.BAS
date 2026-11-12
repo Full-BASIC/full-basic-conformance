@@ -1,0 +1,8 @@
+1 REM FBCS GFX-0186
+2 REM CLAIM A-13.4.2-TR106
+3 REM TYPE REJECT
+4 REM STD 13.4.2 l.10152-10154, 10.5.2 l.5911-5912: two-bound redim on a 1-D array of a locate pair rejected at load.
+100 PRINT "EXECUTED"
+110 DIM X(3), Y(3)
+120 MAT LOCATE POINT: X(3,3), Y
+130 END

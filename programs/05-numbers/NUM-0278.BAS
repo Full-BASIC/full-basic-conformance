@@ -1,0 +1,20 @@
+1 REM FBCS NUM-0278
+2 REM CLAIM A-5.4.4-CL16
+3 REM TYPE SELF
+4 REM STD 5.4.4 l.1960-1968: EPS(X) is the largest gap between X and its neighbours in the representation actually used.
+100 OPTION ARITHMETIC DECIMAL
+110 LET OK = 1
+120 LET X = 1
+130 LET E = EPS(X)
+140 IF E <> 1E-17 THEN LET OK = 0
+150 IF X + E = X THEN LET OK = 0
+160 IF X - E = X THEN LET OK = 0
+170 IF X + E / 4 <> X THEN LET OK = 0
+180 LET X = 123.456
+190 LET E = EPS(X)
+200 IF E <> 1E-15 THEN LET OK = 0
+210 IF X + E = X OR X - E = X THEN LET OK = 0
+220 IF X + E / 4 <> X OR X - E / 4 <> X THEN LET OK = 0
+230 IF EPS(0) <= 0 OR EPS(-1) <> 1E-17 OR EPS(1E10) <> 1E-7 THEN LET OK = 0
+240 IF OK = 1 THEN PRINT "*** TEST PASSED ***" ELSE PRINT "*** TEST FAILED ***"
+999 END

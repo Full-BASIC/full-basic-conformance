@@ -1,0 +1,17 @@
+1 REM FBCS SEG-0657
+2 REM CLAIM A-4.4.2-TR169
+3 REM TYPE SELF
+4 REM 4.4.2 l.1460-1466: the main that does not declare the function reads a variable; the unit that declares it calls.
+10 DECLARE EXTERNAL SUB E
+20 IF Q <> 0 THEN PRINT "*** TEST FAILED *** main unassigned"
+30 CALL E
+40 IF Q <> 0 THEN PRINT "*** TEST FAILED *** main after"
+50 PRINT "*** TEST PASSED ***"
+90 END
+100 EXTERNAL SUB E
+110 DECLARE EXTERNAL FUNCTION Q
+120 IF Q <> 42 THEN PRINT "*** TEST FAILED *** unit call"
+130 END SUB
+200 EXTERNAL FUNCTION Q
+210 LET Q = 42
+220 END FUNCTION

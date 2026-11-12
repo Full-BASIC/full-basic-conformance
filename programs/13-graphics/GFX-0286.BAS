@@ -1,0 +1,14 @@
+1 REM FBCS GFX-0286
+2 REM CLAIM A-13.4.4-06
+3 REM TYPE SELF
+4 REM STD 13.4.4 l.10281-10283: with no range-select the range of the most recent LOCATE VALUE of the same device
+5 REM is used, so the value read lies between the remembered bounds 2 and 4, not in the default range.
+100 PRINT "GFX-0286 LOCATE VALUE WITHOUT RANGE-SELECT USES THE REMEMBERED RANGE (13.4.4)"
+110 LOCATE VALUE, RANGE 2 TO 4: V1
+120 LOCATE VALUE: V2
+130 IF V2 < 2 OR V2 > 4 THEN
+140    PRINT "*** TEST FAILED: VALUE OUTSIDE THE REMEMBERED RANGE ***"
+150 ELSE
+160    PRINT "*** TEST PASSED ***"
+170 END IF
+180 END

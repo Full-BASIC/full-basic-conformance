@@ -1,0 +1,14 @@
+1 REM FBCS STR-0033
+2 REM CLAIM A-6.4.4-07
+3 REM TYPE SELF
+100 REM STR$(X) is the numeric representation PRINT would use, with no
+110 REM leading or trailing spaces. Standard: STR$(123.5)="123.5",
+120 REM STR$(-3.14)="-3.14".
+130 LET FAIL = 0
+140 IF STR$(123.5) <> "123.5" THEN LET FAIL = FAIL + 1
+150 IF STR$(-3.14) <> "-3.14" THEN LET FAIL = FAIL + 1
+160 IF STR$(5) <> "5" THEN LET FAIL = FAIL + 1
+170 IF STR$(0) <> "0" THEN LET FAIL = FAIL + 1
+180 IF LEN(STR$(123)) <> 3 THEN LET FAIL = FAIL + 1
+190 IF FAIL = 0 THEN PRINT "*** TEST PASSED ***" ELSE PRINT "*** TEST FAILED ***"
+200 END

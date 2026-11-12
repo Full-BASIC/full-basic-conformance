@@ -1,0 +1,12 @@
+1 REM FBCS ARR-0239
+2 REM CLAIM A-7.2.2-TR94
+3 REM TYPE REJECT
+4 REM STD 7.2.2 l.3166-3168: the rule also holds inside an internal SUB for an array of the main program.
+99 DECLARE SUB S
+100 PRINT "EXECUTED"
+110 DIM A(2,2)
+120 CALL S
+130 SUB S
+140   MAT A = CON(2,2,2)
+150 END SUB
+160 END

@@ -1,0 +1,13 @@
+1 REM FBCS CTL-0013
+2 REM CLAIM A-8.1.4-06
+3 REM TYPE SELF
+100 REM relational-term truth value and parenthesized re-application (l.3590-3593)
+110 LET OK = 1
+120 IF NOT (NOT (1 = 2)) THEN LET OK = 0
+130 IF (1 = 2) THEN LET OK = 0
+140 IF NOT ((1 = 1)) THEN LET OK = 0
+150 IF NOT (NOT (NOT (1 = 1))) THEN LET OK = 0
+160 IF NOT ((2 = 2) AND NOT (2 = 3)) THEN LET OK = 0
+170 IF NOT (((1 = 1))) THEN LET OK = 0
+180 IF OK = 1 THEN PRINT "*** TEST PASSED ***" ELSE PRINT "*** TEST FAILED ***"
+190 END

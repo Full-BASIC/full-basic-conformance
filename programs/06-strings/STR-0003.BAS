@@ -1,0 +1,12 @@
+1 REM FBCS STR-0003
+2 REM CLAIM A-6.1.4-01
+3 REM TYPE SELF
+100 REM Value of a string constant is the run of characters between the quotes.
+110 LET FAIL = 0
+120 LET A$ = "ABC"
+130 IF A$ <> "ABC" THEN LET FAIL = FAIL + 1
+140 IF LEN(A$) <> 3 THEN LET FAIL = FAIL + 1
+150 LET B$ = ""
+160 IF LEN(B$) <> 0 THEN LET FAIL = FAIL + 1
+170 IF FAIL = 0 THEN PRINT "*** TEST PASSED ***" ELSE PRINT "*** TEST FAILED ***"
+180 END

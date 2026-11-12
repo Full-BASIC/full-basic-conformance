@@ -1,0 +1,15 @@
+1 REM FBCS ARR-0351
+2 REM CLAIM A-7.1.4-TR135
+3 REM TYPE OUTPUT
+4 REM STD 7.1.4 l.3056-3057: reaching a DIM again has no further effect, so the array keeps what was assigned.
+10 DECLARE EXTERNAL FUNCTION F$
+20 PRINT F$
+30 END
+100 EXTERNAL FUNCTION F$
+110 LET I = 0
+120 DIM S$(3)
+130 LET I = I + 1
+140 LET S$(I) = STR$(I)
+150 IF I < 2 THEN GOTO 120
+160 LET F$ = S$(1) & S$(2)
+170 END FUNCTION

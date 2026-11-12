@@ -1,0 +1,12 @@
+1 REM FBCS EXC-0108
+2 REM CLAIM A-12.1.2-TR89
+3 REM TYPE REJECT
+4 REM STD 12.1.2 l.8701-8706 with 8.2.2 (an IF..THEN line-number is a control-transfer): same rule as EXC-0102.
+100 PRINT "EXECUTED"
+110 WHEN EXCEPTION IN
+120   IF 1 = 1 THEN 150
+130   PRINT "protected"
+140 USE
+145   PRINT "handler"
+150 END WHEN
+160 END

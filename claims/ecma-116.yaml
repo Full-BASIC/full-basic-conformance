@@ -1,0 +1,478 @@
+# Claims for the ECMA-116 (BASIC) examples, converted to FBCS programs.
+# `covers` cites the line(s) of the ECMA-116 transcription the examples were taken
+# from (not distributed). `clause` is the equivalent ANSI X3.113-1987 clause, `ecma`
+# the ECMA-116 clause of the examples section.
+
+# --- 4.2.3 program-name-line (l.1211-1218). No FBCS program is possible: the
+# interpreter requires the PROGRAM line to be the first line of the file, which
+# is incompatible with the leading FBCS REM header. Verified by hand with the
+# CLI: `PROGRAM Graphic` runs; `PROGRAM Graphic(Gs, Y)` raises 4301 at line 0
+# (implementation-defined per ECMA 4.2.4).
+- id: A-ECMA-01
+  clause: "4.2.2"
+  ecma: "4.2.3"
+  ecma_level: BASIC-2
+  module: core
+  kind: syntax
+  status: pending
+  claim: "A program-name-line with a parameter list is part of the syntax; executing such a program in isolation is implementation-defined (4301 here)."
+  tests: []
+  covers: [l.1211-1218]
+  note: "No FBCS program possible (PROGRAM must be the first line, before the FBCS REM header). Hand-verified with the CLI."
+
+- id: A-ECMA-02
+  clause: "4.3.2"
+  ecma: "4.3.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "A remark-statement and a null-statement (tail comment alone on a line) are accepted and have no effect."
+  tests: [ECMA-0003]
+  covers: [l.1271-1275]
+
+- id: A-ECMA-03
+  clause: "4.4.2"
+  ecma: "4.4.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "Plain and dollar-suffixed identifiers, including one that spells a BASIC-1 keyword (INVERT), are accepted as variables."
+  tests: [ECMA-0004]
+  covers: [l.1338-1345]
+
+- id: A-ECMA-04
+  clause: "5.1.2"
+  ecma: "5.1.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "Signed, exponent, trailing-point and leading-point numeric constants keep their written values."
+  tests: [ECMA-0005]
+  covers: [l.1439-1448]
+
+- id: A-ECMA-05
+  clause: "5.2.2"
+  ecma: "5.2.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "Simple numeric variables and array elements with computed subscripts are accepted as variables."
+  tests: [ECMA-0006]
+  covers: [l.1513-1519]
+
+- id: A-ECMA-06
+  clause: "5.3.2"
+  ecma: "5.3.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Numeric expressions with powers, products, sums, function calls and user-defined functions evaluate as written."
+  tests: [ECMA-0007]
+  covers: [l.1607-1617]
+
+- id: A-ECMA-07
+  clause: "5.4.2"
+  ecma: "5.4.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "RANDOMIZE is accepted and a subsequent RND lies in the half-open unit interval."
+  tests: [ECMA-0008]
+  covers: [l.1693-1694]
+
+- id: A-ECMA-08
+  clause: "5.5.2"
+  ecma: "5.5.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Single, array-element and multi-target LET assignments (including computed subscripts) assign as written."
+  tests: [ECMA-0009, ECMA-0010]
+  covers: [l.1928-1934]
+
+- id: A-ECMA-09
+  clause: "5.6.2"
+  ecma: "5.6.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "OPTION ARITHMETIC DECIMAL together with ANGLE DEGREES is accepted and honoured by the trigonometric functions."
+  tests: [ECMA-0011]
+  covers: [l.2228, l.2235-2240, l.2281-2285]
+
+- id: A-ECMA-10
+  clause: "6.1.2"
+  ecma: "6.1.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "String constants keep their characters verbatim, including doubled quotation marks inside them."
+  tests: [ECMA-0012]
+  covers: [l.2112-2117]
+  note: "The second literal of the example (l.2116) is garbled in the transcription; the test uses a reconstructed quoted string."
+
+- id: A-ECMA-11
+  clause: "6.2.2"
+  ecma: "6.2.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "Substring-qualified string variables and string array elements with substring qualifiers are accepted."
+  tests: [ECMA-0013]
+  covers: [l.2172-2179]
+
+- id: A-ECMA-12
+  clause: "6.3.2"
+  ecma: "6.3.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Concatenation of string variables, substrings and literals builds the expected string; substring assignment replaces the target range."
+  tests: [ECMA-0014]
+  covers: [l.2266-2268]
+
+- id: A-ECMA-13
+  clause: "6.5.2"
+  ecma: "6.5.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "String LET forms (simple, multi-target, substring target, array element, line continuation with ampersands) assign as written."
+  tests: [ECMA-0015, ECMA-0016]
+  covers: [l.2492-2500]
+
+- id: A-ECMA-14
+  clause: "6.6.2"
+  ecma: "6.6.3"
+  ecma_level: BASIC-2
+  module: core
+  kind: syntax
+  claim: "The ECMA examples 'COLLATE NATIVE' and 'STRING*8 last_name$*20, ...' (6.6.3 examples 1 and 3) are fragments: the first is the option of OPTION COLLATE NATIVE and the second is the body of a DECLARE STRING statement (ANSI 6.6.2 prod. 1-6). The full statements are accepted (MAXLEN 20, 8, 8); the fragments written as stand-alone statements are rejected, which is conforming."
+  tests: [ECMA-0017, ECMA-0018, ECMA-0246, ECMA-0247]
+  covers: [l.2845-2853, l.2867-2871]
+
+- id: A-ECMA-15
+  clause: "7.1.2"
+  ecma: "7.1.3"
+  ecma_level: BASIC-2
+  module: core
+  kind: syntax
+  claim: "DIM with explicit bounds and the SIZE, LBOUND and UBOUND inquiries behave as written. The ECMA example 'A$(3 TO 21) * 8' (7.1.3 example 10) is the body of a DECLARE STRING statement, not of DIM (ANSI 7.1.2 prod. 8 and 10: the length-max belongs to the string-declaration): DECLARE STRING A$(3 TO 21) * 8 is accepted (MAXLEN 8, bounds 3 and 21) and DIM A$(3 TO 21) * 8 is rejected, which is conforming."
+  tests: [ECMA-0019, ECMA-0020, ECMA-0248]
+  covers: [l.2958-3023, l.3040-3084]
+
+- id: A-ECMA-16
+  clause: "7.2.2"
+  ecma: "7.2.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "MAT assignment, sums, differences, products, scalar-free ZER, INV, TRN, DET and DOT evaluate as written; a bare scalar factor W in a MAT product (MAT A = W * B) is valid and multiplies every element (7.2.3 l.3184, 7.2.4.2 l.3244-3246)."
+  tests: [ECMA-0021, ECMA-0022, ECMA-0040]
+  covers: [l.2841-2854]
+
+- id: A-ECMA-17
+  clause: "7.3.2"
+  ecma: "7.3.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "MAT string assignment with concatenation, NUL$ and a parenthesised literal prefix fills every element as written."
+  tests: [ECMA-0023]
+  covers: [l.3007-3013]
+
+- id: A-ECMA-18
+  clause: "8.1.2"
+  ecma: "8.1.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Logical expressions with NOT, AND, OR and comparisons evaluate with the standard precedence; NOT also works at the start of an IF condition."
+  tests: [ECMA-0024]
+  covers: [l.3131-3137]
+  note: "Known deviation: a leading NOT on the right side of LET is a syntax error here; the IF form is used instead."
+
+- id: A-ECMA-19
+  clause: "8.2.2"
+  ecma: "8.2.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "GO TO, GOTO, ON...GO TO with ELSE, GO SUB, GOSUB and ON...GOSUB with ELSE transfer control as written."
+  tests: [ECMA-0025, ECMA-0026, ECMA-0027, ECMA-0028]
+  covers: [l.3236-3246]
+
+- id: A-ECMA-20
+  clause: "8.3.2"
+  ecma: "8.3.3"
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "DO WHILE, DO...LOOP UNTIL with INPUT, DO with EXIT DO, FOR...NEXT, FOR...STEP and a named NEXT all loop as written."
+  tests: [ECMA-0029, ECMA-0030, ECMA-0031, ECMA-0032, ECMA-0033, ECMA-0034]
+  covers: [l.3370-3394]
+
+- id: A-ECMA-21
+  clause: "8.4.2"
+  ecma: "8.4.3"
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "One-line IF with GOSUB, numeric and string targets, IF...ELSE...END IF blocks with ELSEIF, and SELECT CASE with range and IS cases work as written."
+  tests: [ECMA-0035, ECMA-0036, ECMA-0037, ECMA-0038, ECMA-0039]
+  covers: [l.3533-3584]
+
+- id: A-ECMA-22
+  clause: "9.1.2"
+  ecma: "9.1.3"
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "Numeric and string DEF functions, a multi-name function declaration list (FUNCTION a, b$ and EXTERNAL FUNCTION a, b$, ECMA example 21), and an EXTERNAL FUNCTION with SELECT CASE work as written."
+  tests: [ECMA-0041, ECMA-0042, ECMA-0043, ECMA-0044]
+  covers: [l.4128-4180, l.4280-4297]
+
+- id: A-ECMA-23
+  clause: "9.2.2"
+  ecma: "9.2.3"
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "Internal and external SUBprograms (with formal arrays, a string and a channel parameter) called with computed arguments work as written."
+  tests: [ECMA-0045, ECMA-0046, ECMA-0047]
+  covers: [l.4114-4129]
+
+- id: A-ECMA-24
+  clause: "9.3.2"
+  ecma: "9.3.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "CHAIN with a literal or a string expression and a WITH list is accepted; chaining to an unavailable program raises 10005."
+  tests: [ECMA-0048, ECMA-0049]
+  covers: [l.4359-4363]
+  note: "The suite runs each program alone in an empty directory, so the chain target never exists: FATAL 10005 pins that behaviour."
+
+- id: A-ECMA-25
+  clause: "10.1.2"
+  ecma: "10.1.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "READ with IF MISSING, RESTORE and RESTORE to a line, and DATA with numeric and quoted-string items behave as written; an elided READ item is rejected (known deviation)."
+  tests: [ECMA-0050, ECMA-0051, ECMA-0052, ECMA-0053, ECMA-0054]
+  covers: [l.4955-4979, l.4996-5051]
+
+- id: A-ECMA-26
+  clause: "10.2.2"
+  ecma: "10.2.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "INPUT with lists and PROMPT, INPUT with TIMEOUT, ELAPSED and PROMPT, LINE INPUT and its PROMPT form, and the shown reply forms all work."
+  tests: [ECMA-0055, ECMA-0056, ECMA-0057, ECMA-0058]
+  covers: [l.4568-4579]
+
+- id: A-ECMA-27
+  clause: "10.3.2"
+  ecma: "10.3.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "PRINT with single items, comma lists, trailing comma, leading commas, empty PRINT, literals and TAB, plus SET MARGIN and SET ZONEWIDTH with ASK, work as written."
+  tests: [ECMA-0059, ECMA-0060]
+  covers: [l.4747-4767]
+
+- id: A-ECMA-28
+  clause: "10.4.2"
+  ecma: "10.4.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "PRINT USING with an inline format and with an IMAGE line reproduces the output cited by the ECMA examples."
+  tests: [ECMA-0061, ECMA-0062]
+  covers: [l.5006-5040]
+  note: "Examples 3 to 6 (l.5016-5040) are illegible in the transcription and have no program. The cited outputs of examples 1-2 agree with the interpreter modulo runs of spaces collapsed by the transcription."
+
+- id: A-ECMA-29
+  clause: "10.5.2"
+  ecma: "10.5.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "MAT READ (with redims), MAT INPUT (fixed redim, ? redim, PROMPT), MAT LINE INPUT and MAT PRINT with mixed separators work as written."
+  tests: [ECMA-0063, ECMA-0064, ECMA-0065, ECMA-0066]
+  covers: [l.5256-5265]
+
+- id: A-ECMA-30
+  clause: "11.1.2"
+  ecma: "11.1.3"
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "OPEN with channel and name expressions, CLOSE, ERASE and ERASE REST, and ASK of file attributes including KEY work as written; ASK NUMCHARS is rejected (known deviation)."
+  tests: [ECMA-0067, ECMA-0068, ECMA-0069, ECMA-0070, ECMA-0071]
+  covers: [l.6551-6568, l.6598-6604, l.6902-6905, l.6913-6925, l.6940-6947, l.6953-7023]
+
+- id: A-ECMA-31
+  clause: "11.2.2"
+  ecma: "11.2.3"
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "SET # with POINTER BEGIN, RECORD and KEY (with IF MISSING / IF THERE) positions the pointer as written; the channel must be a literal here (known deviation)."
+  tests: [ECMA-0072]
+  covers: [l.6660-6665]
+  note: "Known deviation: SET #N with a variable channel is rejected (channel must be a numeric literal); the test uses #1."
+
+- id: A-ECMA-32
+  clause: "11.3.2"
+  ecma: "11.3.3"
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "PRINT # with record controls and USING an IMAGE, MAT PRINT with SAME and IF THERE, SET # MARGIN, WRITE with RECORD and WITH a TEMPLATE, MAT WRITE with KEY, and TEMPLATE declarations work as written; MAT WRITE of a string array whose elements were never assigned writes null strings and warns 3102."
+  tests: [ECMA-0073, ECMA-0074, ECMA-0075, ECMA-0076, ECMA-0077, ECMA-0078, ECMA-0087, ECMA-0088]
+  covers: [l.6934-6947]
+
+- id: A-ECMA-33
+  clause: "11.4.2"
+  ecma: "11.4.3"
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "INPUT #, MAT INPUT # with BEGIN and IF MISSING, LINE INPUT # with NEXT, MAT LINE INPUT with redims, READ # with SAME, WITH and SKIP REST, and MAT READ # with RECORD and WITH work as written."
+  tests: [ECMA-0079, ECMA-0080, ECMA-0081, ECMA-0082, ECMA-0083]
+  covers: [l.7375-7383]
+
+- id: A-ECMA-34
+  clause: "11.5.2"
+  ecma: "11.5.3"
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "REWRITE with a KEY expression and IF MISSING, MAT REWRITE with RECORD and WITH, and DELETE with KEY work as written."
+  tests: [ECMA-0084, ECMA-0085, ECMA-0086]
+  covers: [l.7817-7822]
+  note: "MAT REWRITE is tested with a single array: several arrays under one TEMPLATE raise 8252 here (known deviation)."
+
+- id: A-ECMA-35
+  clause: "12.1.2"
+  ecma: "12.1.3"
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "WHEN EXCEPTION with RETRY on bad input replies, a named HANDLER for dynamic file opening, nested handlers with CONTINUE, and CAUSE EXCEPTION of a variable code work as written."
+  tests: [ECMA-0089, ECMA-0090, ECMA-0091, ECMA-0092]
+  covers: [l.8009-8109]
+
+- id: A-ECMA-36
+  clause: "12.2.2"
+  ecma: "12.2.3"
+  ecma_level: BASIC-2
+  module: core
+  kind: syntax
+  claim: "TRACE ON and TRACE ON TO a display file are accepted and can be switched off again."
+  tests: [ECMA-0093, ECMA-0094]
+  covers: [l.8339-8343]
+
+- id: A-ECMA-37
+  clause: "13.1.2"
+  ecma: "13.1.3"
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "Window, viewport, device window, device viewport and clip settings (SET forms) and the corresponding ASK inquiries return the values set."
+  tests: [ECMA-0095, ECMA-0096]
+  covers: [l.8484-8500]
+  note: "ECMA writes these statements without SET; this ANSI interpreter requires SET (see A-ECMA-42)."
+
+- id: A-ECMA-38
+  clause: "13.2.2"
+  ecma: "13.2.3"
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "Line style and text color can be set and drawn with, and ASK MAX COLOR and ASK MAX POINT STYLE report the device limits."
+  tests: [ECMA-0097, ECMA-0098]
+  covers: [l.8705-8712]
+
+- id: A-ECMA-39
+  clause: "13.3.2"
+  ecma: "13.3.3"
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "GRAPH LINES with several points and GRAPH TEXT with AT and with USING a format emit the corresponding draw primitives."
+  tests: [ECMA-0099, ECMA-0100]
+  covers: [l.8842-8847]
+
+- id: A-ECMA-40
+  clause: "15.1.2"
+  ecma: "15.1.3"
+  ecma_level: BASIC-2
+  module: fixed
+  kind: syntax
+  claim: "OPTION ARITHMETIC FIXED*8.2 is accepted and rounds assignments to the declared size; NUMERIC* declarations are rejected (known deviation)."
+  tests: [ECMA-0101, ECMA-0102]
+  covers: [l.8972-8977]
+  note: "Known deviation: NUMERIC*5.2 A, ... is a syntax error here; REJECT pins it."
+
+- id: A-ECMA-41
+  clause: "15.2.2"
+  ecma: "15.2.3"
+  ecma_level: BASIC-2
+  module: fixed
+  kind: syntax
+  claim: "Fixed-decimal sizes on arrays and function signatures (A()*8.2, DEF F*10.3(...)) are rejected at load time (known deviation)."
+  tests: [ECMA-0103, ECMA-0104]
+  covers: [l.9169-9176]
+  note: "Known deviation: the *ii.ff suffixes of ECMA 15.2 are not accepted; REJECT pins it."
+
+# --- Erratum: the ECMA-116 Appendix (syntax summary, l.12142-12144) defines
+# print-control-item with enhanced-record-setter; the body of 11.3.2
+# (l.6854) and ANSI (l.7392-7394) do not. The interpreter follows the body.
+- id: A-ECMA-errata-01
+  clause: "11.3.2"
+  ecma: "11.3.2 (body) vs Appendix (l.12143)"
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "A KEY record-setter is not allowed inside a PRINT # print-control (the ECMA appendix admits it, the body of 11.3.2 and the ANSI do not); this interpreter rejects it."
+  tests: [ECMA-0105]
+  covers: [l.6854, l.12142-12144]
+  note: "Erratum of ECMA-116: print-control-item = core-record-setter / enhanced-record-setter / ... in the appendix (l.12143) but not in 11.3.2 production 4 (l.6854); ANSI l.7393-7394 agrees with the body. REJECT pins the rejection of PRINT #3, KEY \"a\": 1."
+
+# --- ECMA 3.2.19 reserved words (l.890-920): in BASIC-2 the reserved set is
+# the no-argument function names, CON/IDN/ZER/NUL$ and NOT, ELSE, PRINT, REM.
+- id: A-ECMA-reserved-01
+  clause: "3.2"
+  ecma: "3.2.19"
+  ecma_level: BASIC-2
+  module: core
+  kind: syntax
+  claim: "Every BASIC-2 reserved word of ECMA 3.2.19 (no-argument function names, CON, IDN, ZER, NUL$, NOT, ELSE, PRINT, REM) is rejected as an identifier."
+  tests: [ECMA-0106, ECMA-0107, ECMA-0108, ECMA-0109, ECMA-0110, ECMA-0111, ECMA-0112, ECMA-0113, ECMA-0114, ECMA-0115, ECMA-0116, ECMA-0117, ECMA-0118, ECMA-0119, ECMA-0120, ECMA-0121, ECMA-0122, ECMA-0123]
+  covers: [l.890-920]
+
+- id: A-ECMA-reserved-02
+  clause: "3.2"
+  ecma: "3.2.19"
+  ecma_level: BASIC-2
+  module: core
+  kind: syntax
+  claim: "Keywords that ECMA BASIC-2 does not reserve (GO, DO, MAT, THEN) are accepted as identifiers."
+  tests: [ECMA-0124]
+  covers: [l.890-920]
+
+# --- ECMA writes the graphics set-statements without SET; the ANSI interpreter
+# requires SET (known deviation).
+- id: A-ECMA-42
+  clause: "13.1.2"
+  ecma: "13.1.3, 13.2.3"
+  ecma_level: Graphics
+  module: graphics
+  kind: syntax
+  claim: "The bare ECMA keyword forms WINDOW, VIEWPORT, CLIP, LINE STYLE and TEXT COLOR (without SET) are rejected by this ANSI interpreter (known deviation)."
+  tests: [ECMA-0125]
+  covers: [l.8486-8490, l.8707-8708]

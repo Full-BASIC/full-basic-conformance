@@ -1,0 +1,7 @@
+1 REM FBCS PRT-0107
+2 REM CLAIM E-8204
+3 REM TYPE WARN
+4 REM EXPECT 8204 100
+5 REM STD 10.4.2 prod. 15 (at least three circumflex-accents), 10.4.5 l.5842-5844.
+100 PRINT USING "#^^^": 1E20
+110 END

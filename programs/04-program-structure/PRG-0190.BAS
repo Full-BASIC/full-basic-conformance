@@ -1,0 +1,10 @@
+1 REM FBCS PRG-0190
+2 REM CLAIM A-4.2.2-TR156
+3 REM TYPE OUTPUT
+4 REM 4.2.2 l.1312-1320: a body between the header and the end-line of its external unit (control).
+10 DECLARE EXTERNAL SUB E
+20 CALL E
+30 END
+100 EXTERNAL SUB E
+150 PRINT "B150"
+200 END SUB

@@ -1,0 +1,13 @@
+1 REM FBCS STR-0031
+2 REM CLAIM A-6.4.4-05
+3 REM TYPE SELF
+100 REM POS(A$,B$): position of first occurrence of B$ in A$, 0 if absent;
+110 REM POS(A$,"") is always 1.
+120 LET FAIL = 0
+130 IF POS("ABC","B") <> 2 THEN LET FAIL = FAIL + 1
+140 IF POS("ABC","Z") <> 0 THEN LET FAIL = FAIL + 1
+150 IF POS("ABC","") <> 1 THEN LET FAIL = FAIL + 1
+160 IF POS("","") <> 1 THEN LET FAIL = FAIL + 1
+170 IF POS("","A") <> 0 THEN LET FAIL = FAIL + 1
+180 IF FAIL = 0 THEN PRINT "*** TEST PASSED ***" ELSE PRINT "*** TEST FAILED ***"
+190 END

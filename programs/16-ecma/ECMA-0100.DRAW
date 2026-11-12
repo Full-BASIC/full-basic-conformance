@@ -1,0 +1,2 @@
+DRAW_TEXT "here is the label: T" AT (1,2)
+DRAW_TEXT " 3.00" AT (0,3)

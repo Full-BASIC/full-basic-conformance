@@ -1,0 +1,19 @@
+1 REM FBCS SEG-0603
+2 REM CLAIM A-9.2.2-TR162
+3 REM TYPE OUTPUT
+4 REM 9.2.2 l.4519-4528, 9.1.2 l.4194-4205, 9 l.4108-4109: a unit that declares the external SUB calls it,
+5 REM whichever unit comes first in the text; the internal SUB of the main is not called.
+10 DECLARE EXTERNAL SUB E
+20 SUB Q
+30 PRINT "INT-M"
+40 END SUB
+50 CALL E
+60 CALL Q
+70 END
+100 EXTERNAL SUB E
+110 DECLARE EXTERNAL SUB Q
+120 CALL Q
+130 END SUB
+200 EXTERNAL SUB Q
+210 PRINT "EXT"
+220 END SUB

@@ -1,0 +1,10 @@
+1 REM FBCS PRG-0082
+2 REM CLAIM A-4.2.2-09
+3 REM TYPE OUTPUT
+5 DECLARE EXTERNAL SUB S
+10 CALL S
+20 END
+30 ! null-statement line between the END and the procedure (4.2.2 prod. 21, 4.3.2 prod. 3)
+40 EXTERNAL SUB S
+50   PRINT "S"
+60 END SUB

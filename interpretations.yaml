@@ -1,0 +1,299 @@
+# Agreed readings of the standard where the text admits more than one reading
+# or leaves the choice to the project. Rendered by tools/gen_compliance.py as
+# the "Agreed interpretations" table of section 4 in the generated documents
+# (only entries with a non-null `ecma` appear in COMPLIANCE_ECMA.md).
+# `base` cites lines of the transcription of FIPS PUB 68-2 the claims use (see README).
+- clause: "11.3.4.9"
+  ecma: null
+  topic: "MAT WRITE # on a DISPLAY file"
+  reading: "It is equivalent to MAT PRINT #: one line per array row in print-zone format, with an empty line between arrays and between planes of a 3-D array."
+  base: "l.7685-7690"
+
+- clause: "11.3.4.9"
+  ecma: null
+  topic: "MAT WRITE / MAT REWRITE / MAT REPLACE #n, RECORD r (or KEY k$) on a RELATIVE or KEYED DISPLAY file"
+  reading: "One single record whose rows are separated by end-of-record; this extends the DISPLAY reading above and the standard does not state it explicitly."
+  base: "l.7685-7690"
+
+- clause: "5.4.4"
+  ecma: null
+  topic: "ROUND with one argument"
+  reading: "ROUND(X) is rejected: the standard defines only ROUND(X,N)."
+  base: "l.1900-1902, l.2015-2017"
+
+- clause: "5.6.4"
+  ecma: null
+  topic: "ROUND and binary precision"
+  reading: "ROUND is computed in exact decimal over the shortest decimal representation of X; under OPTION ARITHMETIC NATIVE the precision is implementation-defined (section 5, D-5.6-3)."
+  base: "l.2236"
+
+- clause: "7.1.2"
+  ecma: null
+  topic: "Array not declared but redimensioned by a MAT statement"
+  reading: "Until it is rejected with its own diagnostic, the redimension list fixes the dimensions of the undeclared array."
+  base: "l.2997-3002"
+
+- clause: "4.4.2"
+  ecma: null
+  topic: "Function and variable with the same name"
+  reading: "A LET A outside the definition of function A is a homonymous variable and enters into conflict; only the function-let inside its own function-def is legal."
+  base: "l.1458-1466"
+
+- clause: "9.1.2"
+  ecma: null
+  topic: "Formal parameter homonymous with a function name"
+  reading: "It is not treated as a conflict: the standard regulates only its unicity within the parameter list."
+  base: "l.4266-4268"
+
+- clause: "9.1.2"
+  ecma: null
+  topic: "\"Same program-unit\" in DECLARE EXTERNAL FUNCTION"
+  reading: "Read strictly: a DECLARE EXTERNAL FUNCTION in the main program does not cover another external unit; each unit needs its own declaration before the first reference."
+  base: "l.4201-4205"
+
+- clause: "7.3.5"
+  ecma: "7.3.5"
+  topic: "String overflow when a string-array expression is assigned to an array with a smaller length-max"
+  reading: "The overflow of the length-max of the receiving array is reported as 1106, raised by the assignment (l.3468). 1052 (l.3465) is raised by evaluating the expression when an element of the result would exceed the maximum string length of the implementation, 1E9 characters (D-6.2-2): the MAT concatenation raises it before building the element."
+  base: "l.3465, l.3468"
+
+- clause: "9.2.2"
+  ecma: null
+  topic: "CALL of an internal SUB placed before the SUB definition and its DECLARE SUB"
+  reading: "Accepted: 9.2.6 lets an implementation make the internal-sub-type optional even when the definition follows the call. Functions and external subprograms keep the rule that the definition or declaration comes first."
+  base: "l.4528-4532, l.4771-4774"
+
+- clause: "9.3.6"
+  ecma: null
+  topic: "Catching 4301, 4302 and 4303 of CHAIN"
+  reading: "They are fatal and are not promised to a WHEN handler of the chained-from program: the text lets the chained-from program, the chained-to program or a system program report them. The suite tests them as FATAL."
+  base: "l.4929-4932"
+
+- clause: "13.5.2"
+  ecma: null
+  topic: "Declared and defined picture of the same name"
+  reading: "'No more than one picture of a given name declared or defined' counts pictures, not statements: a DECLARE PICTURE and the definition it announces are one picture, but two DECLARE PICTURE of the same name are two declarations and are rejected."
+  base: "l.10511-10512"
+
+- clause: "10.2.2"
+  ecma: null
+  topic: "\"At most one\" of each input modifier"
+  reading: "\"At most one prompt-specifier, one timeout-expression and one time-inquiry\" is read per keyword: two occurrences of the same modifier are the same item and are rejected at load, whatever their expressions; different modifiers may still be combined in any sequence."
+  base: "l.5122-5124"
+
+- clause: "10.3.2"
+  ecma: null
+  topic: "\"A given ask-io-item\" means the keyword"
+  reading: "Two occurrences of the same ask-io-item (e.g. two MARGIN items with different variables) count as the same item and are rejected at load: the item is identified by its keyword, not by its arguments."
+  base: "l.5325"
+
+- clause: "10.3.4.1"
+  ecma: null
+  topic: "Implicit point only for values that are exactly integers"
+  reading: "The implicit-point rule applies to the value of the expression, not to its rounded representation: a non-integer value is one of \"all other values\" and prints with an explicit period even when rounding to d = 8 digits leaves the fraction empty (2.9999999999 prints as 3., 12345678.9 as 12345679., and so does STR$). A value whose rounded form needs more than d digits uses the scaled form (99999999.6 prints as 1.E+8)."
+  base: "l.5375-5377, l.5379, l.5388-5389, 6.4.4 l.2702-2705"
+
+- clause: "11.1.2"
+  ecma: null
+  topic: "Duplicate ask-attribute-name and ASK variables per Table 5"
+  reading: "\"A given ask-attribute-name shall appear at most once\" is read per keyword; the variables of an ask-item must agree in number and type with Table 5 and each variable of the item receives its own value (RECSIZE A$ N: A$ gets the record-size word, N the maximum record length)."
+  base: "l.6543, l.6546, l.7017"
+
+- clause: "11.3.2"
+  ecma: null
+  topic: "Duplicate control items of a file statement"
+  reading: "\"A given print/write/input/read/rewrite/delete-control-item shall appear at most once\" is read per keyword: two IF THERE THEN items with different line numbers are the same item and are rejected at load."
+  base: "l.7471, l.7474, l.7993, l.7996, l.8504, l.8507"
+
+- clause: "11.3.2"
+  ecma: null
+  topic: "\"integer-size or fraction-size\" means at least one"
+  reading: "In a fixed-point-size, \"the integer-size or fraction-size shall be greater than zero\" requires at least one of the two, not both: NUMERIC*.5 and NUMERIC*3. are valid, NUMERIC*0.0 is rejected. The integer of a fixed-field-count must be greater than zero on its own, and string-field-size too."
+  base: "l.7460, l.7463, l.7464, l.7466"
+
+- clause: "7.1.4"
+  ecma: null
+  topic: "Rounding of N in SIZE/LBOUND/UBOUND"
+  reading: "\"The value of N is rounded to the nearest integer\" is implemented as INT(N+0.5): exact halves round up."
+  base: "l.3070-3072, l.3082-3084"
+
+- clause: "7.2.4"
+  ecma: null
+  topic: "Bounds fixed by a redim-bounds on the destination of a MAT assignment"
+  reading: "7.2.4.3 l.3258-3263 makes the indices of a redim-bounds the lower and upper bounds of the array-value; the destination array is resized as 7.2.4.1 l.3210-3214 orders, so it keeps its old lower bound (new upper = old lower + new size - 1). DIM A(5,5) + MAT A = ZER(0 TO 1, 2 TO 3) leaves A 1..2, 1..2. A single index (ZER(3)) keeps the current default lower bound. MAT READ with a redim is the exception: it fixes both bounds of the destination (10.5.4.1 l.5948-5953)."
+  base: "l.3258-3263, l.3210-3214"
+
+- clause: "10.2.4.2"
+  ecma: null
+  topic: "Assignment before the count/type exceptions of INPUT"
+  reading: "\"The assignment ... shall take place as soon as an item of data ... has been validated\" also holds when a later datum or the reply count fails (8002/8003/8102/8103/1007): every datum already validated stays assigned, and with excess data the 8003 is deferred until the last variable has been assigned, because the count of data is not a property of any single datum."
+  base: "l.5181-5183, l.5203-5205"
+
+- clause: "10.5.4.2"
+  ecma: null
+  topic: "Underflow datum in MAT INPUT"
+  reading: "A numeric datum that underflows is stored as zero and the elements already read stay assigned; the 1507 warning (numeric input underflow) is raised after the whole array has been stored, not before assigning anything."
+  base: "l.6005, l.5071-5072"
+
+- clause: "11.3.4.3"
+  ecma: null
+  topic: "MARGIN MAXNUM is a valid margin for a channel"
+  reading: "\"A margin of MAXNUM indicates that a record may be arbitrarily large\": MAXNUM is a valid margin index (it evaluates greater than zero), so a SET MARGIN MAXNUM on a file channel is accepted, not a 4007."
+  base: "l.7608-7609"
+
+- clause: "15.1.4"
+  ecma: null
+  topic: "Precision P of a NUMERIC*E field"
+  reading: "P = 18: at least the first 18 significant digits of a value moved to a field of size E are retained exactly, and the field serializes to 25 bytes ([+/-]X.<17 digits>e[+/-]NN) in INTERNAL/NATIVE records (interno; the standard leaves P implementation-defined)."
+  base: "l.12273-12278"
+
+- clause: "15.1.4"
+  ecma: null
+  topic: "Significant digits of a negated constant used as a print item (D-15.1-4)"
+  reading: "A leading sign in an expression belongs to the numeric-expression (5.3.2 prod. 2, sign? term), so -12345678901234567 is an expression whose primary is the constant, not a signed numeric-constant (5.1.2 prod. 2 applies to data such as READ/INPUT). Its significant digits are therefore implementation-defined (l.12250-12259). The implementation materializes the result with the default fixed-point-size limited to P = 18 digits in all: under FIXED*8.2, PRINT -1234567 gives -1234567.00, PRINT -12345678901234567 gives -12345678901234567.0 (scale 1) and PRINT -123456789012345678 gives -123456789012345678 (scale 0). The constants without sign print their written digits (l.12188-12203)."
+  base: "l.12188-12203, l.12250-12259"
+
+- clause: "15.2.2"
+  ecma: "15.2.2"
+  topic: "ARITHMETIC agreement between program-units joined by CHAIN, and the ordering rule of OPTION ARITHMETIC FIXED"
+  reading: "15.2.2 l.12354-12357 requires only that the ARITHMETIC options of the two program-units agree in type (both DECIMAL, both NATIVE or both FIXED), not in fixed-point precision: CHAIN from FIXED*4.2 to FIXED*8.2 runs without 4303, while NATIVE vs DECIMAL raises 4303 both ways. The ordering rule of 15.1.2 l.12145-12148 applies to numeric expressions, variables and NUMERIC declare-statements of the program-unit, not to the numeric parameters of the program-name-line (the first line), so a FIXED program with numeric program parameters is conforming."
+  base: "l.12354-12357, l.12145-12148"
+
+- clause: "11.2.5"
+  ecma: null
+  topic: "PRINT #0, NEXT/SAME/...: record-setter on channel 0"
+  reading: "Warning 7002 is raised and only the record-setter is ignored; the PRINT itself is performed (reading A, confirmed by the project owner 2026-11-03)."
+  base: "l.7303-7304, l.6592-6594"
+
+- clause: "10.4.4.3"
+  ecma: null
+  topic: "PRINT USING: comma after leading percent-sign fill"
+  reading: "Leading zeros generated by a percent-sign digit-place count as generated digits, so a comma to their right is inserted (PRINT USING \"%,%%%\": 12 gives 0,012). Only asterisk and number-sign digit-places substitute the comma by their fill character when no digit precedes it. Decision of the project owner, 2026-11-03."
+  base: "l.5735-5741, l.5760-5765"
+
+- clause: "10.5.4.2"
+  ecma: null
+  topic: "MAT INPUT: elements already assigned when a nonfatal exception such as 1054 interrupts the reply"
+  reading: "The rule of 10.2.4.2 for INPUT applies: the elements assigned before the exception stay assigned (MAT INPUT D$ with D$(3)*2 and the reply d,abc,e leaves D$(1) = d when 1054 is handled). Decision of the project owner, 2026-11-03."
+  base: "l.5180-5184"
+
+- clause: "5.6.4"
+  ecma: null
+  topic: "Trigonometric functions with OPTION ANGLE DEGREES at multiples of 90 degrees"
+  reading: "With degrees the argument is exact and the range reduction loses nothing, so the exactness rule applies: when the true result can be written with m+1 significant digits the computed result is exact (SIN(180)=0, COS(90)=0, SIN(90)=1); at the poles (TAN(90), SEC(90), COT(0), CSC(0)) the result is mathematical infinity and exception 1003 is raised. The -2*PI..2*PI limit of 5.4.4 only bounds the loss of range reductions, which is nil in degrees."
+  base: "l.2253-2262, l.2084-2085, l.2058-2065"
+
+- clause: "13.5.5"
+  ecma: null
+  topic: "SHEAR(A) with OPTION ANGLE DEGREES at an odd multiple of 90 degrees"
+  reading: "SHEAR(A) maps (x,y) to (x+y*tan(A),y); tan(90 degrees) is mathematical infinity, so the exception of 5.4.5 is raised (1003), consistently with TAN(90). Decision of the project owner, 2026-11-03."
+  base: "l.10673-10681, l.2084-2085"
+
+- clause: "5.4.4"
+  ecma: null
+  topic: "MAX and MIN with a number of arguments other than two"
+  reading: "MAX(X,Y) and MIN(X,Y) take exactly two numeric arguments; a call with one, three or more arguments (MAX(1, 2, 3), MIN(5)) is an argument-count mismatch that 5.3.2 requires to agree with the description, and is reported before the program runs (like MOD(5) or ABS(1, 2)). An n-ary MAX or MIN would be an enhancement that the project does not document (2.2 item 9, 2.3 l.580-584). Decision of the project owner, 2026-11-03."
+  base: "l.1990-1994, l.1775-1777, l.580-584"
+
+- clause: "12.2.4"
+  ecma: null
+  topic: "Trace of the line that raises an exception which transfers control to a handler"
+  reading: "The line whose execution raises an exception that is handled by an exception-handler interrupts the sequential order of execution (4.2.4 case 2), so with tracing on it is reported together with the line-number of the next line to be executed: the first line of the handler, since the use-line (or the handler-line of a detached handler) is not executed (40 -> 70 for CAUSE EXCEPTION 7 on line 40 and a handler whose use-line is 60). The text of 12.2.4 does not distinguish the cause of the interruption. Decision of the project owner, 2026-11-03."
+  base: "l.9117-9121, l.1365-1371, l.8790-8806"
+
+- clause: "12.2.4"
+  ecma: null
+  topic: "Spelling of the traced variable name (upper or lower case)"
+  reading: "Lower-case and upper-case letters are the same identifier (4.4.4), so a trace report that names the variable in the canonical upper-case form satisfies 'the name of the variable traced, as that name lexically appears in the statement': LET abc = 7 is reported as ABC=7. The wording distinguishes the name from its value or position, not its case. Decision of the project owner, 2026-11-03."
+  base: "l.9139-9143, l.1520-1523, l.9163"
+
+- clause: "12.2.4"
+  ecma: null
+  topic: "Format of the value in a trace report"
+  reading: "The contents of the trace report are implementation-defined (12.2.4 l.9138, Appendix C 12.2 item 2) as long as they include the variable name and its value: the value is reported in the form of the assigned value, without the PRINT-style sign space, trailing space and point of a printed number (LET Q = 2.9999999999 is reported as Q=3, while PRINT Q gives ' 3. ')."
+  base: "l.9138-9143, l.9163"
+
+- clause: "6.4.4"
+  ecma: null
+  topic: "USING$ with a string as its second argument"
+  reading: "USING$(format, value) accepts a string value as well as a number: 6.4.4 describes the numeric form, and 10.4.4.4 (the string-item of a using-list) admits a string, so USING$(\"##\", \"a\") is valid and yields the string formatted by the string-item rules rather than being rejected at load. Confirmed by the project owner 2026-11-03."
+  base: "l.2729, 10.4.4.4"
+
+- clause: "4.4.4"
+  ecma: null
+  topic: "PRINT EXTEXT$ without parentheses"
+  reading: "EXTEXT$ is not among the reserved names, and 4.4.4 allows a program to use the name of a supplied function as an ordinary identifier, so PRINT EXTEXT$ without an argument list is a reference to a string variable of that name, not a call to the supplied function."
+  base: "l.1513-1519"
+
+- clause: "6.4.4"
+  ecma: null
+  topic: "CHR$ with an argument from 128 to 255 under the STANDARD character set"
+  reading: "CHR$(M) for M from 128 to 255 does not raise 4002: the standard leaves the additional other-characters at ordinal positions greater than 127 to the implementation, and the interpreter declares a character set of 256 characters (D-4.1-1), so M is valid up to 255 and CHR$(256) or a negative M still raises 4002; ORD(CHR$(M)) returns M. Confirmed by the project owner 2026-11-04."
+  base: "l.2609-2611, l.12766-12768"
+
+- clause: "11.3.2"
+  ecma: null
+  topic: "Two different record-setters in one file control"
+  reading: "A given control-item appears at most once in a control (11.3.2 l.7471-7472, 11.4.2 l.7993-7997, 11.5.2 l.8504-8507), and the record-setters are one alternative of the production of a control-item, so two record-setters, even different ones (PRINT #1, BEGIN, END), make the program invalid and it is rejected at load. Decision of the project owner, 2026-11-04."
+  base: "l.7471-7472, l.7993-7997, l.8504-8507"
+
+- clause: "10.4.4.1"
+  ecma: null
+  topic: "Stray format-item characters in a PRINT USING format-string"
+  reading: "A stray comma, minus sign, plus sign or dollar sign left after a format-item, and an e-format with one or two circumflex accents, make the format-string invalid (8201, fatal): production 8 of 10.4.2 does not admit those characters as a literal-item, so 10.4.4.1 cannot treat them as literals. Characters that are neither literal-items nor format-item characters, such as & or [, also raise 8201. The 10.4.3 example has no stray period after its last format-item: the printed page (p. 123) reads \"<$$$$.## $$$$.###^^^^^\". Decision of the project owner, 2026-11-07."
+  base: "l.5587-5594, l.5660, l.5679-5692, l.5831-5832"
+
+- clause: "12.1.2"
+  ecma: null
+  topic: "Detached-handler defined inside an internal SUB or FUNCTION"
+  reading: "A detached-handler may be defined inside an internal-proc-def: 12.1.2 l.8708-8710 says that a detached-handler referred to in a when-use-name-line within an internal-proc-def 'shall be defined in the same internal-proc-def', which only makes sense if a handler can live inside such a routine, although the productions of 9.1.2 and 9.2.2 list only a block* there. The interpreter accepts it (SUB S with WHEN EXCEPTION USE H and HANDLER H inside). Decision of the project owner, 2026-11-04."
+  base: "l.8708-8710"
+
+- clause: "12.1.2"
+  ecma: null
+  topic: "EXTYPE and EXLINE inside a routine body called from a handler"
+  reading: "12.1.2 l.8688-8692 says EXLINE and EXTYPE 'shall be invoked only within exception-handlers'. The interpreter reads 'invoked' as a run-time notion: the main program body rejects them lexically, but the body of an internal or external routine accepts them, because a helper routine called from a handler may legitimately inspect the exception (claim A-12.1.2-02). Decision of the project owner, 2026-11-05."
+  base: "l.8688-8692"
+
+- clause: "12.1.4"
+  ecma: null
+  topic: "Exception inside a handler whose when-use-block is nested in another when-block"
+  reading: "An exception raised inside a handler whose when-use-block lies inside another when-block of the same unit is fatal, following the literal rule of 12.1.4 l.8873-8875 (an exception in a handler is not handled by the same handler's when-block). The alternative, that the outer handler takes it by the lexical propagation of the Remarks (l.8940-8947), is not adopted. Decision of the project owner, 2026-11-05."
+  base: "l.8873-8875"
+
+
+- clause: "13.1.4"
+  ecma: null
+  topic: "When the display surface is already clear for SET DEVICE WINDOW and SET DEVICE VIEWPORT"
+  reading: "The surface counts as not clear only when a graphic output statement has drawn on it since the start of the program or the last clear; text written by PRINT does not count, so a device set-statement after PRINT alone requests no clear. When a clear is requested, the macOS application clears the text output too, as CLEAR does (13.2.1)."
+  base: "l.9316-9318, l.9330-9331, l.9532-9535"
+
+- clause: "9.2.2"
+  ecma: "9.2.2"
+  topic: "DECLARE INTERNAL SUB in the example of 9.2.6"
+  reading: "Rejected as a syntax error: the syntax of 9.2.2 is internal-sub-type = SUB sub-list, and ECMA-116 has the same production, so the word INTERNAL in the example of 9.2.6 (100 DECLARE INTERNAL SUB S) is an erratum of the example; DECLARE SUB S runs it as written."
+  base: "l.4497-4499, l.4819"
+
+- clause: "12.1.4"
+  ecma: "12.1.4"
+  topic: "Leaving an exception-handler by EXIT FOR or EXIT DO"
+  reading: "An EXIT FOR or EXIT DO in a handler, for a loop that contains the whole when-block, is accepted and leaves the handler with no further effect, as an end-when-line does. The four means of exiting listed in 12.1.4 describe the handler-return statements and are not stated as a restriction."
+  base: "l.8818-8840"
+
+- clause: "11.4.4"
+  ecma: null
+  topic: "Order of 8101 and 8012 when a short record starts with an illegal datum"
+  reading: "Data are transferred to the operands from left to right (l.8038-8042) and an exception during the transfer keeps the legal assignments already made (l.8051-8054). INPUT # A, B on a record whose only datum is not numeric therefore gives 8101 at A, before the shortage of data could be noticed at B; a record with one legal datum gives 8012 after A has received it."
+  base: "l.8038-8054, l.8443-8446"
+
+- clause: "11.4.2"
+  ecma: null
+  topic: "SAME after a PRINT # that completes a partial record"
+  reading: "A PRINT with a trailing separator adds the partial record to the file (11.3.4.1 l.7563-7567), and the next PRINT without a record-setter appends to that same record and completes it (l.7570-7577). The record is a single file element, so the first file element touched by the completing PRINT is the whole record, and SAME (l.7240-7242) sets the pointer to it: LINE INPUT # with SAME returns the complete record."
+  base: "l.7240-7242, l.7563-7579"
+
+- clause: "11.4.4.3"
+  ecma: null
+  topic: "MAT INPUT # A(?) interrupted by an exception"
+  reading: "The data of the input-reply are transferred to the vector from left to right. An illegal datum gives its exception; the legal data before it keep their values (l.8051-8054) and the upper bound becomes the subscript of the last element that received a datum (10.5.4.3 l.6014-6017). With more data than the original size of the vector (l.6018-6020), the elements that fit receive their data and the first datum that does not fit gives 8013, as INPUT # with too many data for its variables does."
+  base: "l.6008-6020, l.8040-8054, l.8451-8453"

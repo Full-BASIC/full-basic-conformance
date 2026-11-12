@@ -1,0 +1,132 @@
+# Claims for chapter 2 (scope, conformance and exceptions overview).
+- id: A-2.3-01
+  clause: "2.3"
+  ecma: "2.3"
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "A program element that breaks the syntactic rules and has no documented implementation-defined meaning must be reported as an error, clearly and documented, ideally naming the statement and the position of the error within it."
+  tests: [PRG-0072]
+  note: "PRG-0072 asserts the mandatory part: an ill-formed statement is reported as an error (rejected at load time, never executed). The wording of the report (clear, documented, naming statement and position) is the recommended part and is documented by the measured values of D-2.3-2."
+  external: []
+  covers: [l.583-584]
+
+- id: A-2.4-01
+  clause: "2.4"
+  ecma: "2.4"
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  status: pending
+  claim: "Every exception the standard defines must be detected, reported and processed when it occurs, unless a handler (12.1) or an enhancement mechanism has been invoked by the user."
+  tests: []
+  note: "Universal statement over every exception of Table 9, so no single program decides it; it is the conjunction of the per-code E-* claims (detected, reported and processed), each with its own test. Kept pending as an inventory claim on purpose, not for lack of a program: a program for it would only repeat one E-* claim."
+  external: []
+  covers: [l.595]
+
+- id: A-2.4-02
+  clause: "2.4"
+  ecma: "2.4"
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "In the absence of programmer-specified recovery procedures, an exception is handled by the recovery procedure the standard itself specifies for it."
+  tests: [EXC-0069]
+  note: "EXC-0069 uses exception 8203, whose standard recovery (10.4.5 l.5836-5842: asterisks, unformatted value, continue) is nonfatal; the test asserts that execution continues after it without a handler. The recovery of other codes is asserted by their E-* claims."
+  external: []
+  covers: [l.601]
+
+- id: A-2.4-03
+  clause: "2.4"
+  ecma: "2.4"
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "An exception raised inside a function, picture or subprogram propagates back to the invoking statement; when propagation reaches the main program (or the exception occurred there), the program terminates reporting that exception."
+  tests: [EXC-0070, EXC-0071]
+  external: []
+  covers: [l.612]
+
+- id: A-2.4-04
+  clause: "2.4"
+  ecma: "2.4"
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "The default exception report identifies at least the code of the original exception and the number of the line where that original exception occurred."
+  tests: [EXC-0072]
+  note: "EXC-0072 raises the exception two subprogram levels down and expects the code and the line of the original exception (12.1.4 l.8910-8911)."
+  external: []
+  covers: [l.619]
+
+- id: A-2.4-05
+  clause: "2.4"
+  ecma: "2.4"
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "If a statement of a conforming program always causes an exception, the implementation may warn the user, but it must still accept and execute the program under the normal semantic rules."
+  tests: [EXC-0073]
+  external: []
+  covers: [l.631]
+
+# --- Appendix C points of subsections 2.3 and 2.4 (values measured with the CLI).
+- id: D-2.3-1
+  clause: "2.3"
+  ecma: "2.3"
+  ecma_level: BASIC-2
+  module: core
+  kind: implementation-defined
+  claim: "How syntactically illegal constructs are interpreted, a point Appendix C subsection 2.3 leaves to each implementation."
+  tests: [PRG-0013]
+  value: "They are rejected at load time: the program is never executed, every syntax error found is listed on stderr and the CLI exits with status 1 (measured: '10 PARALLEL' is rejected with a load-time syntax error because the real-time module is not implemented)."
+  external: []
+  covers: [l.571-583]
+
+- id: D-2.3-2
+  clause: "2.3"
+  ecma: "2.3"
+  ecma_level: BASIC-2
+  module: core
+  kind: implementation-defined
+  claim: "Format of error messages, a point Appendix C subsection 2.3 leaves to each implementation."
+  tests: [PRG-0013]
+  value: "Load-time errors are reported on stderr as the header 'Error loading the program:' followed by one line per error '  ERROR <code>: line N[:C] - <msg>' (syntax errors carry the code E-SYNTAX, e.g. '  ERROR E-SYNTAX: line 20:7 - Syntax error: ...') plus the closing line '  Error processing the source code'; exit status 1. Load-time warnings (the 1010 of a fixed-point-size above P) go to stderr under 'Warnings while loading the program:' as '  WARNING <code>: line N:C - <msg>' and the program runs. The messages are in English. Measured with the CLI (the FBCS harness only asserts the rejection, not the text)."
+  external: []
+  covers: [l.576-583]
+
+- id: D-2.4-1
+  clause: "2.4"
+  ecma: "2.4"
+  ecma_level: BASIC-2
+  module: core
+  kind: implementation-defined
+  claim: "Format of exception messages, a point Appendix C subsection 2.4 leaves to each implementation (the report must at least identify the code and the line, l.619-621)."
+  tests: [PRT-0001, PRT-0157]
+  value: "An uncaught nonfatal exception prints on STDOUT 'Warning <code>: line N:C - <msg> (<clause>)' and execution continues (exit 0), e.g. 'Warning 3101: line 20:10 - Uninitialized numeric-variable 'X' (5.2)'; measured with the CLI: stderr stays empty, and if a PRINT with a pending end-of-line was in progress the warning is interleaved into that output line. An uncaught fatal exception prints 'ERROR <code>: line N[:C] - <msg>' on stderr and terminates the program (exit 1), e.g. 'ERROR 3001: line 20:10 - Division by zero'; load-time errors also go to stderr (D-2.3-2). All the texts of the CLI are in English since 2026-11-11. Measured with the CLI. A nonfatal exception raised in the middle of a PRINT (TAB, USING$, an uninitialized variable) prints its report at once, before the rest of the line, as the NBS test P008 requires (an X in column 1 after the system message); only the 8203 of a PRINT USING without a final separator is reported after the end-of-line of the statement."
+  external: []
+  covers: [l.619-621]
+
+- id: D-2.4-2
+  clause: "2.4"
+  ecma: "2.4"
+  ecma_level: BASIC-2
+  module: core
+  kind: implementation-defined
+  claim: "Hardware-dependent exceptions and how resource-constraint exceptions out of the standard's fixed recovery are handled, a point Appendix C subsection 2.4 leaves to each implementation."
+  tests: [NUM-0006, NUM-0032, NUM-0058, STR-0040, PRT-0025, PRT-0047, EXC-0264]
+  value: "No hardware-dependent exceptions beyond the standard's are defined. Underflow policy (1500 series, all nonfatal, value 0 supplied): 1502, 1503, 1504, 1506 and 1507 are raised and, uncaught, print a Warning line (measured: LET A = 1E-300*1E-300 -> Warning 1502; EXP(-800) -> Warning 1503; VAL('1E-400') -> Warning 1504; DATA 1E-400 -> Warning 1506; INPUT of 1E-400 -> Warning 1507); 1501 is catchable in a WHEN block (EXTYPE 1501, NUM-0006) but prints no uncaught Warning (LET X = 1E-401 yields 0 silently); 1505 and 1508 are never raised (E-1505/E-1508 not-applicable). Overflow raises fatal 1002/1003 in expressions and functions. The depth of procedure invocation (CALL, function invocation and GOSUB together) is limited to 100000 levels: the invocation that would exceed it raises the fatal implementation exception -10011 before entering, catchable in a when-block (EXTYPE -110011 when propagated out of the procedure, 12.1.4 l.8909-8913; EXC-0264)."
+  external: []
+  covers: [l.603-606]
+
+- id: D-2.4-3
+  clause: "2.4"
+  ecma: "2.4"
+  ecma_level: BASIC-2
+  module: core
+  kind: implementation-defined
+  claim: "Order of exception detection in a line, a point Appendix C subsection 2.4 leaves to each implementation."
+  tests: [NUM-0033]
+  value: "When a single statement raises several exceptions, the first one in evaluation order is detected and reported; operands are evaluated right-to-left (D-5.3-1), so in 'PRINT SQR(-1) + 1/0' the division by zero (3001) is reported and in 'PRINT 1/0 + SQR(-1)' the square root of a negative (3005) is reported. Measured with the CLI."
+  external: []
+  covers: [l.623-625]

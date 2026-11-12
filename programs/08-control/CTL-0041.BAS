@@ -1,0 +1,15 @@
+1 REM FBCS CTL-0041
+2 REM CLAIM A-8.3.4-08
+3 REM TYPE SELF
+100 REM EXIT FOR resumes after the NEXT of the smallest containing for-loop (l.3880)
+110 LET S = 0
+120 FOR I = 1 TO 5
+130   LET S = 0
+140   FOR J = 1 TO 5
+150     LET S = S + 1
+160     IF J = 2 THEN EXIT FOR
+170   NEXT J
+180   IF I = 2 THEN EXIT FOR
+190 NEXT I
+200 IF S = 2 AND I = 2 THEN PRINT "*** TEST PASSED ***" ELSE PRINT "*** TEST FAILED ***"; S; I
+210 END

@@ -1,0 +1,12 @@
+1 REM FBCS PRG-0092
+2 REM CLAIM A-4.2.2-TR153
+3 REM TYPE REJECT
+4 REM 4.2.2 l.1312-1320: line numbers ascend and are unique over the whole program (external sub body disorder).
+100 PRINT "EXECUTED"
+110 DECLARE EXTERNAL SUB E
+120 CALL E
+130 END
+140 EXTERNAL SUB E
+160 PRINT "A"
+150 PRINT "B"
+170 END SUB

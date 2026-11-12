@@ -1,0 +1,10 @@
+1 REM FBCS PRT-0097
+2 REM CLAIM A-10.4.4.3-04
+3 REM TYPE OUTPUT
+100 REM LEFTOVER PLACES FILL WITH ZEROS (%), ASTERISKS (*) OR SPACES (#) (l.5731, l.5733, l.5735)
+110 PRINT USING "%%.##": 5
+120 REM "**###" mixes digit-places (8201 fatal, 10.4.2 l.5625-5627); a valid asterisk-fill is "*****"
+130 PRINT USING "*****": 5
+140 PRINT USING "###.##": 5
+150 PRINT USING "###,###": 5
+160 END

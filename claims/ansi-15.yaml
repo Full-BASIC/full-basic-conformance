@@ -1,0 +1,434 @@
+# Claims for chapter 15 (fixed decimal).
+- id: A-15.1.2-01
+  clause: "15.1.2"
+  ecma: "15.1.2"
+  ecma_level: BASIC-2
+  module: fixed
+  kind: syntax
+  claim: "An OPTION ARITHMETIC FIXED statement, if present, must be placed on a line numbered lower than any numeric expression or variable reference, or any NUMERIC declare-statement, in the same program unit."
+  tests: [FIX-0001]
+  external: []
+  covers: [l.12145-12148]
+
+- id: A-15.1.2-02
+  clause: "15.1.2"
+  ecma: "15.1.2"
+  ecma_level: BASIC-2
+  module: fixed
+  kind: syntax
+  status: claimed
+  claim: "A fixed-declaration, if present, must be placed on a line numbered lower than any reference to the variable or array it declares."
+  tests: [FIX-0002]
+  external: []
+  covers: [l.12150-12152]
+
+- id: A-15.1.2-03
+  clause: "15.1.2"
+  ecma: "15.1.2"
+  ecma_level: BASIC-2
+  module: fixed
+  kind: syntax
+  claim: "A fixed-point-size may be written in a declare-statement only when the program unit has selected the ARITHMETIC FIXED option."
+  tests: [FIX-0003]
+  external: []
+  covers: [l.12154-12158]
+
+- id: A-15.1.2-04
+  clause: "15.1.2"
+  ecma: "15.1.2"
+  ecma_level: BASIC-2
+  module: fixed
+  kind: syntax
+  status: claimed
+  claim: "A variable or array may be described only once per program unit, counting declare-statements, dimension-statements and function or procedure parameters alike."
+  tests: [FIX-0004]
+  external: []
+  covers: [l.12158-12160]
+
+- id: A-15.1.2-05
+  clause: "15.1.2"
+  ecma: "15.1.2"
+  ecma_level: BASIC-2
+  module: fixed
+  kind: semantics
+  claim: "The fixed-point-size construct belongs to the enhanced native files module and must also be provided by the fixed-decimal module."
+  tests: [FIX-0005]
+  external: []
+  covers: [l.12162-12164]
+
+- id: A-15.1.2-06
+  clause: "15.1.2"
+  ecma: "15.1.2"
+  ecma_level: BASIC-2
+  module: fixed
+  kind: semantics
+  claim: "In a fixed-point-size, an omitted fraction-size means zero fraction digits, and an omitted or explicitly zero integer-size means zero integer digits; the size is valid in OPTION, DECLARE and fixed parameters whenever integer-size plus fraction-size does not exceed P."
+  tests: [FIX-0035, FIX-0036, FIX-0037, FIX-0038, FIX-0040, FIX-0042, FIX-0043]
+  external: []
+  covers: [l.12134-12143, l.7446-7447, l.12180-12183, l.12292-12294]
+
+- id: A-15.1.2-07
+  clause: "15.1.2"
+  ecma: "15.1.2"
+  ecma_level: BASIC-2
+  module: fixed
+  kind: exception
+  claim: "A variable, fixed parameter or fixed defined function whose fixed-point-size has zero integer digits cannot hold a value with a nonzero integer part; assigning one raises fatal exception 1011."
+  tests: [FIX-0039, FIX-0041, FIX-0044]
+  external: []
+  covers: [l.7446-7447, l.12296-12298]
+
+- id: A-15.1.3-EX
+  clause: "15.1.3"
+  ecma: "15.1.3"
+  ecma_level: BASIC-2
+  module: fixed
+  kind: syntax
+  claim: "Every declaration form shown in the examples of section 15.1.3, an ARITHMETIC FIXED option followed by NUMERIC fixed-declarations, is accepted and behaves as written."
+  tests: [FIX-0006]
+  external: []
+  covers: [l.12166-12174]
+
+- id: A-15.1.4-01
+  clause: "15.1.4"
+  ecma: "15.1.4"
+  ecma_level: BASIC-2
+  module: fixed
+  kind: semantics
+  claim: "When ARITHMETIC FIXED is selected, the values of numeric constants, variables and expressions behave as fixed-point decimal numbers; a variable can hold exactly the values expressible with its integer-size digits left of the point and fraction-size digits right of it, plus the sign, and the sign does not count toward the size."
+  tests: [FIX-0007]
+  external: []
+  covers: [l.12177-12184]
+
+- id: D-15.1-1
+  clause: "15.1.4"
+  ecma: "15.1.4"
+  ecma_level: BASIC-2
+  module: fixed
+  kind: implementation-defined
+  claim: "The maximum precision P that bounds the decimal digits used to represent numeric values under fixed decimal is chosen by each implementation, but it must be at least 18 digits (Appendix C, subsection 15.1, item 1)."
+  tests: [FIX-0008]
+  value: "P = 18 decimal digits; FIX-0008 shows an 18-digit integer constant accepted under *18.0 and a 19-digit one raising 1001"
+  external: []
+  covers: [l.12184-12187]
+
+- id: A-15.1.4-02
+  clause: "15.1.4"
+  ecma: "15.1.4"
+  ecma_level: BASIC-2
+  module: fixed
+  kind: semantics
+  status: claimed
+  claim: "Numeric constants keep the semantics of section 5.1 except that each constant carries a precision attribute equal to its number of significant digits, and a constant written in scaled notation is read as the equivalent unscaled one."
+  tests: [FIX-0009]
+  external: []
+  covers: [l.12189-12200]
+
+- id: D-15.1-4
+  clause: "15.1.4"
+  ecma: "15.1.4"
+  ecma_level: BASIC-2
+  module: fixed
+  kind: implementation-defined
+  claim: "The exact rule for which digits of a constant count as significant is left to each implementation (Appendix C, subsection 15.1, item 4)."
+  tests: [FIX-0010, FIX-0171]
+  value: "Digits as written count as significant: a numeric-constant used as a print item prints exactly those digits, with 17 or 18 integer digits included when P >= 18 (l.12250-12259; FIX-0009/FIX-0015/FIX-0050). As an operand of an expression the constant keeps those digits (1.555 = 1.56 is false); when it is assigned it is rounded to the fixed-point-size of the variable, and when an expression or constant is converted by STR$ the text uses the default fixed-point-size of the program-unit OPTION ARITHMETIC FIXED statement (FIX-0010 verifies this via STR$ in *9.9). A negated constant such as -12345678901234567 is not a numeric-constant in an expression: the sign belongs to the numeric-expression (5.3.2 prod. 2, 'sign? term') and the constant is its primary, so the digits of the result are implementation-defined (l.12250-12259). Here the result is materialized with the default size and limited to P = 18 digits in all: under FIXED*8.2, PRINT -1234567 gives -1234567.00, PRINT -12345678901234567 (17 integer digits) gives -12345678901234567.0 (scale 1) and PRINT -123456789012345678 (18 integer digits) gives -123456789012345678 (scale 0). FIX-0171 pins this."
+  external: []
+  covers: [l.12191-12199]
+
+- id: A-15.1.4-03
+  clause: "15.1.4"
+  ecma: "15.1.4"
+  ecma_level: BASIC-2
+  module: fixed
+  kind: semantics
+  status: claimed
+  claim: "A numeric constant carrying more significant digits than P is rounded to no fewer than P digits; if the digits left of the point alone exceed P, an overflow exception results."
+  tests: [FIX-0011]
+  external: []
+  covers: [l.12210-12213]
+
+- id: D-15.1-2
+  clause: "15.1.4"
+  ecma: "15.1.4"
+  ecma_level: BASIC-2
+  module: fixed
+  kind: implementation-defined
+  claim: "The precision attribute of the result of evaluating a fixed-decimal numeric expression or numeric supplied function is left to each implementation (Appendix C, subsection 15.1, item 2)."
+  tests: [FIX-0012]
+  value: "The result of an operation (+, -, *, /) is kept with up to P+2 = 20 significant digits and is not rounded to the default fixed-point-size of the OPTION ARITHMETIC FIXED statement until it is assigned (FIX-0012: in *8.2, LET A = 1/3 stores .33, but the expression 1/3 is .33333333333333333333 and 1/3 = .33 is false). An expression printed as a print item shows the default fixed-point-size of the option (the recommendation of 15.1.6). The numeric supplied functions whose result is always an integer (EXTYPE, EXLINE, INT, IP, CEIL, SGN, LEN, POS, ORD, MAXLEN, MAXSIZE, SIZE, LBOUND, UBOUND, DATE) give a result of fraction-size 0 that prints like a constant: PRINT INT(2.5) prints 2, not 2.00; an expression built on them (INT(2.5) + 1) keeps the default size. Every intermediate result is checked: with A of 16 integer digits under *18.0, A*A/A raises 1002 at A*A although the final result would fit (l.12230-12234; measured with the CLI)."
+  external: []
+  covers: [l.12232-12233]
+
+- id: D-15.1-3
+  clause: "15.1.4"
+  ecma: "15.1.4"
+  ecma_level: BASIC-2
+  module: fixed
+  kind: implementation-defined
+  claim: "How accurately a fixed-decimal numeric expression or numeric supplied function is evaluated is left to each implementation (Appendix C, subsection 15.1, item 3)."
+  tests: [FIX-0013]
+  value: "Operations are computed in decimal with P+2 = 20 significant digits, two more than P, as 15.1.6 recommends, and the operands (constants, variables, intermediate results) keep their own precision (FIX-0013: in *8.2, 1/3*3 is .99999999999999999999, so 1/3*3 = 1 is false, while LET C = 1/3*3 stores 1.00 and 0.1+0.2 = .3 is true; FIX-0174)"
+  external: []
+  covers: [l.12233-12234]
+
+- id: A-15.1.4-04
+  clause: "15.1.4"
+  ecma: "15.1.4"
+  ecma_level: BASIC-2
+  module: fixed
+  kind: semantics
+  status: claimed
+  claim: "A numeric expression used as a print item is always printed in unsealed representation: implicit point when no significant digit lies right of the point, explicit point otherwise, showing exactly the significant digits."
+  tests: [FIX-0014, FIX-0015]
+  external: []
+  covers: [l.12250-12259]
+
+- id: D-15.1-5
+  clause: "15.1.4"
+  ecma: "15.1.4"
+  ecma_level: BASIC-2
+  module: fixed
+  kind: implementation-defined
+  claim: "Whether an INTERNAL format file opened under one ARITHMETIC option can be accessed under another is left to each implementation; FIXED with a different default precision still counts as the same option (Appendix C, subsection 15.1, item 5)."
+  tests: [FIX-0016]
+  value: "INTERNAL files are accessible across different ARITHMETIC options: a datum written under FIXED reads back correctly under DECIMAL (FIX-0016)"
+  external: []
+  covers: [l.12267-12270]
+
+- id: A-15.1.4-05
+  clause: "15.1.4"
+  ecma: "15.1.4"
+  ecma_level: BASIC-2
+  module: fixed
+  kind: semantics
+  status: claimed
+  claim: "In NATIVE records, moving a value into an E-sized floating-point field preserves at least its first P significant digits exactly, and reading such a field back into a variable treats the field as a scaled numeric constant."
+  tests: [FIX-0017]
+  external: []
+  covers: [l.12273-12278]
+
+- id: D-15.1-6
+  clause: "15.1.4"
+  ecma: "15.1.4"
+  ecma_level: BASIC-2
+  module: fixed
+  kind: implementation-defined
+  claim: "Whether a NATIVE format file opened under one ARITHMETIC option can be accessed under another is left to each implementation (Appendix C, subsection 15.1, item 6)."
+  tests: [FIX-0018]
+  value: "NATIVE files are accessible across different ARITHMETIC options: a NUMERIC*4.2 field written under FIXED reads back as 12.35 under DECIMAL (FIX-0018)"
+  external: []
+  covers: [l.12278-12280]
+
+- id: D-15.1-7
+  clause: "15.1.4"
+  ecma: "15.1.4"
+  ecma_level: BASIC-2
+  module: fixed
+  kind: implementation-defined
+  claim: "The way a value is rounded when it is assigned to a fixed-point variable with fewer fraction digits is not fixed by section 15.1.4, which only says it is rounded."
+  value: "Half away from zero on the magnitude: LET A = -1.555 stores -1.56 and LET B = 1.555 stores 1.56 under *8.2 (FIX-0178); the same tie-break as the format items of PRINT USING (D-5.4-6). ROUND is different: it follows its normative formula INT(X*10^N+.5)/10^N, so ROUND(-1.555,2) is -1.55."
+  tests: [FIX-0178]
+  external: []
+  covers: [l.12236-12244]
+
+- id: A-15.1.4-06
+  clause: "15.1.4"
+  ecma: "15.1.4"
+  ecma_level: BASIC-2
+  module: fixed
+  kind: semantics
+  claim: "For numeric data in a STREAM INTERNAL file written under the FIXED option, the DATUM ask-attribute reports the next datum's type as NUMERIC*!!.ff, with the two-digit integer-size and fraction-size of the datum as written (self-typed, l.12264-12267): a variable declared DECLARE NUMERIC*3.1 keeps 03.01 even under OPTION FIXED*8.2, and after a partial READ of a multi-datum WRITE the pending datum's own size is reported (§11.4.4 l.8056-8062)."
+  tests: [FIX-0019]
+  external: []
+  covers: [l.12264-12267, l.12281-12285, l.8056-8062]
+
+- id: A-15.1.4-07
+  clause: "15.1.4"
+  ecma: "15.1.4"
+  ecma_level: BASIC-2
+  module: fixed
+  kind: semantics
+  status: claimed
+  claim: "A numeric-variable under ARITHMETIC FIXED carries the significant digits it would have if spelled out as a constant with its full integer-size and fraction-size precision, and a print-item shows exactly those digits: a zero value prints with explicit point and all fraction-size digits (\" .00 \" in *5.2, \" .0000 \" in *8.4, also for values that round to zero such as .001), while with fraction-size 0 it prints with implicit point (\" 0 \" in *3.0); STR$ of the same value returns the print numeric-representation without the leading and trailing spaces (\".00\")."
+  tests: [FIX-0047, FIX-0048, FIX-0049]
+  external: []
+  covers: [l.12196-12198, l.12202-12208, l.12226-12228, l.12249-12259, l.2702-2707]
+
+- id: A-15.1.4-08
+  clause: "15.1.4"
+  ecma: "15.1.4"
+  ecma_level: BASIC-2
+  module: fixed
+  kind: semantics
+  claim: "A numeric constant overflows only if the digits left of its point exceed P; with P of at least 18, a constant of 17 or 18 integer digits is valid under an ARITHMETIC FIXED option whose default size is smaller (for example *4.2): a print-item prints it with exactly its digits, it can be assigned to a variable whose integer-size holds it, and assigning it to a variable whose integer-size does not hold it raises 1011 and leaves the variable unchanged."
+  tests: [FIX-0050]
+  external: []
+  covers: [l.12183-12187, l.12204-12207, l.12236-12243, l.12250-12259]
+
+- id: A-15.1.4-109
+  clause: "15.1.4"
+  ecma: "15.1.4"
+  ecma_level: BASIC-2
+  module: fixed
+  kind: semantics
+  claim: "Reading a wide FIXED variable (for example *18.0 holding 17 or 18 integer digits) in a comparison or in an arithmetic expression under an ARITHMETIC FIXED option with a smaller default size never raises 1011, which is the exception of assigning to a variable; a comparison cannot overflow, and the result of an expression overflows (1002, numeric-expression overflow) only when its integer digits do not fit in P. The precision of the result of an expression is implementation-defined; this implementation keeps up to P+2 significant digits and, when the integer digits need the room, reduces the fraction digits (rounding) down to zero, so 12345678901234567 + 1 is exact."
+  tests: [FIX-0151]
+  external: []
+  covers: [l.12204-12207, l.12219-12235, l.1843-1845]
+
+- id: A-15.1.4-110
+  clause: "15.1.4"
+  ecma: "15.1.4"
+  ecma_level: BASIC-2
+  module: fixed
+  kind: semantics
+  claim: "Assigning a numeric value to a fixed-point variable or array element, by LET or from READ or INPUT, rounds the digits beyond the fraction-size of the receiving variable (the rounding rule is implementation-defined, half away from zero here, D-15.1-7); the operands of the expression assigned keep their own precision until that moment, so 1.555 = 1.56 is false while LET B = 1.555 stores 1.56, and a FOR loop with a step finer than the control variable rounds the control variable at every step."
+  tests: [FIX-0174]
+  external: []
+  covers: [l.12236-12244, l.12170-12220]
+
+- id: E-1001
+  clause: "15.1.5"
+  ecma: "15.1.5"
+  ecma_level: BASIC-2
+  module: fixed
+  kind: exception
+  claim: "A numeric constant whose integer-part significant digits exceed the maximum precision P raises fatal exception 1001, an overflow while evaluating a numeric constant."
+  tests: [FIX-0020]
+  external: []
+  covers: [l.12289-12290, l.12782]
+
+- id: E-1010
+  clause: "15.1.5"
+  ecma: "15.1.5"
+  ecma_level: BASIC-2
+  module: fixed
+  kind: exception
+  claim: "Declaring a fixed-point size whose integer-size plus fraction-size exceeds the maximum precision P raises fatal exception 1010, too many digits declared for fixed decimal; the same code applies in option and declare statements and in fixed parameters or fixed defined functions."
+  tests: [FIX-0021, FIX-0022, FIX-0023, FIX-0045, FIX-0046, FIX-0172, FIX-0173, FIX-0175, FIX-0176, FIX-0177]
+  external: []
+  covers: [l.12292-12294, l.12416-12418, l.12793]
+
+- id: E-1011
+  clause: "15.1.5"
+  ecma: "15.1.5"
+  ecma_level: BASIC-2
+  module: fixed
+  kind: exception
+  claim: "Assigning a numeric value to a fixed-decimal variable, fixed parameter or fixed defined function when the value's integer part needs more digits than the target's integer-size raises fatal exception 1011, an overflow in a fixed decimal assignment."
+  tests: [FIX-0024]
+  external: []
+  covers: [l.12296-12298, l.12420-12423, l.12794]
+
+- id: A-15.2.2-01
+  clause: "15.2.2"
+  ecma: "15.2.2"
+  ecma_level: BASIC-2
+  module: fixed
+  kind: syntax
+  claim: "A numeric variable or actual array passed in a CALL must match the procedure parameter in both integer-size and fraction-size; for other numeric arguments only the ARITHMETIC options of the two program units must agree."
+  tests: [FIX-0025, FIX-0026]
+  external: []
+  covers: [l.12347-12349]
+
+- id: A-15.2.2-02
+  clause: "15.2.2"
+  ecma: "15.2.2"
+  ecma_level: BASIC-2
+  module: fixed
+  kind: syntax
+  claim: "The OPTION ARITHMETIC FIXED statement must be on a lower-numbered line than any internal function definition that declares a numeric defined function or has numeric parameters."
+  tests: [FIX-0027]
+  external: []
+  covers: [l.12359-12362]
+
+- id: A-15.2.2-03
+  clause: "15.2.2"
+  ecma: "15.2.2"
+  ecma_level: BASIC-2
+  module: fixed
+  kind: syntax
+  claim: "A fixed-point-type on an internal function line or DEF statement, and a numeric-fixed-parameter, may be used only when the program unit has selected ARITHMETIC FIXED."
+  tests: [FIX-0028, FIX-0029]
+  external: []
+  covers: [l.12364-12369]
+
+- id: A-15.2.2-04
+  clause: "15.2.2"
+  ecma: "15.2.2"
+  ecma_level: BASIC-2
+  module: fixed
+  kind: syntax
+  claim: "If a function type declares a fixed defined function, the fixed-point sizes stated, whether explicit or by default, in the declaration and in the matching definition must agree."
+  tests: [FIX-0030]
+  external: []
+  covers: [l.12371-12374]
+
+- id: D-15.2.2-1
+  clause: "15.2.2"
+  ecma: "15.2.2"
+  ecma_level: BASIC-2
+  module: fixed
+  kind: implementation-defined
+  claim: "Whether the ARITHMETIC options of two program-units joined by CHAIN must agree in fixed-point precision or only in type, and whether the numeric parameters of the program-name-line are subject to the ordering rule of OPTION ARITHMETIC FIXED."
+  tests: [SEG-0324, SEG-0311, SEG-0312]
+  value: "Agreed interpretation of 15.2.2 (decision of the project owner, 2026-11-02): 15.2.2 l.12354-12357 only requires the ARITHMETIC options of the two program-units to agree in type (DECIMAL, NATIVE or FIXED), not in precision, so CHAIN from FIXED*4.2 to FIXED*8.2 executes without exception 4303 (SEG-0324); NATIVE vs DECIMAL still raise 4303 both ways (SEG-0311, SEG-0312). The ordering rule of 15.1.2 l.12145-12148 does not reach the parameters of the program-name-line (the first line), so a FIXED program with numeric program parameters is conforming."
+  external: []
+  covers: [l.12354-12357, l.12145-12148]
+
+- id: A-15.2.3-EX
+  clause: "15.2.3"
+  ecma: "15.2.3"
+  ecma_level: BASIC-2
+  module: fixed
+  kind: syntax
+  claim: "Every parameter and function form shown in the examples of section 15.2.3, fixed formal arrays, fixed defined functions and external functions, is accepted and behaves as written."
+  tests: [FIX-0031]
+  external: []
+  covers: [l.12376-12386]
+
+- id: A-15.2.4-01
+  clause: "15.2.4"
+  ecma: "15.2.4"
+  ecma_level: BASIC-2
+  module: fixed
+  kind: semantics
+  claim: "Under ARITHMETIC FIXED, numeric procedure parameters, function parameters and defined functions hold fixed-point decimal values; one whose fixed-point-size is not written takes the default of the ARITHMETIC FIXED option, and a formal array's size applies to each element."
+  tests: [FIX-0032]
+  external: []
+  covers: [l.12389-12398]
+
+- id: A-15.2.4-02
+  clause: "15.2.4"
+  ecma: "15.2.4"
+  ecma_level: BASIC-2
+  module: fixed
+  kind: semantics
+  claim: "Arguments of a function reference are bound to the function parameters as in 9.1, except that when the argument's fixed-point-size differs from the parameter's the fixed-point assignment rules of 15.1.4 are used."
+  tests: [FIX-0033]
+  external: []
+  covers: [l.12400-12405]
+
+- id: A-15.2.4-03
+  clause: "15.2.4"
+  ecma: "15.2.4"
+  ecma_level: BASIC-2
+  module: fixed
+  kind: semantics
+  claim: "Arguments of a CALL are associated with the subprogram parameters as in 9.2, except that a numeric-expression argument, other than a plain variable, whose fixed-point-size differs from the parameter's is converted using the 15.1.4 assignment rules."
+  tests: [FIX-0034]
+  external: []
+  covers: [l.12407-12412]
+
+- id: A-15.1.4-FI14
+  clause: "15.1.4"
+  ecma: "15.1.4"
+  ecma_level: BASIC-2
+  module: fixed
+  kind: semantics
+  status: claimed
+  claim: "Under ARITHMETIC FIXED a numeric-constant keeps its own precision (the significant digits written) when it is written to an INTERNAL file: reading it back gives the same value as assigning the constant, and DATUM reports its own integer-size and fraction-size (0.12345 is NUMERIC*00.05 even under FIXED*8.2)."
+  tests: [FIX-0179]
+  external: []
+  covers: [l.12189-12199, l.12261-12266, l.12281-12285]

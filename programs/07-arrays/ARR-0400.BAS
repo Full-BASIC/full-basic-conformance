@@ -1,0 +1,48 @@
+1 REM FBCS ARR-0400
+2 REM CLAIM A-7.3.5-CL36
+3 REM TYPE SELF
+4 REM STD 7.3.5 l.3467-3468 and 9.2.4.1 l.4679-4682: a string-array element that would exceed the length-max raises 1106 in a
+5 REM MAT with a substring-qualifier and in an array passed by reference to an EXTERNAL SUB; the array keeps its value.
+10 DECLARE EXTERNAL SUB FILL, LOAD
+20 DECLARE STRING*2 S$(3)
+30 DECLARE STRING*3 B$(2)
+40 LET OK = 1
+50 MAT S$ = ("ab") & NUL$
+60 WHEN EXCEPTION IN
+70   MAT S$(2:1) = ("Z") & NUL$
+80   LET OK = 0
+90 USE
+100   IF EXTYPE <> 1106 OR S$(1) <> "ab" THEN LET OK = 0
+110 END WHEN
+120 MAT S$ = NUL$
+130 WHEN EXCEPTION IN
+140   MAT S$(1:0) = ("xyz") & NUL$
+150   LET OK = 0
+160 USE
+170   IF EXTYPE <> 1106 OR S$(1) <> "" THEN LET OK = 0
+180 END WHEN
+190 MAT S$ = ("ab") & NUL$
+200 MAT S$(1:1) = ("x") & NUL$
+210 IF S$(1) <> "xb" THEN LET OK = 0
+220 LET B$(1) = "ab"
+230 WHEN EXCEPTION IN
+240   CALL FILL(B$)
+250   LET OK = 0
+260 USE
+270   IF EXTYPE <> 101106 OR B$(1) <> "ab" THEN LET OK = 0
+280 END WHEN
+290 WHEN EXCEPTION IN
+300   CALL LOAD(B$)
+310   LET OK = 0
+320 USE
+330   IF EXTYPE <> 101053 OR B$(1) <> "ab" THEN LET OK = 0
+340 END WHEN
+350 IF OK = 1 THEN PRINT "*** TEST PASSED ***" ELSE PRINT "*** TEST FAILED ***"
+360 END
+370 EXTERNAL SUB FILL(Q$())
+380   LET Q$(1) = "abcdef"
+390 END SUB
+400 EXTERNAL SUB LOAD(Q$())
+410   READ Q$(1)
+420   DATA abcdef
+430 END SUB

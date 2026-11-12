@@ -1,0 +1,11 @@
+1 REM FBCS ARR-0297
+2 REM CLAIM A-7.1.2-TR103
+3 REM TYPE REJECT
+4 REM STD 7.1.2 l.2997-2999: a use in a routine below the DIM of the main is rejected at load.
+100 PRINT "EXECUTED"
+110 SUB S
+120   LET B(2) = 4
+130 END SUB
+140 DIM B(3)
+150 CALL S
+160 END

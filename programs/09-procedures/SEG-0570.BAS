@@ -1,0 +1,12 @@
+1 REM FBCS SEG-0570
+2 REM CLAIM A-9.2.4.1-TR146
+3 REM TYPE OUTPUT
+4 REM STD 8.2.4 l.3678-3716, 9.2.4.1 l.4649-4668: a by-value parameter of a CALL made inside a GOSUB subroutine reads the argument.
+10 SUB S(N)
+20 PRINT N
+30 END SUB
+40 GOSUB 100
+50 STOP
+100 CALL S(7)
+110 RETURN
+120 END

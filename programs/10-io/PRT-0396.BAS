@@ -1,0 +1,24 @@
+1 REM FBCS PRT-0396
+2 REM CLAIM A-10.1.2-TR154
+3 REM TYPE OUTPUT
+4 REM 8.2.2 prod. 1, 10.1.2 prod. 3: an io-recovery may name a line outside its for-loop, a line outside
+5 REM its branch and a line of the top level; the exhausted DATA triggers it.
+100 DATA 1
+110 FOR I = 1 TO 3
+120 READ IF MISSING THEN 140: V
+130 NEXT I
+140 PRINT I
+150 PRINT V
+160 LET K = 1
+170 IF K = 1 THEN
+180 READ IF MISSING THEN 200: W
+190 PRINT "NO"
+200 PRINT "B"
+210 ELSE
+220 PRINT "NO2"
+230 END IF
+240 READ IF MISSING THEN 270: Y
+250 PRINT "NO3"
+260 STOP
+270 PRINT "FIN"
+280 END

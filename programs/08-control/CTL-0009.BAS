@@ -1,0 +1,16 @@
+1 REM FBCS CTL-0009
+2 REM CLAIM A-8.1.4-02
+3 REM TYPE SELF
+100 REM String equality iff same length and identical characters (l.3543)
+110 LET OK = 1
+120 IF NOT ("AB" = "AB") THEN LET OK = 0
+130 IF "AB" = "BA" THEN LET OK = 0
+140 IF "AB" = "A" THEN LET OK = 0
+150 IF "A" = "AB" THEN LET OK = 0
+160 IF NOT ("" = "") THEN LET OK = 0
+170 IF "" = "A" THEN LET OK = 0
+180 IF "a" = "A" THEN LET OK = 0
+190 IF NOT ("ABC" = "ABC") THEN LET OK = 0
+200 IF "ABC" = "ABD" THEN LET OK = 0
+210 IF OK = 1 THEN PRINT "*** TEST PASSED ***" ELSE PRINT "*** TEST FAILED ***"
+220 END

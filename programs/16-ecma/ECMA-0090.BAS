@@ -1,0 +1,28 @@
+1 REM FBCS ECMA-0090
+2 REM CLAIM A-ECMA-35
+3 REM TYPE INPUT
+100 HANDLER file_trouble
+105 LET TAKEN = 1
+110 LET file_ok$ = "false"
+120 IF EXTYPE = 7107 THEN
+130 LET message$ = "doesn't exist"
+140 ELSEIF EXTYPE = 7102 THEN
+150 LET message$ = "is the wrong type"
+160 ELSE
+170 LET message$ = "couldn't be used"
+180 END IF
+190 PRINT "file"; filename$; message$; "try again"
+200 END HANDLER
+210 OPEN #2: NAME "ECMA0090.DAT", ACCESS OUTIN, ORGANIZATION STREAM, RECTYPE INTERNAL
+220 CLOSE #2
+230 DO
+240 INPUT filename$
+250 LET file_ok$ = "true"
+260 WHEN EXCEPTION USE file_trouble
+270 OPEN #1: NAME filename$, ACCESS INPUT, ORGANIZATION STREAM, RECTYPE INTERNAL
+280 END WHEN
+290 LOOP UNTIL file_ok$ = "true"
+300 PRINT
+310 IF file_ok$ = "true" AND TAKEN = 1 AND message$ = "doesn't exist" THEN PRINT "*** TEST PASSED ***" ELSE PRINT &
+&"*** TEST FAILED ***"
+320 END

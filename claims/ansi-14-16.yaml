@@ -1,0 +1,24 @@
+# Sections 14 (Real Time) and 16 (Editing): not claimed as modules.
+# not-applicable claims carry a `reason` instead of tests, so they are listed in
+# section 7 of COMPLIANCE_ANSI.md. ecma: null — ECMA-116 has no sections 14 or 16.
+- id: A-14-01
+  clause: "14"
+  ecma: null
+  module: core
+  kind: not-applicable
+  claim: "Section 14 (Real Time) is not claimed: the interpreter does not implement real-time programs, parallel sections or event handling."
+  reason: "The real-time module is optional in ANSI X3.113-1987 (§2 (4), l.470-503) and does not exist in ECMA-116 (§2.5: real-time programs will not run on ECMA BASIC implementations); it is not implemented and not claimed."
+  tests: []
+  covers: []
+  external: []
+
+- id: A-16-01
+  clause: "16"
+  ecma: null
+  module: core
+  kind: not-applicable
+  claim: "Section 16 (Editing) is not claimed as a module: the interpreter does not accept the editing commands (DELETE, EXTRACT, LIST, RENUMBER) as program text, and program lines must appear in increasing line-number order (claim A-4.2.2-04)."
+  reason: "The editing module is optional in ANSI X3.113-1987 (§2 (6), l.470-503) and has no equivalent in ECMA-116; the host application's own source editor provides the editing functionality instead of the interpreter accepting the section 16 commands (project decision, 2026-10-20)."
+  tests: []
+  covers: []
+  external: []

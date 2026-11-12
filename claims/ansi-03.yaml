@@ -1,0 +1,16 @@
+# Claims for chapter 3 (syntax specification and definitions).
+# The only normative candidates of chapter 3 (l.837, l.1019) are glossary
+# definitions of terms; no testable claim remains.
+
+# --- Appendix C subsection 3.2 (native data) implementation-defined value.
+- id: D-3.2-1
+  clause: "3.2"
+  ecma: "3.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "The semantic rules for native data (collating sequence, precision) that the definition of 'native' in subsection 3.2 leaves implementation-defined (Appendix C, subsection 3.2)."
+  tests: [PRG-0023, STR-0059, NUM-0082, NUM-0243]
+  value: "Native data follows the host model: strings are sequences of Latin-1 characters, one position each (LEN of 'ñ' is 1, D-4.1-1), the native collating sequence is character-code order identical to STANDARD (D-4.1.4-1, D-6.6-1), CHR$/ORD use character codes 0..255 (D-6.4-1, D-6.4-2), and NATIVE arithmetic is backed by binary64 and quantized to 8 significant digits (D-5.6-3: fpScale 8; measured NUM-0243: 1/3*3 - 1 = -1E-8 and 1/3 - .33333333 = 0), which exceeds the 6 significant digits the standard requires (NUM-0082: 1/3 within 5E-7, MAXNUM > 1E+38, EPS(0) < 2E-38); values are printed with d = 8 digits under NATIVE as under DECIMAL (D-10.3-2)."
+  external: []
+  covers: [l.962-967]

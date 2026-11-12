@@ -1,0 +1,8 @@
+1 REM FBCS GFX-0176
+2 REM CLAIM A-13.3.2-TR89
+3 REM TYPE REJECT
+4 REM STD 13.3.2 l.9848-9851: a lone array of an array-point-list (MAT PLOT as well as MAT GRAPH) is two-dimensional.
+100 PRINT "EXECUTED"
+110 DIM V(3)
+120 MAT PLOT LINES: V
+130 END

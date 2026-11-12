@@ -1,0 +1,13 @@
+1 REM FBCS FIX-0013
+2 REM CLAIM D-15.1-3
+3 REM TYPE SELF
+4 REM 1/3*3 is .99999999999999999999 (20 digits, 15.1.6) until it is assigned to a *8.2 variable, where it rounds to 1.00
+10 OPTION ARITHMETIC FIXED *8.2
+20 LET C = 1/3*3
+30 LET E = 0.1+0.2
+40 LET OK = 1
+50 IF C <> 1 OR E <> .3 THEN LET OK = 0
+60 IF 1/3*3 = 1 OR 1/3*3 = .99 THEN LET OK = 0
+70 IF 0.1+0.2 <> .3 THEN LET OK = 0
+80 IF OK = 1 THEN PRINT "*** TEST PASSED ***" ELSE PRINT "*** TEST FAILED ***"
+90 END

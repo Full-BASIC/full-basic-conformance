@@ -1,0 +1,11 @@
+# Implementation-defined values. Each record needs a `value` and at least one test.
+- id: A-11.1.5-02
+  clause: "11.1.5"
+  ecma: "11.1.5"
+  ecma_level: BASIC-2
+  module: files
+  kind: implementation-defined
+  claim: "The 71xx exception for an OPEN whose access to the file is not possible is fatal when unhandled; the value of xx is implementation-defined (Table 9 l.12916-12917)."
+  value: "FullBASIC raises 7107 (file does not exist) for OPEN ... ACCESS INPUT of a nonexistent file; the example in 12.1 (l.8742-8744) uses 7107 for that case."
+  tests: [FIL-0019]
+  external: []

@@ -1,0 +1,22 @@
+1 REM FBCS SEG-0562
+2 REM CLAIM A-9.2.4.2-TR142
+3 REM TYPE OUTPUT
+4 REM 9.2.4, 9.2.4.2 l.4726-4733: recursive external SUB whose output parameters are unassigned locals of the caller.
+10 DECLARE EXTERNAL SUB FIB
+20 DIM M(30)
+30 MAT M = ZER
+40 CALL FIB(25, M, R)
+50 PRINT R
+60 END
+100 EXTERNAL SUB FIB(N, M(), R)
+110 IF N <= 2 THEN
+120   LET R = 1
+130 ELSEIF M(N) > 0 THEN
+140   LET R = M(N)
+150 ELSE
+160   CALL FIB(N - 1, M, A)
+170   CALL FIB(N - 2, M, B)
+180   LET R = A + B
+190   LET M(N) = R
+200 END IF
+210 END SUB

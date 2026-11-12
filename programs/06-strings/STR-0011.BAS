@@ -1,0 +1,13 @@
+1 REM FBCS STR-0011
+2 REM CLAIM A-6.2.4-04
+3 REM TYPE SELF
+100 REM Out-of-range indices are clamped, no exception: M=MAX(M,1), N=MIN(N,LEN).
+110 REM Standard example: A$ = "1234": A$(0:3) = "123", A$(2:5) = "234".
+120 LET FAIL = 0
+130 LET A$ = "1234"
+140 IF A$(0:3) <> "123" THEN LET FAIL = FAIL + 1
+150 IF A$(2:5) <> "234" THEN LET FAIL = FAIL + 1
+160 IF A$(0:99) <> "1234" THEN LET FAIL = FAIL + 1
+170 IF A$(-5:-1) <> "" THEN LET FAIL = FAIL + 1
+180 IF FAIL = 0 THEN PRINT "*** TEST PASSED ***" ELSE PRINT "*** TEST FAILED ***"
+190 END

@@ -1,0 +1,12 @@
+1 REM FBCS SEG-0666
+2 REM CLAIM A-9.2.2-TR171
+3 REM TYPE REJECT
+4 REM 9.2.2 l.4554-4562: a numeric literal is not a channel-expression for a channel-number parameter.
+6 PRINT "EXECUTED"
+10 DECLARE EXTERNAL SUB W
+20 OPEN #1: NAME "Z", ACCESS OUTPUT
+30 CALL W(1)
+90 END
+100 EXTERNAL SUB W(#2)
+110 PRINT #2: "W"
+120 END SUB

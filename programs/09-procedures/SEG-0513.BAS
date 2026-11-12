@@ -1,0 +1,15 @@
+1 REM FBCS SEG-0513
+2 REM CLAIM A-9.2.4-TR132
+3 REM TYPE OUTPUT
+4 REM STD 9.2.4.1 l.4647-4651, 9.2.4.2 l.4726-4738: an internal SUB assigns the parameter of its EXTERNAL SUB whose
+5 REM argument is a literal; the unit sees the assignment.
+10 DECLARE EXTERNAL SUB E
+20 CALL E(4)
+30 END
+100 EXTERNAL SUB E(N)
+110 SUB S(K)
+120   LET N = N + K
+130 END SUB
+140 CALL S(4)
+150 PRINT N
+160 END SUB

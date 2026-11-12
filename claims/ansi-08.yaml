@@ -1,0 +1,450 @@
+# Claims for chapter 8 (control structures).
+- id: A-8.3.2-01
+  clause: "8.3.2"
+  ecma: "8.3.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "EXIT DO is only valid inside a DO loop and EXIT FOR only inside a FOR loop, so a program with either outside its loop is rejected before it runs, even if the statement would never be executed."
+  tests: [CTL-0001, CTL-0002, CTL-0003, CTL-0004]
+  external: []
+
+- id: A-8.3.2-02
+  clause: "8.3.2"
+  ecma: "8.3.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "A FOR loop written inside the body of another FOR loop may not use the same control variable, so such a program is rejected before it runs."
+  tests: [CTL-0005, CTL-0006]
+  external: []
+  covers: [l.3791]
+
+- id: A-8.1.3-EX
+  clause: "8.1.3"
+  ecma: "8.1.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "Every relational-expression example of section 8.1.3 is accepted and evaluates as written."
+  tests: [CTL-0007]
+  external: []
+  covers: [l.3521-3530]
+
+- id: A-8.1.4-01
+  clause: "8.1.4"
+  ecma: "8.1.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Two numeric expressions compare equal exactly when they have the same value."
+  tests: [CTL-0008]
+  external: []
+  covers: [l.3539]
+
+- id: A-8.1.4-02
+  clause: "8.1.4"
+  ecma: "8.1.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Two string expressions compare equal exactly when their values have the same length and identical character sequences."
+  tests: [CTL-0009]
+  external: []
+  covers: [l.3543]
+
+- id: A-8.1.4-03
+  clause: "8.1.4"
+  ecma: "8.1.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "String ordering follows the collating sequence: for equal lengths the leftmost differing character decides; a shorter string that is empty or a left prefix of the other compares lower; for other unequal lengths the shorter string is compared against the same-length leftmost part of the longer one, and the remaining relations derive from this less-than rule."
+  tests: [CTL-0010]
+  external: []
+  covers: [l.3549-3561]
+
+- id: A-8.1.4-04
+  clause: "8.1.4"
+  ecma: "8.1.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "NOT applies only to the relational-primary right after it, AND to the relational-terms on both of its sides, and OR to the conjunctions on both of its sides, as the grammar implies."
+  tests: [CTL-0011]
+  external: []
+  covers: [l.3565]
+
+- id: A-8.1.4-05
+  clause: "8.1.4"
+  ecma: "8.1.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A relational expression short-circuits: its conjunctions are tried left to right and the first true one makes the whole disjunction true with the rest skipped; inside a conjunction the terms are tried left to right and the first false one makes the conjunction false with the rest skipped."
+  tests: [CTL-0012]
+  external: []
+  covers: [l.3572-3589]
+
+- id: A-8.1.4-06
+  clause: "8.1.4"
+  ecma: "8.1.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A relational-term takes the truth value of its relational-primary, inverted when NOT is present, and a parenthesized relational expression is evaluated by applying these same rules again."
+  tests: [CTL-0013]
+  external: []
+  covers: [l.3590-3593]
+
+- id: A-8.2.3-EX
+  clause: "8.2.3"
+  ecma: "8.2.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "Every control-transfer example of section 8.2.3 is accepted and behaves as written."
+  tests: [CTL-0014, CTL-0015, CTL-0016]
+  external: []
+  covers: [l.3645-3657]
+
+- id: A-8.2.4-01
+  clause: "8.2.4"
+  ecma: "8.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "GOTO moves execution to the line whose number it names."
+  tests: [CTL-0017]
+  external: []
+  covers: [l.3660]
+
+- id: A-8.2.4-02
+  clause: "8.2.4"
+  ecma: "8.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "ON GOTO evaluates its index, rounds it to an integer, and picks the line at that 1-based position in the list; if the index is below 1 or beyond the list and an ELSE clause exists, the statement after ELSE runs and, when it does not jump elsewhere, execution continues with the next line."
+  tests: [CTL-0018]
+  external: []
+  covers: [l.3664-3674]
+
+- id: A-8.2.4-03
+  clause: "8.2.4"
+  ecma: "8.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Each GOSUB pushes the line number of the GOSUB line itself onto the return stack and then jumps to the target line."
+  tests: [CTL-0019]
+  external: []
+  covers: [l.3686-3689]
+
+- id: A-8.2.4-04
+  clause: "8.2.4"
+  ecma: "8.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "ON GOSUB rounds its index to pick a 1-based list entry, pushes its own line number onto the stack of the enclosing unit or internal procedure, and jumps there; an out-of-range index with an ELSE runs the ELSE statement without altering the stack, and if that statement does not jump, execution continues with the next line."
+  tests: [CTL-0020]
+  external: []
+  covers: [l.3691-3704]
+
+- id: A-8.2.4-05
+  clause: "8.2.4"
+  ecma: "8.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "RETURN removes the top line number from the stack and resumes at the line after the one holding that number."
+  tests: [CTL-0021]
+  external: []
+  covers: [l.3709-3710]
+
+- id: A-8.2.4-06
+  clause: "8.2.4"
+  ecma: "8.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Inside an internal procedure, GOSUB, ON GOSUB and RETURN work only with that procedure's own stack; elsewhere they work with the stack of the containing program unit."
+  tests: [CTL-0022]
+  external: []
+  covers: [l.3714]
+
+- id: A-8.2.4-07
+  clause: "8.2.4"
+  ecma: "8.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "The return stack of a program unit or internal procedure is discarded when that unit or procedure ends, even if GOSUBs were left unmatched; END SUB / EXIT SUB / END FUNCTION / EXIT FUNCTION with a pending GOSUB do not act as RETURN."
+  tests: [CTL-0023, CTL-0059, CTL-0060, CTL-0061, CTL-0062, CTL-0063, CTL-0064, CTL-0065]
+  external: []
+  covers: [l.3718-3723]
+
+- id: E-10001
+  clause: "8.2.5"
+  ecma: "8.2.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "ON GOTO or ON GOSUB without an ELSE whose rounded index is below 1 or beyond the list raises the fatal exception 10001."
+  tests: [CTL-0024]
+  external: []
+  covers: [l.3729, l.13003]
+
+- id: E-10002
+  clause: "8.2.5"
+  ecma: "8.2.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "A RETURN executed with no earlier GOSUB or ON GOSUB in the same program unit or internal procedure raises the fatal exception 10002."
+  tests: [CTL-0025, CTL-0026]
+  external: []
+  covers: [l.3735, l.13004]
+
+- id: A-8.3.2-03
+  clause: "8.3.2"
+  ecma: "8.3.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "The variable named by the NEXT that closes a FOR loop must be the same one the FOR line used, so crossed loops (a NEXT naming an outer loop's variable while an inner FOR is still open) are rejected before the program runs, in the main program and in every subprogram."
+  tests: [CTL-0027, CTL-0287, CTL-0288, CTL-0289]
+  external: []
+  covers: [l.3787]
+
+- id: A-8.3.2-04
+  clause: "8.3.2"
+  ecma: "8.3.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "A control transfer from outside a loop may not land on a line inside that loop's for-body or do-body."
+  tests: [CTL-0028, CTL-0029]
+  external: []
+  covers: [l.3793]
+
+- id: A-8.3.3-EX
+  clause: "8.3.3"
+  ecma: "8.3.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "Every loop example of section 8.3.3 is accepted and behaves as written."
+  tests: [CTL-0030, CTL-0031, CTL-0032, CTL-0033]
+  external: []
+  covers: [l.3799-3824]
+
+- id: A-8.3.4-01
+  clause: "8.3.4"
+  ecma: "8.3.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A WHILE exit condition demands leaving the loop when its expression is false, and an UNTIL one when its expression is true."
+  tests: [CTL-0034]
+  external: []
+  covers: [l.3827]
+
+- id: A-8.3.4-02
+  clause: "8.3.4"
+  ecma: "8.3.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "At a DO line its exit condition is evaluated if present: when it does not demand exit the next line runs, when it does, execution skips past the matching LOOP line; at a LOOP line the condition works the other way, resuming at the DO line unless exit is demanded, in which case execution continues past the LOOP line."
+  tests: [CTL-0035]
+  external: []
+  covers: [l.3833-3843]
+
+- id: A-8.3.4-03
+  clause: "8.3.4"
+  ecma: "8.3.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "FOR v = a TO b STEP c closed by NEXT v behaves like the spelled-out expansion that stores b and c in hidden per-loop variables, sets v to a, repeats while v has not passed b, and adds c after each round."
+  tests: [CTL-0036]
+  external: []
+  covers: [l.3852]
+
+- id: A-8.3.4-04
+  clause: "8.3.4"
+  ecma: "8.3.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "The hidden limit and increment variables of a FOR loop belong to that loop alone and cannot be named by the program."
+  tests: [CTL-0037]
+  external: []
+  covers: [l.3867]
+
+- id: A-8.3.4-05
+  clause: "8.3.4"
+  ecma: "8.3.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A jump aimed at the FOR line behaves as a jump to the expansion's first assignment, and one aimed at the NEXT line as a jump to its final assignment."
+  tests: [CTL-0038]
+  external: []
+  covers: [l.3869-3871]
+
+- id: A-8.3.4-06
+  clause: "8.3.4"
+  ecma: "8.3.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A FOR without STEP adds +1 to the control variable each round."
+  tests: [CTL-0039]
+  external: []
+  covers: [l.3875]
+
+- id: A-8.3.4-07
+  clause: "8.3.4"
+  ecma: "8.3.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "EXIT DO resumes execution at the line after the LOOP line of the smallest DO loop containing it."
+  tests: [CTL-0040]
+  external: []
+  covers: [l.3877]
+
+- id: A-8.3.4-08
+  clause: "8.3.4"
+  ecma: "8.3.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "EXIT FOR resumes execution at the line after the NEXT line of the smallest FOR loop containing it."
+  tests: [CTL-0041]
+  external: []
+  covers: [l.3880]
+
+- id: A-8.4.2-01
+  clause: "8.4.2"
+  ecma: "8.4.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "The constants in the case-lists of a SELECT block must all be the same type, numeric or string, as the SELECT CASE expression."
+  tests: [CTL-0042, CTL-0043]
+  external: []
+  covers: [l.3949]
+
+- id: A-8.4.2-02
+  clause: "8.4.2"
+  ecma: "8.4.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "The constants and ranges of the case-lists within one SELECT block must not overlap."
+  tests: [CTL-0044, CTL-0045]
+  external: []
+  covers: [l.3951]
+
+- id: A-8.4.2-03
+  clause: "8.4.2"
+  ecma: "8.4.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "A control transfer from outside a structured block may not name a line inside that block, except the IF...THEN line of an if-block or the SELECT line of a select-block."
+  tests: [CTL-0046, CTL-0047, CTL-0048]
+  external: []
+  covers: [l.3955]
+
+- id: A-8.4.2-04
+  clause: "8.4.2"
+  ecma: "8.4.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "A control transfer inside an elseif, else, case or case-else block may not name that block's own header line."
+  tests: [CTL-0049, CTL-0050, CTL-0051, CTL-0052]
+  external: []
+  covers: [l.3961]
+
+- id: A-8.4.3-EX
+  clause: "8.4.3"
+  ecma: "8.4.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "Every decision-structure example of section 8.4.3 is accepted and behaves as written."
+  tests: [CTL-0053, CTL-0054]
+  external: []
+  covers: [l.3965-4003]
+
+- id: A-8.4.4-01
+  clause: "8.4.4"
+  ecma: "8.4.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "An IF statement with a true condition runs the statement after THEN or jumps to its line number; with a false condition it runs the ELSE statement or jumps to the ELSE line number when present, and otherwise simply continues with the next line."
+  tests: [CTL-0055]
+  external: []
+  covers: [l.4008-4016]
+
+- id: A-8.4.4-02
+  clause: "8.4.4"
+  ecma: "8.4.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "In an if-block an empty branch acts like a remark line; the then-branch runs when its condition is true, otherwise the elseif conditions are tried in order and the first true one enters its branch, otherwise the else-branch runs when present, and leaving any branch resumes after the END IF line."
+  tests: [CTL-0056]
+  external: []
+  covers: [l.4019-4034]
+
+- id: A-8.4.4-03
+  clause: "8.4.4"
+  ecma: "8.4.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "SELECT CASE evaluates its expression and scans the case statements in order until one matches by constant equality, by lying inside a TO range, or by satisfying an IS relation; the rest of that case-block then runs, a non-matching expression runs CASE ELSE when present, and leaving any case block resumes after END SELECT."
+  tests: [CTL-0057]
+  external: []
+  covers: [l.4037-4053]
+
+- id: E-10004
+  clause: "8.4.5"
+  ecma: "8.4.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "A SELECT block with no CASE ELSE in which no case-block matches raises the fatal exception 10004."
+  tests: [CTL-0058]
+  external: []
+  covers: [l.4062, l.13005]
+
+- id: A-8.4.2-TR149
+  clause: "8.4.2"
+  ecma: "8.4.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A case-else-block may be empty (a CASE ELSE line with no block after it): when no case-block matches, the select-block does nothing and execution resumes after END SELECT, without the exception 10004, which is reserved for a select-block with no case-else-block."
+  tests: [CTL-0270, CTL-0271, CTL-0272]
+  covers: [l.4050-4054, l.4061-4062]
+  external: []
+
+- id: A-8.4.2-TR152
+  clause: "8.4.2"
+  ecma: "8.4.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "The branches of an if-block or select-block (then-block, elseif-block, else-block, case-block, case-else-block, each including its own header line) are blocks in their own right: a control transfer outside one of them, including one inside a sibling branch, may not name a line inside it (its header or its body); a transfer within the same branch, out of the structure, or to the end-if-line or end-select-line stays valid."
+  tests: [CTL-0280, CTL-0281, CTL-0282, CTL-0283, CTL-0284, CTL-0285, CTL-0286]
+  covers: [l.3953-3958]
+  external: []

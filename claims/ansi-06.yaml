@@ -1,0 +1,742 @@
+# Claims for chapter 6 (strings).
+- id: A-6.1.2-01
+  clause: "6.1.2"
+  ecma: "6.1.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "The length of a string constant is capped only by the implementation-defined limit on characters before an end-of-line, and that limit must be at least 132."
+  tests: [STR-0001]
+  external: []
+  covers: [l.2349]
+
+- id: A-6.1.3-EX
+  clause: "6.1.3"
+  ecma: "6.1.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "The examples of section 6.1.3 show plain constants, numeric-looking text and a constant with an embedded doubled quote."
+  tests: [STR-0002]
+  external: []
+  covers: [l.2354-2359]
+
+- id: A-6.1.4-01
+  clause: "6.1.4"
+  ecma: "6.1.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "The value of a string constant is exactly the run of characters found between its opening and closing quotation marks."
+  tests: [STR-0003]
+  external: []
+  covers: [l.2362]
+
+- id: A-6.1.4-02
+  clause: "6.1.4"
+  ecma: "6.1.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Inside a string constant, two adjacent quotation marks stand for a single quotation-mark character."
+  tests: [STR-0004]
+  external: []
+  covers: [l.2365]
+
+- id: A-6.1.4-03
+  clause: "6.1.4"
+  ecma: "6.1.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Spaces inside a constant, even trailing ones, are part of its value; a constant made of just two quotation marks is the empty string; upper- and lower-case letters are distinct."
+  tests: [STR-0005]
+  external: []
+  covers: [l.2366-2368]
+
+- id: A-6.1.6-01
+  clause: "6.1.6"
+  ecma: "6.1.6"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Because a physical line must hold at least 132 characters, a string constant must be allowed to reach at least 129 characters."
+  tests: [STR-0006]
+  external: []
+  covers: [l.2386-2387]
+
+- id: A-6.2.3-EX
+  clause: "6.2.3"
+  ecma: "6.2.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "The examples of section 6.2.3 illustrate simple variables, subscripted array elements and substring-qualified references."
+  tests: [STR-0007]
+  external: []
+  covers: [l.2417-2424]
+
+- id: A-6.2.4-01
+  clause: "6.2.4"
+  ecma: "6.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A string variable belongs to the program unit in which it appears; if it is a parameter of an internal procedure, it belongs to that procedure definition instead."
+  tests: [STR-0008]
+  external: []
+  covers: [l.2439-2441]
+
+- id: A-6.2.4-02
+  clause: "6.2.4"
+  ecma: "6.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Subscripts of a string-array element must lie inside the declared bounds of the array."
+  tests: [STR-0009]
+  external: []
+  covers: [l.2446]
+
+- id: A-6.2.4-03
+  clause: "6.2.4"
+  ecma: "6.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A$(M:N) selects the characters from position M through position N of A$, with positions counted from the left starting at one."
+  tests: [STR-0010]
+  external: []
+  covers: [l.2451-2454]
+
+- id: A-6.2.4-04
+  clause: "6.2.4"
+  ecma: "6.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Substring indices outside 1..LEN are clamped without any exception: M becomes MAX(M,1) and N becomes MIN(N,LEN(A$))."
+  tests: [STR-0011]
+  external: []
+  covers: [l.2455-2456]
+
+- id: A-6.2.4-05
+  clause: "6.2.4"
+  ecma: "6.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "When M is still greater than N after clamping, the substring is the empty string sitting just before the Mth character, or right after the end of the string when M is past its length."
+  tests: [STR-0012]
+  external: []
+  covers: [l.2457-2459]
+
+- id: D-6.2-1
+  clause: "6.2"
+  ecma: "6.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "Value held by every string variable when execution begins, before any assignment."
+  value: "Null string: reading a string variable before assignment raises nonfatal 3102 (catchable); uncaught, a warning is issued and the value used is the null string (LEN 0)."
+  tests: [STR-0013]
+  external: []
+  covers: [l.2466]
+
+- id: D-6.2-2
+  clause: "6.2"
+  ecma: "6.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "Default maximum length of a string variable that has no declared length limit (the default string length limit, at least 132)."
+  value: "The effective limit of 1E9 characters (one limit for every string): MAXLEN of an undeclared string variable returns 1000000000, above the required minimum of 132. A string expression whose result would be longer raises the fatal 1051 (REPEAT$, concatenation, substring assignment; E-1051) and a string-array expression the fatal 1052 (MAT concatenation, 7.3.5; E-1052); the length is checked before the string is built."
+  tests: [STR-0014, STR-0091]
+  external: []
+  covers: [l.2895-2896]
+
+- id: E-2001
+  clause: "6.2.5"
+  ecma: "6.2.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "Evaluating a string-array element whose subscript falls outside the declared bounds raises fatal exception 2001, which a handler can intercept."
+  tests: [STR-0015]
+  external: []
+  covers: [l.2471, l.12827]
+
+- id: A-6.3.2-01
+  clause: "6.3.2"
+  ecma: "6.3.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "The arguments of a string function call must match in number and type the parameters of that function's definition, and those of an implementation-supplied string or string-valued function (LEN, POS, REPEAT$, CHR$, ...) must match the description of 6.4.4; a mismatch is rejected before the program runs."
+  tests: [STR-0016, STR-0017, STR-0071, STR-0072, STR-0073]
+  external: []
+  covers: [l.2514-2516]
+
+- id: A-6.3.2-02
+  clause: "6.3.2"
+  ecma: "6.3.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "An array passed to a string function must have as many dimensions as the corresponding parameter."
+  tests: [STR-0018]
+  external: []
+  covers: [l.2517]
+
+- id: A-6.3.2-03
+  clause: "6.3.2"
+  ecma: "6.3.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "Every string function used in a program unit must be either supplied by the implementation or defined or declared in a lower-numbered line of the same unit before its first use."
+  tests: [STR-0019, STR-0020]
+  external: []
+  covers: [l.2519-2521]
+
+- id: A-6.3.3-EX
+  clause: "6.3.3"
+  ecma: "6.3.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "The examples of section 6.3.3 show concatenations mixing variables, substring-qualified elements and constants."
+  tests: [STR-0021]
+  external: []
+  covers: [l.2526-2532]
+
+- id: A-6.3.4-01
+  clause: "6.3.4"
+  ecma: "6.3.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "The value of a string expression is the concatenation of the values of its primaries, in the order they appear."
+  tests: [STR-0022]
+  external: []
+  covers: [l.2535-2537]
+
+- id: A-6.3.4-02
+  clause: "6.3.4"
+  ecma: "6.3.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  status: claimed
+  claim: "The primaries of a string expression are evaluated from left to right."
+  tests: [STR-0023]
+  external: []
+  covers: [l.2540-2541]
+
+- id: A-6.3.4-03
+  clause: "6.3.4"
+  ecma: "6.3.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Within each primary, subscripts are evaluated first, then substring qualifiers, then the primary's own value."
+  tests: [STR-0024]
+  external: []
+  covers: [l.2541-2543]
+
+- id: A-6.3.4-04
+  clause: "6.3.4"
+  ecma: "6.3.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Calling a string function substitutes the argument values for the parameters of its defining algorithm, and the resulting scalar string takes the place of the call in the expression."
+  tests: [STR-0025]
+  external: []
+  covers: [l.2546-2550]
+
+- id: E-1051
+  clause: "6.3.5"
+  ecma: "6.3.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "Evaluating a string expression whose result is longer than the maximum string length of the implementation raises fatal exception 1051 instead of truncating the result. FullBASIC's maximum is 1E9 characters; REPEAT$ and concatenation are the expressions that can reach it."
+  tests: [STR-0091]
+  external: []
+  covers: [l.2556, l.12796]
+
+- id: A-6.4.2-TR89
+  clause: "6.4.2"
+  ecma: "6.4.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "The argument of MAXLEN must be a simple string variable or a string array (production 3 of 6.4.2); a string constant, an element of an array, a substring, a parenthesized variable or any other string expression is rejected before the program runs, while a simple variable, an array and a formal parameter are accepted."
+  tests: [STR-0074, STR-0075, STR-0076, STR-0077]
+  external: []
+  covers: [l.2583-2586]
+
+- id: A-6.4.3-EX
+  clause: "6.4.3"
+  ecma: "6.4.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "Section 6.4.3 declares its examples empty, so there is no example program to accept for it."
+  tests: [STR-0027]
+  external: []
+  covers: [l.2588-2591]
+
+- id: A-6.4.4-01
+  clause: "6.4.4"
+  ecma: "6.4.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "CHR$ accepts an argument from zero up to one below the size of the declared character set; an argument of zero yields the first character of the collating sequence."
+  tests: [STR-0028]
+  external: []
+  covers: [l.2608-2611]
+
+- id: A-6.4.4-02
+  clause: "6.4.4"
+  ecma: "6.4.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  status: pending
+  claim: "When no calendar is available, DATE$ yields the string \"00000000\"."
+  note: "Unreachable branch: a calendar is available (D-6.4-3), so DATE$ never yields \"00000000\" in this environment."
+  tests: []
+  external: []
+  covers: [l.2624-2625]
+
+- id: A-6.4.4-03
+  clause: "6.4.4"
+  ecma: "6.4.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "MAXLEN of a variable with no effective length limit returns MAXNUM. Here every string variable has an effective limit of 1E9 characters, so MAXLEN of one without a declared length returns 1000000000; MAXNUM is never returned."
+  tests: [STR-0029]
+  external: []
+  covers: [l.2642-2643]
+
+- id: A-6.4.4-CL27
+  clause: "6.4.4"
+  ecma: "6.4.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "MAXLEN(V$) returns the declared length-max of a string variable or string array, and the effective limit of the implementation (1E9 characters) for one declared without a length: simple variable with or without DECLARE, array, by-value parameter and by-reference parameter."
+  tests: [STR-0092]
+  external: []
+  covers: [l.2640-2643, l.4679-4682]
+
+- id: A-6.4.4-04
+  clause: "6.4.4"
+  ecma: "6.4.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "An ORD argument of two or more characters is matched without regard to letter case."
+  tests: [STR-0030]
+  external: []
+  covers: [l.2652-2654]
+
+- id: A-6.4.4-05
+  clause: "6.4.4"
+  ecma: "6.4.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "POS returns zero when the second string does not occur in the first, and always one when the second string is empty."
+  tests: [STR-0031]
+  external: []
+  covers: [l.2665-2667]
+
+- id: A-6.4.4-06
+  clause: "6.4.4"
+  ecma: "6.4.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "The three-argument POS searches from the Mth character onward and returns zero when the start is past the end or the pattern is absent; an empty pattern yields MAX(M,1)."
+  tests: [STR-0032]
+  external: []
+  covers: [l.2690-2694]
+
+- id: A-6.4.4-07
+  clause: "6.4.4"
+  ecma: "6.4.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "STR$ renders the number exactly as PRINT would, with no surrounding spaces."
+  tests: [STR-0033, STR-0067, STR-0068, STR-0069, STR-0070, STR-0090]
+  external: []
+  covers: [l.2703-2705]
+
+- id: A-6.4.4-08
+  clause: "6.4.4"
+  ecma: "6.4.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  status: pending
+  claim: "Without a clock, TIME$ yields \"99:99:99\"; midnight is \"00:00:00\"."
+  note: "Unreachable branch: a clock is available (D-6.4-3), so TIME$ never yields \"99:99:99\" in this environment."
+  tests: []
+  external: []
+  covers: [l.2712-2714]
+
+- id: A-6.4.4-09
+  clause: "6.4.4"
+  ecma: "6.4.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "VAL of a numeric constant whose magnitude underflows yields zero."
+  tests: [STR-0034]
+  external: []
+  covers: [l.2730-2731]
+
+- id: E-4001
+  clause: "6.4.5"
+  ecma: "6.4.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "VAL applied to text that is not a numeric constant raises fatal exception 4001, which a handler can intercept."
+  tests: [STR-0035]
+  external: []
+  covers: [l.2739, l.12852]
+
+- id: E-1004
+  clause: "6.4.5"
+  ecma: "6.4.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "VAL applied to a numeric constant whose evaluation overflows raises fatal exception 1004, which a handler can intercept."
+  tests: [STR-0036]
+  external: []
+  covers: [l.2743, l.12786]
+
+- id: E-4002
+  clause: "6.4.5"
+  ecma: "6.4.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "CHR$ with an argument outside the permitted range raises fatal exception 4002, which a handler can intercept."
+  tests: [STR-0037, STR-0066]
+  external: []
+  covers: [l.2746, l.12853]
+
+- id: E-4003
+  clause: "6.4.5"
+  ecma: "6.4.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "ORD with an argument that is neither one character nor a valid mnemonic raises fatal exception 4003, which a handler can intercept."
+  tests: [STR-0038]
+  external: []
+  covers: [l.2749, l.12854]
+
+- id: E-4010
+  clause: "6.4.5"
+  ecma: "6.4.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "REPEAT$ with a repeat count below zero raises fatal exception 4010, which a handler can intercept."
+  tests: [STR-0039, STR-0066]
+  external: []
+  covers: [l.2752, l.12861]
+
+- id: E-1504
+  clause: "6.4.6"
+  ecma: "6.4.6"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "VAL underflow may be reported as nonfatal exception 1504 (a recommendation of Table 9, not mandated); when not reported, the value returned is zero."
+  tests: [STR-0040]
+  external: []
+  covers: [l.12819]
+
+- id: E-3102
+  clause: "6.2.6"
+  ecma: "6.2.6"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "Reading a string variable before it has ever been assigned may be reported as nonfatal exception 3102 (a recommendation of Table 9, not mandated)."
+  tests: [STR-0041]
+  external: []
+  covers: [l.12848]
+
+- id: A-6.5.3-EX
+  clause: "6.5.3"
+  ecma: "6.5.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "The examples of section 6.5.3 show LET forms with one or several targets, substring targets and continued expressions."
+  tests: [STR-0042]
+  external: []
+  covers: [l.2789-2797]
+
+- id: A-6.5.4-01
+  clause: "6.5.4"
+  ecma: "6.5.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "In a string LET, the target qualifiers are evaluated left to right, then the right-hand expression, and finally the value is stored into the targets left to right."
+  tests: [STR-0043]
+  external: []
+  covers: [l.2800-2804]
+
+- id: A-6.5.4-02
+  clause: "6.5.4"
+  ecma: "6.5.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Assigning to a substring-qualified target replaces exactly that portion of the current value, so the stored string may grow or shrink."
+  tests: [STR-0044]
+  external: []
+  covers: [l.2808-2809]
+
+- id: A-6.5.5-EXC
+  clause: "6.5.5"
+  ecma: "6.5.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "Storing into a string variable a value longer than its maximum length raises fatal exception 1106 (string overflow), which a handler can intercept; a LET into a substring that overflows keeps 1106, while READ, INPUT and file reads into a substring use their own codes (E-1053, E-1054, E-1105)."
+  tests: [STR-0045, SEG-0360]
+  external: []
+  covers: [l.2820]
+
+- id: A-6.6.2-01
+  clause: "6.6.2"
+  ecma: "6.6.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "A COLLATE option must sit on a line numbered lower than every string expression or string declaration of the same program unit."
+  tests: [STR-0046]
+  external: []
+  covers: [l.2856-2859]
+
+- id: A-6.6.2-02
+  clause: "6.6.2"
+  ecma: "6.6.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "A program unit may contain at most one COLLATE option."
+  tests: [STR-0047]
+  external: []
+  covers: [l.2860]
+
+- id: A-6.6.2-03
+  clause: "6.6.2"
+  ecma: "6.6.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  status: claimed
+  claim: "A simple string variable may be declared only once per program unit, and a parameter may not appear in a declare statement."
+  tests: [STR-0048, STR-0049]
+  external: []
+  covers: [l.2863-2865]
+
+- id: A-6.6.3-EX
+  clause: "6.6.3"
+  ecma: "6.6.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "The examples of section 6.6.3 show a COLLATE option and a STRING declaration with per-variable length limits."
+  tests: [STR-0050]
+  external: []
+  covers: [l.2867-2872]
+
+- id: A-6.6.4-01
+  clause: "6.6.4"
+  ecma: "6.6.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "COLLATE NATIVE selects the host system's own character ordering; COLLATE STANDARD selects the ordering of Table 8."
+  tests: [STR-0051, STR-0052]
+  external: []
+  covers: [l.2878-2881]
+
+- id: A-6.6.4-02
+  clause: "6.6.4"
+  ecma: "6.6.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Without a COLLATE option, a program unit uses the STANDARD collating sequence."
+  tests: [STR-0053]
+  external: []
+  covers: [l.2883-2884]
+
+- id: A-6.6.4-03
+  clause: "6.6.4"
+  ecma: "6.6.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "The default maximum string length is implementation-defined but must be at least 132 characters."
+  tests: [STR-0054]
+  external: []
+  covers: [l.2895-2896]
+
+- id: A-6.6.4-04
+  clause: "6.6.4"
+  ecma: "6.6.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A length-max of zero in a STRING declaration caps that variable at the empty string."
+  tests: [STR-0055]
+  external: []
+  covers: [l.2898-2899]
+
+- id: D-6.4-1
+  clause: "6.4"
+  ecma: "6.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "CHR$ results for the native character set."
+  value: "CHR$(M) returns the character with code M of the Latin-1 set (CHR$(65)=\"A\", CHR$(48)=\"0\", CHR$(233)=\"é\"); under COLLATE NATIVE the native set applies."
+  tests: [STR-0056]
+  external: []
+  covers: [l.2609-2614]
+
+- id: D-6.4-2
+  clause: "6.4"
+  ecma: "6.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "ORD results for the native character set."
+  value: "ORD under the native set returns the character code (ASCII, or Latin-1 for 128..255): ORD(\"A\")=65, ORD(\"a\")=97, ORD(\"5\")=53, ORD(\" \")=32, ORD(\"é\")=233."
+  tests: [STR-0057]
+  external: []
+  covers: [l.2653-2657]
+
+- id: D-6.4-3
+  clause: "6.4"
+  ecma: "6.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "Whether a calendar and a clock are available to DATE$ and TIME$."
+  value: "Calendar and clock are available: DATE$ returns the host date as YYYYMMDD and TIME$ the host time as HH:MM:SS; the no-device values \"00000000\" and \"99:99:99\" are unreachable here."
+  tests: [STR-0058]
+  external: []
+  covers: [l.2624-2625, l.2712-2713]
+
+- id: D-6.4-4
+  clause: "6.4"
+  ecma: "6.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  status: pending
+  claim: "Time zone used by DATE$ and TIME$."
+  value: "Host local time zone (observed CET, UTC+1): TIME$ matches the host local clock, e.g. 12:06:45 while UTC is 11:06:45."
+  note: "Not observable from BASIC itself; checked by hand against the host clock."
+  tests: []
+  external: []
+  covers: [l.2712-2714]
+
+- id: D-6.6-1
+  clause: "6.6"
+  ecma: "6.6"
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "Collating sequence used under OPTION COLLATE NATIVE."
+  value: "Ordering by character code (ASCII, then the Latin-1 other-characters 128..255), which coincides with Table 8 over the ASCII range 0..127."
+  tests: [STR-0059]
+  external: []
+  covers: [l.2878-2879]
+
+- id: D-6.6-2
+  clause: "6.6"
+  ecma: "6.6"
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "Maximum length of a declared string variable that has no length-max (the implementation-defined default)."
+  value: "The effective limit of 1E9 characters: MAXLEN of a declared variable without length-max returns 1000000000, above the required 132. A length-max above that limit (DECLARE STRING A$*2000000000, also in a string-type, a string array, a DEF or a FUNCTION) is rejected at load with E-STRING-LENGTH-MAX-TOO-LARGE, because the length-max guarantees that values of that length can be stored (6.6.4 l.2886-2896; decision of the project owner, 2026-11-12; measured with the CLI)."
+  tests: [STR-0060, STR-0095]
+  external: []
+  covers: [l.2888-2896]
+
+# --- Border values of string supplied functions.
+- id: A-6.4.4-G01
+  clause: "6.4.4"
+  ecma: "6.4.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "POS with an empty second string returns one (or MAX(M,1) with a start), and zero when the second string does not occur."
+  tests: [STR-0061]
+  external: []
+  covers: [l.2663-2667, l.2669-2693]
+- id: A-6.4.4-G02
+  clause: "6.4.4"
+  ecma: "6.4.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "USING$ formats its second argument with the format string of the first, per the formatted-output semantics."
+  tests: [STR-0062]
+  external: []
+  covers: [l.2722-2727]
+
+- id: A-6.2.4-06
+  clause: "6.2.4"
+  ecma: "6.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "The M and N of a substring-qualifier are indices: each is rounded to INT(X+.5) (5.2.4 l.1700-1702) before selecting the substring, both in reads of simple string variables and of string-array elements."
+  tests: [STR-0063]
+  external: []
+  covers: [l.2449-2452, l.1700-1702]
+
+- id: A-6.5.4-03
+  clause: "6.5.4"
+  ecma: "6.5.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Assigning to a substring-qualified target rounds M and N to INT(X+.5) (5.2.4 l.1700-1702) before the replacement, in simple string variables, string-array elements and string-variable-lists alike."
+  tests: [STR-0064]
+  external: []
+  covers: [l.2808-2811, l.1700-1702]
+
+- id: A-6.4.4-G03
+  clause: "6.4.4"
+  ecma: "6.4.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "In the supplied functions of 6.4.4, an argument named M is an index: CHR$(M), the second argument of REPEAT$ and the third of POS are each rounded to INT(X+.5) (5.2.4 l.1700-1702) before use; the range exceptions 4002/4010 then apply to the rounded value."
+  tests: [STR-0065, STR-0066]
+  external: []
+  covers: [l.2596-2597, l.1700-1702]

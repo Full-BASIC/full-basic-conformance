@@ -1,0 +1,35 @@
+1 REM FBCS FIL-0219
+2 REM CLAIM A-11.1.4.9-TR64
+3 REM TYPE SELF
+4 REM STD 11.1.4.9 Tabla 5 l.6987-6992: ASK KEY gives the key of the record identified
+5 REM by the file pointer, null at end of file. STD 11.2.4.1 l.7263-7266: after a READ
+6 REM the pointer is at the next file-element, so ASK KEY gives the NEXT key.
+10 LET OK = 1
+20 OPEN #1: NAME "FIL0219.DAT", ACCESS OUTIN, ORGANIZATION KEYED, RECTYPE INTERNAL
+30 WRITE #1, KEY "A": 1
+40 WRITE #1, KEY "B": 2
+50 WRITE #1, KEY "C": 3
+60 SET #1: POINTER BEGIN
+70 ASK #1: KEY K$
+80 IF K$ <> "A" THEN LET OK = 0
+90 READ #1: X
+100 ASK #1: KEY K$
+110 IF K$ <> "B" THEN LET OK = 0
+120 IF K$ <> "B" THEN PRINT "FALLO-READ"; K$
+130 READ #1, KEY = "B": X
+140 ASK #1: KEY K$
+150 IF K$ <> "C" THEN LET OK = 0
+160 IF K$ <> "C" THEN PRINT "FALLO-KEY-EXACTA"; K$
+170 READ #1: X
+180 ASK #1: KEY K$
+190 IF K$ <> "" THEN LET OK = 0
+200 IF K$ <> "" THEN PRINT "FALLO-EOF"; K$
+210 SET #1: KEY > "A"
+220 ASK #1: KEY K$
+230 IF K$ <> "B" THEN LET OK = 0
+240 SET #1: KEY > "C"
+250 ASK #1: KEY K$
+260 IF K$ <> "" THEN LET OK = 0
+270 CLOSE #1
+280 IF OK = 1 THEN PRINT "*** TEST PASSED ***" ELSE PRINT "*** TEST FAILED ***"
+290 END

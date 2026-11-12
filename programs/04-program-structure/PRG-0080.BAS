@@ -1,0 +1,11 @@
+1 REM FBCS PRG-0080
+2 REM CLAIM D-4.1-1
+3 REM TYPE SELF
+4 REM STD Tabla 8 l.12768-12770, 4.1.6 l.1162-1167: 256 characters here, so
+5 REM CHR$(127.5) rounds to 128 and is legal; it is a single byte.
+100 LET C$ = CHR$(127.5)
+110 LET OK = 1
+120 IF ORD(C$) <> 128 THEN LET OK = 0
+130 IF LEN(C$) <> 1 THEN LET OK = 0
+140 IF OK = 1 THEN PRINT "*** TEST PASSED ***" ELSE PRINT "*** TEST FAILED ***"
+150 END

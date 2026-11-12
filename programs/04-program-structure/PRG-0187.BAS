@@ -1,0 +1,12 @@
+1 REM FBCS PRG-0187
+2 REM CLAIM A-4.2.2-TR156
+3 REM TYPE OUTPUT
+4 REM 4.2.2 l.1312-1320: GOTO of the main to a repeated number without ever calling the external unit.
+10 DECLARE EXTERNAL SUB E
+30 GOTO 50
+40 PRINT "NO"
+50 PRINT "M50"
+60 END
+6 EXTERNAL SUB E
+50 PRINT "E50"
+190 END SUB

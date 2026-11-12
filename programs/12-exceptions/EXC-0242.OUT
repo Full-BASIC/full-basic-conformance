@@ -1,0 +1,5 @@
+Trace mode ON
+[TRACE] 30 LET X = 5
+[TRACE] 30 X=5
+[TRACE] 70 END SUB
+[TRACE] 70 -> 70

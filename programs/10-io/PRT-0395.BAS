@@ -1,0 +1,13 @@
+1 REM FBCS PRT-0395
+2 REM CLAIM A-10.1.2-TR154
+3 REM TYPE REJECT
+4 REM 8.2.2 prod. 1, 10.1.2 prod. 3-4, 12.1.2 l.8704-8706: the line of an io-recovery outside an
+5 REM exception-handler may not name a line inside it.
+100 PRINT "EXECUTED"
+110 WHEN EXCEPTION IN
+120 PRINT "W"
+130 USE
+140 PRINT "H"
+150 END WHEN
+160 READ IF MISSING THEN 140: X
+170 END

@@ -1,0 +1,1809 @@
+# Claims for chapter 10 (input and output).
+- id: E-4005
+  clause: "10.3.5"
+  ecma: "10.3.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "A TAB whose index is less than one raises the nonfatal exception 4005 with the index replaced by one; without a handler the report names the code and line and execution continues, and a handler can intercept it."
+  tests: [PRT-0001, PRT-0002]
+  covers: [l.5532, l.12856]
+  external: []
+
+- id: A-10.1.2-01
+  clause: "10.1.2"
+  ecma: "10.1.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "An IF MISSING recovery of EXIT DO (or EXIT FOR) on a READ is only valid inside a DO (or FOR) loop, so otherwise the program is rejected before it runs."
+  tests: [PRT-0003]
+  covers: [l.4974, l.4976]
+  external: []
+
+- id: A-10.3.4.3-01
+  clause: "10.3.4.3"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A comma separator evaluated in the last print zone of a line generates an end-of-line, so the next print item starts a new line. The runner ignores trailing blanks, so this program fixes the line break, not the absence of padding after the last item."
+  tests: [PRT-0004]
+  covers: [l.5474-5476]
+  external: []
+
+- id: A-10.4.2-01
+  clause: "10.4.2"
+  ecma: "10.4.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "A PRINT USING whose format is given by line number may only name an IMAGE line that belongs to the program-unit containing the statement, so naming one that lives in a different program-unit is rejected before the program runs."
+  tests: [PRT-0005, PRT-0006]
+  covers: [l.5621]
+  external: []
+- id: A-10.4.2-02
+  clause: "10.4.2"
+  ecma: "10.4.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A PRINT USING that names an IMAGE line of its own program-unit (the main program, an internal subprogram of it, or an external subprogram) uses that line as its format."
+  tests: [PRT-0007]
+  external: []
+- id: A-10.4.2-03
+  clause: "10.4.2"
+  ecma: "10.4.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A PRINT USING may name an IMAGE line that follows it in the same program-unit; the standard imposes no order between the two, and this holds inside external subprograms and external functions as well as in the main program."
+  tests: [PRT-0008]
+  external: []
+
+# 10.1.2 - 10.1.4 (READ, DATA, RESTORE)
+- id: A-10.1.2-02
+  clause: "10.1.2"
+  ecma: "10.1.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "A line number after RESTORE must point at a line that holds a DATA statement; any other target is rejected before the program runs."
+  status: claimed
+  tests: [PRT-0009]
+  external: []
+  covers: [l.4979]
+
+- id: A-10.1.3-EX
+  clause: "10.1.3"
+  ecma: "10.1.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Every READ, IF MISSING and RESTORE form shown in the examples of section 10.1.3 is accepted and behaves as written."
+  tests: [PRT-0010]
+  external: []
+  covers: [l.4981-4995]
+
+- id: A-10.1.4-01
+  clause: "10.1.4"
+  ecma: "10.1.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "All DATA statements of a program unit form a single data sequence in textual order, and reaching a DATA line at run time just moves execution to the next line."
+  tests: [PRT-0011]
+  external: []
+  covers: [l.4999, l.5005]
+
+- id: A-10.1.4-02
+  clause: "10.1.4"
+  ecma: "10.1.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A READ assigns the listed variables, left to right, from the data sequence of its unit through a pointer that starts at the first datum and steps past each datum consumed."
+  tests: [PRT-0012]
+  external: []
+  covers: [l.5008]
+
+- id: A-10.1.4-03
+  clause: "10.1.4"
+  ecma: "10.1.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Reading past the end of the data sequence raises an exception unless the READ carries IF MISSING; then the chosen action runs: EXIT DO or EXIT FOR behaves normally, and a line number transfers execution to that line."
+  tests: [PRT-0013, PRT-0014, PRT-0015]
+  external: []
+  covers: [l.5019, l.5021-5024]
+
+- id: A-10.1.4-04
+  clause: "10.1.4"
+  ecma: "10.1.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Each datum must match its variable's type: numeric constants for numeric variables, string constants or unquoted strings for string variables; an unquoted string that also parses as a number may fill either kind."
+  tests: [PRT-0016]
+  external: []
+  covers: [l.5027]
+
+- id: A-10.1.4-05
+  clause: "10.1.4"
+  ecma: "10.1.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A numeric datum that underflows while being evaluated is stored as zero."
+  tests: [PRT-0017]
+  external: []
+  covers: [l.5036]
+
+- id: A-10.1.4-06
+  clause: "10.1.4"
+  ecma: "10.1.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Subscripts and substring qualifiers in a READ list are worked out only after the variables to their left already received their values."
+  tests: [PRT-0018]
+  external: []
+  covers: [l.5039]
+
+- id: A-10.1.4-07
+  clause: "10.1.4"
+  ecma: "10.1.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "RESTORE rewinds the data pointer of its unit to the first datum, or, with a line number, to the first datum of that DATA line, so the next READ starts there."
+  tests: [PRT-0019]
+  external: []
+  covers: [l.5046, l.5051]
+
+- id: A-10.1.4-08
+  clause: "10.1.4"
+  ecma: "10.1.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "The textual order of the data sequence of a program unit also interleaves the DATA statements of its internal subprograms and internal functions by line position; they are not appended after the data of the main body."
+  tests: [SEG-0318, SEG-0319]
+  external: []
+  covers: [l.4997-5001]
+
+# 10.2 (INPUT, LINE INPUT)
+- id: A-10.2.2-01
+  clause: "10.2.2"
+  ecma: "10.2.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "An input-modifier-list may hold at most one PROMPT, one TIMEOUT and one ELAPSED, in any order."
+  status: claimed
+  tests: [PRT-0026]
+  external: []
+  covers: [l.5123]
+
+- id: A-10.2.3-EX
+  clause: "10.2.3"
+  ecma: "10.2.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Every INPUT and LINE INPUT form shown in the examples of section 10.2.3 is accepted and behaves as written."
+  tests: [PRT-0027]
+  external: []
+  covers: [l.5126-5139]
+
+- id: A-10.2.4-01
+  clause: "10.2.4"
+  ecma: "10.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "An INPUT halts the program until a valid input-reply arrives, then assigns the listed variables, left to right, from that reply."
+  tests: [PRT-0028]
+  external: []
+  covers: [l.5142, l.5144]
+
+- id: A-10.2.4-02
+  clause: "10.2.4"
+  ecma: "10.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "In interactive mode the program must show an input-prompt telling the user that data are needed."
+  status: pending
+  tests: []
+  note: "Not observable from FBCS: the runner gives every program a file as stdin, so the program is never in interactive mode (10.2.4 l.5147-5149 applies only there) and no terminal can be driven. The prompt text is implementation-defined (10.2.2 l.5119; recommended '? ', 10.2.6 l.5278-5280) and is recorded as D-10.2-1."
+  external: []
+  covers: [l.5148]
+
+- id: A-10.2.4.1-01
+  clause: "10.2.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "With a PROMPT specifier the built-in prompt is suppressed and the given string is printed instead, unless the reply ends with a comma."
+  tests: [PRT-0029]
+  external: []
+  covers: [l.5156-5157]
+
+- id: A-10.2.4.1-02
+  clause: "10.2.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A TIMEOUT expression is evaluated to a number S of seconds; if no valid reply arrives within S an exception occurs, and ELAPSED stores the seconds elapsed between the prompt and the end-of-line of the last reply."
+  tests: [PRT-0030]
+  external: []
+  covers: [l.5163, l.5166]
+
+- id: A-10.2.4.1-03
+  clause: "10.2.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Without a clock, TIMEOUT does nothing and ELAPSED yields -1; with a clock, an ELAPSED result is always positive."
+  tests: [PRT-0031]
+  external: []
+  covers: [l.5172-5174]
+
+- id: A-10.2.4.1-TR84
+  clause: "10.2.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "The numeric-variable of a time-inquiry may be an array element (also with a variable subscript or in two dimensions): ELAPSED E(2) in INPUT, LINE INPUT, MAT INPUT and MAT LINE INPUT assigns the positive time to that element and leaves the other elements unchanged."
+  tests: [PRT-0260]
+  note: "10.2.2 production 7 (time-inquiry = ELAPSED numeric-variable) with numeric-variable including the array element (Appendix E); 10.2.4.1 l.5166-5176 assigns the value to the numeric-variable."
+  external: []
+  covers: [l.5166-5176]
+
+- id: A-10.2.4.2-01
+  clause: "10.2.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Each variable receives its value as soon as the corresponding reply datum passes the type and range checks."
+  status: claimed
+  tests: [PRT-0032]
+  external: []
+  covers: [l.5181]
+
+- id: A-10.2.4.2-02
+  clause: "10.2.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Subscripts and substring qualifiers in an INPUT list are evaluated only after the variables to their left received their values."
+  tests: [PRT-0033]
+  external: []
+  covers: [l.5187]
+
+- id: A-10.2.4.2-03
+  clause: "10.2.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Reply data must match variable types: numeric constants for numeric variables, quoted or unquoted strings for string variables; an unquoted string that also parses as a number may fill either."
+  tests: [PRT-0034]
+  external: []
+  covers: [l.5192, l.5194-5195]
+
+- id: A-10.2.4.2-04
+  clause: "10.2.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A numeric input datum that underflows is stored as zero."
+  tests: [PRT-0035]
+  external: []
+  covers: [l.5201]
+
+- id: A-10.2.4.2-05
+  clause: "10.2.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "When no reply ends with a comma, the total number of data across all replies must equal the number of variables."
+  tests: [PRT-0036]
+  external: []
+  covers: [l.5205]
+
+- id: A-10.2.4.2-06
+  clause: "10.2.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A comma as the last non-blank character of a reply means more data follow: the values present are assigned, the built-in prompt is shown again (not a PROMPT string), and the program waits for the next reply."
+  tests: [PRT-0037]
+  external: []
+  covers: [l.5209, l.5211, l.5213-5216]
+
+- id: A-10.2.4.2-07
+  clause: "10.2.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "LINE INPUT asks for one whole line per string variable: the first line goes to the first variable, the prompt is reissued for each further variable, until every variable got a line."
+  tests: [PRT-0038]
+  external: []
+  covers: [l.5219, l.5221, l.5225]
+
+- id: A-10.2.4.2-08
+  clause: "10.2.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A line reply is stored verbatim, keeping leading and trailing spaces but dropping the end-of-line; quote characters inside are literal, so two adjacent quotes stay two characters."
+  tests: [PRT-0039]
+  external: []
+  covers: [l.5231-5232, l.5234]
+
+- id: A-10.2.4.2-09
+  clause: "10.2.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "When INPUT (or INPUT #0) raises 8002, 8103 or 1007 after earlier data of the same input-reply were validated, those data remain assigned to their variables; the exception is raised after them."
+  status: claimed
+  tests: [PRT-0144, PRT-0145, PRT-0146, PRT-0149, PRT-0152]
+  external: []
+  covers: [l.5181-5183, l.5245-5246, l.5249-5250, l.5256-5257]
+
+- id: A-10.2.4.2-10
+  clause: "10.2.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "When an input-reply ending in a comma is continued by further replies, the total number of data must equal the number of variables; extra data raise nonfatal 8003 after the variables were assigned."
+  status: claimed
+  tests: [PRT-0154]
+  external: []
+  covers: [l.5203-5205, l.5181-5183]
+
+# 10.3 (PRINT, SET, ASK)
+- id: A-10.3.2-01
+  clause: "10.3.2"
+  ecma: "10.3.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "Each ask-io-item (MARGIN or ZONEWIDTH) may appear at most once in one ASK statement."
+  status: claimed
+  tests: [PRT-0051]
+  external: []
+  covers: [l.5325]
+
+- id: A-10.3.3-EX
+  clause: "10.3.3"
+  ecma: "10.3.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Every PRINT, SET MARGIN and SET ZONEWIDTH form shown in the examples of section 10.3.3 is accepted and behaves as written."
+  tests: [PRT-0052]
+  external: []
+  covers: [l.5328-5343]
+
+- id: A-10.3.4-01
+  clause: "10.3.4"
+  ecma: "10.3.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A PRINT builds the character string and line breaks sent to the output device by evaluating each item and separator of its print-list in order."
+  tests: [PRT-0053]
+  external: []
+  covers: [l.5346, l.5348]
+
+- id: A-10.3.4.1-01
+  clause: "10.3.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A printed number becomes a leading space (positive value) or minus sign (negative value), the decimal form of its magnitude, and one trailing space."
+  tests: [PRT-0054]
+  external: []
+  covers: [l.5360, l.5365]
+
+- id: A-10.3.4.1-02
+  clause: "10.3.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "The printing precision d and the exrad width e chosen by the implementation are at least 6 and 2 respectively."
+  tests: [PRT-0055]
+  external: []
+  covers: [l.5368, l.5373]
+
+- id: A-10.3.4.1-03
+  clause: "10.3.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A value that is an exact integer representable with d or fewer digits is printed without a decimal point."
+  tests: [PRT-0056]
+  external: []
+  covers: [l.5376]
+
+- id: A-10.3.4.1-04
+  clause: "10.3.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "All other values print either in plain decimal or in scaled form; when d digits in plain decimal are at least as accurate, the plain form is chosen."
+  tests: [PRT-0057]
+  external: []
+  covers: [l.5379, l.5383]
+
+- id: A-10.3.4.1-05
+  clause: "10.3.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Plain decimal form carries up to d significant digits and a period; trailing zeros of the fraction may be dropped, and a magnitude below 1 prints no digit left of the period."
+  tests: [PRT-0058]
+  external: []
+  covers: [l.5388, l.5390]
+
+- id: A-10.3.4.1-06
+  clause: "10.3.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Scaled form prints significand, letter E, sign and exponent; the significand lies in [1,10) with exactly d digits, the exponent uses one to e digits, and removable zeros may be dropped."
+  tests: [PRT-0059]
+  external: []
+  covers: [l.5396, l.5404]
+
+- id: A-10.3.4.1-07
+  clause: "10.3.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Only a value that is exactly an integer prints without a period; a non-integer value whose rounding to d digits leaves no fraction still prints with an explicit period (3., 12345679.), unless it needs the scaled form."
+  tests: [PRT-0262, PRT-0263]
+  external: []
+  covers: [l.5375, l.5379, l.5388]
+
+- id: A-10.3.4.2-01
+  clause: "10.3.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A string item of a print-list is printed as the string its expression evaluates to."
+  tests: [PRT-0060]
+  external: []
+  covers: [l.5411]
+
+- id: A-10.3.4.3-02
+  clause: "10.3.4.3"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A semicolon separator emits the empty string."
+  tests: [PRT-0061]
+  external: []
+  covers: [l.5417]
+
+- id: A-10.3.4.3-03
+  clause: "10.3.4.3"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Columns are numbered from one at the left; each character printed advances the column by one, and each end-of-line resets it to one."
+  tests: [PRT-0062]
+  external: []
+  covers: [l.5428, l.5431-5432]
+
+- id: A-10.3.4.3-04
+  clause: "10.3.4.3"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "The margin caps the column a character may occupy; a margin of MAXNUM removes the cap, and the default margin before any SET MARGIN is at least the default zone width."
+  tests: [PRT-0063, PRT-0064]
+  external: []
+  covers: [l.5438-5439]
+
+- id: A-10.3.4.3-05
+  clause: "10.3.4.3"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A print line is split into equal-width zones (the last one may be shorter), and the default zone width is at least d+e+6 columns."
+  tests: [PRT-0065, PRT-0066]
+  external: []
+  covers: [l.5445-5446]
+
+- id: A-10.3.4.3-06
+  clause: "10.3.4.3"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "TAB rounds its argument to the nearest integer n; n below one raises an exception, and n above the margin m wraps by whole margins into the range 1 to m."
+  tests: [PRT-0067]
+  external: []
+  covers: [l.5455-5458]
+
+- id: A-10.3.4.3-07
+  clause: "10.3.4.3"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "TAB then pads with spaces up to column n, or, when the current column is already past n, emits an end-of-line followed by n-1 spaces."
+  tests: [PRT-0068]
+  external: []
+  covers: [l.5462, l.5464]
+
+- id: A-10.3.4.3-08
+  clause: "10.3.4.3"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A comma separator moves to the start of the next zone on the line; when already in the last zone, or beyond the margin, it emits an end-of-line instead."
+  tests: [PRT-0069]
+  external: []
+  covers: [l.5471, l.5474, l.5476]
+
+- id: A-10.3.4.4-01
+  clause: "10.3.4.4"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "An item that would cross the margin starts on a fresh line; while an item is being printed, any character that would land beyond the margin triggers an end-of-line first."
+  tests: [PRT-0070]
+  external: []
+  covers: [l.5484, l.5489]
+
+- id: A-10.3.4.5-01
+  clause: "10.3.4.5"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "When a print-list finishes without a trailing separator, a final end-of-line is emitted; with a trailing separator, none is."
+  tests: [PRT-0071, PRT-0158, PRT-0159, PRT-0160]
+  external: []
+  covers: [l.5496-5497]
+
+- id: A-10.3.4.5-02
+  clause: "10.3.4.5"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A PRINT with an empty list emits an end-of-line, which yields a blank line when nothing else was on the current line."
+  tests: [PRT-0072]
+  external: []
+  covers: [l.5499, l.5501]
+
+- id: A-10.3.4.6-01
+  clause: "10.3.4.6"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "SET MARGIN evaluates its index and applies the new margin at once, even on a half-filled line; it affects only unformatted output."
+  tests: [PRT-0073]
+  external: []
+  covers: [l.5506-5507]
+
+- id: A-10.3.4.7-01
+  clause: "10.3.4.7"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "SET ZONEWIDTH evaluates its index and applies the new zone width at once, even on a half-filled line; it affects only unformatted output."
+  tests: [PRT-0074]
+  external: []
+  covers: [l.5514, l.5516]
+
+- id: A-10.3.4.8-01
+  clause: "10.3.4.8"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "ASK MARGIN and ASK ZONEWIDTH store the current margin or zone width in their variables; ASK MARGIN yields MAXNUM when the column may grow without bound."
+  tests: [PRT-0075]
+  external: []
+  covers: [l.5523, l.5526]
+
+# 10.4 (PRINT USING)
+- id: A-10.4.2-04
+  clause: "10.4.2"
+  ecma: "10.4.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "All digit places of an i-format-item use one and the same fill character: number signs, percent signs or asterisks; a run of different digit places is split into several format-items (the longest correct one is taken, 10.4.4.1), and a text with no valid reading, such as \"#,%\", raises 8201 when the PRINT USING runs."
+  tests: [PRT-0087]
+  external: []
+  covers: [l.5625-5627, l.5831-5832, l.5851-5854]
+
+- id: A-10.4.2-05
+  clause: "10.4.2"
+  ecma: "10.4.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "A justifier on its own is a valid format-item of width 1, so a format string made of one justifier is not invalid (no 8201); a string longer than that field raises the nonfatal 8203."
+  status: claimed
+  tests: [PRT-0153]
+  external: []
+  covers: [l.5596-5600, l.5838-5841]
+
+- id: A-10.4.3-EX
+  clause: "10.4.3"
+  ecma: "10.4.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "The PRINT USING examples of section 10.4.3 run and produce exactly the output shown for them."
+  tests: [PRT-0088, PRT-0089, PRT-0139, PRT-0141]
+  external: []
+  covers: [l.5629-5667]
+
+- id: A-10.4.4.1-01
+  clause: "10.4.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A format-string is scanned left to right into format-items separated by literal runs (possibly empty); at each position the longest valid format-item starting there wins, and scanning resumes just past it."
+  tests: [PRT-0090]
+  external: []
+  covers: [l.5677-5678, l.5680, l.5683]
+
+- id: A-10.4.4.1-02
+  clause: "10.4.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Every format-item owns an output field as wide as the item itself, counting justifier, floating characters, digit places, commas, period, signs and circumflex accents; characters outside items are literal text."
+  tests: [PRT-0091]
+  external: []
+  covers: [l.5686, l.5690]
+
+- id: A-10.4.4.1-03
+  clause: "10.4.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A format-string taken from an IMAGE line is read up to the last character that is not a space."
+  tests: [PRT-0092]
+  external: []
+  covers: [l.5693]
+
+- id: A-10.4.4.2-01
+  clause: "10.4.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "The output-list expressions are evaluated in sequence; before each one the literal run preceding its format-item is copied verbatim, then the field is produced by the numeric or string rules."
+  tests: [PRT-0093]
+  external: []
+  covers: [l.5699, l.5702, l.5705]
+
+- id: A-10.4.4.3-01
+  clause: "10.4.4.3"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Numeric output is rounded to fit its format-item; a justifier character is replaced by the character on its right, or by a number sign when that is a period or missing."
+  tests: [PRT-0094]
+  external: []
+  covers: [l.5710, l.5713, l.5715]
+
+- id: A-10.4.4.3-02
+  clause: "10.4.4.3"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "An i-format-item rounds the value to a whole number and prints it in implicit-point form."
+  tests: [PRT-0095]
+  external: []
+  covers: [l.5718, l.5721]
+
+- id: A-10.4.4.3-03
+  clause: "10.4.4.3"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "An f-format-item prints explicit-point form, rounding or padding with zeros to match the number signs that follow the period."
+  tests: [PRT-0096]
+  external: []
+  covers: [l.5725]
+
+- id: A-10.4.4.3-04
+  clause: "10.4.4.3"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "For i- and f-items no leading zeros appear left of the point unless that would print no digit at all (then one 0); leftover places are then filled with zeros for percent places, asterisks for asterisk places or spaces for number signs, until the integer part spans all digit places."
+  tests: [PRT-0097]
+  external: []
+  covers: [l.5731, l.5733, l.5735]
+
+- id: A-10.4.4.3-05
+  clause: "10.4.4.3"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "An e-format-item prints scaled form, f-style or i-style as its inner item dictates; the significand is shifted so its leftmost place holds a nonzero digit, and the exponent field takes as many characters as there are circumflex accents: letter E, a mandatory sign (plus when the exponent is zero) and the exponent magnitude zero-padded to that width."
+  tests: [PRT-0098]
+  external: []
+  covers: [l.5743, l.5746, l.5749, l.5751, l.5753]
+
+- id: A-10.4.4.3-06
+  clause: "10.4.4.3"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Commas from the format-item are copied into the number wherever a digit already stands left of the insertion point; otherwise an asterisk (asterisk place to the left) or a space (number sign to the left) is printed."
+  tests: [PRT-0140]
+  external: []
+  covers: [l.5760, l.5763]
+
+- id: A-10.4.4.3-07
+  clause: "10.4.4.3"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Leading sign, dollar and space characters follow the table of floating characters, and the finished number is padded on the left with spaces until it fills the whole field, right-justified."
+  tests: [PRT-0099]
+  external: []
+  covers: [l.5768, l.5790]
+
+- id: A-10.4.4.4-01
+  clause: "10.4.4.4"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A string printed through any format-item is padded with spaces to the field width: on the left when the item starts with >, on the right when it starts with <, split evenly otherwise with an odd extra space on the right."
+  tests: [PRT-0100]
+  external: []
+  covers: [l.5796, l.5798, l.5803]
+
+- id: A-10.4.4.3-08
+  clause: "10.4.4.3"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Floating-character runs fill the field width per the table (-- pads with a leading space, $$ (several $, no trailing sign) pads with $ for non-negative and $- for negative, the $ adjacent to the digits, per the table on p.126 of the printed standard (l.5767-5775 of the transcription are garbled) and field width = every character of the format-item (l.5688-5692); integer digits may overflow the digit-places into the floating room (10.4.6 l.5859-5862: $$## of 123 is $123); an f-format-item with no integer digit-places prints no leading zero (.## of .5 is .50, of 0 is .00), an unfilled number-sign place left of the point prints a space (#.## of .5 is  .50), and an e-format significand is scaled so the leftmost integer digit-place holds a nonzero digit (###^^^^ of 12345 is 123E+02)."
+  tests: [PRT-0142]
+  external: []
+  covers: [l.5688-5692, l.5727-5735, l.5743-5745, l.5767-5775, l.5789-5792, l.5859-5862]
+
+- id: A-10.4.4.3-09
+  clause: "10.4.4.3"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Leading zeros generated by a percent-sign place count as generated numerals, so a comma to their right is inserted (%,%%% of 12 is 0,012; of 0 is 0,000; %,%%,%%% of 12 is 0,00,012), also after a floating dollar sign and in f-format-items; only asterisk and number-sign places replace a comma by their fill character when nothing precedes it (#,### of 12 is blank-filled, *,*** of 12 is ***12). Agreed interpretation of 10.4.4.3 (interpretations.yaml)."
+  tests: [PRT-0161]
+  external: []
+  covers: [l.5735-5741, l.5760-5765]
+
+- id: A-10.4.4.4-02
+  clause: "10.4.4.4"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "A string longer than its format-item raises nonfatal exception 8203: the field fills with asterisks and the unformatted string is reported on the next line."
+  tests: [PRT-0143]
+  external: []
+  covers: [l.5796-5806, l.5838-5841]
+
+- id: A-10.4.4.5-01
+  clause: "10.4.4.5"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "When there are more values than format-items, an end-of-line is emitted each time the format-string is exhausted and it is reused; unused trailing items still emit their following literal text, and output stops at the first unused item."
+  tests: [PRT-0101]
+  external: []
+  covers: [l.5809, l.5813]
+
+- id: A-10.4.4.5-02
+  clause: "10.4.4.5"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "After all formatted output a final end-of-line is emitted, unless the output-list ends with a semicolon."
+  tests: [PRT-0102]
+  external: []
+  covers: [l.5817, l.5819]
+
+- id: A-10.4.4.5-03
+  clause: "10.4.4.5"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "The current margin never wraps formatted output, and reaching an IMAGE line at run time just continues with the next line."
+  tests: [PRT-0103, PRT-0411]
+  external: []
+  covers: [l.5822-5823, l.5827]
+
+# 10.5 (MAT READ / INPUT / LINE INPUT / PRINT)
+- id: A-10.5.2-01
+  clause: "10.5.2"
+  ecma: "10.5.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "A redim attached to an array in MAT READ or MAT INPUT must state the same number of dimensions as the array."
+  status: claimed
+  tests: [PRT-0108]
+  external: []
+  covers: [l.5911]
+
+- id: A-10.5.2-02
+  clause: "10.5.2"
+  ecma: "10.5.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "A variable-length vector (the question-mark form) is always one-dimensional."
+  tests: [PRT-0109]
+  external: []
+  covers: [l.5914]
+
+- id: A-10.5.3-EX
+  clause: "10.5.3"
+  ecma: "10.5.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Every MAT statement form shown in the examples of section 10.5.3 is accepted and behaves as written."
+  tests: [PRT-0110]
+  external: []
+  covers: [l.5916-5929]
+
+- id: A-10.5.4.1-01
+  clause: "10.5.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "MAT READ fills the listed arrays in order from the data sequence of its unit, covering every element row by row (last subscript fastest) and advancing the data pointer past each datum used."
+  tests: [PRT-0111]
+  external: []
+  covers: [l.5935, l.5938]
+
+- id: A-10.5.4.1-02
+  clause: "10.5.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Each datum read for an array element must match the type of that element."
+  tests: [PRT-0112]
+  external: []
+  covers: [l.5945]
+
+- id: A-10.5.4.1-03
+  clause: "10.5.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A redim resizes the array before values are stored, using the index values as the new bounds; if resizing fails the array keeps its old shape; redims are evaluated after the arrays to their left were filled."
+  tests: [PRT-0113]
+  external: []
+  covers: [l.5949, l.5951-5952, l.5954-5955]
+
+- id: A-10.5.4.1-04
+  clause: "10.5.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Running out of data in MAT READ behaves exactly as in plain READ, with or without IF MISSING: with the recovery the jump is taken and the array keeps its size."
+  tests: [PRT-0115]
+  external: []
+  covers: [l.5960]
+
+- id: A-10.5.4.1-05
+  clause: "10.5.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A numeric datum read for an array that underflows is stored as zero."
+  tests: [PRT-0116]
+  external: []
+  covers: [l.5963]
+
+- id: A-10.5.4.1-06
+  clause: "10.5.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "MAT READ reports the nonfatal exception 1506 for an underflowing numeric DATA datum, exactly as scalar READ does, after storing zero in that element."
+  status: claimed
+  tests: [PRT-0150]
+  external: []
+  covers: [l.5962-5963, l.5071-5072]
+
+- id: A-10.5.4.1-07
+  clause: "10.5.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "MAT READ assigns its data one by one in row major order, like READ: when a string datum is longer than the length-max of the array (1053) or a nonnumeric datum is read for a numeric array (8101), the elements before the failing one stay assigned and the later ones keep their old values; this holds for one, two and three dimensions, for several arrays in one statement and with IF MISSING."
+  tests: [ARR-0220]
+  external: []
+  covers: [l.5938-5943, l.6103-6104]
+
+- id: A-10.5.4.1-08
+  clause: "10.5.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "MAT READ with insufficient data works like READ: the values are assigned one by one and the data pointer advances beyond each datum, so the data that are present are assigned and consumed when exception 8001 occurs (in a WHEN block) or when the missing-recovery (IF MISSING) is taken, for one array, for the array that runs out among several, for a redim and for a string array; the elements not reached keep their old values and the next READ finds no data."
+  tests: [ARR-0230]
+  external: []
+  covers: [l.5935-5943, l.5958-5960, l.5008-5025]
+
+- id: A-10.5.4.2-01
+  clause: "10.5.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "MAT INPUT waits for a valid input-reply, then fills the listed arrays in order, all elements row by row."
+  tests: [PRT-0117]
+  external: []
+  covers: [l.5968, l.5970, l.5972]
+
+- id: A-10.5.4.2-02
+  clause: "10.5.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "In interactive mode MAT INPUT shows the same input-prompt as plain INPUT."
+  tests: [PRT-0118]
+  external: []
+  covers: [l.5975, l.5980]
+
+- id: A-10.5.4.2-03
+  clause: "10.5.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "The PROMPT, TIMEOUT and ELAPSED modifiers of MAT INPUT work as in plain INPUT; a datum of the wrong type in the reply is not accepted (warning 8103) and the reply is requested again."
+  tests: [PRT-0119, PRT-0305]
+  external: []
+  covers: [l.5980-5981, l.5983]
+
+- id: A-10.5.4.2-04
+  clause: "10.5.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Each reply datum must match the type of the array element it lands in."
+  tests: [PRT-0120]
+  external: []
+  covers: [l.5986]
+
+- id: A-10.5.4.2-05
+  clause: "10.5.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A redim in MAT INPUT resizes the array before assignment, as in MAT READ, and is evaluated after the arrays to its left were filled."
+  tests: [PRT-0121]
+  external: []
+  covers: [l.5989]
+
+- id: A-10.5.4.2-06
+  clause: "10.5.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Array input may span several replies: while data are still missing and the reply ends with a comma, the prompt is issued again and another reply is read."
+  tests: [PRT-0122]
+  external: []
+  covers: [l.6001-6002]
+
+- id: A-10.5.4.2-07
+  clause: "10.5.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A numeric input datum that underflows is stored as zero."
+  status: claimed
+  tests: [PRT-0123]
+  external: []
+  covers: [l.6005]
+
+- id: A-10.5.4.2-08
+  clause: "10.5.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "In MAT INPUT, elements whose data were validated before an 8002, 8103 or 1007 remain assigned (row major order); the exception is raised after them."
+  status: claimed
+  tests: [PRT-0147, PRT-0148, PRT-0151]
+  external: []
+  covers: [l.5970-5972, l.6114-6116, l.6118-6120, l.6126-6127]
+
+- id: A-10.5.4.2-09
+  clause: "10.5.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "When a string overflow (1054) interrupts the reply of MAT INPUT and is handled by a WHEN block, the elements already assigned before the failing one stay assigned (row major order, in one, two and three dimensions, for several arrays in one statement and for a variable-length vector) and the later elements keep their old values. Agreed interpretation of 10.5.4.2 (interpretations.yaml)."
+  tests: [PRT-0220]
+  external: []
+  covers: [l.5180-5184, l.5980, l.6130-6132]
+
+- id: A-10.5.4.2-10
+  clause: "10.5.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "When the input runs out (end of file, 8011) in the middle of MAT INPUT and the exception is handled by a WHEN block, the data already supplied stay assigned (the arrays completed before and the elements of the current array already validated) and the elements not reached keep their old values, as with INPUT. Agreed interpretation of 10.5.4.2 (interpretations.yaml)."
+  tests: [PRT-0241]
+  external: []
+  covers: [l.5180-5184, l.5218-5228, l.5970-5972]
+
+- id: A-10.5.4.3-01
+  clause: "10.5.4.3"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A question-mark vector takes as many data as the reply (or the replies up to the first one not ending in a comma) contains, starting at the vector's current lower bound; afterwards its upper bound is set to the subscript that received the last datum, and the count may not exceed the size declared for the vector."
+  tests: [PRT-0124, PRT-0125]
+  external: []
+  covers: [l.6013-6015, l.6019]
+
+- id: A-10.5.4.3-02
+  clause: "10.5.4.3"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Reply data for a question-mark vector must match the type of the vector."
+  tests: [PRT-0126]
+  external: []
+  covers: [l.6022]
+
+- id: A-10.5.4.4-01
+  clause: "10.5.4.4"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "MAT LINE INPUT reads one whole line per element of each string array, storing the lines (without their end-of-lines) row by row; the number of lines read equals the number of elements."
+  tests: [PRT-0127]
+  external: []
+  covers: [l.6028, l.6031, l.6035]
+
+- id: A-10.5.4.4-05
+  clause: "10.5.4.4"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "When a string overflow (1054) interrupts a line reply of MAT LINE INPUT and is handled by a WHEN block, the lines already accepted stay assigned to their elements (row major order, in one, two and three dimensions and for several arrays in one statement) and the later elements keep their old values."
+  tests: [PRT-0221]
+  note: "Same rule as A-10.5.4.2-09 (MAT INPUT): a line-input-reply is requested for each element in the same fashion as an input-reply and the first is assigned to the first variable, and so on (10.2.4.2 l.5218-5228, 10.5.4.4 l.6031)."
+  external: []
+  covers: [l.5218-5228, l.6031, l.6130-6132]
+
+- id: A-10.5.4.4-06
+  clause: "10.5.4.4"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "When the input runs out (end of file, 8011) in the middle of MAT LINE INPUT and the exception is handled by a WHEN block, the lines already supplied stay assigned to their elements and the elements not reached keep their old values, as with LINE INPUT. Agreed interpretation of 10.5.4.2 (interpretations.yaml)."
+  tests: [PRT-0242]
+  external: []
+  covers: [l.5218-5228, l.6031]
+
+- id: A-10.5.4.4-02
+  clause: "10.5.4.4"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "In interactive mode MAT LINE INPUT shows an input-prompt."
+  status: pending
+  tests: []
+  note: "Not observable from FBCS: same limitation as A-10.2.4-02 (the runner supplies stdin from a file, so the interactive mode of 10.5.4.4 l.6038 never occurs). The prompt is the implementation-defined one of D-10.2-1."
+  external: []
+  covers: [l.6038]
+
+- id: A-10.5.4.4-03
+  clause: "10.5.4.4"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "The input modifiers of MAT LINE INPUT work as in plain INPUT."
+  tests: [PRT-0128]
+  external: []
+  covers: [l.6042]
+
+- id: A-10.5.4.4-04
+  clause: "10.5.4.4"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A redim in MAT LINE INPUT resizes the string array before assignment, as in MAT READ, and is evaluated after the string arrays to its left were filled."
+  tests: [PRT-0129]
+  external: []
+  covers: [l.6045, l.6048]
+
+- id: A-10.5.4.5-01
+  clause: "10.5.4.5"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "MAT PRINT outputs every element of every listed array; when the current output line already has characters, an end-of-line comes first."
+  tests: [PRT-0130]
+  external: []
+  covers: [l.6055, l.6057]
+
+- id: A-10.5.4.5-02
+  clause: "10.5.4.5"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "With a plain array list, a 2-D array prints like its elements listed row by row and joined with the separator after the array name (comma when none), plus an end-of-line after each row when one was not already emitted; a 3-D array prints as a series of such 2-D blocks with an extra end-of-line between blocks; a 1-D array prints like a single row."
+  tests: [PRT-0131]
+  external: []
+  covers: [l.6067, l.6070, l.6074]
+
+- id: A-10.5.4.5-03
+  clause: "10.5.4.5"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Between two arrays of an array-print-list one extra end-of-line is emitted."
+  tests: [PRT-0132]
+  external: []
+  covers: [l.6077]
+
+- id: A-10.5.4.5-04
+  clause: "10.5.4.5"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "With USING, the arrays print exactly as their elements listed array by array in row-major order through the image, with no extra line breaks; a final end-of-line follows all output unless the list ends with a semicolon."
+  tests: [PRT-0133]
+  external: []
+  covers: [l.6086, l.6089, l.6091]
+
+- id: A-10.5.4.5-05
+  clause: "10.5.4.5"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "An array-print-statement without USING breaks lines at the margin just as the equivalent print-statement does: a vector of ten numbers printed with a semicolon and a margin of 20 puts six items on the first line and the rest on the next, because an item that does not fit goes whole to the following line."
+  tests: [PRT-0404]
+  external: []
+  covers: [l.6052-6064, l.5480-5488]
+
+# 10.1.5 / 10.3.5 / 10.5.5 exception lines whose E- claim already lives in another ansi-*.yaml
+# (E-8101 in ansi-11.yaml, E-4006/E-4007 in ansi-11.yaml, E-5001/E-6005 in ansi-07.yaml cover the
+# Table 9 entries; these A-...-EXC claims cover the chapter 10 Exceptions sections themselves).
+- id: A-10.1.5-EXC
+  clause: "10.1.5"
+  ecma: "10.1.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "Assigning a datum that is not a numeric constant to a numeric variable in a READ raises fatal exception 8101 (the Table 9 entry is covered by E-8101)."
+  tests: [PRT-0020]
+  external: []
+  covers: [l.5061]
+
+- id: A-10.3.5-EXC
+  clause: "10.3.5"
+  ecma: "10.3.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "SET MARGIN below the current zone width raises fatal exception 4006, and SET ZONEWIDTH below one or above the current margin raises fatal exception 4007 (the Table 9 entries are covered by E-4006 and E-4007)."
+  tests: [PRT-0076, PRT-0077, PRT-0078, PRT-0412]
+  external: []
+  covers: [l.5536, l.5539]
+
+- id: A-10.5.5-EXC
+  clause: "10.5.5"
+  ecma: "10.5.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "In MAT READ, assigning a non-numeric datum to a numeric-array element raises fatal exception 8101 (E-8101); resizing an array past the element count reserved by its original declaration raises fatal exception 5001; a redim whose first bound exceeds the second, or a lone bound below the default lower bound, raises fatal exception 6005."
+  tests: [PRT-0134, PRT-0135, PRT-0136, PRT-0137]
+  external: []
+  covers: [l.6101, l.6137, l.6140, l.6143]
+
+- id: A-10.5.5-TR80
+  clause: "10.5.5"
+  ecma: "10.5.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "In MAT INPUT, an exception 8002, 8003, 8102, 8103, 1007 or 1054 in an input-reply that is not the first one asks for that reply again and keeps the data of the earlier replies, whatever the arrays involved: several arrays sharing the replies (the rejected reply starts in the array where it is detected or in an earlier one and crosses into it), a single array, a string array and a variable-length vector; a rejected reply with a final comma does not read the next reply before it is asked again."
+  tests: [PRT-0240]
+  note: "10.5.5 l.6109-6133 gives MAT INPUT the same codes and the same recovery as 10.2.5 (l.5244-5261, the current input-reply is requested again); 10.5.4.2 l.5998-6002 allows the data to come in several replies."
+  external: []
+  covers: [l.6109-6133, l.5244-5261, l.5998-6002]
+
+# Exceptions of chapter 10, each joined with its Table 9 entry
+- id: E-8001
+  clause: "10.1.5"
+  ecma: "10.1.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "Reading beyond the end of the data sequence with no IF MISSING recovery raises fatal exception 8001, for READ and for MAT READ alike; a handler can intercept it."
+  tests: [PRT-0021, PRT-0022, PRT-0114]
+  external: []
+  covers: [l.5058, l.6097, l.12953]
+
+- id: E-1006
+  clause: "10.1.5"
+  ecma: "10.1.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "An overflow while evaluating a numeric datum during READ or MAT READ raises fatal exception 1006."
+  tests: [PRT-0023, PRT-0210, PRT-0211]
+  external: []
+  covers: [l.5063, l.6107, l.12788]
+
+- id: E-1053
+  clause: "10.1.5"
+  ecma: "10.1.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "Storing a datum into a string variable or string-array element when it does not fit raises fatal exception 1053 during READ or MAT READ, also when the target is a substring of a variable or array element (10.1.4 l.5038-5041) or a by-reference string parameter whose argument has a smaller length-max (9.2.4.1 l.4679-4682), or an element of a string array with a length-max, or a whole such array in MAT READ (10.5.5 l.6103-6104)."
+  tests: [PRT-0024, PRT-0170, SEG-0361, SEG-0370, SEG-0380]
+  external: []
+  covers: [l.5067, l.6104, l.12798]
+
+- id: E-8102
+  clause: "10.2.5"
+  ecma: "10.2.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "A terminal line that is not a syntactically valid input-reply raises nonfatal exception 8102, which asks for a fresh reply (INPUT, MAT INPUT)."
+  tests: [PRT-0040, PRT-0250]
+  external: []
+  covers: [l.5241, l.6110, l.12963-12964]
+
+- id: E-8103
+  clause: "10.2.5"
+  ecma: "10.2.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "A datum supplied for a numeric variable that is not a numeric constant raises nonfatal exception 8103, which asks to resupply the current reply: when it is not the first reply of the statement (a continuation after a final comma, also in MAT INPUT) only that reply is asked again and the data of the earlier replies stay assigned."
+  tests: [PRT-0041, PRT-0200]
+  external: []
+  covers: [l.5245, l.6114, l.12965-12966]
+
+- id: E-8002
+  clause: "10.2.5"
+  ecma: "10.2.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "Fewer data than variables in a reply that does not end with a comma raises nonfatal exception 8002, which asks to resupply the current reply."
+  tests: [PRT-0042, PRT-0251]
+  external: []
+  covers: [l.5249, l.6118, l.12954]
+
+- id: E-8003
+  clause: "10.2.5"
+  ecma: "10.2.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "More data than variables, or exactly enough data followed by a final comma, raises nonfatal exception 8003, which asks to resupply the current reply."
+  tests: [PRT-0043, PRT-0252, PRT-0253, PRT-0254]
+  external: []
+  covers: [l.5253, l.6122, l.12955]
+
+- id: E-1007
+  clause: "10.2.5"
+  ecma: "10.2.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "An overflow while evaluating a numeric datum typed at the terminal raises nonfatal exception 1007, which asks to resupply the current reply: when it is not the first reply of the statement (a continuation after a final comma, also in MAT INPUT) only that reply is asked again and the data of the earlier replies stay assigned."
+  tests: [PRT-0044, PRT-0201]
+  external: []
+  covers: [l.5256, l.6126, l.12789-12790]
+
+- id: E-1054
+  clause: "10.2.5"
+  ecma: "10.2.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "A string datum or line reply that overflows its string variable raises nonfatal exception 1054, which asks to resupply the reply; the code is the same when the target is a substring (10.2.4.2 l.5186-5190) or a by-reference string parameter whose argument has a smaller length-max (9.2.4.1 l.4679-4682), or an element of a string array with a length-max (also in MAT INPUT and MAT LINE INPUT, 10.5.5 l.6130-6132); when it is not the first reply of the statement (a continuation after a final comma, the second reply of LINE INPUT, the second or later line of MAT LINE INPUT) only that reply is asked again and the data of the earlier replies stay assigned."
+  tests: [PRT-0045, PRT-0171, PRT-0172, PRT-0180, PRT-0190, PRT-0202]
+  external: []
+  covers: [l.5260, l.6132, l.12799-12800]
+
+- id: E-8402
+  clause: "10.2.5"
+  ecma: "10.2.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "A TIMEOUT whose numeric expression is negative raises fatal exception 8402, also in the input statements for channel zero (INPUT #0, LINE INPUT #0, 11.4.4.6 l.8205-8209)."
+  tests: [PRT-0046, PRT-0203, PRT-0204]
+  external: []
+  covers: [l.5264, l.6150, l.12988-12989]
+
+- id: E-8401
+  clause: "10.2.5"
+  ecma: "10.2.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "No valid input-reply or line-input-reply arriving within the TIMEOUT span raises fatal exception 8401."
+  status: pending
+  tests: []
+  external: []
+  note: "Not exercisable by the FBCS runner: stdin is a closed .IN file, so the interpreter sees end of file and raises 8011 (E-8011, FIL-0098) instead of waiting out the TIMEOUT. A limitation of the runner, not of the interpreter."
+  covers: [l.5268, l.6147, l.12987]
+
+- id: E-8201
+  clause: "10.4.5"
+  ecma: "10.4.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "A malformed format-string in PRINT USING or MAT PRINT USING raises fatal exception 8201."
+  tests: [PRT-0104]
+  external: []
+  covers: [l.5832, l.6153, l.12970]
+
+- id: E-8202
+  clause: "10.4.5"
+  ecma: "10.4.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "An output list whose format-string contains no format-item raises fatal exception 8202."
+  tests: [PRT-0105]
+  external: []
+  covers: [l.5835, l.6156, l.12971-12972]
+
+- id: E-8203
+  clause: "10.4.5"
+  ecma: "10.4.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "A value longer than its format-item raises nonfatal exception 8203: the field fills with asterisks and the plain value is reported on the next line."
+  tests: [PRT-0106, PRT-0143]
+  external: []
+  covers: [l.5839, l.12973]
+
+- id: A-10.4.5-CL10
+  clause: "10.4.5"
+  ecma: "10.4.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "After a nonfatal 8203 the output is three lines: the text so far with the field filled with asterisks; the unformatted value on the next line; and whatever remains to be printed on the line after that, starting at the column it would have had if the exception had not occurred (the column that follows the field). The rule is the same for numbers and strings, for the first, an intermediate or the last field, and for a record of a DISPLAY file written by PRINT # USING, where each of the three lines is one record."
+  tests: [PRT-0405]
+  covers: [l.5836-5842]
+  external: []
+
+- id: E-8204
+  clause: "10.4.5"
+  ecma: "10.4.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "An exponent too large for the circumflex accents of an e-format-item raises nonfatal exception 8204, filling the field with asterisks and reporting the plain value."
+  tests: [PRT-0107]
+  external: []
+  covers: [l.5846, l.12974]
+
+- id: E-1506
+  clause: "10.1"
+  ecma: "10.1"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "An implementation may raise nonfatal exception 1506 for a numeric DATA underflow (supply zero and continue), so a handler can intercept it."
+  tests: [PRT-0025, PRT-0150]
+  external: []
+  covers: [l.12821]
+
+- id: E-1507
+  clause: "10.2"
+  ecma: "10.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "An implementation may raise nonfatal exception 1507 for a numeric input underflow (supply zero and continue), so a handler can intercept it."
+  tests: [PRT-0047]
+  external: []
+  covers: [l.12822]
+
+# Implementation-defined points of chapter 10 (Appendix C, subsections 10.2, 10.3 and 10.5)
+- id: D-10.2-1
+  clause: "10.2.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "The built-in input-prompt shown when no PROMPT specifier is given (Appendix C, subsection 10.2 item 1)."
+  tests: [PRT-0048]
+  value: "No input-prompt is output in batch mode (stdin is not a terminal); interactive mode would use the recommended '? ' of l.5288, which the FBCS runner cannot drive."
+  external: []
+  covers: [l.5156]
+
+- id: D-10.2-2
+  clause: "10.2.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "How batch mode asks the external source for an input-reply (Appendix C, subsection 10.2 item 2)."
+  tests: [PRT-0049]
+  value: "In batch mode each input-reply (or line-input-reply) is read as one line of standard input, without any prompt output. The text of a PROMPT specifier is still written in batch mode (INPUT PROMPT \"Dime: \": A writes Dime: before reading), and the reply is not echoed (measured with the CLI)."
+  external: []
+  covers: [l.5159]
+
+- id: D-10.2-3
+  clause: "10.2.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "Minimum, maximum and resolution of TIMEOUT expressions and ELAPSED time-inquiries (Appendix C, subsection 10.2 item 3)."
+  tests: [PRT-0050]
+  value: "TIMEOUT accepts any fractional value >= 0 (0 is accepted, negative raises 8402); ELAPSED returns positive fractional seconds because a clock is provided."
+  external: []
+  covers: [l.5174]
+
+- id: D-10.3-1
+  clause: "10.3.4"
+  ecma: "10.3.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "Effect when a function called during a PRINT prints to the same device (Appendix C, subsection 10.3 item 1)."
+  tests: [PRT-0079]
+  value: "The function's output goes to the same device in evaluation order, sharing the columnar position: PRINT \"a\"; F(1); \"b\" with a function that does PRINT \"[in]\"; writes a[in] 1 b on one line, and when the function ends its own line (PRINT \"SIDE\", PRT-0079) the outer PRINT continues on the next one."
+  external: []
+  covers: [l.5355]
+
+- id: D-10.3-2
+  clause: "10.3.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "Significance width d used when printing numeric representations (Appendix C, subsection 10.3 item 2)."
+  tests: [PRT-0080]
+  value: "d = 8 significant digits (decision of the project owner, 2026-11-02; zone width 17 = d+e+6 with e = 3, l.5444-5446)."
+  external: []
+  covers: [l.5368]
+
+- id: D-10.3-3
+  clause: "10.3.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "Exrad width e used when printing numeric representations (Appendix C, subsection 10.3 item 3)."
+  tests: [PRT-0081, PRT-0155]
+  value: "e = 3 exrad digits (decision of the project owner, 2026-11-02; 1E100 prints 1.E+100 and MAXNUM 1.7976931E+308, exrad of 3 digits, STD 10.3.4.1 (5) l.5405-5412 \"one to e digits\")."
+  external: []
+  covers: [l.5368]
+
+- id: D-10.3-4
+  clause: "10.3.4.3"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "Effect of characters outside the standard printable set on the columnar position (Appendix C, subsection 10.3 item 4)."
+  tests: [PRT-0082]
+  value: "Every emitted character, including control characters, advances the columnar position by one."
+  external: []
+  covers: [l.5434]
+
+- id: D-10.3-5
+  clause: "10.3.4.3"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "Margin in effect before any SET MARGIN (Appendix C, subsection 10.3 item 5)."
+  tests: [PRT-0083]
+  value: "The default margin before any SET MARGIN is 132."
+  external: []
+  covers: [l.5438]
+
+- id: D-10.3-6
+  clause: "10.3.4.3"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "Number of print zones per line and their width before any SET ZONEWIDTH (Appendix C, subsection 10.3 item 6)."
+  tests: [PRT-0084]
+  value: "Default zone width 17 = d+e+6 (d = 8, e = 3; l.5444-5446) on the default margin 132: 8 print zones per line (cols 1,18,35,52,69,86,103,120), the last one 13 columns wide (120-132)."
+  external: []
+  covers: [l.5444]
+
+- id: D-10.3-7
+  clause: "10.3.6"
+  ecma: "10.3.6"
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "Whether the trailing space of a printed number is emitted when it would push the column past the margin (Appendix C, subsection 10.3 item 7)."
+  tests: [PRT-0085]
+  value: "The trailing space of a printed number is always emitted; when the whole number field would cross the margin, an end-of-line is generated first (l.5484), so the space is never dropped."
+  external: []
+  covers: [l.5545-5549]
+
+- id: D-10.3-8
+  clause: "10.3.6"
+  ecma: "10.3.6"
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "Case of the E letter used in scaled numeric output (Appendix C, subsection 10.3 item 8)."
+  tests: [PRT-0086]
+  value: "The E of scaled numeric output is uppercase."
+  external: []
+  covers: [l.5551-5553]
+
+- id: D-10.5-1
+  clause: "10.5.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "Effect of resupplying input to an array that was resized after data was already assigned to it (Appendix C, subsection 10.5 item 1)."
+  tests: [PRT-0138]
+  value: "On resupply to a redimensioned array the resupplied reply overwrites the array from its first element; the final contents are those of the last reply (SIZE re-set to that reply count)."
+  external: []
+  covers: [l.5993-5996]
+
+- id: A-10.5.2-TR94
+  clause: "10.5.2"
+  ecma: "10.5.2"
+  ecma_level: BASIC-1
+  module: files
+  kind: syntax
+  claim: "The number of bounds in a redim attached to an array in MAT INPUT #, MAT LINE INPUT # or MAT READ # must equal the number of dimensions of that array (rule of 10.5.2 reused by 11.4.2); it is checked when the program is loaded, as it already was for the console forms, whenever the dimensionality of the array is known."
+  tests: [ARR-0242, ARR-0243, ARR-0244]
+  external: []
+  covers: [l.5911-5912]
+
+- id: A-10.1.4-TR109
+  clause: "10.1.4"
+  ecma: "10.1.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "The DATA of an internal routine is part of the data sequence of its program unit, and RESTORE is not a control-transfer: RESTORE n may name a DATA line of any internal routine of the unit (from the main, from another routine, or from the body of an EXTERNAL unit), and READ in the routine reads the whole sequence; a RESTORE n that names a line of another program unit is still rejected before the program runs."
+  tests: [PRT-0306, PRT-0308]
+  external: []
+  covers: [l.3739-3741, l.4759-4763, l.5047-5052]
+
+- id: A-10.4.2-TR109
+  clause: "10.4.2"
+  ecma: "10.4.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "An image-line inside an internal SUB or FUNCTION is an image-line of its program unit: a PRINT USING line-number in the main or in another routine of the unit, above or below it, uses it."
+  tests: [PRT-0307]
+  external: []
+  covers: [l.5621-5622]
+
+- id: A-10.1.2-TR118
+  clause: "10.1.2"
+  ecma: "10.1.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "The body of a detached-handler is part of the program unit that contains it, and RESTORE is not a control-transfer: RESTORE n may name a DATA line inside a detached-handler of the unit (from the main program, from the when-block that uses the handler, from an internal routine or from the body of an EXTERNAL unit); a RESTORE n that names a DATA line inside a handler of another program unit is still rejected before the program runs."
+  tests: [PRT-0309, PRT-0311]
+  external: []
+  covers: [l.4978-4979, l.5043-5052]
+
+- id: A-10.4.2-TR118
+  clause: "10.4.2"
+  ecma: "10.4.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "An image-line nested in a block (the USE part of a when-use-block, an if-block) is an image-line of its program unit: a PRINT USING line-number placed above it, including one in the same when-block, uses it."
+  tests: [PRT-0310]
+  external: []
+  covers: [l.5621-5622]
+
+- id: A-10.1.4-TR122
+  clause: "10.1.4"
+  ecma: "10.1.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "The data-statements of a detached-handler belong to the data sequence of the program unit that contains the handler, in line order with the other data-statements of that unit: in an EXTERNAL unit, READ reads the DATA of its handler, each invocation of the unit starts at the first datum of its own sequence, and neither the main program nor another unit sees it."
+  tests: [PRT-0312, PRT-0313]
+  external: []
+  covers: [l.5043-5052, l.4413-4418]
+
+- id: A-10.1.2-TR154
+  clause: "10.1.2"
+  ecma: "10.1.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "The line-number of an io-recovery (IF MISSING THEN n, IF THERE THEN n) is the line of a control-transfer (8.2.2 prod. 1) and obeys the same scope rules as GOTO: from outside it may not name a line inside an if-block branch, select-block case, for-body, do-body, protection-block (other than its when-line), exception-handler or the header line of its own external subprogram, nor may it jump between sibling branches; jumps within the same branch, out of a structure or to a line of the top level of the same program unit stay valid."
+  tests: [PRT-0390, PRT-0391, PRT-0392, PRT-0393, PRT-0394, PRT-0395, PRT-0396, FIL-0490, FIL-0491]
+  covers: [l.3628-3632, l.4961-4963]
+  external: []
+
+- id: A-10.4.4.1-TR174
+  clause: "10.4.4.1"
+  ecma: "10.4.4.1"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "The format-string is scanned from left to right and at each point the longest syntactically correct format-item is taken, the next search starting right after it. Format-items written one against the other are therefore separate fields: \"##-##-####\" is \"##\", \"-##\" and \"-####\" (12, 5, 1983 print as 12  5 1983), \"#.#.#\" is \"#.#\" and \".#\", and \"##$##\" is \"##\" and \"$##\". A comma, sign, dollar sign or period left over after a format-item is not a literal-item (production 8 of 10.4.2 lists them closed), so the format-string is invalid (8201, fatal), as is an e-format with one or two circumflex accents."
+  tests: [PRT-0397, PRT-0398, PRT-0399, PRT-0400, PRT-0401]
+  covers: [l.5677-5692]
+  external: []
+
+- id: A-10.4.4.3-TR175
+  clause: "10.4.4.3"
+  ecma: "10.4.4.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "With floating-characters that start with a plus-sign and end with a dollar-sign the leading characters are \"+$\" for a non-negative value and \"-$\" for a negative one, with no space before them: \"+$##.##\" prints 12.5 as +$12.50 and -12.5 as -$12.50, and \"+$###.##\" prints 1.5 as +$  1.50. With two plus-signs (\"++$##\") the extra plus-sign provides the room and the output is the same two rows, right-justified in the field."
+  tests: [PRT-0402, PRT-0403]
+  covers: [l.5767-5787]
+  external: []
+
+- id: A-10.2.4.2-CL11
+  clause: "10.2.4.2"
+  ecma: "10.2.4.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "An input-reply whose final non-space character is a comma continues on another reply, even when spaces follow that comma: INPUT and MAT INPUT assign the values read so far and ask for another reply. A comma inside a quoted string is not a continuation."
+  tests: [PRT-0406]
+  covers: [l.5208-5219]
+  external: []
+
+- id: A-10.4.5-CL29
+  clause: "10.4.5"
+  ecma: "10.4.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "When a PRINT # USING statement writes to a DISPLAY file whose current record was left open by an earlier PRINT # ending in a print-separator, the characters it generates are appended to that partial record and every column it counts, including the column at which the output continues after a nonfatal 8203, is measured from the start of that record exactly as it is on the console."
+  tests: [PRT-0407]
+  covers: [l.5836-5842, l.7546-7560]
+  external: []
+
+- id: A-10.3.5-CL40
+  clause: "10.3.5"
+  ecma: "10.3.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "When a user exception-handler handles the nonfatal exception 4005 raised by a TAB whose index is less than one, the print statement does not complete and the handler receives the exception; a RETRY in the handler runs the statement again."
+  tests: [PRT-0408]
+  covers: [l.1360-1368, l.5532]
+  external: []
+
+- id: A-10.5.4.5-CL40
+  clause: "10.5.4.5"
+  ecma: "10.5.4.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "When a user exception-handler handles the nonfatal exception 3101 raised by a MAT PRINT of an array with elements never assigned, the statement does not complete: the elements of that array are not printed and the handler receives the exception."
+  tests: [PRT-0409]
+  covers: [l.1360-1368, l.1732]
+  external: []
+
+- id: A-10.1.6-CL40
+  clause: "10.1.6"
+  ecma: "10.1.6"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "When a user exception-handler handles the nonfatal exception 1506 raised by a READ of an underflowing numeric datum, the READ does not complete: the variable keeps its value (zero is not supplied) and the handler receives the exception."
+  tests: [PRT-0410]
+  covers: [l.1360-1368, l.5071-5072]
+  external: []

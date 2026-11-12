@@ -1,0 +1,13 @@
+1 REM FBCS STR-0030
+2 REM CLAIM A-6.4.4-04
+3 REM TYPE SELF
+100 REM ORD with two or more characters is matched without regard to case.
+110 REM Standard: ORD("SOH")=1, ORD("Soh")=1, ORD("BS")=8.
+120 LET FAIL = 0
+130 IF ORD("SOH") <> 1 THEN LET FAIL = FAIL + 1
+140 IF ORD("soh") <> 1 THEN LET FAIL = FAIL + 1
+150 IF ORD("Soh") <> 1 THEN LET FAIL = FAIL + 1
+160 IF ORD("BS") <> 8 THEN LET FAIL = FAIL + 1
+170 IF ORD("bs") <> 8 THEN LET FAIL = FAIL + 1
+180 IF FAIL = 0 THEN PRINT "*** TEST PASSED ***" ELSE PRINT "*** TEST FAILED ***"
+190 END

@@ -1,0 +1,14 @@
+1 REM FBCS GFX-0271
+2 REM CLAIM A-13.5.2-TR159
+3 REM TYPE GRAPHIC
+4 REM STD 13.5.2 l.10506-10525: a DECLARE PICTURE (internal-picture-type) of the main program, before the
+5 REM DRAW, selects its own internal picture over the external one of the same name.
+12 DECLARE PICTURE Q
+15 DRAW Q
+20 PICTURE Q
+30 PLOT POINTS: 1,1
+40 END PICTURE
+50 END
+200 EXTERNAL PICTURE Q
+230 PLOT POINTS: 2,2
+250 END PICTURE

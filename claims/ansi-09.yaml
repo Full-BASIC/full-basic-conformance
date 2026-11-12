@@ -1,0 +1,1796 @@
+# Claims for chapter 9 (procedures).
+- id: A-9.2.4.1-01
+  clause: "9.2.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "An array element given as a subprogram argument is passed by reference, so assigning to the parameter changes the element."
+  tests: [SEG-0142, SEG-0159, SEG-0160, SEG-0161, SEG-0162, SEG-0163, SEG-0164, SEG-0165, SEG-0166]
+  covers: [l.4649-4655]
+  external: []
+
+- id: A-9.2.4.1-02
+  clause: "9.2.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  status: claimed
+  claim: "A subprogram argument that is a parenthesized variable or array element is an expression: its value is copied to a local location, so assigning to the parameter leaves the caller's variable unchanged."
+  tests: [SEG-0141, SEG-0143, SEG-0144, SEG-0145]
+  covers: [l.4660-4667]
+  external: []
+
+- id: A-9.2.4.1-03
+  clause: "9.2.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  status: claimed
+  claim: "A simple variable given without parentheses as a subprogram argument is passed by reference, so assigning to the parameter changes the variable."
+  tests: [SEG-0146]
+  covers: [l.4650-4655]
+  external: []
+
+- id: E-10005
+  clause: "9.3.5"
+  ecma: "9.3.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "CHAIN to a program that is not available raises the fatal exception 10005, which a handler can intercept; without a handler the program stops at the CHAIN statement."
+  tests: [SEG-0147, SEG-0148]
+  covers: [l.4907, l.13006]
+  external: []
+
+- id: A-9.2.2-01
+  clause: "9.2.2"
+  ecma: "9.2.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "EXIT SUB is only valid inside a subprogram definition, so a program that uses it in the main program, in a function, or in a detached handler of the main program is rejected before it runs, even if the statement would never be executed."
+  tests: [SEG-0149, SEG-0150, SEG-0151, EXC-0074]
+  covers: [l.4539]
+  external: []
+
+- id: A-9.2.2-02
+  clause: "9.2.2"
+  ecma: "9.2.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "A subprogram name may be defined only once in a program unit, and an external subprogram only once in the whole program, so a program with two definitions of the same subprogram name is rejected before it runs."
+  tests: [SEG-0152, SEG-0153]
+  covers: [l.4514-4517, l.4519-4520]
+  external: []
+
+- id: A-9.1.2-01
+  clause: "9.1.2"
+  ecma: "9.1.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "The closing line (END PICTURE) of an internal picture is a line of that routine, so a transfer from inside it to that line is valid and takes effect."
+  tests: [SEG-0155]
+  external: []
+  covers: [l.4111-4113]
+
+- id: A-9.1.2-02
+  clause: "9.2.2"
+  ecma: "9.2.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A control transfer outside an internal subprogram may name the header line of that subprogram; reaching it has no effect and execution continues at the line after the END SUB."
+  tests: [SEG-0156]
+  external: []
+  covers: [l.4505-4507, l.4638-4640]
+
+- id: A-9-01
+  clause: "9"
+  ecma: "9"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "A routine must be defined or declared on a line before its first call within the program unit, so a function used before its DEF is rejected; defining a routine that is never called is not an error. Internal subprograms are the one relaxation the text allows (A-9.2.2-06)."
+  tests: [SEG-0189, SEG-0190]
+  external: []
+  covers: [l.4104]
+
+- id: A-9.1.2-03
+  clause: "9.1.2"
+  ecma: "9.1.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "A control transfer inside an internal function definition may not name the header line of that function, even if it would never be executed; the program is rejected before it runs."
+  tests: [SEG-0157]
+  external: []
+  covers: [l.4185-4188]
+
+- id: A-9.1.2-22
+  clause: "9.1.2"
+  ecma: "9.1.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A control transfer outside an internal function definition may name the header line of that function; reaching it has no effect and execution continues at the line after the END FUNCTION."
+  tests: [SEG-0158]
+  external: []
+  covers: [l.4183-4185]
+
+- id: A-9.1.2-04
+  clause: "9.1.2"
+  ecma: "9.1.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  status: claimed
+  claim: "A control transfer inside an external function definition must not name that function's header line."
+  tests: [SEG-0191]
+  external: []
+  covers: [l.4190-4191]
+
+- id: A-9.1.2-05
+  clause: "9.1.2"
+  ecma: "9.1.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "A function is defined once: an external one once in the whole program and an internal one once per program unit, and a unit cannot declare or define two functions with the same name."
+  tests: [SEG-0192, SEG-0193]
+  external: []
+  covers: [l.4193-4199]
+
+- id: A-9.1.2-06
+  clause: "9.1.2"
+  ecma: "9.1.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "An external function must be declared with DECLARE EXTERNAL FUNCTION on a line before its first reference in the same program unit."
+  tests: [SEG-0194, SEG-0195]
+  external: []
+  covers: [l.4201-4205]
+
+- id: A-9.1.2-07
+  clause: "9.1.2"
+  ecma: "9.1.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "A multi-line internal function must be defined, or declared with DECLARE FUNCTION, before its first reference."
+  tests: [SEG-0196, SEG-0197]
+  external: []
+  covers: [l.4207-4212]
+
+- id: A-9.1.2-08
+  clause: "9.1.2"
+  ecma: "9.1.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "A single-line DEF function must be defined, or declared with DECLARE DEF, before its first reference."
+  tests: [SEG-0198, SEG-0199]
+  external: []
+  covers: [l.4214-4218]
+
+- id: A-9.1.2-09
+  clause: "9.1.2"
+  ecma: "9.1.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "A function that refers to itself needs no declaration for that self-reference."
+  tests: [SEG-0200]
+  external: []
+
+- id: A-9.1.2-10
+  clause: "9.1.2"
+  ecma: "9.1.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "EXIT FUNCTION is valid only inside a function definition."
+  tests: [SEG-0201]
+  external: []
+  covers: [l.4225]
+
+- id: A-9.1.2-11
+  clause: "9.1.2"
+  ecma: "9.1.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "A multi-line function definition contains at least one LET that assigns to the function's own name."
+  tests: [SEG-0202]
+  external: []
+  covers: [l.4228-4231]
+
+- id: A-9.1.2-12
+  clause: "9.1.2"
+  ecma: "9.1.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "A function reference supplies exactly as many arguments as the definition has parameters."
+  tests: [SEG-0203, SEG-0204]
+  external: []
+  covers: [l.4233-4234, l.4238]
+
+- id: A-9.1.2-13
+  clause: "9.1.2"
+  ecma: "9.1.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "Function arguments match parameters by position and type: a numeric expression for a numeric variable, a string expression for a string variable, and an array of the same kind for a formal array."
+  tests: [SEG-0205, SEG-0206]
+  external: []
+  covers: [l.4241-4244]
+
+- id: A-9.1.2-14
+  clause: "9.1.2"
+  ecma: "9.1.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "An array argument has one dimension more than the number of commas in the matching formal array."
+  tests: [SEG-0207]
+  external: []
+  covers: [l.4254]
+
+- id: A-9.1.2-15
+  clause: "9.1.2"
+  ecma: "9.1.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "A formal array of a function has at most three dimensions."
+  tests: [SEG-0208, SEG-0348]
+  external: []
+  covers: [l.4256-4258]
+
+- id: A-9.1.2-16
+  clause: "9.1.2"
+  ecma: "9.1.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "A numeric argument passed to a function in another program unit requires both units to use the same ARITHMETIC option."
+  tests: [SEG-0209]
+  external: []
+  covers: [l.4259-4261]
+
+- id: A-9.1.2-17
+  clause: "9.1.2"
+  ecma: "9.1.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "A numeric external function uses the same ARITHMETIC option as the unit that invokes it."
+  tests: [SEG-0210]
+  external: []
+  covers: [l.4263-4264]
+
+- id: A-9.1.2-18
+  clause: "9.1.2"
+  ecma: "9.1.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  status: claimed
+  claim: "A parameter name appears only once in a function's parameter list."
+  tests: [SEG-0211]
+  external: []
+  covers: [l.4266]
+
+- id: A-9.1.2-19
+  clause: "9.1.2"
+  ecma: "9.1.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  status: claimed
+  claim: "Function parameters are neither declared nor dimensioned inside the function definition."
+  tests: [SEG-0212]
+  external: []
+  covers: [l.4267-4269]
+
+- id: A-9.1.2-20
+  clause: "9.1.2"
+  ecma: "9.1.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "A name in DECLARE DEF or DECLARE FUNCTION must be defined in the same program unit by the matching kind of definition: DECLARE DEF requires a one-line DEF and DECLARE FUNCTION requires a multi-line FUNCTION. A program that declares one without defining it, or defines it with the other kind, is rejected when it is loaded, even if the function is never called."
+  tests: [SEG-0213, SEG-0214, SEG-0676, SEG-0677, SEG-0678, SEG-0679, SEG-0680, SEG-0681, SEG-0682]
+  external: []
+  covers: [l.4271-4274]
+
+- id: A-9.1.2-21
+  clause: "9.1.2"
+  ecma: "9.1.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "A program that declares an external function with DECLARE EXTERNAL FUNCTION and then invokes it without any definition is rejected at load (SEG-0215)."
+  tests: [SEG-0215]
+  external: []
+  covers: [l.4276-4278]
+
+- id: A-9.1.3-01
+  clause: "9.1.3"
+  ecma: "9.1.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "Every function definition and declaration shown in the examples of section 9.1.3 is accepted and behaves as written."
+  tests: [SEG-0216, SEG-0217, SEG-0218]
+  external: []
+  covers: [l.4280]
+
+- id: A-9.1.4.1-01
+  clause: "9.1.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "The arguments of a function reference are evaluated from left to right."
+  tests: [SEG-0219]
+  external: []
+  covers: [l.4306-4309]
+
+- id: A-9.1.4.1-02
+  clause: "9.1.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Function arguments are passed by value, so assigning to a parameter inside a function leaves the caller's variable unchanged; this holds for an array argument too (assigning to or redimensioning the formal array leaves the actual array unchanged)."
+  tests: [SEG-0220, SEG-0330, SEG-0331, SEG-0345]
+  external: []
+  covers: [l.4309-4312]
+
+- id: A-9.1.4.1-03
+  clause: "9.1.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A formal array parameter of a function starts with the same bounds as the actual array, and with a copy of its values."
+  tests: [SEG-0221, SEG-0332, SEG-0346]
+  external: []
+  covers: [l.4312-4316]
+
+- id: D-9.1-1
+  clause: "9.1.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "Maximum length of a string parameter or string array parameter of a function that has no length limit."
+  tests: [SEG-0222, SEG-0347]
+  value: "No effective limit: a function string parameter without a length limit holds any string up to the default string-variable limit, which is the effective limit of 1E9 characters (D-6.2-2); observed a 40000-character string passed unchanged."
+  external: []
+  covers: [l.4316-4319]
+
+- id: A-9.1.4.2-01
+  clause: "9.1.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A single-line DEF function evaluates its expression and returns the result as its value."
+  tests: [SEG-0223]
+  external: []
+  covers: [l.4323-4325]
+
+- id: A-9.1.4.2-02
+  clause: "9.1.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A multi-line function runs its lines in order until a transfer elsewhere, a fatal exception, CHAIN or STOP, EXIT FUNCTION, or END FUNCTION."
+  tests: [SEG-0224]
+  external: []
+  covers: [l.4326-4337]
+
+- id: A-9.1.4.2-03
+  clause: "9.1.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "The value of a function is set by LET statements that assign to the function's name."
+  tests: [SEG-0225]
+  external: []
+  covers: [l.4339-4341]
+
+- id: A-9.1.4.2-04
+  clause: "9.1.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "On exit a function returns the last value assigned to its name during that call."
+  tests: [SEG-0226]
+  external: []
+  covers: [l.4341-4343]
+
+- id: D-9.1-2
+  clause: "9.1.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "Value returned by a function that ended without any assignment to its name."
+  tests: [SEG-0227, SEG-0397]
+  value: "Numeric 0 (empty string for a string function): the policy for uninitialized variables, with a nonfatal 3101/3102 warning, in EVERY invocation that exits before assigning its name (never the value left by a previous invocation, also under recursion; SEG-0227 calls the function five times, SEG-0397 covers a string function and a recursive one)."
+  external: []
+  covers: [l.4339-4345]
+
+- id: A-9.1.4.2-05
+  clause: "9.1.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A length limit after a string function name caps the returned string; without one the ordinary string-variable limit applies."
+  tests: [SEG-0228, SEG-0229]
+  external: []
+  covers: [l.4346-4350]
+
+- id: A-9.1.4.2-06
+  clause: "9.1.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "EXIT FUNCTION ends the function that contains it."
+  tests: [SEG-0230]
+  external: []
+  covers: [l.4352-4353]
+
+- id: A-9.1.4.2-07
+  clause: "9.1.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Reaching END FUNCTION ends the execution of the function."
+  tests: [SEG-0231]
+  external: []
+  covers: [l.4353-4356]
+
+- id: A-9.1.4.2-08
+  clause: "9.1.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "STOP inside a function ends the whole program."
+  tests: [SEG-0232]
+  external: []
+  covers: [l.4356-4357]
+
+- id: A-9.1.4.2-09
+  clause: "9.1.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A function may call itself, directly or through another function."
+  tests: [SEG-0233]
+  external: []
+
+- id: A-9.1.4.2-10
+  clause: "9.1.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "The lines of a function definition run only when the function is referenced."
+  tests: [SEG-0234]
+  external: []
+  covers: [l.4363-4364]
+
+- id: A-9.1.4.2-11
+  clause: "9.1.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Reaching a DEF line during normal flow has no effect and execution continues with the next line."
+  tests: [SEG-0235]
+  external: []
+  covers: [l.4364-4366]
+
+- id: A-9.1.4.2-12
+  clause: "9.1.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Reaching the header line of an internal multi-line function during normal flow skips to the line after its END FUNCTION."
+  tests: [SEG-0236]
+  external: []
+  covers: [l.4366-4369]
+
+- id: A-9.1.4.3-01
+  clause: "9.1.4.3"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A function parameter is local to each invocation and names an object distinct from any same-named variable or array outside the function."
+  tests: [SEG-0237]
+  external: []
+  covers: [l.4373-4377]
+
+- id: A-9.1.4.3-02
+  clause: "9.1.4.3"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "In an external function, every variable and array that is not a parameter is local to each invocation of the function."
+  tests: [SEG-0238]
+  external: []
+  covers: [l.4379-4385]
+
+- id: D-9.1-3
+  clause: "9.1.4.3"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "Initial values of the local variables and arrays of an external function on each invocation."
+  tests: [SEG-0239]
+  value: "Numeric 0 and empty string on each invocation (the uninitialized-variable policy, nonfatal warnings 3101/3102)."
+  external: []
+  covers: [l.4385-4388]
+
+- id: A-9.1.4.3-03
+  clause: "9.1.4.3"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "In an internal function, variables and arrays that are not parameters belong to the containing program unit, keep their values between calls, and changes remain after the function returns."
+  tests: [SEG-0240]
+  external: []
+  covers: [l.4388-4394]
+
+- id: A-9.1.4.3-04
+  clause: "9.1.4.3"
+  ecma: null
+  ecma_level: BASIC-1
+  module: files
+  kind: semantics
+  claim: "A nonzero channel number inside an external function is local to each invocation, and inside an internal function it belongs to the containing program unit."
+  tests: [SEG-0241]
+  external: []
+  covers: [l.4396-4400]
+
+- id: A-9.1.4.3-05
+  clause: "9.1.4.3"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "Channel zero is the same channel in the whole program, in every function."
+  tests: [SEG-0242]
+  external: []
+  covers: [l.4400-4401]
+
+- id: A-9.1.4.3-06
+  clause: "9.1.4.3"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "A file must be assigned to a nonzero channel by OPEN before the channel is used."
+  tests: [SEG-0243]
+  external: []
+  covers: [l.4401-4403]
+
+- id: A-9.1.4.3-07
+  clause: "9.1.4.3"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "Files assigned to channels local to a function are closed when the function exits."
+  tests: [SEG-0244]
+  external: []
+  covers: [l.4403-4404]
+
+- id: A-9.1.4.3-08
+  clause: "9.1.4.3"
+  ecma: null
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "DATA statements inside an external function are local to each invocation of that function."
+  tests: [SEG-0245]
+  external: []
+  covers: [l.4406-4408]
+
+- id: A-9.1.4.3-09
+  clause: "9.1.4.3"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "READ and RESTORE inside an external function use only the DATA statements of that function."
+  tests: [SEG-0246]
+  external: []
+  covers: [l.4408-4411]
+
+- id: A-9.1.4.3-10
+  clause: "9.1.4.3"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "On each invocation of an external function, its DATA pointer is reset to the first datum."
+  tests: [SEG-0247]
+  external: []
+  covers: [l.4411-4413]
+
+- id: A-9.1.4.3-11
+  clause: "9.1.4.3"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "DATA inside an internal function joins the data sequence of the containing unit, and READ and RESTORE there use that whole sequence."
+  tests: [SEG-0248, SEG-0319]
+  external: []
+  covers: [l.4413-4418]
+
+- id: A-9.2.2-03
+  clause: "9.2.2"
+  ecma: "9.2.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "A control transfer inside an internal subprogram may not name the header line of that subprogram, even if it would never be executed; the program is rejected before it runs."
+  tests: [SEG-0154]
+  external: []
+  covers: [l.4507-4509]
+
+- id: A-9.2.2-04
+  clause: "9.2.2"
+  ecma: "9.2.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  status: claimed
+  claim: "A control transfer inside an external subprogram definition must not name that subprogram's header line."
+  tests: [SEG-0249]
+  external: []
+  covers: [l.4511-4512]
+
+- id: A-9.2.2-05
+  clause: "9.2.2"
+  ecma: "9.2.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "An external subprogram must be declared with DECLARE EXTERNAL SUB on a line before the first CALL that names it in the same program unit: a program that calls it without that declaration, with the declaration after the call, or with the declaration only in another program unit is rejected."
+  tests: [SEG-0185, SEG-0186, SEG-0187, SEG-0188]
+  external: []
+  covers: [l.4522-4526]
+
+- id: A-9.2.2-06
+  clause: "9.2.2"
+  ecma: "9.2.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "An internal subprogram may be defined, or declared with DECLARE SUB, before its first reference; the text also allows an implementation to accept the reference first, and this one does (SEG-0250 runs a CALL placed before the SUB)."
+  tests: [SEG-0250, SEG-0251]
+  external: []
+  covers: [l.4528-4532, l.4771-4774]
+
+- id: A-9.2.2-07
+  clause: "9.2.2"
+  ecma: "9.2.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "A subprogram that calls itself needs no declaration for that call."
+  tests: [SEG-0252]
+  external: []
+
+- id: A-9.2.2-08
+  clause: "9.2.2"
+  ecma: "9.2.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "A CALL supplies exactly as many arguments as the subprogram has parameters."
+  tests: [SEG-0253, SEG-0254]
+  external: []
+  covers: [l.4542-4547]
+
+- id: A-9.2.2-09
+  clause: "9.2.2"
+  ecma: "9.2.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "CALL arguments match parameters by position and type: expression for a simple variable, array for a formal array, and a channel expression for a channel parameter."
+  tests: [SEG-0255, SEG-0256, SEG-0257]
+  external: []
+  covers: [l.4549-4562]
+
+- id: A-9.2.2-10
+  clause: "9.2.2"
+  ecma: "9.2.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "An array argument has as many dimensions as the formal array, which is the number of commas plus one."
+  tests: [SEG-0258]
+  external: []
+  covers: [l.4564-4567]
+
+- id: A-9.2.2-11
+  clause: "9.2.2"
+  ecma: "9.2.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "A numeric argument passed to a subprogram in another program unit requires both units to use the same ARITHMETIC option."
+  tests: [SEG-0259]
+  external: []
+  covers: [l.4569-4571]
+
+- id: A-9.2.2-12
+  clause: "9.2.2"
+  ecma: "9.2.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  status: claimed
+  claim: "A parameter name appears only once in a subprogram's parameter list."
+  tests: [SEG-0260]
+  external: []
+  covers: [l.4573]
+
+- id: A-9.2.2-13
+  clause: "9.2.2"
+  ecma: "9.2.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  status: claimed
+  claim: "Subprogram parameters are neither declared nor dimensioned inside the subprogram definition."
+  tests: [SEG-0261]
+  external: []
+  covers: [l.4573-4576]
+
+- id: A-9.2.2-14
+  clause: "9.2.2"
+  ecma: "9.2.2"
+  ecma_level: BASIC-1
+  module: files
+  kind: syntax
+  claim: "Channel number zero cannot be used as a subprogram parameter."
+  tests: [SEG-0262]
+  external: []
+  covers: [l.4578-4579]
+
+- id: A-9.2.2-15
+  clause: "9.2.2"
+  ecma: "9.2.2"
+  ecma_level: BASIC-2
+  module: core
+  kind: syntax
+  claim: "A name in DECLARE SUB must be defined in the same program unit by an internal subprogram."
+  tests: [SEG-0263]
+  external: []
+  covers: [l.4581-4583]
+
+- id: A-9.2.2-16
+  clause: "9.2.2"
+  ecma: "9.2.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "A name in DECLARE EXTERNAL SUB must be defined by an external subprogram elsewhere in the program."
+  tests: [SEG-0264]
+  external: []
+  covers: [l.4585-4586]
+
+- id: A-9.2.2-17
+  clause: "9.2.2"
+  ecma: "9.2.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "No more than one subprogram of a given name, internal or external, is declared or defined in a program unit: a second DECLARE of the same subprogram, or a DECLARE EXTERNAL SUB for a name that the unit also defines as an internal SUB, is rejected before the program runs."
+  tests: [SEG-0315, SEG-0316, SEG-0317]
+  covers: [l.4521-4524]
+  external: []
+
+- id: A-9.2.2-18
+  clause: "9.2.2"
+  ecma: "9.2.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  status: claimed
+  claim: "A subprogram need not declare itself: a CALL that names the subprogram from inside its own external definition loads and runs without any DECLARE of that name in that program unit."
+  tests: [SEG-0323]
+  external: []
+  covers: [l.4534-4537]
+
+- id: A-9.2.3-01
+  clause: "9.2.3"
+  ecma: "9.2.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "Every subprogram definition, declaration and call shown in the examples of section 9.2.3 is accepted and behaves as written."
+  tests: [SEG-0265, SEG-0266]
+  external: []
+  covers: [l.4588]
+
+- id: A-9.2.4-01
+  clause: "9.2.4"
+  ecma: "9.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A CALL transfers control to the named subprogram, whose body runs before the program continues."
+  tests: [SEG-0146]
+  external: []
+  covers: [l.4607-4610]
+
+- id: A-9.2.4-02
+  clause: "9.2.4"
+  ecma: "9.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A subprogram body runs in order until a transfer elsewhere, a fatal exception, CHAIN, STOP, EXIT SUB, or END SUB ends it."
+  tests: [SEG-0267]
+  external: []
+  covers: [l.4609-4619]
+
+- id: A-9.2.4-03
+  clause: "9.2.4"
+  ecma: "9.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "EXIT SUB ends the innermost subprogram that contains it."
+  tests: [SEG-0268]
+  external: []
+  covers: [l.4622-4625]
+
+- id: A-9.2.4-04
+  clause: "9.2.4"
+  ecma: "9.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "When a subprogram finishes, execution resumes on the line after the CALL that started it."
+  tests: [SEG-0146]
+  external: []
+  covers: [l.4625-4627]
+
+- id: A-9.2.4-05
+  clause: "9.2.4"
+  ecma: "9.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "STOP inside a subprogram ends the whole program."
+  tests: [SEG-0269]
+  external: []
+  covers: [l.4629-4630]
+
+- id: A-9.2.4-06
+  clause: "9.2.4"
+  ecma: "9.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A subprogram may call itself, directly or through another procedure."
+  tests: [SEG-0270]
+  external: []
+
+- id: A-9.2.4-07
+  clause: "9.2.4"
+  ecma: "9.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "The lines of a subprogram definition run only when a CALL references it."
+  tests: [SEG-0271]
+  external: []
+  covers: [l.4636-4637]
+
+- id: A-9.2.4-08
+  clause: "9.2.4"
+  ecma: "9.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Reaching the header line of an internal subprogram during normal flow skips to the line after its END SUB."
+  tests: [SEG-0272]
+  external: []
+  covers: [l.4637-4640]
+
+- id: A-9.2.4.1-04
+  clause: "9.2.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "On a CALL the arguments are matched with the parameters from left to right."
+  tests: [SEG-0273]
+  external: []
+  covers: [l.4644-4647]
+
+- id: A-9.2.4.1-05
+  clause: "9.2.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A string variable given without a substring qualifier as a CALL argument is passed by reference, so assigning to the parameter changes the variable."
+  tests: [SEG-0274]
+  external: []
+  covers: [l.4649-4655]
+
+- id: A-9.2.4.1-06
+  clause: "9.2.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A string variable with a substring qualifier, being an expression, is passed by value."
+  tests: [SEG-0168, SEG-0169]
+  external: []
+
+- id: A-9.2.4.1-07
+  clause: "9.2.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "The subscripts of an array element passed as an argument are evaluated once at each entry to the subprogram."
+  tests: [SEG-0167]
+  external: []
+  covers: [l.4657-4658]
+
+- id: A-9.2.4.1-08
+  clause: "9.2.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Argument expressions of a CALL are evaluated from left to right."
+  tests: [SEG-0275]
+  external: []
+  covers: [l.4667-4668]
+
+- id: A-9.2.4.1-09
+  clause: "9.2.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A formal array parameter stands for the caller's array: reading, assigning and redimensioning it inside the subprogram act on that array."
+  tests: [SEG-0276, SEG-0277]
+  external: []
+  covers: [l.4670-4674]
+
+- id: A-9.2.4.1-10
+  clause: "9.2.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A formal array parameter starts with the same bounds as the actual array."
+  tests: [SEG-0278]
+  external: []
+  covers: [l.4674-4677]
+
+- id: D-9.2-1
+  clause: "9.2.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "Maximum length of a string parameter or string array parameter without a length limit when it is passed by value."
+  tests: [SEG-0279]
+  value: "No effective limit: a by-value string parameter without a length limit holds any string up to the default string-variable limit, the effective 1E9 characters (D-6.2-2); observed a 40000-character string."
+  external: []
+  covers: [l.4679-4681]
+
+- id: A-9.2.4.1-11
+  clause: "9.2.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A string parameter passed by reference has the maximum length of its argument; for a string-array parameter, MAXLEN of the formal is that of the actual array."
+  tests: [SEG-0182, SEG-0183, SEG-0184, SEG-0333]
+  external: []
+  covers: [l.4682-4683]
+
+- id: D-9.2-2
+  clause: "9.2.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "Effect, inside the subprogram, of redimensioning an array when an element of that same array is also passed as an argument."
+  value: "The parameter keeps naming the element with the subscripts evaluated on entry, checked against the current bounds: if the redimensioned array still has that element the parameter is that element; if not, a reference to the parameter raises 2001 (subscript out of bounds)."
+  tests: [SEG-0170, SEG-0171]
+  external: []
+  covers: [l.4685-4690]
+
+- id: A-9.2.4.1-12
+  clause: "9.2.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: files
+  kind: semantics
+  claim: "A channel expression passed to a subprogram is evaluated once on entry and the resulting channel is used for every reference to the parameter."
+  tests: [SEG-0280, SEG-0284, SEG-0322, SEG-0683]
+  external: []
+  covers: [l.4692-4695]
+
+- id: A-9.2.4.1-13
+  clause: "9.2.4.1"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "The file on a passed channel keeps its attributes on entry, and changes made to it inside the subprogram take effect at once through any channel number and persist after exit."
+  tests: [SEG-0281]
+  external: []
+  covers: [l.4695-4701]
+
+- id: A-9.2.4.1-14
+  clause: "9.2.4.1"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "A file need not be open on a channel passed to a subprogram, and an OPEN inside the subprogram stays in effect after it exits."
+  tests: [SEG-0282, SEG-0283]
+  external: []
+  covers: [l.4703-4708]
+
+- id: A-9.2.4.2-01
+  clause: "9.2.4.2"
+  ecma: null
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "A parameter passed by value is local to each invocation and names an object distinct from any same-named variable outside."
+  tests: [SEG-0285]
+  external: []
+  covers: [l.4710-4716]
+
+- id: A-9.2.4.2-02
+  clause: "9.2.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A parameter passed by reference has a name local to each invocation, but it names the same object as the argument."
+  tests: [SEG-0286]
+  external: []
+  covers: [l.4718-4721]
+
+- id: A-9.2.4.2-03
+  clause: "9.2.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "In an external subprogram, every variable and array that is not a parameter is local to each invocation."
+  tests: [SEG-0287]
+  external: []
+  covers: [l.4723-4729]
+
+- id: D-9.2-3
+  clause: "9.2.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "Initial values of the variables and arrays of a subprogram that are not formal parameters, on each invocation of an external subprogram."
+  tests: [SEG-0288]
+  value: "Numeric 0 and empty string on each invocation of an external subprogram (uninitialized-variable policy; warnings 3101/3102)."
+  external: []
+  covers: [l.4729-4732]
+
+- id: A-9.2.4.2-04
+  clause: "9.2.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "In an internal subprogram, variables and arrays that are not parameters belong to the containing program unit, keep their values between calls, and changes remain after the subprogram returns."
+  tests: [SEG-0289]
+  external: []
+  covers: [l.4733-4738]
+
+- id: A-9.2.4.2-05
+  clause: "9.2.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: files
+  kind: semantics
+  claim: "A nonzero channel number inside an external subprogram is local to each invocation, and inside an internal subprogram it belongs to the containing program unit."
+  tests: [SEG-0290]
+  external: []
+  covers: [l.4740-4744]
+
+- id: A-9.2.4.2-06
+  clause: "9.2.4.2"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "Channel zero is the same channel in the whole program, in every subprogram."
+  tests: [SEG-0291]
+  external: []
+  covers: [l.4745]
+
+- id: A-9.2.4.2-07
+  clause: "9.2.4.2"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "A file must be assigned to a nonzero channel by OPEN before the channel is used."
+  tests: [SEG-0292]
+  external: []
+  covers: [l.4745-4747]
+
+- id: A-9.2.4.2-08
+  clause: "9.2.4.2"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "Files assigned to channels local to a subprogram are closed when the subprogram exits."
+  tests: [SEG-0293]
+  external: []
+  covers: [l.4747-4749]
+
+- id: A-9.2.4.2-09
+  clause: "9.2.4.2"
+  ecma: null
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "DATA statements inside an external subprogram are local to each invocation of it."
+  tests: [SEG-0294]
+  external: []
+  covers: [l.4751-4753]
+
+- id: A-9.2.4.2-10
+  clause: "9.2.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "READ and RESTORE inside an external subprogram use only the DATA statements of that subprogram."
+  tests: [SEG-0295]
+  external: []
+  covers: [l.4753-4756]
+
+- id: A-9.2.4.2-11
+  clause: "9.2.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "On each invocation of an external subprogram, its DATA pointer is reset to the first datum."
+  tests: [SEG-0296]
+  external: []
+  covers: [l.4757-4759]
+
+- id: A-9.2.4.2-12
+  clause: "9.2.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "DATA inside an internal subprogram joins the data sequence of the containing unit, and READ and RESTORE there use that whole sequence."
+  tests: [SEG-0297, SEG-0318]
+  external: []
+  covers: [l.4759-4763]
+
+- id: A-9.2.4.2-113
+  clause: "9.2.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "In an external subprogram, the variables that are not parameters are local to the invocation and distinct from the variables of the same name outside; whether the target of READ, INPUT or LINE INPUT is a string variable, its length-max and its fixed-point-size are decided from the name of the LOCAL variable, never from a global variable of the main program that happens to share its position in the symbol table, so a string local with numeric globals (and the reverse) is read without a spurious 8101 or 8102."
+  tests: [SEG-0498]
+  external: []
+  covers: [l.4728-4735]
+
+- id: A-9.2.6-01
+  clause: "9.2.6"
+  ecma: "9.2.6"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "When two names refer to the same object because of by-reference parameters, a change made through one name is seen at once through the other, so the aliasing example of section 9.2.6 never prints its message."
+  tests: [SEG-0298]
+  external: []
+  covers: [l.4809-4832]
+
+- id: A-9.3.2-01
+  clause: "9.3.2"
+  ecma: "9.3.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "The arguments of CHAIN WITH are matched with the parameters of the chained program's header line by the same count and type rules as function arguments."
+  tests: [SEG-0299]
+  external: []
+  covers: [l.4872-4875]
+
+- id: A-9.3.3-01
+  clause: "9.3.3"
+  ecma: "9.3.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "Both CHAIN forms shown in the examples of section 9.3.3 are accepted."
+  tests: [SEG-0300, SEG-0301]
+  external: []
+  covers: [l.4877]
+
+- id: A-9.3.4-01
+  clause: "9.3.4"
+  ecma: "9.3.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "CHAIN ends the running program, closes every file and starts the designated program."
+  tests: [SEG-0302]
+  external: []
+  covers: [l.4884-4886]
+
+- id: A-9.3.4-02
+  clause: "9.3.4"
+  ecma: "9.3.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "CHAIN WITH arguments are evaluated and passed by value to the parameters in the chained program's header line."
+  tests: [SEG-0314]
+  external: []
+  covers: [l.4890-4893]
+
+- id: A-9.3.4-03
+  clause: "9.3.4"
+  ecma: "9.3.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A formal array in the chained program takes the bounds of the actual array, as for function parameters."
+  tests: [SEG-0303]
+  external: []
+  covers: [l.4893-4896]
+
+- id: A-9.3.4-04
+  clause: "9.3.4"
+  ecma: "9.3.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A string array can be passed by CHAIN WITH to a formal string-array of the program-name-line (1, 2 or 3 dimensions, mixed with scalar and numeric-array parameters); the formal takes the bounds of the actual and the default maximum string length."
+  tests: [SEG-0390, SEG-0391, SEG-0392]
+  external: []
+  covers: [l.4888-4896, l.4872-4875]
+
+- id: D-9.3-1
+  clause: "9.3.4"
+  ecma: "9.3.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "How a program designator in CHAIN is associated with a program."
+  tests: [SEG-0304]
+  value: "The designator is a file name resolved against the current working directory of the interpreter process; the named file must contain the chained BASIC program."
+  external: []
+  covers: [l.4886-4888]
+
+- id: D-9.3-2
+  clause: "9.3.4"
+  ecma: "9.3.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "Whether upper-case and lower-case letters are equivalent in a program designator."
+  tests: [SEG-0305]
+  value: "Case is not significant on this build's default macOS APFS volume (resolution follows the host file system): CHAIN 'mixedcase.bas' runs the file written as MixedCase.BAS."
+  external: []
+  covers: [l.4898-4899]
+
+- id: D-9.3-3
+  clause: "9.3.4"
+  ecma: "9.3.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "Initial values of the variables of a chained-to program."
+  tests: [SEG-0306]
+  value: "Numeric variables start at 0 and string variables at empty (the uninitialized-variable policy, warnings 3101/3102); observed inside the chained-to program."
+  external: []
+  covers: [l.4901-4902]
+
+- id: D-9.3-4
+  clause: "9.3.6"
+  ecma: "9.3.6"
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "Which program reports the exceptions 4301, 4302 and 4303 of a chain-statement, and whether the chained-from program's WHEN can intercept them."
+  tests: [SEG-0307, SEG-0308, SEG-0310, SEG-0313]
+  value: "The interpreter reports them itself (as the chained-from side) as FATAL exceptions localized at the CHAIN statement; they are NOT interceptable by a WHEN handler of the chained-from program. STD §9.3.6 l.4927-4932 allows the chained-from program, the chained-to program or an intermediate system program to report them, so no WHEN interception is promised; this implementation chooses the interpreter, fatal."
+  external: []
+  covers: [l.4927-4932]
+
+- id: E-4301
+  clause: "9.3.5"
+  ecma: "9.3.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "CHAIN whose arguments differ in number or type from the chained program's parameters, or to a program without a parameter list, ends the run with fatal exception 4301."
+  tests: [SEG-0307, SEG-0308, SEG-0309, SEG-0393]
+  external: []
+  covers: [l.4912, l.12872, l.4929-4932]
+
+- id: E-4302
+  clause: "9.3.5"
+  ecma: "9.3.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "CHAIN with an array argument whose dimension count differs from its formal array ends the run with fatal exception 4302."
+  tests: [SEG-0310, SEG-0313, SEG-0394]
+  external: []
+  covers: [l.4916, l.12874, l.4929-4932]
+
+- id: E-4303
+  clause: "9.3.5"
+  ecma: "9.3.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "CHAIN passing numeric parameters between program-units whose ARITHMETIC options differ in type (DECIMAL vs NATIVE vs FIXED; a unit without an ARITHMETIC option is DECIMAL, 5.6.4 l.2234-2236) ends the run with fatal exception 4303; with no numeric parameters passed (no WITH, or only string arguments) there is no 4303 even if the ARITHMETIC types differ (9.3.5 l.4918-4920: only when numeric parameters are passed)."
+  tests: [SEG-0311, SEG-0312, SEG-0325, SEG-0326, SEG-0327, SEG-0328, SEG-0329]
+  external: []
+  covers: [l.4918-4920, l.12876, l.4929-4932, l.2232-2253]
+
+- id: A-9.3.5-01
+  clause: "9.3.5"
+  ecma: "9.3.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "CHAIN passing numeric parameters between two FIXED units with different fixed-point sizes executes without exception: only the ARITHMETIC type must agree (15.2.2 l.12354-12357, 'both be DECIMAL or NATIVE or FIXED'), not the precision; the program-name-line parameters do not trigger the ordering rule of 15.1.2 l.12145-12148 (agreed interpretation of 15.2.2)."
+  tests: [SEG-0324]
+  external: []
+  covers: [l.4918-4920, l.12354-12357, l.12145-12148]
+- id: A-9.2.4.1-15
+  clause: "9.2.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Every statement that assigns to a variable (READ, INPUT, LINE INPUT, FOR, ASK, file READ, substring assignment) acts on the location the parameter denotes: the caller's variable or array element when it was passed by reference."
+  tests: [SEG-0172, SEG-0173, SEG-0174, SEG-0176, SEG-0177, SEG-0178, SEG-0179, SEG-0180, SEG-0181]
+  covers: [l.4648-4655]
+  external: []
+
+- id: A-9.2.4.1-16
+  clause: "9.2.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "When the argument is an expression, assignments of any kind to the parameter act on a location local to the invocation, which later reads of the parameter see, and leave the caller's variable unchanged."
+  tests: [SEG-0175]
+  covers: [l.4659-4665]
+  external: []
+
+- id: A-9.2.4.1-17
+  clause: "9.2.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A parameter received by value is a variable local to the invocation of an internal or external SUB or FUNCTION, and a GOSUB/RETURN inside the procedure does not isolate it: an assignment made to it in the subroutine is still seen after RETURN, for numeric and string parameters and with nested GOSUB."
+  tests: [SEG-0334]
+  covers: [l.4649-4662, l.4306-4312, l.3678-3716]
+  external: []
+
+
+- id: A-9.1.5-TR90
+  clause: "9.1.5"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "A string-defined function whose value is longer than its length-max raises fatal exception 1106 and the error is reported on the line of the statement that assigns the value: the DEF line for a one-line DEF, the function-let line for a multi-line FUNCTION, never on line 0."
+  tests: [SEG-0395, SEG-0396]
+  covers: [l.4421-4423, l.584-588]
+  external: []
+
+- id: A-9.2.4.2-TR116
+  clause: "9.2.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "The parameters of an EXTERNAL SUB or FUNCTION are names of that program unit, so its internal SUBs and FUNCTIONs and the DEFs of its body read and assign them (an assignment reaches the actual argument, which is passed by reference; an array parameter is used with its elements and bounds); a parameter of the internal routine itself with the same name hides the unit parameter."
+  tests: [SEG-0499, SEG-0500, ARR-0311]
+  covers: [l.4726-4738, l.4381-4394, l.4647-4653, l.4664-4671]
+  external: []
+
+- id: A-9.2.4.2-TR117
+  clause: "9.2.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "The arrays that an internal SUB or FUNCTION of an EXTERNAL unit dimensions or declares belong to the unit and to each invocation of it: they exist, with their bounds and without the values of a previous invocation, in the first call of the unit and in every later one, and the internal routine and the body of the unit see the same array."
+  tests: [ARR-0312, ARR-0313]
+  covers: [l.4726-4738, l.3056-3058]
+  external: []
+
+- id: A-9.2.4-TR132
+  clause: "9.2.4"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A variable that is a procedure-argument is passed by reference also when the call is made from the body of an EXTERNAL unit and the variable is local to that unit: assigning the procedure-parameter in the internal SUB assigns the variable. A parameter of an EXTERNAL unit whose argument is a literal or an expression is a value local to the invocation of the unit: an internal SUB of the unit sees it and assigns it, and the unit sees the assignment afterwards."
+  tests: [SEG-0511, SEG-0512, SEG-0513, SEG-0514]
+  covers: [l.4647-4651, l.4726-4738, l.1498-1509, l.8805-8807]
+  external: []
+
+- id: A-9.2.2-TR134
+  clause: "9.2.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "The detached-handler of an EXTERNAL unit (SUB or FUNCTION) or of an internal SUB of such a unit is part of that program-unit: a CALL in it to an external SUB needs a DECLARE EXTERNAL SUB of the SUB in a lower-numbered line of the same program-unit, and the declare-statements of the main program do not count. The program is rejected when only the main program declares the SUB. The SUB that owns the handler is exempt from this declaration when it calls itself (self-recursion, l.4534-4537; A-9.2.2-TR136)."
+  tests: [SEG-0515, SEG-0516, SEG-0517, SEG-0518, SEG-0519]
+  covers: [l.4522-4526, l.8805-8807]
+  external: []
+
+- id: A-9.2.2-TR136
+  clause: "9.2.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "The detached-handler of an internal SUB of the main program may CALL its own SUB (a self-recursive subprogram need not declare itself): the CALL is accepted, with the arguments checked against the parameters of the SUB, and the handler runs when the exception occurs in the SUB."
+  tests: [SEG-0520]
+  covers: [l.4534-4537, l.8805-8807]
+  external: []
+
+- id: A-9.1.2-TR136
+  clause: "9.1.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "The detached-handler of an internal FUNCTION of the main program may invoke its own FUNCTION (a self-recursive function need not declare itself), with the arguments checked against the parameters of the FUNCTION."
+  tests: [SEG-0521]
+  covers: [l.4220-4223, l.8805-8807]
+  external: []
+
+- id: A-9.2.2-TR136B
+  clause: "9.2.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Each program-unit checks the declare-statements of external SUBs against its own lines: when several EXTERNAL units declare the same SUB, the CALL in the detached-handler of each one is accepted if its own unit declares the SUB in a lower-numbered line, whatever the line of the declare-statement of another unit; it is rejected if its own unit does not declare it, even if another unit does."
+  tests: [SEG-0522, SEG-0523]
+  covers: [l.4522-4526, l.8805-8807]
+  external: []
+
+- id: A-9.1.2-TR137
+  clause: "9.1.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A declare-statement written inside a picture-def counts as a declaration of the program-unit of the picture: an EXTERNAL picture, or an internal picture of the main program, may use an external FUNCTION declared with DECLARE EXTERNAL FUNCTION, or a DEF declared with DECLARE DEF, in a lower-numbered line of the picture; a declare-statement that follows the use in the picture does not count and the program is rejected."
+  tests: [SEG-0524, SEG-0525, SEG-0526, SEG-0527]
+  covers: [l.4201-4205, l.4213-4217]
+  external: []
+
+- id: A-9.2.2-TR137
+  clause: "9.2.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "An EXTERNAL picture may CALL an external SUB that it declares with DECLARE EXTERNAL SUB in a lower-numbered line of the picture, in its body and in its detached-handler; the declare-statements of the main program do not count for the picture, which is rejected when it declares nothing."
+  tests: [SEG-0528, SEG-0529, SEG-0530]
+  covers: [l.4522-4526, l.8805-8807]
+  external: []
+
+- id: A-9.2.4.2-TR141
+  clause: "9.2.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "The name of a parameter is local to each invocation of an internal SUB, also in recursion: when the outermost invocation of a recursive internal SUB is bound by reference to a variable of the caller, the nested invocations whose argument is an expression evaluate it on each entry and read their own parameter, not the variable bound by the first call; only the outermost invocation assigns to that variable."
+  tests: [SEG-0540, SEG-0541, SEG-0542]
+  covers: [l.4718-4721, l.4660-4668, l.4632-4634]
+  external: []
+
+- id: A-9.1.2-TR143
+  clause: "9.1.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "The detached-handler of the main program, and that of an internal SUB of the main program, may invoke an external FUNCTION that the main program declares with DECLARE EXTERNAL FUNCTION in a lower-numbered line."
+  tests: [SEG-0550]
+  covers: [l.4201-4205, l.8805-8807]
+  external: []
+
+- id: A-9.2.2-TR143
+  clause: "9.2.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A CALL in the detached-handler of the main program, or of an internal SUB of the main program, is checked against the declare-statement of the main program even when another program-unit declares the same SUB at a higher line; a SUB declared only by another unit is rejected."
+  tests: [SEG-0551, SEG-0552]
+  covers: [l.4522-4526, l.8805-8807]
+  external: []
+
+- id: A-9.2.4.1-TR142
+  clause: "9.2.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Arguments are evaluated left to right and a variable argument is passed by reference even when a later argument of the same CALL or DRAW calls a user function (DEF, internal or external FUNCTION): the parameter stays bound to the variable, reads its value and an assignment to the parameter reaches the variable."
+  tests: [SEG-0560]
+  covers: [l.4649-4655, l.4660-4668]
+  external: []
+
+- id: A-9.2.4.2-TR142
+  clause: "9.2.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A local variable of an external SUB, FUNCTION or PICTURE that has not been assigned yet and is passed by reference to another subprogram is that same local variable of the invocation: the called subprogram assigns it, and the caller reads the value afterwards without a warning and without touching any other variable of the unit, including in recursion with output parameters."
+  tests: [SEG-0561, SEG-0562]
+  covers: [l.4726-4733, l.4649-4655, l.4632-4634]
+  external: []
+
+- id: A-9.2.4.1-TR146
+  clause: "9.2.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A GOSUB subroutine does not create a scope: a by-value parameter of a CALL, a FUNCTION or a DEF invoked inside it (also nested, from ON GOSUB, or inside an EXTERNAL SUB) takes the value of its argument and the routine reads it, exactly as outside the subroutine."
+  tests: [SEG-0570, SEG-0571, SEG-0572]
+  covers: [l.3678-3716, l.4649-4668, l.4306-4312]
+  external: []
+
+- id: A-9.2.4.1-TR146B
+  clause: "9.2.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "An array is passed by reference to an internal or EXTERNAL SUB or FUNCTION whose name contains one or more underlines, also when the formal array name contains underlines: the routine reads and assigns the elements of the actual array."
+  tests: [SEG-0573, SEG-0574, SEG-0575]
+  covers: [l.1450-1454, l.4670-4677, l.4306-4312]
+  external: []
+
+- id: A-9.2.4.2-TR147A
+  clause: "9.2.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "An internal SUB or FUNCTION called from another internal routine sees, under the name of the formal array of the caller, the array of the program-unit that contains both (not the actual array of the caller's invocation): reads and assignments in the callee reach the unit array, also inside an external SUB and when the caller is an internal FUNCTION."
+  tests: [SEG-0580, SEG-0581, SEG-0582, SEG-0583]
+  covers: [l.4718-4721, l.4734-4738]
+  external: []
+
+- id: A-9.2.4.2-TR147B
+  clause: "9.2.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A variable of an external SUB, FUNCTION or PICTURE that has not been assigned yet and is passed by reference from an internal routine of that unit is the variable of the invocation of the unit: the called subprogram assigns it (numeric or string), the unit reads the value afterwards, also in recursion with an output parameter."
+  tests: [SEG-0584, SEG-0585, SEG-0586]
+  covers: [l.4726-4733, l.4649-4655, l.4632-4634]
+  external: []
+
+- id: A-9.2.4.2-TR150
+  clause: "9.2.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "An array that an external SUB or PICTURE declares for itself is local to each invocation and is distinct from an array outside with the same name, also when that outside array is the actual argument of the very CALL or DRAW (numeric or string arrays, call-site in the main program, in an internal routine or in a GOSUB routine, GOSUB inside the unit, recursion with the local passed down)."
+  tests: [SEG-0590, SEG-0591, SEG-0592, SEG-0593, SEG-0594, SEG-0595]
+  covers: [l.4718-4721, l.4726-4733, l.4670-4677]
+  external: []
+
+- id: A-9.2.2-TR162
+  clause: "9.2.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "An internal SUB of the main program with the same name as an external SUB or PICTURE takes precedence over it, for the CALLs of the main program (also from its handlers, from other internal SUBs of the main, with DECLARE SUB and in recursion): the internal SUB is called. A unit that declares the external SUB with DECLARE EXTERNAL SUB calls the external one, whichever unit comes first in the text; DRAW of the external picture does not run the internal SUB. DECLARE EXTERNAL SUB Q together with an internal SUB Q in the same program-unit is still rejected (two subprograms of the name)."
+  tests: [SEG-0600, SEG-0601, SEG-0602, SEG-0603, SEG-0604, SEG-0608, SEG-0609]
+  covers: [l.4519-4528, l.4108-4109]
+  external: []
+
+- id: A-9.1.2-TR162
+  clause: "9.1.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "An internal FUNCTION or DEF (numeric or string) of the main program with the same name as an external FUNCTION takes precedence over it inside the main program and is no longer rejected as a duplicate definition; a unit with DECLARE EXTERNAL FUNCTION of the name uses the external function. DECLARE EXTERNAL FUNCTION Q together with an internal FUNCTION or DEF Q in the same program-unit is still rejected (no more than one function of a name per program-unit)."
+  tests: [SEG-0605, SEG-0606, SEG-0607, SEG-0610]
+  covers: [l.4194-4205]
+  external: []
+
+- id: A-9.1.2-TR163
+  clause: "9.1.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Within an external program-unit, no more than one function of a given name may be defined or declared: two DEF, two FUNCTION, a DEF and a FUNCTION of the same name, or DECLARE EXTERNAL FUNCTION together with a DEF or FUNCTION of the name, are rejected as a duplicate definition, as in the main program. Internal functions of the same name in different program-units are distinct and accepted."
+  tests: [SEG-0611, SEG-0612, SEG-0613, SEG-0614, SEG-0615]
+  covers: [l.4196-4199]
+  external: []
+
+- id: A-9.2.2-TR164
+  clause: "9.2.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "SUB and PICTURE are different classes of routine. A CALL names a subprogram and a DRAW names a picture: a CALL of an internal PICTURE (of the main or of a unit), or a DRAW of an internal SUB or of an external SUB declared with DECLARE EXTERNAL SUB, is rejected when the program is loaded instead of running the routine of the other class. An internal SUB of the main program and an external PICTURE of the same name coexist: CALL runs the SUB and DRAW draws the external picture."
+  tests: [SEG-0616, SEG-0617, SEG-0618, SEG-0619, SEG-0620, SEG-0627, SEG-0628]
+  covers: [l.4489, l.4522-4532, l.10443, l.10514-10525]
+  external: []
+
+- id: A-4.4.2-TR164
+  clause: "4.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Inside one program-unit a name designates only one kind of internal routine (SUB, FUNCTION or DEF, HANDLER, PICTURE), and across the program a routine name designates only one of an external FUNCTION, an external SUB, an external PICTURE and the PROGRAM itself: an internal SUB and PICTURE, a PICTURE and FUNCTION, or a SUB and HANDLER of the same name in a program-unit, and an external SUB and PICTURE of the same name, or a PROGRAM named as an external SUB, are rejected. The same name in different program-units (a handler of the main and an external SUB, an internal PICTURE of a unit and an internal SUB of the main) is accepted."
+  tests: [SEG-0621, SEG-0622, SEG-0623, SEG-0624, SEG-0625, SEG-0629, SEG-0630]
+  covers: [l.1468-1474]
+  external: []
+
+- id: A-4.4.2-TR165
+  clause: "4.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A simple variable or an array of the main program may have the same name as an internal SUB or internal PICTURE of the main program (also when an external SUB of the name exists, and with DECLARE SUB): the two do not conflict, as they do not inside an external unit. A variable or array with the name of a function of the program-unit is still a conflict."
+  tests: [SEG-0631, SEG-0632, SEG-0633, SEG-0634, SEG-0635, SEG-0636]
+  covers: [l.1460-1470]
+  external: []
+
+- id: A-4.4.2-TR166
+  clause: "4.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A simple variable or an array may have the same name as an external SUB or an external PICTURE, in any program-unit (the main program, another external unit, or the external routine itself), whether or not the unit declares or calls it, and the CALL or DRAW of the external routine still works, also with the variable passed by reference. A variable in a unit that does not declare an external FUNCTION of the same name is likewise accepted. A variable or array with the name of a function declared or defined in the program-unit is still a conflict."
+  tests: [SEG-0637, SEG-0638, SEG-0639, SEG-0640, SEG-0641, SEG-0642, SEG-0643]
+  covers: [l.1460-1474]
+  external: []
+
+- id: A-4.4.2-TR167
+  clause: "4.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A CALL names a subprogram: a CALL of an internal FUNCTION or DEF (in the main program or in an external unit) is rejected with E-SUBPROGRAM-NOT-DEFINED instead of running the function body without its argument. The name of an external numeric FUNCTION cannot be used as a routine-identifier: it is rejected as the name of the PROGRAM, of an external SUB or PICTURE (with or without uses), of an internal PICTURE and of a detached handler."
+  tests: [SEG-0644, SEG-0645, SEG-0646, SEG-0647, SEG-0648, SEG-0649, SEG-0650]
+  covers: [l.1472-1477, l.4489, l.4522-4532]
+  external: []
+
+- id: A-4.4.2-TR168
+  clause: "4.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A formal parameter is a simple variable (or array) of its program-unit (Appendix B row 3), so it may not have the name of a function of that unit: a parameter of an external SUB, PICTURE or FUNCTION named as a function declared or defined in the unit, and the parameter of a function named as the function itself (internal, external or DEF), are rejected with E-IDENTIFIER-CONFLICT."
+  tests: [SEG-0651, SEG-0652, SEG-0653]
+  covers: [l.1460-1466]
+  external: []
+
+- id: A-4.4.2-TR169
+  clause: "4.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "An identifier that has the name of an external FUNCTION which the program-unit neither declares nor defines is a variable (or array) of that unit, whatever the first statement that mentions it: a simple variable or string variable read before any assignment gives 0 (or the empty string), and an element of an array parameter of that name is an array element, instead of being taken for a function call and rejected with E-DEFINITION-BEFORE-USE or E-ARGUMENT-COUNT. A variable with the name of a function declared or defined in the unit is still an E-IDENTIFIER-CONFLICT."
+  tests: [SEG-0654, SEG-0655, SEG-0656, SEG-0657, SEG-0658, SEG-0659]
+  covers: [l.1460-1466, l.1786-1789]
+  external: []
+
+- id: A-9.1.2-TR170
+  clause: "9.1.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Two external FUNCTION definitions of the same name are rejected with E-DUPLICATE-DEFINITION whatever their parameters (none, numeric or string function, used or not). A CALL of a name that is no subprogram (undefined, a detached handler, or a name for which only the string function exists) is rejected with E-SUBPROGRAM-NOT-DEFINED instead of an error that quotes the internal label."
+  tests: [SEG-0660, SEG-0661, SEG-0662, SEG-0663, SEG-0664, SEG-0665]
+  covers: [l.4193-4194, l.4489]
+  external: []
+
+- id: A-9.2.2-TR171
+  clause: "9.2.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A channel-number formal parameter (SUB W(#2), PICTURE P(#2)) only accepts a channel-expression (#n, #K, #K + 1) as argument, and a numeric parameter does not accept a channel-expression: a number or a numeric variable passed to a channel-number parameter, a string passed to it, or a channel-expression passed to a numeric parameter is rejected with E-TYPE-MISMATCH when the program is loaded, for external and internal SUBs and for pictures called with DRAW. The legal passing of channels is unchanged."
+  tests: [SEG-0666, SEG-0667, SEG-0668, SEG-0669, SEG-0670, SEG-0671, SEG-0672, SEG-0673]
+  covers: [l.4554-4562, l.10538-10541]
+  external: []
+
+- id: A-9.2.4.1-TR172
+  clause: "9.2.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "In CALL S(Q(1)) with Q an array parameter of the unit that has the name of an external FUNCTION the unit does not declare, Q(1) is an element of the array and is passed by reference (the assignment of S to its parameter reaches the array), as with a local array. A function declared or defined in the unit is still called and its value passed by value."
+  tests: [SEG-0674, SEG-0675]
+  covers: [l.4649-4656]
+  external: []

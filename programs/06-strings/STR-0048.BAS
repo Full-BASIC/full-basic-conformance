@@ -1,0 +1,9 @@
+1 REM FBCS STR-0048
+2 REM CLAIM A-6.6.2-03
+3 REM TYPE REJECT
+100 REM A formal parameter shall not occur in a declare-statement.
+110 PRINT "EXECUTED"
+120 SUB S(P$)
+130   DECLARE STRING P$ * 5
+140 END SUB
+150 END

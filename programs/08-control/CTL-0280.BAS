@@ -1,0 +1,13 @@
+1 REM FBCS CTL-0280
+2 REM CLAIM A-8.4.2-TR152
+3 REM TYPE REJECT
+4 REM 8.4.2 l.3953-3958, prod. 8: a then-block may not jump to the else-line of its sibling branch.
+100 PRINT "EXECUTED"
+110 LET K = 1
+120 IF K = 1 THEN
+130 GOTO 150
+140 PRINT "NO"
+150 ELSE
+160 PRINT "NO2"
+170 END IF
+180 END

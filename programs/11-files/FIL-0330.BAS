@@ -1,0 +1,33 @@
+1 REM FBCS FIL-0330
+2 REM CLAIM A-11.3.4-TR67
+3 REM TYPE SELF
+4 REM STD 11.3.4 l.7517-7524: WRITE on an existing element takes the io-recovery-action
+5 REM (IF THERE) or raises 7308, the pointer stays at the existing element and the file
+6 REM is not changed - also when the WRITE has several values (the first one alone
+7 REM was covered by FIL-0220). KEYED INTERNAL here.
+10 LET OK = 1
+20 OPEN #1: NAME "FIL0330K.DAT", ACCESS OUTIN, ORGANIZATION KEYED, RECTYPE INTERNAL
+30 WRITE #1, KEY "A": 1, "UNO", 10
+40 WRITE #1, KEY "B": 2, "DOS", 20
+50 SET #1: KEY "A"
+60 WRITE #1, KEY "B", IF THERE THEN 100: 9, "NUEVE", 90
+70 PRINT "FALLO-KEYED-NO-ENCONTRADO"
+80 LET OK = 0
+100 ASK #1: KEY K$
+110 READ #1: X, S$, Y
+120 IF K$ <> "B" OR X <> 2 OR S$ <> "DOS" OR Y <> 20 THEN LET OK = 0
+130 IF K$ <> "B" OR X <> 2 OR S$ <> "DOS" OR Y <> 20 THEN PRINT "FALLO-KEYED-IF-THERE"; K$; X; S$; Y
+140 SET #1: KEY "A"
+150 WHEN EXCEPTION IN
+160   WRITE #1, KEY "B": 9, "NUEVE", 90
+170   LET OK = 0
+180 USE
+190   LET E = EXTYPE
+200   ASK #1: KEY K$
+210 END WHEN
+220 READ #1: X, S$, Y
+230 IF E <> 7308 OR K$ <> "B" OR X <> 2 OR S$ <> "DOS" OR Y <> 20 THEN LET OK = 0
+240 IF E <> 7308 OR K$ <> "B" OR X <> 2 OR S$ <> "DOS" OR Y <> 20 THEN PRINT "FALLO-KEYED-7308"; E; K$; X; S$; Y
+250 CLOSE #1
+490 IF OK = 1 THEN PRINT "*** TEST PASSED ***" ELSE PRINT "*** TEST FAILED ***"
+500 END

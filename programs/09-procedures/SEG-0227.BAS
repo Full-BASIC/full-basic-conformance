@@ -1,0 +1,21 @@
+1 REM FBCS SEG-0227
+2 REM CLAIM D-9.1-2
+3 REM TYPE SELF
+4 REM Every invocation that exits without assigning returns 0, not the value of the previous one
+5 REM STD 9.1.4.2 l.4339-4345 (the value assigned IN THAT INVOCATION)
+100 DECLARE FUNCTION F
+110 FUNCTION F(X)
+120 IF X > 0 THEN EXIT FUNCTION
+130 LET F = 99
+140 END FUNCTION
+150 LET A = F(0)
+160 LET B = F(1)
+170 LET C = F(0)
+180 LET D = F(1)
+190 LET E = F(1)
+200 IF A = 99 AND B = 0 AND C = 99 AND D = 0 AND E = 0 THEN
+201 PRINT "*** TEST PASSED ***"
+202 ELSE
+203 PRINT "*** TEST FAILED ***"; A; B; C; D; E
+204 END IF
+210 END

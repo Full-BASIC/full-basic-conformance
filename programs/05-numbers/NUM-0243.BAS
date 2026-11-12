@@ -1,0 +1,8 @@
+1 REM FBCS NUM-0243
+2 REM CLAIM D-5.6-3
+3 REM TYPE SELF
+4 REM NATIVE values are quantized to 8 digits: 1/3 is .33333333, so 1/3*3 - 1 is -1E-8 (binary64 alone gives 0)
+100 OPTION ARITHMETIC NATIVE
+110 LET D = 1/3*3 - 1
+120 IF ABS(D + 1E-8) < 1E-15 AND 1/3 - .33333333 = 0 THEN PRINT "*** TEST PASSED ***" ELSE PRINT "*** TEST FAILED ***"
+130 END

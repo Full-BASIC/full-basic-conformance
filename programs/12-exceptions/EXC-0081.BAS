@@ -1,0 +1,12 @@
+1 REM FBCS EXC-0081
+2 REM CLAIM D-12.2-2
+3 REM TYPE OUTPUT
+100 REM With TRACE ON TO #3 the reports go to the file (12.2.4 l.9132-9136) and there is no "Trace mode" on the console
+110 OPEN #3: NAME "t81.txt", ACCESS OUTPUT
+120 DEBUG ON
+130 TRACE ON TO #3
+140 LET A = 42
+150 TRACE OFF
+160 CLOSE #3
+170 PRINT "END"
+180 END

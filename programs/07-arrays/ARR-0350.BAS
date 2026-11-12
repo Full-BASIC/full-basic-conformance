@@ -1,0 +1,14 @@
+1 REM FBCS ARR-0350
+2 REM CLAIM A-7.1.4-TR135
+3 REM TYPE OUTPUT
+4 REM STD 7.1.4 l.3056-3057: reaching a DIM again has no further effect, so the array keeps what was assigned.
+10 DECLARE EXTERNAL SUB E
+20 CALL E
+30 END
+100 EXTERNAL SUB E
+110 FOR I = 1 TO 2
+120 DIM A(3)
+130 LET A(I) = I * 10
+140 NEXT I
+150 PRINT A(1); A(2)
+160 END SUB

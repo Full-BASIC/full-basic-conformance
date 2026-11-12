@@ -1,0 +1,12 @@
+1 REM FBCS PRG-0069
+2 REM CLAIM A-4.4.6-03
+3 REM TYPE OUTPUT
+100 REM DATA is not a reserved word (3.2 l.1000-1010): DATABASE and DATA$ are identifiers
+110 REM (4.4.6 l.1553-1557), and a DATA statement still works at statement position
+120 LET DATABASE = 2
+130 LET DATA$ = "x"
+140 PRINT DATABASE;DATA$
+150 READ A,B$
+160 PRINT A;B$
+170 DATA 1, DATA
+180 END

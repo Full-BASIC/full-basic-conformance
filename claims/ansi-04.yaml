@@ -1,0 +1,630 @@
+# Claims for chapter 4 (programs, lines and blocks).
+- id: A-4.2.2-01
+  clause: "4.2.2"
+  ecma: "4.2.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "A line number above 50000 is not valid, so a program using one is rejected before it runs."
+  tests: [PRG-0001]
+  external: []
+  covers: [l.1321-1322]
+
+- id: A-4.2.1-01
+  clause: "4.2.1"
+  ecma: "4.2.1"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "A GOTO, GOSUB, RESTORE, IF ... THEN or io-recovery action (IF MISSING / IF THERE THEN n of a read or file statement) that names a line number absent from the program-unit is rejected before the program runs, even if the statement would never be executed."
+  tests: [PRG-0002, PRG-0003, PRG-0004, PRG-0005, FIL-0182, FIL-0183, FIL-0184]
+  external: []
+  covers: [l.1319-1320]
+
+- id: A-4.2.1-02
+  clause: "4.2.1"
+  ecma: "4.2.1"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "A line-number reference in the main program may not name a line that belongs to an external subprogram, because every reference must stay inside its own program-unit."
+  tests: [PRG-0006]
+  external: []
+  covers: [l.1320]
+
+- id: A-4.1.1-01
+  clause: "4.1.1"
+  ecma: "4.1.1"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "The only characters a conforming BASIC program may use are those of ASCII (ANSI X3.4-1986): letters, digits and the graphic symbols listed by the syntax of the character section."
+  tests: [PRG-0007, PRG-0008]
+  external: []
+  covers: [l.1057]
+
+- id: A-4.1.2-01
+  clause: "4.1.2"
+  ecma: "4.1.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "Except inside remark-strings, certain quoted, unquoted and literal strings, a space anywhere in a program may be inserted or removed without changing how that program executes."
+  tests: [PRG-0009]
+  external: []
+  covers: [l.1099]
+
+- id: A-4.1.2-02
+  clause: "4.1.2"
+  ecma: "4.1.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "A space is not allowed immediately before a line number, nor inside a line number, keyword, identifier, numeric constant or multi-character relation symbol."
+  tests: [PRG-0010, PRG-0011, PRG-0012, PRG-0013, PRG-0014, PRG-0015]
+  external: []
+  covers: [l.1103]
+
+- id: A-4.1.2-03
+  clause: "4.1.2"
+  ecma: "4.1.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Spaces inside quoted strings, unquoted strings and format strings count as part of the string value, while spaces hugging an unquoted string from the outside do not belong to it."
+  tests: [PRG-0016]
+  external: []
+  covers: [l.1115]
+
+- id: A-4.1.2-04
+  clause: "4.1.2"
+  ecma: "4.1.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "A keyword used as a keyword must be bounded on each side by a delimiter that is not a letter, digit, underline or dollar sign; ending the line right after the keyword is also allowed."
+  tests: [PRG-0017, PRG-0018, PRG-0019]
+  external: []
+  covers: [l.1119]
+
+- id: A-4.1.3-EX
+  clause: "4.1.3"
+  ecma: "4.1.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: not-applicable
+  claim: "The examples of the character section are declared empty, so no example program of section 4.1.3 needs to be accepted or run."
+  tests: []
+  external: []
+  covers: [l.1124-1127]
+  reason: "Section 4.1.3 declares 'Examples: None' (l.1124-1127), so there is no example program to accept or run."
+
+- id: A-4.1.4-01
+  clause: "4.1.4"
+  ecma: "4.1.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Letters are exactly the upper- and lower-case Roman letters of ASCII, digits are exactly 0 through 9, and every other BASIC character is one of the remaining ASCII graphic characters."
+  tests: [PRG-0020]
+  external: []
+  covers: [l.1130, l.1134, l.1137]
+
+- id: A-4.1.4-02
+  clause: "4.1.4"
+  ecma: "4.1.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "The character names of Table 1 are the ones in force whenever the standard collating sequence applies, whether by default or because OPTION COLLATE asked for it."
+  tests: [PRG-0021, PRG-0022]
+  external: []
+  covers: [l.1142]
+
+- id: D-4.1.4-1
+  clause: "4.1.4"
+  ecma: "4.1.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "Coding used for the native collating sequence under OPTION COLLATE NATIVE, which Appendix C leaves to each implementation."
+  tests: [PRG-0023]
+  external: []
+  covers: [l.1145]
+  value: "OPTION COLLATE NATIVE orders strings by character code (ASCII, then the Latin-1 other-characters 128..255), identical to STANDARD for all input; no locale-aware collation is implemented."
+
+- id: A-4.1.4-03
+  clause: "4.1.4"
+  ecma: "4.1.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Letters keep their own value inside quoted strings, unquoted strings and line-input replies; upper- and lower-case forms of a letter are interchangeable in identifiers and keywords, and a doubled double-quote inside a quoted string yields a single quotation mark."
+  tests: [PRG-0024]
+  external: []
+  covers: [l.1151]
+
+- id: D-4.1-1
+  clause: "4.1.6"
+  ecma: "4.1.6"
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "Meaning of other-characters beyond ASCII: what they do in strings, in input data, in files and in CHR$ values, which Appendix C leaves to each implementation."
+  tests: [PRG-0025, PRG-0026, PRG-0080, PRG-0081, STR-0093, STR-0094]
+  external: []
+  covers: [l.1090, l.1167]
+  value: "Other-characters are the Latin-1 (ISO/IEC 8859-1) characters at ordinal positions 128..255, one position per character: LEN, substrings and MAXLEN count characters (the e-acute has LEN 1), and they are accepted inside quoted strings, in unquoted data (INPUT, DATA, DISPLAY files) at any position, and in remarks. The program text is UTF-8 and is converted to Latin-1 on loading; a character outside Latin-1 (U+0100 and above) anywhere in the source, comments included, is a load error (E-NOT-LATIN1, with line and column), and one in input data or in a DISPLAY file is exception 8102 (INPUT, LINE INPUT, MAT INPUT) or 8105 (file); console and graphic text leave as UTF-8; DISPLAY files (sequential, stream, relative and keyed, keys included) are stored in UTF-8 on disk with RECSIZE and MARGIN counted in characters, while INTERNAL and NATIVE files keep the Latin-1 bytes unconverted. CHR$(n) yields the character at position n for 0..255 (ORD(CHR$(233)) = 233 and ORD(\"é\") = 233); ORD rejects a string of more than one character with exception 4003. UCASE$ and LCASE$ convert every Latin-1 letter (sharp s and y-diaeresis have no one-character counterpart and stay), and strings compare by character code (\"z\" < \"ñ\"). The standard character set has 256 characters: the 128 ASCII characters plus 128 additional other-characters in ordinal positions 128..255 (Tabla 8 l.12768-12770 leaves the number implementation-defined; here 128), so CHR$(127.5) rounds to 128 and is legal (no 4002)."
+
+- id: A-4.2.2-02
+  clause: "4.2.2"
+  ecma: "4.2.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "A program is a sequence of lines, and a non real-time program has exactly one END line; the lines through that END line form the main program."
+  tests: [PRG-0027, PRG-0028, PRG-0029]
+  external: []
+  covers: [l.1312-1313]
+
+- id: A-4.2.2-03
+  clause: "4.2.2"
+  ecma: "4.2.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "Line number 0 cannot be used, and writing leading zeroes in a line number changes nothing."
+  tests: [PRG-0030, PRG-0031]
+  external: []
+  covers: [l.1317]
+
+- id: A-4.2.2-04
+  clause: "4.2.2"
+  ecma: "4.2.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "Lines must appear in increasing line-number order within the file."
+  tests: [PRG-0032]
+  external: []
+  covers: [l.1318]
+
+- id: A-4.2.2-06
+  clause: "4.2.2"
+  ecma: "4.2.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "No physical line of a program may hold more than 132 characters before its end-of-line."
+  tests: [PRG-0033]
+  external: []
+  covers: [l.1329]
+
+- id: A-4.2.2-07
+  clause: "4.2.2"
+  ecma: "4.2.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  status: pending
+  claim: "Parameters of a PROGRAM line must not be given an explicit DIM or DECLARE in the main program, or in the first parallel section of a real-time program."
+  tests: []
+  external: []
+  covers: [l.1337]
+
+  note: "DIM or DECLARE of a PROGRAM-line parameter in the main program is rejected at load (E-PARAMETER-REDECLARED, l.1337). Not expressible as an FBCS program: l.1193 puts the program-name-line before the main-program, so the mandatory leading REM header and a PROGRAM line are mutually exclusive (see D-4.2-3)."
+- id: D-4.2-1
+  clause: "4.2.2"
+  ecma: "4.2.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "How the end of a line is recognised (carriage return, return plus line feed, end of record, ...), which Appendix C leaves to each implementation."
+  tests: [PRG-0034]
+  external: []
+  covers: [l.1324-1327]
+  value: "End-of-line is LF (0x0A); a CRLF pair is also accepted (the CR is discarded); a lone CR is not an end-of-line (lexer error). PRG-0034 reads its own source back line by line."
+
+- id: D-4.2-2
+  clause: "4.2.2"
+  ecma: "4.2.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "Actual maximum physical line length accepted, which Appendix C lists as implementation-defined even though 132 characters is the limit the standard states."
+  tests: [PRG-0035]
+  external: []
+  covers: [l.1329-1330]
+  value: "The maximum physical line length accepted is exactly 132 characters (STD §4.2.2 l.1329): a 132-character line is accepted (PRG-0035) and a 133-character line is rejected at load with E-LINE-TOO-LONG (PRG-0033)."
+
+- id: D-4.2-3
+  clause: "4.2.4"
+  ecma: "4.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  status: pending
+  claim: "What a parameter list in the PROGRAM line does for a program that runs by itself instead of being reached by CHAIN, which Appendix C leaves to each implementation."
+  tests: []
+  external: []
+  covers: [l.1357-1358]
+  value: "A PROGRAM parameter list in a program executed in isolation raises fatal exception 4301 ('program declares N program-parameter(s) in its program-name-line and can only be executed through CHAIN with a WITH list (4.2.4)') reported at the position of the PROGRAM statement, before the first statement runs. Measured with the CLI; not expressible as an FBCS program because l.1193 puts the program-name-line before the main-program, so the mandatory leading REM header and a PROGRAM line are mutually exclusive."
+
+  note: "Stays pending: no FBCS program can carry a PROGRAM line (see value)."
+- id: D-4.2-4
+  clause: "4.2.4"
+  ecma: "4.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "How the program designator of a CHAIN relates to the program name, which Appendix C leaves to each implementation."
+  tests: [PRG-0036]
+  external: []
+  covers: [l.1351-1353]
+  value: "The CHAIN designator is a file path only; the PROGRAM name of the target is not compared with the designator (measured: CHAIN \"tgt\" ran tgt.BAS declaring PROGRAM OtherName). A missing file raises fatal exception 10005, which PRG-0036 verifies via WHEN/USE and EXTYPE."
+
+- id: A-4.2.3-EX
+  clause: "4.2.3"
+  ecma: "4.2.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "The example program of section 4.2.3, whose PROGRAM line carries its parameter list across line-continuations, is accepted as written."
+  tests: [PRG-0037]
+  external: []
+  covers: [l.1341-1347]
+
+- id: A-4.2.4-01
+  clause: "4.2.4"
+  ecma: "4.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Execution starts at the first line and runs line after line in textual order; PRG-0038 verifies that three consecutive LET statements execute in source order. The diverting conditions named by l.1360 (an unhandled exception, CHAIN, STOP, END) are claimed separately: the Table 9 E-* exception claims, A-9.3-* (CHAIN) and the STOP/END claims of §8."
+  tests: [PRG-0038]
+  external: []
+  covers: [l.1360]
+
+- id: A-4.2.4-02
+  clause: "4.2.4"
+  ecma: "4.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "END both closes the main program physically and stops execution when reached."
+  tests: [PRG-0039]
+  external: []
+  covers: [l.1375]
+
+- id: A-4.2.4-03
+  clause: "4.2.4"
+  ecma: "4.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Running a STOP statement terminates the program just like END does."
+  tests: [PRG-0040]
+  external: []
+  covers: [l.1379]
+
+- id: A-4.3.2-01
+  clause: "4.3.2"
+  ecma: "4.3.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "A line-continuation (ampersand) is not allowed inside the text of a REM comment."
+  tests: [PRG-0041]
+  external: []
+  covers: [l.1408]
+
+- id: A-4.3.3-EX
+  clause: "4.3.3"
+  ecma: "4.3.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "Both annotation forms shown in the examples, a REM statement on its own line and a ! tail comment, are accepted."
+  tests: [PRG-0042]
+  external: []
+  covers: [l.1410-1415]
+
+- id: A-4.3.4-01
+  clause: "4.3.4"
+  ecma: "4.3.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "When execution reaches a line holding only a REM or a null statement, the program simply continues with the next line and nothing else happens."
+  tests: [PRG-0043]
+  external: []
+  covers: [l.1419]
+
+- id: A-4.4.2-01
+  clause: "4.4.2"
+  ecma: "4.4.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "An identifier may be at most 31 characters long, counting the trailing dollar sign of a string identifier."
+  tests: [PRG-0044, PRG-0045, PRG-0060, PRG-0061]
+  external: []
+  covers: [l.1457]
+
+- id: A-4.4.2-02
+  clause: "4.4.2"
+  ecma: "4.4.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "One routine identifier may not serve for two different external functions, external subs, external pictures, main programs or parallel sections of the same program."
+  tests: [PRG-0046]
+  external: []
+  covers: [l.1472]
+
+- id: A-4.4.2-03
+  clause: "4.4.2"
+  ecma: "4.4.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "The parameterless supplied names CON, DATE, EXLINE, EXTYPE, IDN, MAXNUM, PI, RND, and TIME, as well as TRANSFORM and ZER, plus the string ones DATE$, NUL$ and TIME?, are reserved and cannot be reused as identifiers of other entities."
+  tests: [PRG-0047, PRG-0048]
+  external: []
+  covers: [l.1479-1485]
+
+- id: A-4.4.2-04
+  clause: "4.4.2"
+  ecma: "4.4.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "The keywords NOT, ELSE, PRINT and REM can never be used as identifiers."
+  tests: [PRG-0049, PRG-0050, PRG-0051]
+  external: []
+  covers: [l.1486]
+
+- id: A-4.4.2-05
+  clause: "4.4.2"
+  ecma: "4.4.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "An identifier may not name both an internal-sub-def and an internal-function-def in the same program-unit."
+  tests: [SEG-0320]
+  external: []
+  covers: [l.1468-1470]
+
+- id: A-4.4.2-06
+  clause: "4.4.2"
+  ecma: "4.4.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "CALL may not name an external function: a routine-identifier cannot be the name of an external FUNCTION definition (rejected at load)."
+  tests: [SEG-0321]
+  external: []
+  covers: [l.1476-1477]
+
+- id: A-4.4.3-EX
+  clause: "4.4.3"
+  ecma: "4.4.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "Every identifier form shown in the examples (plain letter, mixed word, string with dollar sign, underscored string, routine name) is accepted."
+  tests: [PRG-0052]
+  external: []
+  covers: [l.1489-1497]
+
+- id: A-4.4.4-01
+  clause: "4.4.4"
+  ecma: "4.4.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Variables, arrays, handlers and internal routines defined inside a program unit belong to that unit alone: different units, or different invocations of the same unit, get different objects."
+  tests: [PRG-0053, PRG-0054]
+  external: []
+  covers: [l.1503, l.1505]
+
+- id: A-4.4.4-02
+  clause: "4.4.4"
+  ecma: "4.4.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Names of supplied functions and of program units are program-wide: the same name denotes the same object everywhere in the program."
+  tests: [PRG-0055]
+  external: []
+  covers: [l.1507-1508]
+
+- id: A-4.4.4-03
+  clause: "4.4.4"
+  ecma: "4.4.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "If a user declares or defines a variable, array or function with the name of a supplied function or with TAB, the user's meaning wins inside that scope and the supplied function or TAB call is not available there."
+  tests: [PRG-0056, PRG-0057]
+  external: []
+  covers: [l.1515, l.1518]
+
+- id: A-4.4.4-04
+  clause: "4.4.4"
+  ecma: "4.4.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Identifiers that differ only in the case of their letters name the same object; any other difference makes them name different objects."
+  tests: [PRG-0058]
+  external: []
+  covers: [l.1521, l.1523]
+
+- id: A-4.4.6-01
+  clause: "4.4.6"
+  ecma: "4.4.6"
+  ecma_level: BASIC-1
+  module: core
+  kind: not-applicable
+  claim: "An implementation may add extra built-in functions, but a declaration of such a name in a program unit must override the built-in meaning there."
+  tests: []
+  external: []
+  covers: [l.1533]
+  reason: "This implementation supplies no built-in functions beyond those of the standard (the parser's supplied-function lists match l.1885-1888 and the string list of 6.4), so there is no extra built-in whose meaning a declaration could override."
+
+- id: A-4.4.6-02
+  clause: "4.4.6"
+  ecma: "4.4.6"
+  ecma_level: BASIC-1
+  module: core
+  kind: not-applicable
+  claim: "An implementation offering parameterless enhancement functions must also give a syntax to tell them apart from plain variables, such as requiring a declaration or empty parentheses at each call."
+  tests: []
+  external: []
+  covers: [l.1535, l.1544]
+  reason: "No parameterless enhancement functions are supplied (the only no-argument supplied names are the standard's own reserved ones), so no distinguishing syntax is required."
+
+- id: D-4.4-1
+  clause: "4.4.6"
+  ecma: "4.4.6"
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "Extra limits an operating system may put on the length and form of identifiers of procedures compiled separately from the main program, which Appendix C leaves to each implementation."
+  tests: [PRG-0059]
+  external: []
+  covers: [l.1550-1552]
+  value: "No separate compilation exists (all procedures live in one source file), so the OS imposes no extra limits on procedure identifiers; external-sub names of 31 characters (and longer) are accepted."
+
+- id: A-4.4.4-05
+  clause: "4.4.4"
+  ecma: "4.4.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A one-line DEF with the name of a supplied function (SIN) overrides it in the whole unit, and array (TAB) and plain-variable (DATA, MAX) definitions with supplied-function names work in the same unit."
+  tests: [PRG-0062]
+  external: []
+  covers: [l.1511, l.1518]
+
+- id: A-4.4.4-06
+  clause: "4.4.4"
+  ecma: "4.4.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "The scope of a definition is its program-unit: an array named like a supplied function in the main program does not override the function inside an EXTERNAL SUB."
+  tests: [PRG-0063]
+  external: []
+  covers: [l.1505, l.1515]
+
+- id: A-4.4.4-07
+  clause: "4.4.4"
+  ecma: "4.4.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A simple or formal-array parameter of an internal def with the name of a supplied function overrides the function only inside that def."
+  tests: [PRG-0064, PRG-0065]
+  external: []
+  covers: [l.1511, l.1518]
+
+- id: A-4.4.4-08
+  clause: "4.4.4"
+  ecma: "4.4.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "String supplied-function names (CHR$, UCASE$) can be overridden by a string array or a user-defined string function in their scope."
+  tests: [PRG-0066, PRG-0067]
+  external: []
+  covers: [l.1511, l.1518]
+
+- id: A-4.4.4-09
+  clause: "4.4.4"
+  ecma: "4.4.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "Once a supplied-function name is defined as a variable in a unit, the function is unavailable there: a call with the same name in the same unit is rejected."
+  tests: [PRG-0068]
+  external: []
+  covers: [l.1515, l.1518]
+
+- id: A-4.4.4-10
+  clause: "4.4.4"
+  ecma: "4.4.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Where a supplied-function name is not overridden, the supplied function (SIZE, TAB, MAX, ANGLE) keeps its standard meaning."
+  tests: [PRG-0071]
+  external: []
+  covers: [l.1507, l.1511]
+
+- id: A-4.4.6-03
+  clause: "4.4.6"
+  ecma: "4.4.6"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "A keyword spelling other than PRINT, ELSE, REM or NOT may also be used as an identifier: DATA, ANGLE, MAX and SIZE work as identifiers and keep their keyword role in their own statements (DATA statement, OPTION ANGLE, ASK MAX COLOR)."
+  tests: [PRG-0069, PRG-0070]
+  external: []
+  covers: [l.1553, l.1557]
+
+- id: A-4.2.2-08
+  clause: "4.2.2"
+  ecma: "4.2.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A declarative statement (DECLARE or OPTION) may appear in any block of a program-unit — loop, if-block, select-block, protection-block and internal routine bodies — and takes effect on the whole containing program-unit, not just on the block."
+  tests: [PRG-0073, PRG-0074, PRG-0075, PRG-0076, PRG-0077, PRG-0078, PRG-0079]
+  external: []
+  covers: [l.1203-1231]
+
+- id: A-4.2.2-09
+  clause: "4.2.2"
+  ecma: "4.2.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "A line that holds only a line number and a tail-comment (a null-statement, `30 ! text`) is a valid remark-line wherever a remark-line is allowed: between the END line and an external procedure, between two external procedures, and between a SELECT CASE line and its first CASE line, exactly like a REM line."
+  tests: [PRG-0082, PRG-0083, PRG-0084]
+  external: []
+  covers: [l.1273, l.1278-1282, l.1404-1405, l.3928]
+
+- id: A-4.2.2-TR153
+  clause: "4.2.2"
+  ecma: "4.2.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "The lines of a program occur in ascending line-number order and each line number is defined once, over the whole program and not only at the top level of the main program: a repeated or out-of-order line number inside the body of a for-block, do-block, if-block branch, case-block or when-block, inside a separate handler, inside an internal procedure, or or inside the body of an external program-unit, is rejected when the program is loaded. Order and uniqueness are checked within each program-unit (the main program with its internal procedures, and each external unit on its own, header and end-line included: see A-4.2.2-TR156); repeated numbers BETWEEN units, and a unit numbered below the end of the main program, are accepted as a documented enhancement (A-ENH-11; owner's decisions of 2026-11-06 and 2026-11-10)."
+  tests: [PRG-0085, PRG-0086, PRG-0087, PRG-0088, PRG-0089, PRG-0090, PRG-0091, PRG-0092, PRG-0093, PRG-0094]
+  covers: [l.1312-1320]
+  external: []
+
+- id: A-4.2.2-TR156
+  clause: "4.2.2"
+  ecma: "4.2.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Each program-unit has its own sequence of line numbers: the main program with its internal procedures and separate handlers, and each external procedure on its own. The header line and the end-line of an external procedure belong to its own sequence, so a body line numbered below its header, above its end-line, or equal to either is rejected at load (a SUB, a FUNCTION and a PICTURE alike). Line numbers may be repeated between program-units, but the headers of the external units are not repeated nor put out of order among themselves. A reference to a line number (GOTO, GOSUB, ON GOTO, ON GOSUB, IF ... THEN n, READ ... IF MISSING THEN n, the exception handler lines and RETRY) always reaches the line of its own program-unit, and is rejected when that unit has no such line, even if another unit has it."
+  tests: [PRG-0170, PRG-0171, PRG-0172, PRG-0173, PRG-0174, PRG-0175, PRG-0176, PRG-0177, PRG-0178, PRG-0179, PRG-0180, PRG-0181, PRG-0182, PRG-0183, PRG-0184, PRG-0185, PRG-0186, PRG-0187, PRG-0188, PRG-0189, PRG-0190]
+  covers: [l.1312-1320]
+  external: []
+
+- id: A-4.2.2-TR157
+  clause: "4.2.2"
+  ecma: "4.2.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "The data-statements, image-lines and template-statements of a program-unit are indexed by the line number of THEIR program-unit, so that program-units may repeat their line numbers: RESTORE n goes to the first datum of the DATA of line n of its own unit, PRINT USING n takes the image-line n of its own unit (also when the PRINT USING is written before the IMAGE), and WITH n of a file statement takes the template-statement n of its own unit (also when it is written before the TEMPLATE), whatever the number of units that repeat the number and the order in which they are translated. A diagnostic that names a line of the program (for instance the control-transfer rule of 12.1.2) names the number the user wrote and never the internal per-unit key."
+  tests: [PRG-0191, PRG-0192, PRG-0193, PRG-0194, PRG-0195, PRG-0196, PRG-0197]
+  covers: [l.1317-1320]
+  external: []

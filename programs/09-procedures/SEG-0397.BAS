@@ -1,0 +1,31 @@
+1 REM FBCS SEG-0397
+2 REM CLAIM D-9.1-2
+3 REM TYPE SELF
+4 REM String function and recursion; each invocation starts with its name unassigned
+5 REM STD 9.1.4.2 l.4339-4345, 9.1.4.3 (recursion, each invocation distinct)
+100 DECLARE FUNCTION S$, Q
+110 FUNCTION S$(X)
+120 IF X > 0 THEN EXIT FUNCTION
+130 LET S$ = "ZZ"
+140 END FUNCTION
+150 FUNCTION Q(N)
+160 IF N = 0 THEN
+170   LET Q = 7
+180 ELSE
+190   LET T = Q(N - 1)
+200   EXIT FUNCTION
+210 END IF
+220 END FUNCTION
+230 LET A$ = S$(0)
+240 LET B$ = S$(1)
+250 LET C$ = S$(0)
+260 LET D$ = S$(1)
+270 LET P = Q(0)
+280 LET R = Q(1)
+290 LET U = Q(2)
+300 IF A$ = "ZZ" AND B$ = "" AND C$ = "ZZ" AND D$ = "" AND P = 7 AND R = 0 AND U = 0 THEN
+301 PRINT "*** TEST PASSED ***"
+302 ELSE
+303 PRINT "*** TEST FAILED ***"
+304 END IF
+310 END

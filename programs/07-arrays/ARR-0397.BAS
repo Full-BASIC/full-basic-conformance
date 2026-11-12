@@ -1,0 +1,19 @@
+1 REM FBCS ARR-0397
+2 REM CLAIM A-7.2.4.3-TR178
+3 REM TYPE OUTPUT
+4 REM STD 7.2.2 prod. 8, 7.2.4.3, 5.2.4: the indices of a redim are rounded with INT(X+.5): ZER(2.5), CON(1.4 TO
+5 REM 2.6), IDN(2.5), NUL$(2.5) and 2 * CON(2.5) give the sizes of ZER(3), CON(1 TO 3), IDN(3), NUL$(3).
+10 DIM V(5), A(3, 3), S$(5)
+20 MAT V = ZER(2.5)
+30 PRINT SIZE(V)
+40 MAT V = CON(1.4 TO 2.6)
+50 PRINT SIZE(V)
+60 MAT A = IDN(2.5)
+70 PRINT SIZE(A, 1); SIZE(A, 2)
+80 MAT A = ZER(1.6, 2.4)
+90 PRINT SIZE(A, 1); SIZE(A, 2)
+100 MAT S$ = NUL$(2.5)
+110 PRINT SIZE(S$)
+120 MAT V = 2 * CON(2.5)
+130 PRINT SIZE(V); V(1)
+140 END

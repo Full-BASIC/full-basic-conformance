@@ -1,0 +1,15 @@
+1 REM FBCS SEG-0602
+2 REM CLAIM A-9.2.2-TR162
+3 REM TYPE OUTPUT
+4 REM 9.2.2 l.4519-4528, 9.1.2 l.4194-4205: recursion and DECLARE SUB of an internal SUB of the main that
+5 REM has an external SUB of the same name.
+10 DECLARE SUB Q
+20 SUB Q(N)
+30 PRINT "I"; N
+40 IF N > 0 THEN CALL Q(N - 1)
+50 END SUB
+60 CALL Q(2)
+70 END
+200 EXTERNAL SUB Q(N)
+210 PRINT "EXT"
+220 END SUB

@@ -1,0 +1,13 @@
+1 REM FBCS SEG-0600
+2 REM CLAIM A-9.2.2-TR162
+3 REM TYPE OUTPUT
+4 REM 9.2.2 l.4519-4528, 9.1.2 l.4194-4205: an internal SUB of the main shadows an external SUB of the
+5 REM same name for the CALLs of the main.
+10 SUB Q
+20 PRINT "INT"
+30 END SUB
+40 CALL Q
+50 END
+100 EXTERNAL SUB Q
+110 PRINT "EXT"
+120 END SUB

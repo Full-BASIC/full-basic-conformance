@@ -1,0 +1,15 @@
+1 REM FBCS SEG-0329
+2 REM CLAIM E-4303
+3 REM TYPE FATAL
+4 REM EXPECT 4303 180
+100 OPTION ARITHMETIC NATIVE
+110 OPEN #1: NAME "TGT.BAS", ACCESS OUTPUT
+120 PRINT #1: "5 PROGRAM T(S$, N)"
+130 PRINT #1: "20 PRINT ""GOT"""
+140 PRINT #1: "30 END"
+150 CLOSE #1
+160 REM A mixed list of a string and a numeric DOES pass a numeric
+170 REM parameter -> with different ARITHMETIC types there is a fatal 4303 (9.3.5
+175 REM l.4918-4920); any party may report it (9.3.6 l.4929-4932).
+180 CHAIN "TGT.BAS" WITH ("HI", 10)
+190 END

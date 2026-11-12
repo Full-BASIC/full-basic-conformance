@@ -1,0 +1,1195 @@
+# Claims for chapter 7 (arrays).
+- id: E-1005
+  clause: "7.2.5"
+  ecma: "7.2.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "An overflow while evaluating a numeric array expression (sum, matrix product or scalar times array) raises exception 1005, which a handler can intercept."
+  tests: [ARR-0031, ARR-0032, ARR-0033]
+  covers: [l.3325, l.12787]
+  external: []
+
+- id: E-1005-F
+  clause: "7.2.5"
+  ecma: "7.2.5"
+  ecma_level: BASIC-1
+  module: fixed
+  kind: exception
+  claim: "Under ARITHMETIC FIXED, exceeding the maximum precision while evaluating a numeric array expression also raises exception 1005."
+  tests: [ARR-0036]
+  external: []
+
+- id: E-1009
+  clause: "7.2.5"
+  ecma: "7.2.5"
+  ecma_level: BASIC-2
+  module: core
+  kind: exception
+  claim: "An overflow while evaluating DET or DOT raises exception 1009, which a handler can intercept."
+  tests: [ARR-0034, ARR-0035]
+  covers: [l.3327, l.12792]
+  external: []
+
+# 7.1.4: MAXSIZE is the size permitted by the array declaration, not the current size.
+- id: A-7.1.4-01
+  clause: "7.1.4"
+  ecma: "7.1.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "After MAT A = ZER(3) on an array declared with ten elements, MAXSIZE(A) is still ten and SIZE(A) is three."
+  tests: [ARR-0101]
+  covers: [l.3077-3079]
+  external: []
+- id: A-7.1.4-02
+  clause: "7.1.4"
+  ecma: "7.1.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "MAXSIZE of an array resized by MAT READ is the size given in its declaration."
+  tests: [ARR-0102]
+  external: []
+- id: A-7.1.4-03
+  clause: "7.1.4"
+  ecma: "7.1.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "MAXSIZE of an array resized by MAT INPUT is the size given in its declaration."
+  tests: [ARR-0103]
+  external: []
+- id: A-7.1.4-04
+  clause: "7.1.4"
+  ecma: "7.1.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "MAXSIZE of an array that receives a smaller array by MAT A = B is the size given in its declaration."
+  tests: [ARR-0104]
+  external: []
+- id: A-7.1.4-05
+  clause: "7.1.4"
+  ecma: "7.1.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "MAXSIZE of an array received as a parameter is the size given in the declaration of the actual array, even after a resize."
+  tests: [ARR-0105]
+  external: []
+- id: A-7.1.4-06
+  clause: "7.1.4"
+  ecma: "7.1.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "MAXSIZE of an array that was never resized is the product of its declared dimension sizes."
+  tests: [ARR-0106]
+  covers: [l.3077-3079]
+  external: []
+
+- id: A-7.1.2-01
+  clause: "7.1.2"
+  ecma: "7.1.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "An array declaration with more than three dimensions, or with an explicit lower bound greater than its upper bound, is rejected before the program runs, even if the declaration is skipped."
+  tests: [ARR-0107, ARR-0108, ARR-0109, ARR-0197]
+  covers: [l.2990, l.3008]
+  external: []
+
+- id: A-7.1.2-02
+  clause: "7.1.2"
+  ecma: "7.1.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "A reference to an array element whose number of subscripts differs from the dimensions in the array's declaration is rejected before the program runs, even if the statement would never be executed."
+  tests: [ARR-0110, ARR-0111, ARR-0112, ARR-0198, ARR-0199, ARR-0200]
+  covers: [l.2999]
+  external: []
+
+- id: A-7.1.4-07
+  clause: "7.1.4"
+  ecma: "7.1.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "LBOUND or UBOUND called with a single argument that names an array of more than one dimension is rejected before the program runs, even if the call would never be executed."
+  tests: [ARR-0113, ARR-0114, ARR-0115]
+  covers: [l.3022-3023]
+  external: []
+
+- id: A-7.1.1-01
+  clause: "7.1.1"
+  ecma: "7.1.1"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "When no OPTION BASE is given, an array dimension declared with only an upper bound starts at subscript one; OPTION BASE 0 or 1 changes that default for the program unit."
+  tests: [ARR-0116, ARR-0117, ARR-0118]
+  external: []
+  covers: [l.2935, l.3048]
+
+- id: A-7.1.1-02
+  clause: "7.1.1"
+  ecma: "7.1.1"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "Every array declaration must write the upper bound of each dimension explicitly."
+  tests: [ARR-0119]
+  external: []
+  covers: [l.2944]
+
+- id: A-7.1.2-03
+  clause: "7.1.2"
+  ecma: "7.1.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  status: claimed
+  claim: "A formal array of a function, subprogram, program or picture must not also be named in a DIM or DECLARE statement."
+  tests: [ARR-0120]
+  external: []
+  covers: [l.2994]
+
+- id: A-7.1.2-04
+  clause: "7.1.2"
+  ecma: "7.1.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "An array that is not a formal parameter is declared exactly once per program unit; a second DIM or DECLARE for the same array is rejected before the program runs."
+  tests: [ARR-0121]
+  external: []
+  covers: [l.2941, l.3004]
+
+- id: A-7.1.2-05
+  clause: "7.1.2"
+  ecma: "7.1.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "An array that is not a formal parameter must be declared on an earlier line than any reference to it or to its elements."
+  tests: [ARR-0122]
+  external: []
+  covers: [l.2997]
+
+- id: A-7.1.2-06
+  clause: "7.1.2"
+  ecma: "7.1.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  status: claimed
+  claim: "A declaration that gives only an upper bound below the default lower bound is rejected, for example DIM A(0) under the default base of one."
+  tests: [ARR-0123]
+  external: []
+  covers: [l.3012]
+
+- id: A-7.1.2-07
+  clause: "7.1.2"
+  ecma: "7.1.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "An OPTION BASE must sit on an earlier line than every array declaration and every MAT statement using CON, IDN, ZER or NUL$ in the same program unit."
+  tests: [ARR-0124, ARR-0125]
+  external: []
+  covers: [l.3016, l.3019]
+
+- id: A-7.1.2-08
+  clause: "7.1.2"
+  ecma: "7.1.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "A program unit may contain at most one OPTION BASE."
+  tests: [ARR-0126]
+  external: []
+  covers: [l.3019]
+
+- id: A-7.1.3-01
+  clause: "7.1.3"
+  ecma: "7.1.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "Every declaration and inquiry form shown in the examples of section 7.1.3 is accepted and gives the values the section implies."
+  tests: [ARR-0127]
+  external: []
+  covers: [l.3025]
+
+- id: A-7.1.4-08
+  clause: "7.1.4"
+  ecma: "7.1.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "The number of bound ranges in a declaration sets the dimension count and each range sets the lowest and highest subscript of its dimension, so DIM D(1980 TO 1989) gives LBOUND 1980 and UBOUND 1989."
+  tests: [ARR-0128]
+  external: []
+  covers: [l.3046]
+
+- id: A-7.1.4-09
+  clause: "7.1.4"
+  ecma: "7.1.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "An OPTION BASE affects only the program unit that contains it; an external routine keeps its own default lower bound."
+  tests: [ARR-0129]
+  external: []
+
+- id: A-7.1.4-10
+  clause: "7.1.4"
+  ecma: "7.1.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Reaching a DIM statement while running has no effect other than moving on to the next line."
+  tests: [ARR-0130]
+  external: []
+  covers: [l.3057]
+
+- id: A-7.1.4-11
+  clause: "7.1.4"
+  ecma: "7.1.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A length limit written for a string array in a declaration caps every element; without one the limit of the declared string type applies."
+  tests: [ARR-0131]
+  external: []
+  covers: [l.3064]
+
+- id: A-7.1.4-12
+  clause: "7.1.4"
+  ecma: "7.1.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "SIZE(A, N) is the current number of subscript values of dimension N, counted from the left starting at one, with N rounded to the nearest integer."
+  tests: [ARR-0132]
+  external: []
+  covers: [l.3069]
+
+- id: A-7.1.4-13
+  clause: "7.1.4"
+  ecma: "7.1.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "SIZE of a vector is its current element count, including after the vector has been resized by a MAT assignment."
+  tests: [ARR-0101, ARR-0104]
+  external: []
+  covers: [l.3074]
+
+- id: A-7.1.4-14
+  clause: "7.1.4"
+  ecma: "7.1.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "SIZE of an array with two or three dimensions is the product of its current dimension sizes."
+  tests: [ARR-0133]
+  external: []
+  covers: [l.3074]
+
+- id: A-7.1.4-15
+  clause: "7.1.4"
+  ecma: "7.1.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "LBOUND(A, N) is the current smallest subscript of dimension N, with N rounded to the nearest integer and counted from the left starting at one."
+  tests: [ARR-0134]
+  external: []
+  covers: [l.3082]
+
+- id: A-7.1.4-16
+  clause: "7.1.4"
+  ecma: "7.1.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "UBOUND(A, N) is the current largest subscript of dimension N, with N rounded to the nearest integer and counted from the left starting at one."
+  tests: [ARR-0135]
+  external: []
+  covers: [l.3084]
+
+- id: A-7.1.4-17
+  clause: "7.1.4"
+  ecma: "7.1.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "LBOUND and UBOUND given a vector and no index return the lowest and highest subscript of that vector."
+  tests: [ARR-0136]
+  external: []
+  covers: [l.3088-3091]
+
+- id: A-7.1.4-18
+  clause: "7.1.4"
+  ecma: "7.1.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "An OPTION BASE in an external SUB, FUNCTION or PICTURE sets the lower bound of the arrays of that unit only; the arrays of the main program keep the default lower bound of one, whether declared before or after the call."
+  tests: [ARR-0204]
+  external: []
+  covers: [l.3051-3054, l.2212-2233]
+
+- id: D-7.1-1
+  clause: "7.1.4"
+  ecma: "7.1.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "Default maximum length of an element of a string array when neither the declaration nor the string type sets a length limit."
+  value: "The effective limit of 1E9 characters: MAXLEN of a string array declared without length-max returns 1000000000 and strings of 200 characters are stored whole (far above the required minimum of 132)."
+  tests: [ARR-0137]
+  external: []
+  covers: [l.3066]
+
+- id: E-4004
+  clause: "7.1.5"
+  ecma: "7.1.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "SIZE with an index below one or above the array's dimension count raises exception 4004, which a handler can intercept."
+  tests: [ARR-0138]
+  external: []
+  covers: [l.3098, l.12855]
+
+- id: E-4008
+  clause: "7.1.5"
+  ecma: "7.1.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "LBOUND with an index below one or above the array's dimension count raises exception 4008, which a handler can intercept."
+  tests: [ARR-0139]
+  external: []
+  covers: [l.3102, l.12859]
+
+- id: E-4009
+  clause: "7.1.5"
+  ecma: "7.1.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "UBOUND with an index below one or above the array's dimension count raises exception 4009, which a handler can intercept."
+  tests: [ARR-0140]
+  external: []
+  covers: [l.3106, l.12860]
+
+- id: A-7.2.2-01
+  clause: "7.2.2"
+  ecma: "7.2.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "A redimension list attached to CON, IDN or ZER holds one, two or three bounds."
+  tests: [ARR-0141, ARR-0142]
+  external: []
+  covers: [l.3164]
+
+- id: A-7.2.2-02
+  clause: "7.2.2"
+  ecma: "7.2.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  status: claimed
+  claim: "In a MAT assignment, the target array and the array expression must have the same number of dimensions; a mismatch is rejected before the program runs."
+  tests: [ARR-0143]
+  external: []
+  covers: [l.3168]
+
+- id: A-7.2.2-03
+  clause: "7.2.2"
+  ecma: "7.2.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  status: claimed
+  claim: "Both arguments of DOT must be one-dimensional."
+  tests: [ARR-0144]
+  external: []
+  covers: [l.3172]
+
+- id: A-7.2.2-04
+  clause: "7.2.2"
+  ecma: "7.2.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "IDN accepts at most two redimension bounds."
+  tests: [ARR-0145]
+  external: []
+  covers: [l.3174]
+
+- id: A-7.2.2-05
+  clause: "7.2.2"
+  ecma: "7.2.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "The two operands of a MAT sum or difference must have the same number of dimensions."
+  tests: [ARR-0146]
+  external: []
+  covers: [l.3176]
+
+- id: A-7.2.2-06
+  clause: "7.2.2"
+  ecma: "7.2.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "The argument of DET, INV or TRN must be a two-dimensional array; a vector argument is reported when the operation executes — 6002 for DET, 6003 for INV, a nonzero exception code for TRN (ARR-0147). The rule is not checked at load time."
+  tests: [ARR-0147]
+  external: []
+  covers: [l.3178]
+
+- id: A-7.2.2-07
+  clause: "7.2.2"
+  ecma: "7.2.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "The operands of a MAT product each have one or two dimensions, and at least one of them has two."
+  tests: [ARR-0148]
+  external: []
+  covers: [l.3181]
+
+- id: A-7.2.3-01
+  clause: "7.2.3"
+  ecma: "7.2.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "Every MAT statement and function reference shown in the examples of section 7.2.3 is accepted and computes the value its form implies."
+  tests: [ARR-0149, ARR-0150]
+  external: []
+  covers: [l.3184]
+
+- id: A-7.2.4.1-01
+  clause: "7.2.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "MAT A = expression evaluates the array expression and stores its elements in A."
+  tests: [ARR-0151]
+  external: []
+  covers: [l.3202]
+
+- id: A-7.2.4.1-02
+  clause: "7.2.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "After MAT A = B, a vector A has the size of B, even when A was declared larger."
+  tests: [ARR-0104]
+  external: []
+  covers: [l.3205-3207]
+
+- id: A-7.2.4.1-03
+  clause: "7.2.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A resized array keeps its lower bounds and its new upper bound is the lower bound plus the new size minus one."
+  tests: [ARR-0152]
+  external: []
+  covers: [l.3211]
+
+- id: A-7.2.4.1-04
+  clause: "7.2.4.1"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A resize may make one dimension larger than it was declared, as long as the total element count stays within the declared total."
+  tests: [ARR-0153]
+  external: []
+
+- id: A-7.2.4.2-01
+  clause: "7.2.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "The operators plus and minus on same-sized arrays work element by element, and asterisk is matrix multiplication."
+  tests: [ARR-0154]
+  external: []
+  covers: [l.3226-3229, l.3233]
+
+- id: A-7.2.4.2-02
+  clause: "7.2.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Multiplying an L by M matrix by an M by N matrix gives an L by N matrix of the usual row-by-column sums."
+  tests: [ARR-0155]
+  external: []
+  covers: [l.3234-3236]
+
+- id: A-7.2.4.2-03
+  clause: "7.2.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Multiplying a vector of M elements by an M by N matrix gives a vector of N elements."
+  tests: [ARR-0156]
+  external: []
+  covers: [l.3236-3238]
+
+- id: A-7.2.4.2-04
+  clause: "7.2.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Multiplying an L by M matrix by a vector of M elements gives a vector of L elements."
+  tests: [ARR-0157]
+  external: []
+  covers: [l.3238-3239]
+
+- id: A-7.2.4.2-05
+  clause: "7.2.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Every element of each operand takes part in a MAT expression and each operand is used as a whole, so MAT A = A*B reads the old values of A throughout."
+  tests: [ARR-0158]
+  external: []
+  covers: [l.3239-3241]
+
+- id: A-7.2.4.2-06
+  clause: "7.2.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "In MAT A = W*B the scalar W is evaluated first and every element of B is multiplied by it."
+  tests: [ARR-0159]
+  external: []
+  covers: [l.3244-3246]
+
+- id: A-7.2.4.2-07
+  clause: "7.2.4.2"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "An underflow inside a MAT expression produces zero for that element and does not stop the program."
+  tests: [ARR-0160]
+  external: []
+  covers: [l.3248-3250]
+
+- id: A-7.2.4.3-01
+  clause: "7.2.4.3"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "CON, IDN or ZER without a redimension list produce an array of the same size as the target."
+  tests: [ARR-0161]
+  external: []
+  covers: [l.3254-3257]
+
+- id: A-7.2.4.3-02
+  clause: "7.2.4.3"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "MAT A = ZER(n) leaves A with exactly n elements, even when A was declared with more."
+  tests: [ARR-0101]
+  external: []
+  covers: [l.3258-3260]
+
+- id: A-7.2.4.3-03
+  clause: "7.2.4.3"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A single redimension index is the upper bound with the current default lower bound; an index pair joined by TO gives both bounds of the array-value, while the destination array keeps its old lower bound and gets upper = lower + size - 1 (7.2.4.1)."
+  tests: [ARR-0162, ARR-0163, ARR-0201, ARR-0202]
+  external: []
+  covers: [l.3261-3265, l.3210-3214]
+
+- id: A-7.2.4.3-04
+  clause: "7.2.4.3"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "ZER produces an array whose elements are all zero."
+  tests: [ARR-0164]
+  external: []
+  covers: [l.3271-3272]
+
+- id: A-7.2.4.3-05
+  clause: "7.2.4.3"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "CON produces an array whose elements are all one."
+  tests: [ARR-0165]
+  external: []
+  covers: [l.3272-3273]
+
+- id: A-7.2.4.3-06
+  clause: "7.2.4.3"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "IDN produces an identity matrix: ones along the main diagonal, zeros in every other position."
+  tests: [ARR-0166]
+  external: []
+  covers: [l.3274-3275]
+
+- id: A-7.2.4.3-07
+  clause: "7.2.4.3"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "IDN with a redimension always yields a square matrix, and one bound given to IDN acts as if it were given twice."
+  tests: [ARR-0167]
+  external: []
+  covers: [l.3266-3267, l.3275-3277]
+
+- id: A-7.2.4.3-08
+  clause: "7.2.4.3"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A scalar multiplier before CON, IDN or ZER replaces every nonzero element by the value of that multiplier."
+  tests: [ARR-0168]
+  external: []
+  covers: [l.3279-3282]
+
+- id: A-7.2.4.3-09
+  clause: "7.2.4.3"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "IDN, TRN, INV and DET operate on the actual bounds of the array: with OPTION BASE 0 the main diagonal of IDN is (0,0), (1,1), ... and TRN/INV/DET read every element within the real limits (7.1.4)."
+  tests: [ARR-0203]
+  external: []
+  covers: [l.3266-3282, l.3046-3053]
+
+- id: A-7.2.4.4-01
+  clause: "7.2.4.4"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "TRN returns the transpose: an M by N argument gives an N by M result."
+  tests: [ARR-0169]
+  external: []
+  covers: [l.3286-3288]
+
+- id: A-7.2.4.4-02
+  clause: "7.2.4.4"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "INV returns the inverse of a square matrix."
+  tests: [ARR-0170]
+  external: []
+  covers: [l.3290]
+
+- id: A-7.2.4.4-03
+  clause: "7.2.4.4"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "DET returns the determinant of a square matrix."
+  tests: [ARR-0171]
+  external: []
+  covers: [l.3293]
+
+- id: A-7.2.4.4-04
+  clause: "7.2.4.4"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "DOT(X, Y) is the scalar inner product of two vectors."
+  tests: [ARR-0172]
+  external: []
+  covers: [l.3296-3297]
+
+- id: E-6001
+  clause: "7.2.5"
+  ecma: "7.2.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "A numeric array expression whose operand sizes do not fit the rules of matrix algebra raises exception 6001, which a handler can intercept."
+  tests: [ARR-0173]
+  external: []
+  covers: [l.3232, l.3302, l.12887]
+
+- id: E-5001
+  clause: "7.2.5"
+  ecma: "7.2.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "A resize that needs more elements than the array's declaration reserved raises exception 5001, which a handler can intercept."
+  tests: [ARR-0174]
+  external: []
+  covers: [l.3306, l.3462, l.12881]
+
+- id: E-6005
+  clause: "7.2.5"
+  ecma: "7.2.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "A redimension whose first index exceeds the second, or whose single index is below the default lower bound, raises exception 6005, which a handler can intercept."
+  tests: [ARR-0175]
+  external: []
+  covers: [l.3309, l.3312, l.3455, l.3458, l.12891]
+
+- id: E-6004
+  clause: "7.2.5"
+  ecma: "7.2.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "IDN with a non-square redimension, or assigned to a non-square target when no redimension is given, raises exception 6004, which a handler can intercept."
+  tests: [ARR-0176]
+  external: []
+  covers: [l.3269, l.3315, l.12890]
+
+- id: E-6002
+  clause: "7.2.5"
+  ecma: "7.2.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "DET of a non-square matrix raises exception 6002, which a handler can intercept."
+  tests: [ARR-0177]
+  external: []
+  covers: [l.3294, l.3319, l.12888]
+
+- id: E-6003
+  clause: "7.2.5"
+  ecma: "7.2.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "INV of a non-square matrix raises exception 6003, which a handler can intercept."
+  tests: [ARR-0178]
+  external: []
+  covers: [l.3291, l.3322, l.12889]
+
+- id: E-3009
+  clause: "7.2.5"
+  ecma: "7.2.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "INV of a singular matrix, or a loss of all significant digits while inverting, raises exception 3009, which a handler can intercept."
+  tests: [ARR-0179]
+  external: []
+  covers: [l.3331, l.12839]
+
+- id: E-1505
+  clause: "7.2.6"
+  ecma: "7.2.6"
+  ecma_level: BASIC-1
+  module: core
+  kind: not-applicable
+  claim: "Reporting an array expression underflow as exception 1505 is only a recommendation."
+  tests: []
+  external: []
+  covers: [l.12820]
+  reason: "Table 9 lists 1505 as recommended and not mandated, so the standard requires no behaviour to test (the required behaviour, replacing the value by zero, is claim A-7.2.4.2-07)."
+
+- id: D-7.2-1
+  clause: "7.2.4.4"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "Value produced by INV for a singular matrix, which Appendix C leaves to the implementation (the exception 3009 case is claim E-3009)."
+  value: "No value is produced: INV of a singular matrix raises fatal exception 3009 (claim E-3009), so the Appendix C value never occurs."
+  tests: [ARR-0180]
+  external: []
+
+- id: D-7.2.4-1
+  clause: "7.2.4.3"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "Which bounds an explicit redim-bounds (index TO index) fixes on the destination array of a MAT assignment with an array function (ZER, CON, IDN, NUL$), where 7.2.4.3 and 7.2.4.1 admit two readings."
+  tests: [ARR-0162, ARR-0201, ARR-0202]
+  value: "Agreed interpretation of 7.2.4 (decision of the project owner, 2026-11-02): the redim-bounds are the lower and upper bounds of the array-value only (7.2.4.3 l.3258-3263); the destination array is resized as 7.2.4.1 orders (it keeps its old lower bound and its new upper bound is old lower plus new size minus one, l.3210-3214): DIM A(5,5) + MAT A = ZER(0 TO 1, 2 TO 3) leaves A with bounds 1..2, 1..2. A single index (ZER(3)) is unchanged: upper bound only, current default lower bound in effect. MAT READ with a redim is different: it fixes both bounds of the destination (10.5.4.1 l.5948-5953)."
+  external: []
+  covers: [l.3258-3263, l.3210-3214]
+
+- id: A-7.3.2-01
+  clause: "7.3.2"
+  ecma: "7.3.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "In a string MAT assignment, the target array and the array expression must have the same number of dimensions."
+  tests: [ARR-0181]
+  external: []
+  covers: [l.3374]
+
+- id: A-7.3.2-02
+  clause: "7.3.2"
+  ecma: "7.3.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "Two string arrays that are concatenated must have the same number of dimensions."
+  tests: [ARR-0182]
+  external: []
+  covers: [l.3377]
+
+- id: A-7.3.2-TR89
+  clause: "7.3.2"
+  ecma: "7.3.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "When the dimensionality of the string arrays involved is known at load (DIM or DECLARE), a string MAT assignment between arrays of different numbers of dimensions, and a concatenation of two string arrays of different numbers of dimensions, are rejected before the program runs; the mismatch in SIZE between arrays of the same dimensionality is still the run-time exception 6101."
+  tests: [ARR-0231, ARR-0232, ARR-0233, ARR-0234]
+  external: []
+  covers: [l.3373-3379]
+
+- id: A-7.3.3-01
+  clause: "7.3.3"
+  ecma: "7.3.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "Every string MAT statement shown in the examples of section 7.3.3 is accepted and produces the array its form implies."
+  tests: [ARR-0183]
+  external: []
+  covers: [l.3380]
+
+- id: A-7.3.4-01
+  clause: "7.3.4"
+  ecma: "7.3.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "MAT A$ = expression evaluates the string array expression and stores its elements in A$."
+  tests: [ARR-0184]
+  external: []
+  covers: [l.3389]
+
+- id: A-7.3.4-02
+  clause: "7.3.4"
+  ecma: "7.3.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A string array target is resized to the shape of the value and keeps its number of dimensions."
+  tests: [ARR-0185]
+  external: []
+  covers: [l.3392-3394]
+
+- id: A-7.3.4-03
+  clause: "7.3.4"
+  ecma: "7.3.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A resized string array keeps its lower bounds and its new upper bound is the lower bound plus the new size minus one."
+  tests: [ARR-0186]
+  external: []
+  covers: [l.3398]
+
+- id: A-7.3.4-04
+  clause: "7.3.4"
+  ecma: "7.3.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "When the target of a string MAT assignment has a substring qualifier, each element has only the selected part replaced."
+  tests: [ARR-0187]
+  external: []
+  covers: [l.3409-3412]
+
+- id: A-7.3.4-05
+  clause: "7.3.4"
+  ecma: "7.3.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "The substring qualifier on the target is evaluated before the right-hand array expression."
+  tests: [ARR-0188]
+  external: []
+  covers: [l.3412-3414]
+
+- id: A-7.3.4-06
+  clause: "7.3.4"
+  ecma: "7.3.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Concatenating two string arrays joins corresponding elements, and the arrays must have equal size in every dimension."
+  tests: [ARR-0189]
+  external: []
+  covers: [l.3417-3419]
+
+- id: A-7.3.4-07
+  clause: "7.3.4"
+  ecma: "7.3.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Concatenating a scalar string with an array puts the scalar in front of, or behind, every element."
+  tests: [ARR-0190]
+  external: []
+  covers: [l.3419-3421]
+
+- id: A-7.3.4-08
+  clause: "7.3.4"
+  ecma: "7.3.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A substring qualifier on an array operand extracts that substring from every element."
+  tests: [ARR-0191]
+  external: []
+  covers: [l.3422-3424]
+
+- id: A-7.3.4-09
+  clause: "7.3.4"
+  ecma: "7.3.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A string MAT assignment is carried out in four steps: target qualifiers, then operand subscripts, qualifiers and values from left to right, then concatenation, then assignment."
+  tests: [ARR-0192]
+  external: []
+  covers: [l.3426]
+
+- id: A-7.3.4-10
+  clause: "7.3.4"
+  ecma: "7.3.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "NUL$ makes an array of empty strings sized by its redimension list, or like the target when there is none, and follows the same redimension rules as the numeric constants."
+  tests: [ARR-0193]
+  external: []
+  covers: [l.3440-3447]
+
+- id: A-7.3.4-71
+  clause: "7.3.4"
+  ecma: "7.3.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A string-array-value of the form string-primary & NUL$ (7.3.2 production 5) prefixes the scalar to every element of the generated null-string array, with or without a redim and whatever the string-primary (literal, variable, expression); the example of 7.3.3 (MAT A$ = (\"Number\") & B$ after MAT B$ = (\"b\") & NUL$) gives \"Num bb\" in every element."
+  tests: [ARR-0295]
+  external: []
+  covers: [l.3365-3367, l.3382-3385, l.3418-3421, l.3440-3447]
+
+- id: A-7.3.4-72
+  clause: "7.3.4"
+  ecma: "7.3.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A substring-qualifier applied to a string-array operand of a concatenation (7.3.2 productions 3 and 4) extracts that substring from each element of the array before the concatenation, whichever operand carries it: MAT A$ = B$(2:3) & \"x\" gives \"bcx efx hix\" for B$ = abc, def, ghi, and the qualifier works on the left, the right or both operands of a concatenation of two arrays."
+  tests: [ARR-0300]
+  external: []
+  covers: [l.3418-3424]
+
+- id: E-6101
+  clause: "7.3.5"
+  ecma: "7.3.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "A string array expression whose operands differ in size raises exception 6101, which a handler can intercept."
+  tests: [ARR-0194]
+  external: []
+  covers: [l.3452, l.12894]
+
+- id: E-1052
+  clause: "7.3.5"
+  ecma: "7.3.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  status: pending
+  claim: "Evaluating a string array expression whose result exceeds the maximum string length raises fatal exception 1052."
+  tests: []
+  external: []
+  covers: [l.3465, l.12797]
+  note: "The maximum string length is 1E9 characters (D-6.2-2), and a MAT concatenation whose element would exceed it raises 1052 before the element is built. No portable program: provoking it needs string elements of about 1E9 characters (gigabytes of memory). Overflowing the length-max of the receiving array is 1106 (7.3.5 l.3468, claim E-1106, ARR-0195; interpretations.yaml, 7.3.5)."
+- id: E-1106
+  clause: "7.3.5"
+  ecma: "7.3.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  status: claimed
+  claim: "Storing a string longer than the allowed maximum, in a string array element or as the value of a string function, raises exception 1106, which a handler can intercept."
+  tests: [ARR-0196, ARR-0195]
+  external: []
+  covers: [l.3468, l.4424, l.12802]
+- id: A-7.2.2-TR94
+  clause: "7.2.2"
+  ecma: "7.2.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "When the dimensionality of the target array is known at load (DIM, DECLARE, formal array, or a DIM of the containing program for an internal routine), a numeric MAT assignment of CON or ZER whose redim has a different number of redim-bounds than the array (also with a scalar factor, and inside internal routines) is rejected before the program runs; a redim with the same number of dimensions is valid."
+  tests: [ARR-0235, ARR-0236, ARR-0237, ARR-0238, ARR-0239, ARR-0245]
+  external: []
+  covers: [l.3166-3168]
+
+- id: A-7.3.2-TR94
+  clause: "7.3.2"
+  ecma: "7.3.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "When the dimensionality of the target string array is known at load, an assignment of NUL$ whose redim has a different number of redim-bounds than the array is rejected before the program runs."
+  tests: [ARR-0240, ARR-0241]
+  external: []
+  covers: [l.3373-3375]
+
+- id: A-7.1.2-TR103
+  clause: "7.1.2"
+  ecma: "7.1.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "The main program and its internal routines are one program unit for array declarations: an array dimensioned inside an internal SUB or FUNCTION can be used by the main and by later routines; a reference on a line below its DIM, in the main or in any routine, is rejected before the program runs; and dimensioning the same array twice in the unit (main and routine, or two routines) is rejected."
+  tests: [ARR-0296, ARR-0297, ARR-0298, ARR-0299]
+  external: []
+  covers: [l.2997-2999, l.3004-3005, l.4389-4394, l.4733-4738]
+- id: A-7.2.2-TR106
+  clause: "7.2.2"
+  ecma: "7.2.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "When the dimensionality of the target array is known at load, a numeric MAT assignment of IDN (with or without redim: the value of IDN, IDN(n) and IDN(n,n) is a matrix) to an array that is not two-dimensional is rejected before the program runs; IDN on a two-dimensional array is valid (that it be square stays a run-time check, 6004)."
+  tests: [ARR-0301, ARR-0302, ARR-0303]
+  external: []
+  covers: [l.3166-3168, l.3266-3275]
+
+- id: A-7.1.2-TR109
+  clause: "7.1.2"
+  ecma: "7.1.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "An internal routine (SUB, FUNCTION or PICTURE) is part of its program unit, which is the main program or an EXTERNAL unit: an array that the routine declares with DECLARE NUMERIC or DECLARE STRING, or dimensions with DIM in an internal PICTURE, can be used by the main and by later routines; a DIM in an internal routine of an EXTERNAL unit can be used by the body of that unit and by its other routines; and dimensioning or declaring the same array twice in the unit (body and routine, two routines, main and PICTURE), or using it on a line below the DIM, is rejected before the program runs."
+  tests: [ARR-0304, ARR-0305, ARR-0306, ARR-0307, ARR-0308, ARR-0309, ARR-0310]
+  external: []
+  covers: [l.2997-2999, l.3004-3005, l.4389-4394, l.4733-4738]
+
+- id: A-7.1.4-TR117
+  clause: "7.1.4"
+  ecma: "7.1.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A DIM or a DECLARE NUMERIC/STRING with bounds in an internal routine of an EXTERNAL unit creates its array whether or not the routine is ever called (reaching the DIM has no further effect), in every invocation of the unit, and that array is distinct from an array of the same name in the main program or in another unit."
+  tests: [ARR-0314, ARR-0315]
+  external: []
+  covers: [l.3056-3058, l.2294-2295, l.2997-3005, l.4726-4738]
+
+- id: A-7.1.4-TR135
+  clause: "7.1.4"
+  ecma: "7.1.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Reaching a line that contains a DIM again (a loop or a backward GOTO in an EXTERNAL SUB or FUNCTION, numeric or string, one to three dimensions; or the DIM of a detached-handler, in the main program or in an EXTERNAL unit) has no effect beyond the first time: the array is not created again and keeps the values already assigned."
+  tests: [ARR-0350, ARR-0351, ARR-0352, ARR-0353, ARR-0354]
+  external: []
+  covers: [l.3056-3057]
+
+- id: A-7.1.2-TR139
+  clause: "7.1.2"
+  ecma: "7.1.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A DIM written inside a FOR, a DO or a multi-line IF (nested to any depth) of an internal SUB, FUNCTION or PICTURE is a declaration of the program unit that contains the routine, exactly like a DIM at the top level of the routine: the array can be used by the containing unit (the main program or the EXTERNAL unit) and by later routines on lines below the DIM, it exists whether or not the DIM is reached, and dimensioning the same array twice in the unit is still rejected."
+  tests: [ARR-0360, ARR-0361, ARR-0362, ARR-0363, ARR-0380, ARR-0381, ARR-0382, ARR-0383, ARR-0384, ARR-0385, ARR-0386]
+  external: []
+  covers: [l.2995-3002, l.3056-3058, l.4726-4739]
+
+- id: A-7.1.2-TR145
+  clause: "7.1.2"
+  ecma: "7.1.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A DIM written in the body of an EXTERNAL SUB, FUNCTION or PICTURE, or in the handler of an EXTERNAL SUB, at any nesting depth, declares the array of that unit whether or not execution reaches it (a branch not taken, a GOTO that jumps over it); a use in a line lower than the DIM, or a second DIM of the same array in the unit, is still rejected."
+  tests: [ARR-0390, ARR-0391, ARR-0392, ARR-0393, ARR-0394, ARR-0395, ARR-0396]
+  external: []
+  covers: [l.2995-3002, l.3056-3058]
+
+- id: A-7.1.2-TR137
+  clause: "7.1.2"
+  ecma: "7.1.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "DECLARE NUMERIC and DECLARE STRING of arrays (with or without a lower bound) written inside an internal or an EXTERNAL picture-def declare the array for the program-unit of the picture, in lower-numbered lines than its use: the array of an internal picture is visible to the containing unit; a use in a line lower than the declare-statement is rejected."
+  tests: [ARR-0364, ARR-0365, ARR-0366]
+  external: []
+  covers: [l.2995-3002, l.4726-4739]
+
+- id: A-7.2.4.3-TR178
+  clause: "7.2.4.3"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "The redim-bounds of CON, IDN, ZER and NUL$ are indices and are rounded with INT(X+.5) like those of MAT READ and MAT INPUT: ZER(2.5), CON(1.4 TO 2.6), IDN(2.5), ZER(1.6, 2.4), NUL$(2.5) and 2 * CON(2.5) redimension to the sizes of ZER(3), CON(1 TO 3), IDN(3), ZER(2, 2), NUL$(3) and 2 * CON(3). The bounds are checked after the rounding: ZER(.4) has an upper bound 0 below the default lower bound and CON(1.5 TO .6) has bounds 2 and 1, both 6005, while ZER(.5) has upper bound 1."
+  tests: [ARR-0397, ARR-0398]
+  covers: [l.1700-1702, l.3146-3151, l.3258-3265, l.3306-3310]
+  external: []
+
+- id: A-7.3.5-CL36
+  clause: "7.3.5"
+  ecma: "7.3.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "The declared length-max of a string-array holds for a MAT with a substring-qualifier on the left and for an array passed by reference to an EXTERNAL SUB. MAT S$(2:1) = (\"Z\") & NUL$ on elements \"ab\" of a STRING*2 array and MAT S$(1:0) = (\"xyz\") & NUL$ raise 1106 and leave the array unchanged, while a replacement that fits works. An EXTERNAL SUB assigning an element longer than the length-max of the argument raises 1106 with LET (EXTYPE 101106 in the caller) and 1053 with READ (101053), as an internal SUB does."
+  tests: [ARR-0400]
+  covers: [l.3410-3413, l.3467-3468, l.4679-4682]
+  external: []

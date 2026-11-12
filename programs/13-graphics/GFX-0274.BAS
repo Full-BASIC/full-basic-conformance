@@ -1,0 +1,21 @@
+1 REM FBCS GFX-0274
+2 REM CLAIM A-13.5.2-TR159
+3 REM TYPE REJECT
+4 REM STD 13.5.2 l.10506-10525: the DRAW of an external picture from a program-unit that neither declares
+5 REM it (DECLARE EXTERNAL PICTURE) nor defines its own internal picture of that name is rejected, even if
+6 REM another unit has an internal picture of the name.
+8 PRINT "EXECUTED"
+10 DECLARE EXTERNAL SUB E
+20 SET WINDOW 0,10,0,10
+30 CALL E
+40 DRAW Q
+50 END
+100 EXTERNAL SUB E
+120 PICTURE Q
+130 PLOT POINTS: 1,1
+140 END PICTURE
+145 DRAW Q
+150 END SUB
+200 EXTERNAL PICTURE Q
+230 PLOT POINTS: 2,2
+250 END PICTURE

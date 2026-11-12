@@ -1,0 +1,19 @@
+1 REM FBCS GFX-0273
+2 REM CLAIM A-13.5.2-TR159
+3 REM TYPE GRAPHIC
+4 REM STD 13.5.2 l.10506-10525: the main program has its own internal picture Q while an external SUB
+5 REM declares and draws the external picture Q: each DRAW uses the picture of its own program-unit.
+10 DECLARE EXTERNAL SUB E
+25 PICTURE Q
+26 PLOT POINTS: 1,1
+27 END PICTURE
+30 CALL E
+40 DRAW Q
+50 END
+100 EXTERNAL SUB E
+110 DECLARE EXTERNAL PICTURE Q
+145 DRAW Q
+150 END SUB
+200 EXTERNAL PICTURE Q
+230 PLOT POINTS: 2,2
+250 END PICTURE

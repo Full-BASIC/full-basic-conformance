@@ -1,0 +1,12 @@
+1 REM FBCS CTL-0283
+2 REM CLAIM A-8.4.2-TR152
+3 REM TYPE REJECT
+4 REM 8.4.2 l.3953-3958, prod. 6: an elseif-block may not jump into the body of the then-block.
+100 PRINT "EXECUTED"
+110 LET K = 1
+120 IF K = 1 THEN
+130 PRINT "T"
+140 ELSEIF K = 2 THEN
+150 GOTO 130
+160 END IF
+170 END

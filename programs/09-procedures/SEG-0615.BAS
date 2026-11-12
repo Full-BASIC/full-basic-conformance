@@ -1,0 +1,21 @@
+1 REM FBCS SEG-0615
+2 REM CLAIM A-9.1.2-TR163
+3 REM TYPE OUTPUT
+4 REM 9.1.2 l.4196-4199: control, an internal function of the same name in the main and in two different
+5 REM units are distinct functions.
+10 DECLARE EXTERNAL SUB E, F
+20 DEF Q(X) = X + 1
+30 PRINT Q(1)
+40 CALL E
+50 CALL F
+60 END
+100 EXTERNAL SUB E
+110 DEF Q(X) = X + 10
+120 PRINT Q(1)
+130 END SUB
+200 EXTERNAL SUB F
+210 FUNCTION Q(X)
+220 LET Q = X + 100
+230 END FUNCTION
+240 PRINT Q(1)
+250 END SUB

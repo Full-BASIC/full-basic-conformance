@@ -1,0 +1,18 @@
+1 REM FBCS SEG-0629
+2 REM CLAIM A-4.4.2-TR164
+3 REM TYPE OUTPUT
+4 REM 4.4.2 l.1468-1474: an internal PICTURE of a unit and an internal SUB of the main with the same name
+5 REM are different routines of different program-units.
+10 DECLARE EXTERNAL SUB E
+20 SUB Q
+30 PRINT "SUB-M"
+40 END SUB
+50 CALL E
+60 CALL Q
+90 END
+100 EXTERNAL SUB E
+110 PICTURE Q
+120 PRINT "PIC-E"
+130 END PICTURE
+140 DRAW Q
+150 END SUB

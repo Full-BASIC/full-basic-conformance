@@ -1,0 +1,13 @@
+1 REM FBCS GFX-0282
+2 REM CLAIM A-13.4.4-07
+3 REM TYPE SELF
+4 REM STD 13.4.4 l.10286-10289: a device-select is rounded to an integer N (INT(X+.5), 5.2.4 l.1698-1702),
+5 REM so 0.6 selects device 1; truncating it would select device 0, which is not present.
+100 PRINT "GFX-0282 DEVICE-SELECT 0.6 ROUNDS TO DEVICE 1 IN EVERY LOCATE FORM (13.4.4)"
+110 DIM P(2,2)
+120 LOCATE POINT(0.6): X, Y
+130 LOCATE VALUE(0.6), RANGE 0 TO 1: V
+140 LOCATE CHOICE(0.6): C
+150 MAT LOCATE POINT(0.6): P
+160 PRINT "*** TEST PASSED ***"
+170 END

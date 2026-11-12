@@ -1,0 +1,10 @@
+1 REM FBCS SEG-0651
+2 REM CLAIM A-4.4.2-TR168
+3 REM TYPE REJECT
+4 REM 4.4.2 l.1460-1466: a function parameter with the name of its own function.
+6 PRINT "EXECUTED"
+10 FUNCTION Q(Q)
+20 LET Q = 5
+30 END FUNCTION
+40 PRINT Q(1)
+90 END

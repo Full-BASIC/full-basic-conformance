@@ -1,0 +1,12 @@
+1 REM FBCS SEG-0641
+2 REM CLAIM A-4.4.2-TR166
+3 REM TYPE OUTPUT
+4 REM 4.4.2 l.1460-1474, 9.2.4.1: the variable of the name of the external SUB is passed by reference to it.
+10 DECLARE EXTERNAL SUB Q
+20 LET Q = 1
+30 CALL Q(Q)
+40 PRINT Q
+90 END
+200 EXTERNAL SUB Q(X)
+210 LET X = X + 10
+220 END SUB

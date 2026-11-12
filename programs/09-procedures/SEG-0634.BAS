@@ -1,0 +1,14 @@
+1 REM FBCS SEG-0634
+2 REM CLAIM A-4.4.2-TR165
+3 REM TYPE OUTPUT
+4 REM 4.4.2 l.1460-1470: the same with an external SUB of the name, which the internal SUB hides in the main.
+10 SUB Q
+20 PRINT "INT-M"
+30 END SUB
+40 LET Q = 3
+50 CALL Q
+60 PRINT Q
+90 END
+200 EXTERNAL SUB Q
+210 PRINT "EXT"
+220 END SUB

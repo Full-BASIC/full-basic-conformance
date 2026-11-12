@@ -1,0 +1,14 @@
+1 REM FBCS GFX-0139
+2 REM CLAIM A-12.1.4-20
+3 REM TYPE GRAPHIC
+100 REM STD 13.3 l.10048-10050 (GRAPH TEXT = GKS TEXT with USING) +
+110 REM 2.4 l.600-602 + 12.1.4: under WHEN the text with asterisks is not drawn
+120 REM (default recovery of 10.4.5). The later GRAPH TEXT
+130 REM shows that execution continues.
+140 WHEN EXCEPTION IN
+150   GRAPH TEXT, AT 1, 2, USING "##": 123
+160 USE
+170   PRINT "E="; EXTYPE
+180 END WHEN
+190 GRAPH TEXT, AT 3, 4: "OK"
+200 END

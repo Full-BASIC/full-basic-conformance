@@ -1,0 +1,9 @@
+Trace mode ON
+[TRACE] 30 CALL F
+[TRACE] 30 -> 15
+Trace mode ON
+[TRACE] 30 LET X = 1
+[TRACE] 30 X=1
+[TRACE] 40 END SUB
+[TRACE] 40 -> 40
+[TRACE] 40 END

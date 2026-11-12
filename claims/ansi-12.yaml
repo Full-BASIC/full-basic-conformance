@@ -1,0 +1,792 @@
+# Claims for chapter 12 (exceptions).
+- id: A-12.1.2-01
+  clause: "12.1.2"
+  ecma: "12.1.2"
+  ecma_level: BASIC-2
+  module: core
+  kind: syntax
+  claim: "RETRY, CONTINUE and EXIT HANDLER are only valid inside an exception handler (the USE part of a WHEN block or a detached handler), so a program that uses one elsewhere, including in the protected part of a WHEN block, is rejected before it runs."
+  tests: [EXC-0001, EXC-0002, EXC-0003, EXC-0004]
+  covers: [l.8691-8692]
+  external: []
+
+- id: A-12.1.2-02
+  clause: "12.1.2"
+  ecma: "12.1.2"
+  ecma_level: BASIC-2
+  module: core
+  kind: syntax
+  claim: "EXTYPE and EXLINE used in program text that is neither inside an exception handler nor inside a routine, including the protected part of a WHEN block, are rejected before the program runs, even if the statement would never be executed."
+  tests: [EXC-0005, EXC-0006, EXC-0007]
+  covers: [l.8693-8694]
+  external: []
+
+- id: A-12.1.2-E26
+  clause: "12.1.2"
+  ecma: "12.1.2"
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "A reference, outside any exception handler and outside any routine, to a single-line DEF whose expression uses EXTYPE or EXLINE invokes those functions outside a handler and is rejected before the program runs. A DEF or an internal multi-line FUNCTION that uses EXTYPE or EXLINE and is invoked from an exception handler is accepted and returns the values of the exception being handled."
+  tests: [EXC-0262, EXC-0263]
+  covers: [l.8689-8691]
+  external: []
+
+- id: A-12.1.2-03
+  clause: "12.1.2"
+  ecma: "12.1.2"
+  ecma_level: BASIC-2
+  module: core
+  kind: syntax
+  status: claimed
+  claim: "A line-number named by a control transfer from outside a protection block may only target that block's WHEN line; from inside an exception handler only lines of that same handler or its own END HANDLER / END WHEN line may be named; and from outside a handler no line inside that handler may be named. Programs breaking these rules are rejected before they run."
+  tests: [EXC-0008, EXC-0009, EXC-0010, EXC-0011, EXC-0012, EXC-0013, EXC-0014]
+  external: []
+  covers: [l.8697-8706]
+
+- id: A-12.1.2-TR89
+  clause: "12.1.2"
+  ecma: "12.1.2"
+  ecma_level: BASIC-2
+  module: core
+  kind: syntax
+  claim: "A control transfer in the when-block of a WHEN EXCEPTION IN ... USE ... END WHEN (which lies outside the exception-handler) may not name the block's own END WHEN line: GOTO, GOSUB, ON ... GOTO and IF ... THEN line-number are all rejected before the program runs. A jump inside the when-block, a jump from the handler to its END WHEN line and a jump to the END WHEN line of a WHEN EXCEPTION USE block stay valid."
+  tests: [EXC-0107, EXC-0108, EXC-0109, EXC-0110, EXC-0111]
+  external: []
+  covers: [l.8701-8706]
+
+- id: A-12.1.2-TR98
+  clause: "12.1.2"
+  ecma: "12.1.2"
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  status: claimed
+  claim: "The HANDLER line of a detached handler lies outside the exception handler, so a control transfer from outside it may name that line: GOTO, GOSUB, ON ... GOTO, ON ... GOSUB, IF ... THEN line-number, and a jump from the protected part of a WHEN block. Inside a SUB the handler defined there can be named from that SUB, in internal and external SUBs alike. Reaching the HANDLER line other than through an exception continues at the line after END HANDLER without running the handler, and the handler still serves a real exception afterwards."
+  tests: [EXC-0192, EXC-0193, EXC-0194, EXC-0195, EXC-0196, EXC-0197, EXC-0198, EXC-0199, EXC-0200]
+  external: []
+  covers: [l.8701-8706, l.8860-8863]
+
+- id: A-12.1.2-TR98B
+  clause: "12.1.2"
+  ecma: "12.1.2"
+  ecma_level: BASIC-2
+  module: core
+  kind: syntax
+  status: claimed
+  claim: "Naming a handler line does not open the rest of the handler: from outside, neither a line inside the exception handler nor its END HANDLER line can be named; from inside the handler, its own HANDLER line and the HANDLER line of another handler are lines outside it; and the USE part of a WHEN block, being an exception handler, cannot name a HANDLER line. Each program is rejected before it runs."
+  tests: [EXC-0201, EXC-0202, EXC-0203, EXC-0204, EXC-0205]
+  external: []
+  covers: [l.8701-8706]
+
+- id: A-12.1.2-04
+  clause: "12.1.2"
+  ecma: "12.1.2"
+  ecma_level: BASIC-2
+  module: core
+  kind: syntax
+  claim: "A detached handler named in a WHEN EXCEPTION USE line must be defined inside the same internal procedure when that WHEN line sits inside one, and inside the same program unit but outside any procedure otherwise; naming a handler defined elsewhere is rejected before the program runs."
+  tests: [EXC-0015, EXC-0016, EXC-0017, EXC-0018]
+  external: []
+  covers: [l.8708-8712]
+
+- id: A-12.1.2-05
+  clause: "12.1.2"
+  ecma: "12.1.2"
+  ecma_level: BASIC-2
+  module: core
+  kind: syntax
+  claim: "Handler names must be unique within a program unit, and a detached HANDLER block may not be placed inside a protection block; either violation is rejected before the program runs."
+  tests: [EXC-0019, EXC-0020]
+  external: []
+  covers: [l.8713-8715]
+
+- id: A-12.1.2-06
+  clause: "12.1.2"
+  ecma: "12.1.2"
+  ecma_level: BASIC-2
+  module: core
+  kind: syntax
+  status: claimed
+  claim: "A WHEN EXCEPTION protection block may not be nested inside an exception handler; such a program is rejected before it runs."
+  tests: [EXC-0021]
+  external: []
+  covers: [l.8717-8718]
+
+- id: A-12.1.3-EX
+  clause: "12.1.3"
+  ecma: "12.1.3"
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "The three example programs of section 12.1.3 (resupplying an input reply after a bad one, dynamic file opening through a detached handler, and nested handlers using RETRY) are accepted and behave as shown."
+  tests: [EXC-0022, EXC-0023, EXC-0024]
+  external: []
+  covers: [l.8720-8785]
+
+- id: A-12.1.4-01
+  clause: "12.1.4"
+  ecma: "12.1.4"
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "An exception raised outside any WHEN block is handled by the default procedures of the standard, while one raised inside a WHEN block skips those defaults and transfers control to the handler of the innermost protection block containing it."
+  tests: [EXC-0025, EXC-0026]
+  external: []
+  covers: [l.8788-8798]
+
+- id: A-12.1.4-02
+  clause: "12.1.4"
+  ecma: "12.1.4"
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "Inside a handler, EXTYPE yields the number of the exception that triggered the handler and EXLINE yields the line number of the statement whose execution raised it."
+  tests: [EXC-0027]
+  external: []
+  covers: [l.8809-8816]
+
+- id: A-12.1.4-03
+  clause: "12.1.4"
+  ecma: "12.1.4"
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "CONTINUE inside a handler resumes execution at the statement lexically after the one that raised the exception; when that statement was part of a larger structure (loop, FOR, IF-THEN, SELECT and the like), resumption happens after the whole structure."
+  tests: [EXC-0028]
+  external: []
+  covers: [l.8820-8827]
+
+- id: A-12.1.4-04
+  clause: "12.1.4"
+  ecma: "12.1.4"
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "RETRY inside a handler sends control back to the statement or line that raised the exception so it runs again; when that statement was reading input, the previous reply is discarded and a fresh one is requested."
+  tests: [EXC-0029, EXC-0030, EXC-0075, EXC-0076]
+  external: []
+  covers: [l.8829-8834]
+
+- id: A-12.1.4-05
+  clause: "12.1.4"
+  ecma: "12.1.4"
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "When control falls off the end of a handler (the END WHEN of the handler or an END HANDLER), execution resumes at the line after the END WHEN of the protection block, with no other effect."
+  tests: [EXC-0031]
+  external: []
+  covers: [l.8837-8840]
+
+- id: A-12.1.4-06
+  clause: "12.1.4"
+  ecma: "12.1.4"
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "EXIT HANDLER re-raises the current exception into the lexical environment surrounding the innermost protection block, so handling proceeds as if the handler did not exist, apart from statements already executed inside it."
+  tests: [EXC-0032]
+  external: []
+  covers: [l.8842-8853]
+
+- id: A-12.1.4-07
+  clause: "12.1.4"
+  ecma: "12.1.4"
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "Reaching the USE line of a when-use block, the END WHEN of a when-use-name block, or the END HANDLER of a detached handler resumes execution at the line after the corresponding END WHEN; reaching a detached HANDLER line without an exception resumes at the line right after its END HANDLER."
+  tests: [EXC-0033]
+  external: []
+  covers: [l.8854-8863]
+
+- id: A-12.1.4-08
+  clause: "12.1.4"
+  ecma: "12.1.4"
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "CAUSE EXCEPTION raises a fatal exception and sets EXTYPE to the rounded value of its exception-type argument (the exception listed for a cause-statement in section 12.1.5)."
+  tests: [EXC-0034, EXC-0035, EXC-0260, EXC-0261]
+  external: []
+  covers: [l.8869-8871, l.8936]
+
+- id: A-12.1.4-09
+  clause: "12.1.4"
+  ecma: "12.1.4"
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "An exception raised by a statement sitting inside an exception handler is not caught by that handler; it is handled by the default exception-handling procedures."
+  tests: [EXC-0036, EXC-0083]
+  external: []
+  covers: [l.8873-8875]
+
+- id: A-12.1.4-10
+  clause: "12.1.4"
+  ecma: "12.1.4"
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "A fatal exception in a procedure that no enclosing WHEN block catches propagates back to the line that invoked the procedure, and keeps propagating until a handler resolves it or the main program applies the default procedures."
+  tests: [EXC-0037]
+  external: []
+  covers: [l.8877-8897]
+
+- id: A-12.1.4-11
+  clause: "12.1.4"
+  ecma: "12.1.4"
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "When a handler is entered because of such propagation, EXTYPE returns 100000 plus the value it would have had where the exception first arose, and EXLINE returns the number of the most recent line the exception was propagated to."
+  tests: [EXC-0038, EXC-0079]
+  external: []
+  covers: [l.8900-8906]
+
+- id: A-12.1.4-12
+  clause: "12.1.4"
+  ecma: "12.1.4"
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "The default exception handling always reports the EXTYPE and EXLINE of the original exception."
+  tests: [EXC-0039]
+  external: []
+  covers: [l.8910-8911]
+
+- id: A-12.1.4-13
+  clause: "12.1.4"
+  ecma: "12.1.4"
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "EXTYPE values for exceptions defined by local enhancements are negative, and when such a negative value is propagated it becomes -100000 plus the value for the original exception."
+  tests: [EXC-0040, EXC-0080]
+  external: []
+  covers: [l.8913-8917]
+
+- id: A-12.1.4-14
+  clause: "12.1.4"
+  ecma: "12.1.4"
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "EXTYPE values from 1 to 999 are reserved: neither future revisions of the standard nor local enhancements may assign them."
+  tests: [EXC-0041]
+  external: []
+  covers: [l.8919-8921]
+
+- id: A-12.1.4-15
+  clause: "12.1.4"
+  ecma: "12.1.4"
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "EXTEXT$ with a numeric argument returns the system message text for the exception number obtained by rounding the argument, and returns the null string when that number is not a standard system exception."
+  tests: [EXC-0042, EXC-0100, EXC-0101]
+  external: []
+  covers: [l.8923-8927]
+
+- id: A-12.1.4-16
+  clause: "12.1.4"
+  ecma: "12.1.4"
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "If the exception propagates all the way to the main program without any handler being invoked there, the default handling procedures of the standard apply."
+  tests: [EXC-0043]
+  external: []
+  covers: [l.8930-8932]
+
+# --- The default recovery of 8203/8204 (10.4.5 l.5838-5844) does not apply while a
+#     when-block is active (2.4 l.600-602, 12.1.4 l.8788-8798): control goes to the
+#     handler with EXTYPE and EXLINE.
+- id: A-12.1.4-17
+  clause: "12.1.4"
+  ecma: "12.1.4"
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "Inside a WHEN block, a PRINT USING whose value overflows its format-item (nonfatal 8203, or 8204 for the exrad) emits nothing for the failing field: no asterisk fill and no unformatted value on the next line, because those are the default recovery procedures of 10.4.5, which do not apply when a programmer handler exists; values preceding the failing one in the same statement were already generated (10.4.4.2) and remain on the current line, and no final end-of-line is generated (10.4.4.5) since generation did not complete."
+  tests: [EXC-0064, EXC-0065, EXC-0066]
+  external: []
+  covers: [l.600-602, l.5697-5705, l.5789-5792, l.5838-5844, l.8788-8798]
+
+- id: A-12.1.4-18
+  clause: "12.1.4"
+  ecma: "12.1.4"
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "Inside a WHEN block, a PRINT to a file with USING that raises 8203/8204 adds no record to the file at all (not even a partial one, and not even for values preceding the failing one in the same statement), because an exception during data transfer never adds a partial file element (11.3.4) and an exception before completion of the statement adds no record (11.3.4.1)."
+  tests: [EXC-0068]
+  external: []
+  covers: [l.600-602, l.7517-7531, l.7546-7560, l.8788-8798]
+
+- id: A-12.1.4-19
+  clause: "12.1.4"
+  ecma: "12.1.4"
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "Inside a WHEN block, a USING$ call that raises 8203/8204 (the 10.4.5 exceptions apply to USING$ per 6.4.4) is aborted without producing a value: the destination variable keeps its previous value, since the asterisk-filled string is the default recovery, not the function's result."
+  tests: [EXC-0067]
+  external: []
+  covers: [l.600-602, l.2720-2723, l.5838-5844, l.8788-8798]
+
+- id: A-12.1.4-20
+  clause: "12.1.4"
+  ecma: "12.1.4"
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "Inside a WHEN block, a GRAPH TEXT with USING that raises 8203/8204 draws nothing: the asterisk-filled text is the default recovery of 10.4.5, which does not apply when a programmer handler exists."
+  tests: [GFX-0139]
+  external: []
+  covers: [l.600-602, l.10048-10050, l.5838-5844, l.8788-8798]
+
+- id: A-12.1.6-01
+  clause: "12.1.6"
+  ecma: "12.1.6"
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "A nonfatal exception raised inside a procedure called from a when-block is not passed back to the calling routine: it is handled by an exception handler in the called routine if there is one, otherwise by the system handler, which reports it at the line where it occurred and lets the called routine continue."
+  tests: [EXC-0077, EXC-0078]
+  external: []
+  covers: [l.8970-8972]
+
+- id: A-12.2.3-EX
+  clause: "12.2.3"
+  ecma: "12.2.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "Both forms shown in the examples of section 12.2.3, plain TRACE ON and TRACE ON TO #3, are accepted."
+  tests: [EXC-0044]
+  external: []
+  covers: [l.9065-9070]
+
+- id: A-12.2.4-01
+  clause: "12.2.4"
+  ecma: "12.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Every program unit (the main program or a procedure; an internal SUB, FUNCTION or handler is not one) carries a debugging status (active or inactive) of its own: inactive for all units at program start, persisting across invocations of that unit except in the main program, and changing one unit's status never affects another unit."
+  tests: [EXC-0045]
+  external: []
+  covers: [l.9073-9080]
+
+- id: A-12.2.4-02
+  clause: "12.2.4"
+  ecma: "12.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "DEBUG ON activates debugging and DEBUG OFF deactivates it for the program unit containing the statement, lasting for the rest of that invocation and every later invocation of that unit until the opposite statement runs there."
+  tests: [EXC-0046]
+  external: []
+  covers: [l.9082-9092]
+
+- id: A-12.2.4-03
+  clause: "12.2.4"
+  ecma: "12.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Executing BREAK while debugging is active raises an exception whose standard recovery reports the line number of the BREAK and tells the user that debugger interaction is possible."
+  tests: [EXC-0047]
+  external: []
+  covers: [l.9094-9096]
+
+- id: A-12.2.4-04
+  clause: "12.2.4"
+  ecma: "12.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Executing BREAK while debugging is inactive has no effect; execution simply moves on to the next line."
+  tests: [EXC-0048]
+  external: []
+  covers: [l.9102-9104]
+
+- id: A-12.2.4-05
+  clause: "12.2.4"
+  ecma: "12.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "With debugging active, TRACE ON and TRACE OFF switch tracing on or off in the program unit containing the statement; tracing is off at each entry to a program unit (an external procedure, not an internal SUB or FUNCTION), and with debugging inactive a TRACE statement has no effect."
+  tests: [EXC-0049, EXC-0050]
+  external: []
+  covers: [l.9106-9113]
+
+- id: A-12.2.4-06
+  clause: "12.2.4"
+  ecma: "12.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Running a TRACE statement never changes the debugging status, and running a DEBUG statement never changes the tracing status."
+  tests: [EXC-0051]
+  external: []
+  covers: [l.9115-9117]
+
+- id: A-12.2.4-07
+  clause: "12.2.4"
+  ecma: "12.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "While tracing is on and debugging active, every executed line that interrupts the sequential flow reports its own line number and that of the next line to run, and every line assigning to a variable or array element reports its line number together with the values assigned."
+  tests: [EXC-0052]
+  external: []
+  covers: [l.9119-9131]
+
+- id: A-12.2.4-08
+  clause: "12.2.4"
+  ecma: "12.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Trace reports are written to the display-format file on the channel named in TRACE ... TO, or to the device of channel zero when no channel is named."
+  tests: [EXC-0053]
+  external: []
+  covers: [l.9132-9136]
+
+- id: A-12.2.4-09
+  clause: "12.2.4"
+  ecma: "12.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Every trace report at least shows the traced variable's name as it appears in the statement plus its value, and for an array element the subscript values as well."
+  tests: [EXC-0054]
+  external: []
+  covers: [l.9138-9142]
+
+- id: A-12.2.4-TR88A
+  clause: "12.2.4"
+  ecma: "12.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "An internal SUB, an internal FUNCTION and a handler are not program units (a program unit is a main program or a procedure; internal procedure definitions lie inside the unit that contains them), so they share the debugging and tracing status of that unit and the lines of their bodies, and the use-part of a handler, are traced like any other line of the unit."
+  tests: [EXC-0102]
+  external: []
+  covers: [l.9073-9079, l.9109-9111, l.9117-9127, l.1193-1198, l.1313, l.4728-4735]
+
+- id: A-12.2.4-TR88B
+  clause: "12.2.4"
+  ecma: "12.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "GOSUB, ON GOSUB and RETURN do not change the program unit, so tracing stays on after them: the subroutine lines, the line after the GOSUB and every later line are reported, and the RETURN line reports the line it returns to."
+  tests: [EXC-0103]
+  external: []
+  covers: [l.9109-9111, l.9117-9127, l.3678-3716]
+
+- id: A-12.2.4-TR88C
+  clause: "12.2.4"
+  ecma: "12.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "With tracing on, the lines CALL (to the first line of the SUB body), END SUB (to the line after the CALL), EXIT DO (to the line after the loop-line), LOOP (back to the do-line) and EXIT FOR (to the line after the next-line) are lines that interrupt the sequential order and report their own line number and that of the next line to be executed; so does the exit of a DO WHILE or DO UNTIL."
+  tests: [EXC-0104]
+  external: []
+  covers: [l.9117-9123, l.3837-3841, l.3862-3865, l.4608-4610, l.4625-4627]
+
+- id: A-12.2.4-TR88D
+  clause: "12.2.4"
+  ecma: "12.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "With tracing on, a line that assigns values reports them whatever the statement: MAT INPUT, LINE INPUT, MAT READ, an array assignment (all the new elements) and a LET inside an external SUB, as well as LET, INPUT, READ and FOR."
+  tests: [EXC-0105]
+  external: []
+  covers: [l.9124-9127, l.9139-9143, l.9159-9161]
+
+- id: A-12.2.4-TR95A
+  clause: "12.2.4"
+  ecma: "12.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "With tracing on, the use-line of a when-use-block reached without an exception reports itself and the line after the protection-block, and the end-handler-line of a detached handler reports itself and the line after the end-when-line of the block that raised the exception; the end-when-lines that are not executed, and the use-part of a block that did not raise, are not reported, and the when-line is reported once."
+  tests: [EXC-0132]
+  external: []
+  covers: [l.9117-9121, l.8851-8859]
+
+- id: A-12.2.4-TR95B
+  clause: "12.2.4"
+  ecma: "12.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "With tracing on, an internal SUB or FUNCTION line reached in the sequence of lines reports itself and the line after its END SUB or END FUNCTION, which is the next line to be executed; the body, which is not executed, is not reported."
+  tests: [EXC-0133]
+  external: []
+  covers: [l.9117-9121, l.4637-4640, l.4366-4369]
+
+- id: A-12.2.4-TR95C
+  clause: "12.2.4"
+  ecma: "12.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "With tracing on, a select-line is reported once, with the line of the case whose case-list matches as the next line to be executed, and that case-line is reported once; the case-lines that do not match are not reported."
+  tests: [EXC-0134]
+  external: []
+  covers: [l.9117-9127, l.4036-4050]
+
+- id: A-12.2.4-TR102
+  clause: "12.2.4"
+  ecma: "12.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "With tracing on, a line whose execution raises an exception that transfers control to an exception-handler is reported together with the first line of the handler as the next line to be executed, for a handler in line and for a detached handler; the use-line and the handler-line are not executed and are not reported."
+  tests: [EXC-0206]
+  external: []
+  covers: [l.9117-9121, l.1365-1371, l.8790-8806]
+
+- id: A-12.2.4-TR111
+  clause: "12.2.4"
+  ecma: "12.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "With tracing on, an exception raised in an external procedure without debugging and handled by the exception-handler of the calling unit is reported by the calling unit as the line of its CALL together with the first line of the handler; and when the first line of the handler is a remark-line, that line is reported as the next line to be executed, for a handler in line and for a detached handler."
+  tests: [EXC-0207, EXC-0208]
+  external: []
+  covers: [l.9073-9080, l.9119-9126, l.8887-8908, l.8790-8806]
+
+- id: A-12.2.4-TR120
+  clause: "12.2.4"
+  ecma: "12.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "With tracing on, an exception raised in an external procedure without debugging and propagated out of it by EXIT HANDLER to the exception-handler of the calling unit is reported by the calling unit as the line of its CALL together with the first line of the handler."
+  tests: [EXC-0209]
+  external: []
+  covers: [l.9119-9126, l.8842-8851, l.8887-8908]
+
+- id: A-12.2.4-TR125
+  clause: "12.2.4"
+  ecma: "12.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "With tracing on, the line of an EXIT HANDLER that passes control to another exception-handler (the enclosing WHEN of the same unit, or the handler of the calling unit) is reported together with the first line of that handler, not with its use-line or handler-line, which is not executed."
+  tests: [EXC-0210]
+  external: []
+  covers: [l.9119-9126, l.8842-8851, l.8887-8908]
+
+- id: E-10007
+  clause: "12.2.5"
+  ecma: "12.2.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "Executing BREAK while debugging is active raises the nonfatal exception 10007; its recovery reports the BREAK line number and permits interaction with the debugging system."
+  tests: [EXC-0055, EXC-0056]
+  external: []
+  covers: [l.9146-9149, l.13007]
+
+- id: E-7401
+  clause: "12.2.5"
+  ecma: "12.2.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "Directing a trace report to an inactive channel raises the fatal exception 7401."
+  tests: [EXC-0057]
+  external: []
+  covers: [l.9151-9152, l.12948]
+
+- id: E-7402
+  clause: "12.2.5"
+  ecma: "12.2.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "Sending trace output to a channel whose file is not in display format and was not opened for OUTPUT or OUTIN access raises the fatal exception 7402."
+  tests: [EXC-0058, EXC-0059]
+  external: []
+  covers: [l.9154-9156, l.12949-12950]
+
+- id: D-12.1-1
+  clause: "12.1"
+  ecma: "12.1"
+  ecma_level: BASIC-2
+  module: core
+  kind: implementation-defined
+  claim: "Which EXTYPE value a local enhancement assigns to each of its own exceptions (Appendix C, subsection 12.1 item 1)."
+  tests: [EXC-0060]
+  value: "Negative EXTYPE values identify local-enhancement exceptions: this implementation uses -99000, -99001, -99004 and -99993 for its internal errors; when such a value is propagated out of a procedure it becomes -100000 plus the original value (e.g. -100042 for -42)."
+  external: []
+  covers: [l.8914-8915]
+
+- id: D-12.1-2
+  clause: "12.1"
+  ecma: "12.1"
+  ecma_level: BASIC-2
+  module: core
+  kind: implementation-defined
+  claim: "The precise format of the string that EXTEXT$ returns (Appendix C, subsection 12.1 item 2)."
+  tests: [EXC-0061]
+  value: "EXTEXT$(n) rounds n to an integer and returns the Table 9 message text in the form description plus parenthesized clause list, e.g. EXTEXT$(1001) is the string Overflow in evaluating numeric-constant (5.1, 15.1); for a number that is not a standard system exception (e.g. 2002) it returns the null string. The real-time codes of Table 9 (1201-1204, 4201-4204, 6301, 12001-12007, 12101-12103, 12201) also return the null string, because the real-time module is not implemented (A-14-01)."
+  external: []
+  covers: [l.9039-9040]
+
+- id: D-12.2-1
+  clause: "12.2"
+  ecma: "12.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "What the debugging system allows the user to do at a break point, including how execution continues or ends (Appendix C, subsection 12.2 item 1)."
+  tests: [EXC-0062]
+  value: "No interactive debugger in the CLI: an uncaught BREAK with debugging active prints a Warning 10007 line report and continues with the next line (exit 0); 10007 is nonfatal and may be caught in a WHEN block, where CONTINUE or RETRY resumes execution."
+  external: []
+  covers: [l.9095-9101]
+
+- id: D-12.2-2
+  clause: "12.2"
+  ecma: "12.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "The exact form of the trace reports (Appendix C, subsection 12.2 item 2)."
+  tests: [EXC-0063, EXC-0081, EXC-0082, EXC-0265]
+  value: "Each trace report is a single line [TRACE] followed by the line number and the source text of that line, sent to the channel named in TRACE ... TO or to channel zero, e.g. [TRACE] 130 LET A = 42. A TRACE statement without channel-expression also writes 'Trace mode ON'/'Trace mode OFF' on channel zero; with TO #ch the reports go to that file (§12.2.4 l.9132-9136 fixes the destination; only the content is implementation-defined, l.9138) and no mode message is written to channel zero (decision of the project owner, 2026-11-03). The required reports have their own line: a control transfer as [TRACE] A -> B and the assignments of a line as [TRACE] N name=value, with the evaluated subscripts of an array element (C(3)=5), every element of a MAT assignment and string values in quotes; the name is spelled as it appears in the statement that assigns it (LET w = 20 reports w=20; §12.2.4 l.9125-9131)."
+  external: []
+  covers: [l.9132-9136, l.9138-9142, l.9164]
+
+- id: A-12.1.2-TR94
+  clause: "12.1.2"
+  ecma: "12.1.2"
+  ecma_level: BASIC-2
+  module: core
+  kind: syntax
+  claim: "EXTEXT$ takes a single numeric argument and EXTYPE and EXLINE take none: a string argument or two arguments for EXTEXT$, and any argument for EXTYPE or EXLINE, are rejected before the program runs."
+  tests: [EXC-0112, EXC-0113, EXC-0114, EXC-0115]
+  external: []
+  covers: [l.8688-8692]
+
+- id: A-12.1.4-TR128
+  clause: "12.1.4"
+  ecma: "12.1.4"
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "A detached-handler of an EXTERNAL SUB, FUNCTION or PICTURE is part of that program unit and behaves as an exception-handler in its when-use-block: it sees and assigns the parameters of the unit (numeric, string and array, by reference), a function-let in it gives the value of the FUNCTION, and RESTORE n in it may name a DATA line of the unit; a RESTORE n that names a DATA line of another program unit is rejected before the program runs."
+  tests: [PRT-0314, PRT-0315, SEG-0501, SEG-0502, SEG-0503]
+  external: []
+  covers: [l.8805-8807, l.5043-5052, l.4978-4979, l.4718-4723, l.4228-4231]
+
+- id: A-12.1.4-TR130
+  clause: "12.1.4"
+  ecma: "12.1.4"
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "A detached-handler is part of the program unit that contains it: in an EXTERNAL unit its variables are variables of that unit, even when the unit has no parameters (not those of the main program or of another unit); the handler of an internal SUB or FUNCTION sees the parameters of the routine and of its unit, and a function-let in it is a function-let of the FUNCTION, which for an EXTERNAL or internal FUNCTION may be its only one; an IMAGE line or a DIM in the handler of an EXTERNAL unit belongs to that unit and may be used by its body."
+  tests: [SEG-0504, SEG-0505, SEG-0506, SEG-0507, PRT-0316, ARR-0316]
+  external: []
+  covers: [l.8805-8807, l.8708-8710, l.4228-4231, l.2437-2441, l.5621-5622, l.2996-2999, l.1498-1509]
+
+- id: A-12.1.4-TR131
+  clause: "12.1.4"
+  ecma: "12.1.4"
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "EXIT SUB in an exception-handler of a SUB (in-line use-part or detached handler, EXTERNAL or internal SUB) ends the invocation of the SUB: the separate GOSUB stack of the handler is only for RETURN, and EXIT SUB is not a RETURN. When a handler calls a routine that handles an exception of its own, EXTYPE and EXLINE (and the GOSUB stack) of the calling handler are those of the exception that made it run, when control comes back to it."
+  tests: [SEG-0508, SEG-0509, SEG-0510, EXC-0211, EXC-0212, EXC-0213]
+  external: []
+  covers: [l.8864-8866, l.8809-8815, l.4539-4540, l.4622-4627]
+
+- id: A-12.1.4-TR133
+  clause: "12.1.4"
+  ecma: "12.1.4"
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "An EXIT PICTURE in a detached-handler of a PICTURE (EXTERNAL, or internal to the main program or to an EXTERNAL unit) occurs within the picture-def, since the handler is part of the program unit that contains it, and ends the picture. In the detached-handler of a SUB or of the main program it is still rejected."
+  tests: [GFX-0187, GFX-0188]
+  external: []
+  covers: [l.10532-10533, l.8805-8807]
+
+- id: A-12.2.4-TR134
+  clause: "12.2.4"
+  ecma: "12.2.4"
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "When a line that assigns a value to a formal parameter of a SUB (by reference, with a literal argument, in an internal or an EXTERNAL SUB, or in its detached-handler) is traced, the report includes the name of the parameter and the value assigned, as for any other variable."
+  tests: [EXC-0214, EXC-0215, EXC-0216]
+  covers: [l.9138-9143]
+  external: []
+
+- id: A-12.2.4-TR136
+  clause: "12.2.4"
+  ecma: "12.2.4"
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "When a line that assigns a value to an element of an array that is a formal parameter of a SUB (a vector or a matrix, in an internal or an EXTERNAL SUB), or that assigns to the whole formal-array with MAT, is traced, the report includes the name of the formal-array, the subscripts and the value of each element assigned, as for a local array."
+  tests: [EXC-0217, EXC-0218, EXC-0219, EXC-0220]
+  covers: [l.9128-9143, l.9160-9162]
+  external: []
+
+- id: A-12.1.4-TR143
+  clause: "12.1.4"
+  ecma: "12.1.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "The detached-handler of the main program, and that of an internal SUB or FUNCTION of the main program, sees the arrays that the main program declares with DIM, numeric and string, and may read and assign their elements, as the USE part of the when-block does."
+  tests: [ARR-0370, ARR-0371]
+  covers: [l.8805-8807, l.8708-8713, l.2995-3002]
+  external: []
+
+- id: A-12.1.4-TR151
+  clause: "12.1.4"
+  ecma: "12.1.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A detached-handler whose exception-handler is empty (no lines, or only a REM line) is valid: when the exception is handled by it, execution continues with the line that follows the block that raised the exception (after its END WHEN), in the main program, in an internal or EXTERNAL SUB and in a FUNCTION, whether the exception is raised by CAUSE EXCEPTION or by a run-time error."
+  tests: [EXC-0230, EXC-0231, EXC-0232, EXC-0233, EXC-0234]
+  covers: [l.8857-8860, l.8668-8670]
+  external: []
+
+- id: A-12.2.4-TR161
+  clause: "12.2.4"
+  ecma: "12.2.4"
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "When line-numbers are repeated between program-units (4.2.2), the trace identifies a line by its program-unit: the transfer from the END SUB of line 40 of an external unit to line 40 of the calling program is reported (40 -> 40) and the line that follows it is traced, and the report of a line shows the text of that line in its own unit, not that of a line with the same number in another unit."
+  tests: [EXC-0240, EXC-0241, EXC-0242, EXC-0243]
+  covers: [l.9119-9126, l.9138-9142, l.1317-1320]
+  external: []
+
+- id: A-12.1.4-CL13
+  clause: "12.1.4"
+  ecma: "12.1.4"
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "An exception raised in a GOSUB or ON GOSUB subroutine called from inside a when-block is not propagated, because a GOSUB subroutine is part of the same block and not a procedure-part or an internal-proc-def: the handler sees the original EXTYPE (3001 for a division by zero), without 100000 added, and EXLINE is the line whose execution caused the exception. RETRY and CONTINUE in that handler resume inside the subroutine (the line again, or the next one) and its RETURN returns after the GOSUB; a handler that ends at END WHEN or EXIT HANDLER leaves no GOSUB frame pending. Procedure-parts and internal-proc-defs (SUB, FUNCTION, DEF, PICTURE) still add 100000 once, or -100000 for a negative EXTYPE."
+  tests: [EXC-0244, EXC-0245, EXC-0246, EXC-0247, EXC-0248, EXC-0249, EXC-0250, EXC-0251, EXC-0252, EXC-0253, EXC-0254, EXC-0255, EXC-0256, EXC-0257, EXC-0258, EXC-0259]
+  covers: [l.8877-8905, l.8913-8917, l.8808-8814, l.8820-8851]
+  external: []

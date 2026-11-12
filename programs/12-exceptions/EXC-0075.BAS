@@ -1,0 +1,26 @@
+1 REM FBCS EXC-0075
+2 REM CLAIM A-12.1.4-04
+3 REM TYPE SELF
+10 REM RETRY re-executes the statement that failed (line 60),
+20 REM not the tail of the previous statement (line 50).
+30 DIM A(3)
+40 LET K = 4
+50 LET HITS = 0
+60 WHEN EXCEPTION IN
+70   LET N = 1
+80   LET X = A(K)
+90   PRINT X
+100 USE
+110   LET HITS = HITS + 1
+120   IF EXTYPE = 2001 AND EXLINE = 80 AND HITS = 1 THEN
+130     LET K = 3
+140     LET A(3) = 9
+150   ELSE
+160     PRINT "*** TEST FAILED ***"; EXTYPE; EXLINE; HITS
+170     LET K = 3
+180     LET A(3) = 9
+190   END IF
+200   RETRY
+210 END WHEN
+220 IF HITS = 1 AND X = 9 THEN PRINT "*** TEST PASSED ***" ELSE PRINT "*** TEST FAILED ***"; HITS; X
+230 END

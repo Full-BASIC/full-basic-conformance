@@ -1,0 +1,8 @@
+1 REM FBCS GFX-0048
+2 REM CLAIM A-13.3.2-01
+3 REM TYPE REJECT
+4 REM 13.3.2 l.9848-9851 (a lone array is 2-D) is syntactic, rejected at load (2.3). Run-time 6401: GFX-0178.
+100 PRINT "EXECUTED"
+110 DIM A(3)
+120 MAT GRAPH POINTS: A
+130 END

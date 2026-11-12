@@ -1,0 +1,10 @@
+1 REM FBCS NUM-0244
+2 REM CLAIM A-5.6.4-TR138
+3 REM TYPE OUTPUT
+4 REM STD 5.6.4 l.2294-2295 and 8.2.6: GOTO to a line holding only DECLARE NUMERIC (main program) continues at the next line.
+10 LET K = 0
+20 DECLARE NUMERIC A
+30 LET K = K + 1
+40 IF K < 2 THEN GOTO 20
+50 PRINT K
+60 END

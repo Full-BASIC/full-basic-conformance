@@ -1,0 +1,11 @@
+1 REM FBCS SEG-0670
+2 REM CLAIM A-9.2.2-TR171
+3 REM TYPE REJECT
+4 REM 9.2.2 l.4554-4562: the same for an internal SUB with a numeric parameter and a channel argument.
+6 PRINT "EXECUTED"
+10 SUB W(X)
+20 PRINT X
+30 END SUB
+35 OPEN #1: NAME "Z", ACCESS OUTPUT
+40 CALL W(#1)
+90 END

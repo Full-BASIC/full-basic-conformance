@@ -1,0 +1,2598 @@
+- id: A-11.3.2-01
+  clause: "11.3.2"
+  ecma: "11.3.2"
+  ecma_level: BASIC-2
+  module: files
+  kind: syntax
+  claim: "PRINT # accepts an if-there io-recovery in its print control; when no record exists at the pointer nothing is taken and the data is written."
+  tests: [FIL-0001]
+  external: []
+- id: A-11.3.2-02
+  clause: "11.3.2"
+  ecma: "11.3.2"
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "PRINT # with an if-there io-recovery takes the recovery action when a record exists at the pointer, and leaves the file unchanged."
+  tests: [FIL-0002]
+  external: []
+- id: A-11.3.2-03
+  clause: "11.3.2"
+  ecma: "11.3.2"
+  ecma_level: BASIC-2
+  module: files
+  kind: syntax
+  claim: "The recovery action of an if-there in PRINT # may be EXIT DO."
+  tests: [FIL-0003]
+  external: []
+
+- id: E-7320
+  clause: "11.5.5.1"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "REWRITE or DELETE addressed to channel zero raises the fatal exception 7320, which a handler can intercept."
+  tests: [FIL-0004, FIL-0005, FIL-0006]
+  covers: [l.8592, l.12944]
+  external: []
+
+- id: E-7322
+  clause: "11.5.5.1"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "REWRITE or DELETE on a file opened as INPUT or as OUTPUT raises exception 7322 and leaves the file unchanged."
+  tests: [FIL-0007, FIL-0008]
+  covers: [l.8599, l.12946]
+  external: []
+
+- id: E-8302
+  clause: "11.4.5.3"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "Reading a record longer than the RECSIZE given when the file was opened raises exception 8302 and assigns nothing to the receiving variable."
+  tests: [FIL-0009, FIL-0010, FIL-0011]
+  covers: [l.8404, l.12985]
+  external: []
+
+- id: A-11.3.4.2-01
+  clause: "11.3.4.2"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "MAT PRINT # on a DISPLAY file writes the elements of the array as a record of the file, in place of a line."
+  tests: [FIL-0012]
+  external: []
+- id: A-11.3.4.2-02
+  clause: "11.3.4.2"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "MAT PRINT # with an if-there io-recovery takes the recovery action when a record exists at the pointer, and leaves the file unchanged."
+  tests: [FIL-0013]
+  external: []
+- id: A-11.3.4.1-01
+  clause: "11.3.4.1"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "One PRINT # statement on a DISPLAY file creates exactly one record, and no further record follows it."
+  tests: [FIL-0014]
+  external: []
+
+- id: A-11.2.4.2-01
+  clause: "11.2.4.2"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "On a sequential file, WRITE # with an if-there io-recovery takes the recovery action when the pointer identifies an existing record, and leaves the file unchanged."
+  tests: [FIL-0015]
+  external: []
+- id: A-11.2.4.2-02
+  clause: "11.2.4.2"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "On a sequential file, PRINT # with an if-there io-recovery takes the recovery action when the pointer identifies an existing record, and leaves the file unchanged."
+  tests: [FIL-0016]
+  external: []
+- id: A-11.2.4.2-03
+  clause: "11.2.4.2"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "On a sequential file, an if-there io-recovery is not taken when the pointer is at end of file, so the data is written."
+  tests: [FIL-0017]
+  external: []
+
+- id: A-11.1.5-01
+  clause: "11.1.5"
+  ecma: "11.1.5"
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "OPEN with ACCESS INPUT of a file that does not exist raises a 71xx exception (not 7100, which is an unrecognizable attribute), which a handler can intercept and which reports the line of the OPEN."
+  tests: [FIL-0018]
+  external: []
+- id: A-11.1.5-03
+  clause: "11.1"
+  ecma: "11.1"
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "OPEN with ACCESS INPUT of a file that exists opens it and the records can be read."
+  tests: [FIL-0020]
+  external: []
+- id: A-11.3.4.1-02
+  clause: "11.3.4.1"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "A PRINT # USING on a DISPLAY file creates one record for each pass of the format-string (an end-of-record replaces each end-of-line), and no further record follows the last one."
+  tests: [FIL-0021, FIL-0191]
+  external: []
+- id: A-11.3.4.1-03
+  clause: "11.3.4.1"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "A PRINT # statement with no print items creates a record of zero characters, in sequential and in relative DISPLAY files."
+  tests: [FIL-0022]
+  external: []
+- id: A-11.2.4.2-04
+  clause: "11.2.4.2"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "A not-missing-recovery that is not taken because data-found is false is ignored: it does not carry over to a later write, which on an existing record without a recovery raises exception 7308, in relative and keyed files."
+  tests: [FIL-0023]
+  external: []
+- id: A-11.3.4.2-03
+  clause: "11.3.4.2"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "An array-print-statement whose output list ends with a semicolon leaves a partial record in a DISPLAY file; a following print-statement on the same channel completes that record, in sequential and relative files."
+  tests: [FIL-0024]
+  external: []
+- id: A-11.3.4.1-04
+  clause: "11.3.4.1"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "A PRINT # statement whose print-list ends with a print-separator (semicolon or comma) does not end the record: a following print-statement on the same channel continues it, and a print-statement with no items completes it, in sequential and relative DISPLAY files."
+  tests: [FIL-0025]
+  external: []
+- id: A-11.3.4.1-05
+  clause: "11.3.4.1"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  status: claimed
+  claim: "A partial record left by a PRINT # (print-list ending with a print-separator) is completed with an end-of-record when the next operation of the channel is anything other than a PRINT # with an absent record-setter, such as CLOSE or MAT PRINT #, so the partial record is not lost in a relative DISPLAY file."
+  tests: [FIL-0190]
+  external: []
+  covers: [l.7573-7577]
+- id: A-11.3.4.1-06
+  clause: "11.3.4.1"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  status: claimed
+  claim: "In a SEQUENTIAL DISPLAY file, a partial record left by PRINT # (trailing print-separator) is completed with an end-of-record before any other record operation of the channel that is not a PRINT # with an absent record-setter — e.g. WRITE # starts a new record (two records), as does SET #n: POINTER NEXT — while a SET with only ZONEWIDTH/MARGIN or an ASK does not complete it: the partial survives and the new value applies when it is later completed (11.3.4.4 l.7626-7628, 11.3.4.3 l.7608-7609)."
+  tests: [FIL-0200]
+  external: []
+  covers: [l.7574-7578, l.7685-7689, l.7626-7628, l.7608-7609, l.7211-7215]
+- id: A-11.3.4.1-CL33
+  clause: "11.3.4.1"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  status: claimed
+  claim: "When a SEQUENTIAL DISPLAY channel is closed, or the program terminates with the channel still open, while a partial record left by a PRINT # with a trailing print-separator is pending, the partial record is completed with an end-of-record, so a later opening of the file starts a new record instead of continuing the old one."
+  tests: [FIL-0568]
+  external: []
+  covers: [l.7573-7578, l.6902-6909]
+- id: A-11.3.2-13
+  clause: "11.3.2"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: syntax
+  status: claimed
+  claim: "The output-list of PRINT # USING is expression (comma expression)* with an optional final semicolon: a trailing comma is rejected at load."
+  tests: [FIL-0192]
+  external: []
+  covers: [l.5574]
+- id: E-7308
+  clause: "11.3.5.2"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "A data creation statement on a sequential file whose pointer identifies an existing record, with no not-missing-recovery, raises the fatal exception 7308 and leaves the pointer and the file unchanged."
+  tests: [FIL-0026, FIL-0027]
+  covers: [l.7513-7516, l.7904-7908, l.12933]
+  external: []
+- id: A-11.3.2-04
+  clause: "11.3.2"
+  ecma: "11.3.2"
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "A data creation statement on a sequential file whose pointer is at end of file appends a record and raises no exception."
+  tests: [FIL-0028]
+  covers: [l.7519-7525]
+  external: []
+
+
+# Section 11, general
+- id: A-11-01
+  clause: "11"
+  ecma: "11"
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "The implementation supplies some means of creating, preserving and retrieving files, and the input and output operations on those files behave exactly as this section prescribes."
+  tests: [FIL-0029]
+  external: []
+  covers: [l.6183, l.6185]
+- id: A-11-02
+  clause: "11"
+  ecma: "11"
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "A device need not accept the minimum record size of 132 characters, but the implementation documents the smallest record size each supported device accepts."
+  tests: [FIL-0030]
+  external: []
+  covers: [l.6293]
+- id: A-11-03
+  clause: "11"
+  ecma: "11"
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "On interactive terminal devices the prompt, timeout and time-inquiry input controls are supported, and the implementation defines which devices count as interactive terminals."
+  tests: [FIL-0031]
+  external: []
+  covers: [l.6305]
+
+# 11.1.2 Syntax
+- id: A-11.1.2-01
+  clause: "11.1.2"
+  ecma: "11.1.2"
+  ecma_level: BASIC-2
+  module: files
+  kind: syntax
+  claim: "Each file attribute may occur at most once in the attribute list of an OPEN."
+  tests: [FIL-0032, FIL-0212, FIL-0213, FIL-0214]
+  external: []
+  covers: [l.6540]
+- id: A-11.1.2-02
+  clause: "11.1.2"
+  ecma: "11.1.2"
+  ecma_level: BASIC-2
+  module: files
+  kind: syntax
+  status: claimed
+  claim: "Each ask attribute name may occur at most once in the item list of an ASK statement."
+  tests: [FIL-0033]
+  external: []
+  covers: [l.6543]
+- id: A-11.1.2-03
+  clause: "11.1.2"
+  ecma: "11.1.2"
+  ecma_level: BASIC-2
+  module: files
+  kind: syntax
+  status: claimed
+  claim: "The variables of an ask item must agree in number and type with the value of that ask attribute."
+  tests: [FIL-0034]
+  external: []
+  covers: [l.6546]
+- id: A-11.1.3-EX
+  clause: "11.1.3"
+  ecma: "11.1.3"
+  ecma_level: BASIC-2
+  module: files
+  kind: syntax
+  claim: "Every OPEN, CLOSE, ERASE and ASK form shown in the examples of section 11.1.3 is accepted."
+  tests: [FIL-0035]
+  external: []
+  covers: [l.6549-6569]
+
+# 11.1.4 Semantics
+- id: A-11.1.4-01
+  clause: "11.1.4"
+  ecma: "11.1.4"
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "Channel numbers run from zero up to an implementation-defined maximum that is at least 99."
+  tests: [FIL-0036]
+  external: []
+  covers: [l.6579]
+- id: A-11.1.4-02
+  clause: "11.1.4"
+  ecma: "11.1.4"
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "When a program starts, every channel except channel zero is inactive, and channel zero is always active."
+  tests: [FIL-0037]
+  external: []
+  covers: [l.6584, l.6585]
+- id: A-11.1.4-03
+  clause: "11.1.4"
+  ecma: "11.1.4"
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "Channel zero sends and receives exactly where the plain INPUT and PRINT statements do, and acts as a sequential, display, outin device with no record-setter and no erase capability."
+  tests: [FIL-0038]
+  external: []
+  covers: [l.6589, l.6592]
+
+# 11.1.4.1 Open-Statement
+- id: A-11.1.4.1-01
+  clause: "11.1.4.1"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "After a successful OPEN the channel is active and the file open; opening a channel that is already active raises an exception, and at least one nonzero channel (two with the enhanced files module) can be active at a time."
+  tests: [FIL-0039]
+  external: []
+  covers: [l.6604, l.6608]
+- id: A-11.1.4.1-02
+  clause: "11.1.4.1"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "After a successful OPEN a true file is accessible according to its attributes, explicit or default; if it cannot be made accessible that way, an exception results."
+  tests: [FIL-0040]
+  external: []
+  covers: [l.6613]
+- id: A-11.1.4.1-03
+  clause: "11.1.4.1"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "A true file reopened with the same attributes, collate sequence and arithmetic option, and whose contents were preserved meanwhile, is accessible again with its contents faithfully intact."
+  tests: [FIL-0041]
+  external: []
+  covers: [l.6648]
+- id: A-11.1.4.1-04
+  clause: "11.1.4.1"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "The core module accepts and processes sequential display, sequential internal and stream internal files."
+  tests: [FIL-0042]
+  external: []
+  covers: [l.6664]
+- id: A-11.1.4.1-05
+  clause: "11.1.4.1"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "The enhanced internal module also accepts and processes relative internal and keyed internal files."
+  tests: [FIL-0043]
+  external: []
+  covers: [l.6671]
+- id: A-11.1.4.1-06
+  clause: "11.1.4.1"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "The enhanced native module also accepts and processes sequential native, relative native and keyed native files."
+  tests: [FIL-0044]
+  external: []
+  covers: [l.6675]
+- id: A-11.1.4.1-07
+  clause: "11.1.4.1"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: syntax
+  claim: "Letters in a string used as a file attribute value match the keyword regardless of case."
+  tests: [FIL-0045]
+  external: []
+  covers: [l.6681]
+
+# 11.1.4.2 Access-Mode
+- id: A-11.1.4.2-01
+  clause: "11.1.4.2"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "With access mode INPUT the file can be read but not changed: READ, SET with pointer items and INPUT are allowed, PRINT, WRITE, REWRITE and DELETE are not."
+  tests: [FIL-0046]
+  external: []
+  covers: [l.6692]
+- id: A-11.1.4.2-02
+  clause: "11.1.4.2"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "With access mode OUTPUT new data can be appended but existing data can be neither changed nor read back; the permitted statements are PRINT, SET with pointer control and WRITE, while READ, REWRITE, DELETE and INPUT are rejected."
+  tests: [FIL-0047, FIL-0603]
+  external: []
+  covers: [l.6698]
+- id: A-11.1.4.2-03
+  clause: "11.1.4.2"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "ERASE is allowed only on a file whose access mode is OUTIN."
+  tests: [FIL-0048]
+  external: []
+  covers: [l.6707]
+- id: A-11.1.4.2-04
+  clause: "11.1.4.2"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  status: claimed
+  claim: "When OPEN omits the access mode, a file that can be read and written gets OUTIN, one that can only be read gets INPUT and one that can only be written gets OUTPUT; channel zero acts as OUTIN."
+  tests: [FIL-0049]
+  external: []
+  covers: [l.6711, l.6713]
+- id: A-11.1.4.2-05
+  clause: "11.1.4.2"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "After OPEN with access mode OUTPUT the file pointer sits at end of file; with any other access mode it sits at the beginning."
+  tests: [FIL-0050, FIL-0604]
+  external: []
+  covers: [l.6716, l.6717]
+
+# 11.1.4.3 File-Organization
+- id: A-11.1.4.3-01
+  clause: "11.1.4.3"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "When OPEN omits the organization, it is taken from system information about the file if available, and otherwise the file is opened as SEQUENTIAL; channel zero acts as SEQUENTIAL."
+  tests: [FIL-0051]
+  external: []
+  covers: [l.6788, l.6790, l.6791]
+
+# 11.1.4.4 Record-Types
+- id: A-11.1.4.4-01
+  clause: "11.1.4.4"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "When OPEN omits the record type, it is taken from system information about the file if available, and otherwise the file is opened as DISPLAY; channel zero acts as DISPLAY."
+  tests: [FIL-0052]
+  external: []
+  covers: [l.6837]
+
+# 11.1.4.5 Record-Size
+- id: A-11.1.4.5-01
+  clause: "11.1.4.5"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "All files consist of variable-length records, and the length of a DISPLAY record is its number of characters."
+  tests: [FIL-0053]
+  external: []
+  covers: [l.6846, l.6848]
+- id: A-11.1.4.5-02
+  clause: "11.1.4.5"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "A record operation on a record longer than the maximum record size set explicitly or by default at OPEN raises an exception."
+  tests: [FIL-0054]
+  external: []
+  covers: [l.6853]
+- id: A-11.1.4.5-03
+  clause: "11.1.4.5"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "When OPEN omits the record size, it is taken from system information if available and otherwise the file is opened as VARIABLE; channel zero acts as VARIABLE with no length index."
+  tests: [FIL-0055]
+  external: []
+  covers: [l.6859, l.6860]
+
+# 11.1.4.6 Collate-Sequence
+- id: A-11.1.4.6-01
+  clause: "11.1.4.6"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "The collate sequence of a KEYED file governs every record operation on it and the ERASE of the whole file."
+  tests: [FIL-0056]
+  external: []
+  covers: [l.6879]
+- id: A-11.1.4.6-02
+  clause: "11.1.4.6"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "A program unit whose collate sequence differs from the file's can still access a KEYED file; only the logical order of the records may differ, never their contents."
+  tests: [FIL-0057]
+  external: []
+  covers: [l.6886]
+- id: A-11.1.4.6-03
+  clause: "11.1.4.6"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "When OPEN omits the collate sequence, it is taken from system information if available, otherwise the sequence in effect for the program unit is used."
+  tests: [FIL-0058, FIL-0209, FIL-0215]
+  external: []
+  covers: [l.6891, l.6892, l.6894]
+
+# 11.1.4.7 Close-Statement
+- id: A-11.1.4.7-01
+  clause: "11.1.4.7"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "CLOSE closes the file on the given channel and makes the channel inactive; closing a channel with no file does nothing."
+  tests: [FIL-0059]
+  external: []
+  covers: [l.6903]
+- id: A-11.1.4.7-02
+  clause: "11.1.4.7"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "Files opened inside an external procedure or a parallel section are closed when it ends, unless the channel is a formal parameter, and any file still open is closed when the program terminates."
+  tests: [FIL-0060]
+  external: []
+  covers: [l.6908, l.6909]
+
+# 11.1.4.8 Erase-Statement
+- id: A-11.1.4.8-01
+  clause: "11.1.4.8"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "ERASE on a true file deletes all or part of its data without changing the file attributes."
+  tests: [FIL-0061]
+  external: []
+  covers: [l.6914]
+
+# 11.1.4.9 Ask-Statement
+- id: A-11.1.4.9-01
+  clause: "11.1.4.9"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "ASK assigns to its variables the values of the attributes of the file on the given channel."
+  tests: [FIL-0062]
+  external: []
+  covers: [l.6941]
+- id: A-11.1.4.9-02
+  clause: "11.1.4.9"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "ASK on an inactive channel assigns the null string to every string variable and zero to every numeric variable."
+  tests: [FIL-0063]
+  external: []
+  covers: [l.6944, l.6945]
+- id: A-11.1.4.9-03
+  clause: "11.1.4.9"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: syntax
+  claim: "The POINTER ask-value is BEGIN, MIDDLE or END, where MIDDLE means neither of the other two and END also covers an empty file."
+  tests: [FIL-0064]
+  external: []
+  covers: [l.7005, l.7006]
+- id: A-11.1.4.9-04
+  clause: "11.1.4.9"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  status: claimed
+  claim: "ASK #n: MARGIN assigns the current margin of a DISPLAY file (MAXNUM when the record may be of arbitrary length, i.e. no RECSIZE LENGTH and no SET #n: MARGIN, or after SET #n: MARGIN MAXNUM), the RECSIZE LENGTH when the file was opened with one, the value set by SET #n: MARGIN otherwise, and zero for a non-DISPLAY file."
+  tests: [FIL-0189]
+  external: []
+  covers: [l.6993-6995, l.7603-7609]
+- id: A-11.1.4.9-05
+  clause: "11.1.4.9"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "In a STREAM INTERNAL file, DATUM reports the type of the next datum after the current pointer: after a partial READ of a multi-datum WRITE the pointer is at the next pending value of that WRITE (§11.4.4 l.8056-8062), so DATUM gives its type (NUMERIC/STRING), and NONE at end of file; SET #n: POINTER BEGIN/END repositions the pointer and DATUM follows it."
+  tests: [FIL-0195]
+  external: []
+  covers: [l.6964-6973, l.8056-8062]
+- id: A-11.1.4.9-TR48
+  clause: "11.1.4.9"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  status: claimed
+  claim: "ASK #n: ZONEWIDTH assigns the current zone width for a DISPLAY file (default 17, or the value of the last SET #n: ZONEWIDTH) and zero for a non-DISPLAY file (Table 5). ASK #n: MARGIN is zero for a non-DISPLAY file as well."
+  tests: [FIL-0207]
+  external: []
+  covers: [l.7028-7029, l.6993-6995]
+- id: A-11.1.4.9-TR48KEY
+  clause: "11.1.4.9"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  status: claimed
+  claim: "ASK #n: KEY on a KEYED file assigns the key of the record identified by the pointer, and the null string when the pointer is at end of file (Table 5) — e.g. after an inexact greater-than search (SET #n: KEY > k$) with no greater key, which sets the pointer to end of file (§11.2.4.1); the null string is also assigned for a non-KEYED file."
+  tests: [FIL-0208]
+  external: []
+  covers: [l.6987-6991, l.7263-7266]
+- id: A-11.1.4.9-TR64
+  clause: "11.1.4.9"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  status: claimed
+  claim: "On a KEYED file, after a READ # (with or without a record-setter, exact or inexact) the pointer is at the next file-element, so ASK #n: KEY gives the key of the NEXT record in the key sequence (not the one just read) and the null string once the last record has been read; after SET #n: KEY the pointer is at the record found, and ASK KEY gives its key."
+  tests: [FIL-0219]
+  external: []
+  covers: [l.6987-6992, l.7263-7266, l.7529-7541]
+
+# 11.2 File Pointer Manipulation
+- id: A-11.2.3-EX
+  clause: "11.2.3"
+  ecma: "11.2.3"
+  ecma_level: BASIC-2
+  module: files
+  kind: syntax
+  claim: "Every SET with pointer items form shown in the examples of section 11.2.3 is accepted."
+  tests: [FIL-0065]
+  external: []
+  covers: [l.7173-7178]
+- id: A-11.2.4-01
+  clause: "11.2.4"
+  ecma: "11.2.4"
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "A SET statement with pointer items moves the file pointer of the file on the given channel."
+  tests: [FIL-0066]
+  external: []
+  covers: [l.7181]
+- id: A-11.2.4.1-01
+  clause: "11.2.4.1"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "NEXT moves the pointer to the next existing record or value at or beyond the current position, skipping empty record areas of a RELATIVE file, and leaves the pointer alone when it already sits at an existing element or at end of file."
+  tests: [FIL-0067]
+  external: []
+  covers: [l.7203, l.7206]
+- id: A-11.2.4.1-02
+  clause: "11.2.4.1"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  status: claimed
+  claim: "On a SEQUENTIAL file with a partial record pending, NEXT emits the end-of-record and leaves the pointer at end of file."
+  tests: [FIL-0068]
+  external: []
+  covers: [l.7213]
+- id: A-11.2.4.1-03
+  clause: "11.2.4.1"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  status: claimed
+  claim: "On a KEYED file NEXT leaves the pointer unchanged, so a read after it still returns the record the pointer already designates and a loop of NEXT then READ visits every key in collating order."
+  tests: [FIL-0194]
+  external: []
+  covers: [l.7205, l.7206]
+- id: A-11.2.4.1-04
+  clause: "11.2.4.1"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "When the most recent operation on the channel was a WRITE or PRINT, a subsequent SAME record-setter points at the first file element that the operation created: after two single-value WRITEs on a SEQUENTIAL file, READ #, SAME (or SET # POINTER SAME followed by READ #) reads back the second record; a multi-value WRITE on SEQUENTIAL creates a single record (SAME reads it whole) and on STREAM each value is its own element (SAME reads the first value)."
+  tests: [FIL-0204]
+  external: []
+  covers: [l.7240, l.7241, l.7242]
+- id: A-11.2.4.2-05
+  clause: "11.2.4.2"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "After pointer manipulation the data-found condition is set, either true or false."
+  tests: [FIL-0069]
+  external: []
+  covers: [l.7271]
+- id: A-11.2.4.2-06
+  clause: "11.2.4.2"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "An io-recovery action that is an EXIT DO or EXIT FOR has its normal effect, and one that is a line number continues execution at that line."
+  tests: [FIL-0070]
+  external: []
+  covers: [l.7294, l.7295]
+- id: A-11.2.4.2-07
+  clause: "11.2.4.2"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "A set-statement with pointer-items takes its io-recovery according to the data-found condition after pointer manipulation: POINTER END leaves the pointer at end of file so IF MISSING is taken (data-found false, case 2), an io-recovery without pointer-control is valid syntax and still has its usual effect with the pointer unchanged, POINTER BEGIN with data present takes IF THERE, and an IF MISSING THEN EXIT FOR action exits the loop on the first iteration."
+  tests: [FIL-0201, FIL-0065]
+  external: []
+  covers: [l.7149, l.7150, l.7196, l.7197, l.7198, l.7284, l.7293, l.7294, l.7295, l.7296]
+- id: A-11.2.4.2-08
+  clause: "11.2.4.2"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "On a KEYED file, SET # with an exact KEY search that finds no equal key sets data-found false (case 1) so IF MISSING is taken, an exact hit or an inexact search that lands on a record sets data-found true so IF THERE is taken, and an inexact search past the last key leaves the pointer at end of file (case 2) so IF MISSING is taken."
+  tests: [FIL-0202]
+  external: []
+  covers: [l.7280, l.7281, l.7284]
+- id: A-11.2.4.2-09
+  clause: "11.2.4.2"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "On a RELATIVE file, SET # with RECORD pointing to an empty record-area or POINTER END (beyond the last existing record) sets data-found false so IF MISSING is taken, and RECORD pointing to an occupied area sets data-found true so IF MISSING is not taken."
+  tests: [FIL-0203]
+  external: []
+  covers: [l.7284, l.7285, l.7286]
+
+# 11.3.2 Syntax
+- id: A-11.3.2-05
+  clause: "11.3.2"
+  ecma: "11.3.2"
+  ecma_level: BASIC-2
+  module: files
+  kind: syntax
+  status: claimed
+  claim: "An image in the print control of PRINT # requires an output list, never a print list."
+  tests: [FIL-0113]
+  external: []
+  covers: [l.7454, l.7455]
+- id: A-11.3.2-06
+  clause: "11.3.2"
+  ecma: "11.3.2"
+  ecma_level: BASIC-2
+  module: files
+  kind: syntax
+  claim: "The line number of a template identifier must point to a TEMPLATE statement of the same program unit."
+  tests: [FIL-0114]
+  external: []
+  covers: [l.7457, l.7990, l.8501]
+- id: A-11.3.2-07
+  clause: "11.3.2"
+  ecma: "11.3.2"
+  ecma_level: BASIC-2
+  module: files
+  kind: syntax
+  status: claimed
+  claim: "The integer of a fixed field count must be greater than zero, and of the integer-size and fraction-size of a fixed-point size at least one must be greater than zero."
+  tests: [FIL-0115]
+  external: []
+  covers: [l.7460, l.7461, l.7463, l.7464]
+- id: A-11.3.2-08
+  clause: "11.3.2"
+  ecma: "11.3.2"
+  ecma_level: BASIC-2
+  module: files
+  kind: syntax
+  status: claimed
+  claim: "A string field size must be greater than zero."
+  tests: [FIL-0116]
+  external: []
+  covers: [l.7466]
+- id: A-11.3.2-09
+  clause: "11.3.2"
+  ecma: "11.3.2"
+  ecma_level: BASIC-2
+  module: files
+  kind: syntax
+  claim: "The record setter of a write control must not use an inexact key search: WRITE #1, KEY > k$ and KEY >= k$ (also in MAT WRITE) is rejected when the program is loaded, before any statement runs, and not by the run-time exception 7314 (which remains for a write to a KEYED file with no exact search at all)."
+  tests: [FIL-0117, FIL-0218]
+  external: []
+  covers: [l.7468]
+- id: A-11.3.2-10
+  clause: "11.3.2"
+  ecma: "11.3.2"
+  ecma_level: BASIC-2
+  module: files
+  kind: syntax
+  status: claimed
+  claim: "Each item of a print, write, input, read, rewrite or delete control may appear at most once in that control."
+  tests: [FIL-0118]
+  external: []
+  covers: [l.7471, l.7474, l.7993, l.7996, l.8504, l.8507]
+- id: A-11.3.2-11
+  clause: "11.3.2"
+  ecma: "11.3.2"
+  ecma_level: BASIC-2
+  module: files
+  kind: syntax
+  status: claimed
+  claim: "An image (USING) in the print-control of MAT PRINT # requires an array output list (comma-separated array names with at most one final semicolon), never an array print list: a mid-list semicolon or a trailing comma is rejected at load."
+  tests: [FIL-0185, FIL-0186, FIL-0187]
+  external: []
+  covers: [l.7390, l.7454, l.7455, l.5905, l.5907]
+- id: A-11.3.2-12
+  clause: "11.3.2"
+  ecma: "11.3.2"
+  ecma_level: BASIC-2
+  module: files
+  kind: syntax
+  status: claimed
+  claim: "A template-statement may declare a NUMERIC*E field (numeric-field-size = fixed-point-size / E), and WITH <line-number> can use that template; only E (not another identifier) is accepted after NUMERIC*."
+  tests: [FIL-0188, ECMA-0087]
+  external: []
+  covers: [l.7443, l.7445, l.7497, l.12273-12278]
+- id: A-11.3.4-01
+  clause: "11.3.4"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  status: claimed
+  claim: "In a STREAM INTERNAL file, a WRITE # without record-setter after a partial READ # (pointer at a pending value of the same WRITE) leaves the pointer unchanged (§11.2.4.1) with data-found true, so without a not-missing-recovery it raises the fatal exception 7308 and neither the pointer nor the file change; after SET #n: POINTER END the WRITE creates the element at end of file and it reads back."
+  tests: [FIL-0196]
+  external: []
+  covers: [l.7192-7194, l.7270-7291, l.7519-7525, l.7904-7908, l.8056-8057]
+- id: A-11.3.4-02
+  clause: "11.3.4"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  status: claimed
+  claim: "In a RELATIVE file, a WRITE # that creates a record leaves the file pointer at the next file-element beyond the one created, also when a RECORD record-setter was present: after WRITE #1, RECORD n the pointer is at record-area n+1 (end of file if that is beyond the last existing record), so ASK RECORD/POINTER report it, a following READ # without record-setter finds the next record-area (missing-recovery if empty), and a following WRITE # without record-setter creates the next record (7308 only when the pointer identifies an existing record)."
+  tests: [FIL-0197, FIL-0198]
+  external: []
+  covers: [l.7526-7541, l.6762-6766, l.7003-7015, l.7904-7908]
+
+- id: A-11.3.4-03
+  clause: "11.3.4"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  status: claimed
+  claim: "In a KEYED file, a WRITE # that creates a record leaves the file pointer at the next file-element beyond the one created, that is the next key in the key sequence (also when the new key is inserted between existing ones) or end of file when none follows: ASK KEY then gives that next key (the null string at end of file), a following READ # without record-setter reads the next record, and at end of file it takes the missing-recovery."
+  tests: [FIL-0216]
+  external: []
+  covers: [l.7526-7541, l.6987-6992]
+
+- id: A-11.3.4-TR48
+  clause: "11.3.4"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  status: claimed
+  claim: "In a DISPLAY file, the effective margin (RECSIZE LENGTH at open, or the last SET #n: MARGIN) cuts an overlength print-item mid-item: during the generation of the item, each character that would appear beyond the margin is preceded by an end-of-record and the columnar position resets to one (§10.3.4.4), exactly as end-of-line does on channel zero; a whole item that does not fit is preceded by an end-of-record when the columnar position is greater than one."
+  tests: [FIL-0205, FIL-0206]
+  external: []
+  covers: [l.5482-5489, l.7557-7561, l.7597-7605]
+
+- id: A-11.3.3-EX
+  clause: "11.3.3"
+  ecma: "11.3.3"
+  ecma_level: BASIC-2
+  module: files
+  kind: syntax
+  claim: "Every PRINT, MAT PRINT, WRITE, MAT WRITE, SET MARGIN and TEMPLATE form shown in the examples of section 11.3.3 is accepted."
+  tests: [FIL-0119]
+  external: []
+  covers: [l.7477-7498]
+
+# 11.3.4 Semantics
+- id: A-11.3.4.2-04
+  clause: "11.3.4.2"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "An array print whose output list ends in a separator may leave a partial record that a later print on the same channel completes, and the effective margin governs that completion."
+  tests: [FIL-0120]
+  external: []
+  covers: [l.7592]
+- id: A-11.3.4.3-01
+  clause: "11.3.4.3"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "When RECSIZE gives no LENGTH, the effective margin defaults to a length of at least the default zone width."
+  tests: [FIL-0121]
+  external: []
+  covers: [l.7603]
+- id: A-11.3.4.3-02
+  clause: "11.3.4.3"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  status: claimed
+  claim: "A margin of MAXNUM lets a record grow without limit, and a margin index below the current zonewidth (so MARGIN 0) raises exception 4006."
+  tests: [FIL-0122]
+  external: []
+  covers: [l.7609, l.7852-7853]
+- id: A-11.3.4.4-01
+  clause: "11.3.4.4"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "On OPEN the zone width of a DISPLAY file takes an implementation-defined default of at least d+e+6 characters."
+  tests: [FIL-0123]
+  external: []
+  covers: [l.7620]
+- id: A-11.3.4.4-02
+  clause: "11.3.4.4"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  status: claimed
+  claim: "In a SET ZONEWIDTH the index must evaluate above zero, and the new zone width also applies when a pending partial record is later completed."
+  tests: [FIL-0124]
+  external: []
+  covers: [l.7628]
+- id: A-11.3.4.6-01
+  clause: "11.3.4.6"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "PRINT to channel zero goes where plain PRINT goes, file exceptions use the recovery rules of section 10 there, and SET MARGIN or ZONEWIDTH on channel zero acts as if no channel were given."
+  tests: [FIL-0125]
+  external: []
+  covers: [l.7650]
+- id: A-11.3.4.8-01
+  clause: "11.3.4.8"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "Writing to a KEYED file always requires an exact key search in the record setter."
+  tests: [FIL-0126]
+  external: []
+  covers: [l.6406, l.7680]
+- id: A-11.3.4.11-01
+  clause: "11.3.4.11"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: syntax
+  claim: "Writing to a NATIVE file always needs a TEMPLATE, and no other record type may use one."
+  tests: [FIL-0127]
+  external: []
+  covers: [l.7718, l.7719]
+- id: A-11.3.4.11-02
+  clause: "11.3.4.11"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: syntax
+  claim: "A template identifier given as a string expression must evaluate to a syntactically correct template element list, and it is evaluated before the output operands."
+  tests: [FIL-0128]
+  external: []
+  covers: [l.7723]
+- id: A-11.3.4.11-03
+  clause: "11.3.4.11"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "A native write may not have more expressions than template specifiers; surplus specifiers are ignored."
+  tests: [FIL-0129]
+  external: []
+  covers: [l.7737]
+- id: A-11.3.4.11-04
+  clause: "11.3.4.11"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "A SKIP inside a field count makes the governed specifiers produce skipped fields (zeros for numeric, spaces for string) instead of consuming operands."
+  tests: [FIL-0130]
+  external: []
+  covers: [l.7770]
+- id: A-11.3.4.12-01
+  clause: "11.3.4.12"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "With a fixed field count, the number and types of the specifiers must match the array elements, as with a plain WRITE or READ."
+  tests: [FIL-0131]
+  external: []
+  covers: [l.7838, l.8345]
+- id: A-11.3.4.12-02
+  clause: "11.3.4.12"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "An array uses either a variable field count or fixed field counts in its template, never both; a variable count that meets the array after a fixed count raises 8253."
+  tests: [FIL-0132]
+  external: []
+  covers: [l.7846, l.8354, l.7919-7920]
+
+- id: A-11.3.4-TR67
+  clause: "11.3.4"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  status: claimed
+  claim: "When a data creation statement (WRITE) finds the file-element already present on a RELATIVE or KEYED file, the pointer stays at that existing element, both when a not-missing-recovery (IF THERE) takes the io-recovery-action and when exception 7308 results: after WRITE #n, KEY k$ (or RECORD r) on an existing element, ASK KEY / ASK RECORD give that element and a READ # without record-setter reads it; the file is not changed."
+  tests: [FIL-0220, FIL-0313, FIL-0330]
+  external: []
+  covers: [l.7517-7524, l.7244-7259]
+- id: A-11.3.4-TR71
+  clause: "11.3.4"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  status: claimed
+  claim: "On a SEQUENTIAL file, an exception during a WRITE # or PRINT # (in the first, a middle or the last item) never adds a partial file-element: the record that statement was building is not added, so the next statement starts a new record; records already completed before the exception (and a partial record left by an earlier statement with a trailing separator) remain."
+  tests: [FIL-0260, FIL-0261]
+  external: []
+  covers: [l.7532-7536, l.7554-7557, l.7568-7570, l.7671-7675]
+- id: A-11.3.4-TR72
+  clause: "11.3.4"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  status: claimed
+  claim: "When a third-phase exception (8301, a record larger than the RECSIZE) prevents WRITE or MAT WRITE from creating any file-element on a RELATIVE or KEYED file, the pointer stays where the second phase put it: in a KEYED file at the first key greater than the given one (or at end of file, where ASK KEY gives the null string) and in a RELATIVE file at the record area named by RECORD; no record is created."
+  tests: [FIL-0271]
+  external: []
+  covers: [l.7538-7541, l.7671-7675, l.7256-7260]
+- id: A-11.3.4-TR81A
+  clause: "11.3.4"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  status: claimed
+  claim: "When a TEMPLATE exception of the third phase (8252, 8254, 8255 or 8256) prevents WRITE from creating any file-element on a RELATIVE or KEYED file with RECTYPE NATIVE, the pointer stays where the second phase put it: at the record area named by RECORD in a RELATIVE file and at the first key greater than the given one in a KEYED file; no record is created and the next correct WRITE works."
+  tests: [FIL-0290]
+  external: []
+  covers: [l.7538-7541, l.7671-7675, l.7914-7930, l.7256-7260]
+- id: A-11.3.4-TR81B
+  clause: "11.3.4"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  status: claimed
+  claim: "After a handled exception 8301 (record larger than RECSIZE) on a WRITE, MAT WRITE, REWRITE or MAT REWRITE of a RELATIVE or KEYED file (RECTYPE INTERNAL or DISPLAY), nothing of the aborted statement is left on the channel: a following WRITE, REWRITE or MAT REWRITE of a record that fits works and stores only its own data."
+  tests: [FIL-0292]
+  external: []
+  covers: [l.7525-7541, l.7659-7660, l.8550-8555]
+- id: A-11.3.5.3-TR81A
+  clause: "11.3.5.3"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  status: claimed
+  claim: "In a SEQUENTIAL file with RECTYPE INTERNAL, WRITE or MAT WRITE of a record larger than the RECSIZE gives exception 8301 and adds nothing to the file, so the records written correctly can be read back without exception 8302."
+  tests: [FIL-0291]
+  external: []
+  covers: [l.6850-6854, l.7912-7913, l.7532-7536, l.7659-7660]
+# 11.4.2 Syntax
+- id: A-11.4.2-01
+  clause: "11.4.2"
+  ecma: "11.4.2"
+  ecma_level: BASIC-2
+  module: files
+  kind: syntax
+  claim: "A variable-length vector in MAT INPUT must be declared as one-dimensional; a two-dimensional array in MAT INPUT #n: A(?) is rejected when the statement executes with the local code -2004 (FIL-0133). Not checked at load time."
+  tests: [FIL-0133]
+  external: []
+  covers: [l.7999]
+- id: A-11.4.3-EX
+  clause: "11.4.3"
+  ecma: "11.4.3"
+  ecma_level: BASIC-2
+  module: files
+  kind: syntax
+  claim: "Every INPUT, MAT INPUT, LINE INPUT, MAT LINE INPUT, READ and MAT READ form shown in the examples of section 11.4.3 is accepted."
+  tests: [FIL-0134]
+  external: []
+  covers: [l.8001-8012]
+
+# 11.4.4 Semantics
+- id: A-11.4.4-01
+  clause: "11.4.4"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  status: claimed
+  claim: "READ # assigns a datum to a string variable as a string, also when the READ executes inside an external subprogram whose own variable space differs from the main program's."
+  tests: [FIL-0193]
+  external: []
+  covers: [l.8038, l.8039, l.8040]
+- id: A-11.4.4.1-01
+  clause: "11.4.4.1"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "When a record ending in a comma is followed by end of file before all variables are filled, the unfilled variables keep their old values, the pointer rests at end of file and an exception results."
+  tests: [FIL-0135]
+  external: []
+  covers: [l.8125, l.8126, l.8127]
+- id: A-11.4.4.1-02
+  clause: "11.4.4.1"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "PROMPT and ELAPSED in INPUT #0, LINE INPUT #0, MAT INPUT #0 and MAT LINE INPUT #0 work as in the statements without a channel: the prompt is written before the reply is read and the ELAPSED variable receives a positive time once the last reply has been read (a clock is available)."
+  tests: [PRT-0230]
+  external: []
+  covers: [l.8110-8114, l.8205-8209, l.5154-5176]
+- id: A-11.4.4.2-01
+  clause: "11.4.4.2"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "In MAT INPUT, an array whose redim gives a size below one in some dimension, and every array after it, keeps its old values and an exception results."
+  tests: [FIL-0136]
+  external: []
+  covers: [l.8167, l.8168]
+- id: A-11.4.4.4-01
+  clause: "11.4.4.4"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "LINE INPUT assigns each whole record to the next string variable, keeping leading and trailing spaces, and a record holding the null string is assigned normally."
+  tests: [FIL-0137]
+  external: []
+  covers: [l.8182]
+- id: A-11.4.4.4-02
+  clause: "11.4.4.4"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "When LINE INPUT hits end of file before all variables are filled, the rest keep their old values, the pointer rests at end of file and an exception results."
+  tests: [FIL-0138]
+  external: []
+  covers: [l.8185, l.8186]
+- id: A-11.4.4.5-01
+  clause: "11.4.4.5"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "The same redim-size rule as for MAT INPUT applies to MAT LINE INPUT: a size below one leaves that array and the following ones unchanged and raises an exception."
+  tests: [FIL-0139]
+  external: []
+  covers: [l.8202, l.8203]
+- id: A-11.4.4.6-01
+  clause: "11.4.4.6"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "INPUT from channel zero follows the device semantics, and where section 10 gives a different recovery for an exception, the section 10 procedure is used."
+  tests: [FIL-0140, FIL-0303, FIL-0304, FIL-0305, FIL-0306, FIL-0307, FIL-0308, FIL-0309]
+  external: []
+  covers: [l.8211]
+- id: A-11.4.4.6-02
+  clause: "11.4.4.6"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "In INPUT #0 and MAT INPUT #0 an exception 8102, 8103, 8002, 8003, 1007 or 1054 in a reply that is not the first (a continuation after a final comma) asks for the current input-reply again, as INPUT and MAT INPUT do, and keeps the data accepted in the earlier replies; an exception in the first reply restarts the statement."
+  tests: [FIL-0280]
+  note: "11.4.4.6 l.8205-8209 sends channel zero to the device semantics and the recovery of 10.2.5 l.5240-5261 and 10.5.5 l.6109-6133 applies."
+  external: []
+  covers: [l.8205-8209, l.5240-5261, l.6109-6133]
+- id: A-11.4.4.6-03
+  clause: "11.4.4.6"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "LINE INPUT #0 and MAT LINE INPUT #0 check the length-max of the string variable like LINE INPUT: a line that does not fit is exception 1054 and the current line-input-reply is asked again (the first variable restarts the statement, later variables and later array elements ask only their own line)."
+  tests: [FIL-0281]
+  external: []
+  covers: [l.5259-5261, l.5218-5228, l.8176-8187, l.8205-8209]
+- id: A-11.4.4.6-TR84
+  clause: "11.4.4.6"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "INPUT #0 and LINE INPUT #0 into an array element, a substring, a substring of an element, an element of a formal array or a string parameter passed by reference check the length-max of the target like INPUT and LINE INPUT: a reply that does not fit is exception 1054 (nonfatal) and the current reply is asked again, not the fatal 1105 of files."
+  tests: [FIL-0320]
+  note: "11.4.4.6 l.8205-8209 sends channel zero to the device semantics; 10.2.5 l.5259-5261 gives 1054 for the string overflow of an input-reply. Files keep 1105 (11.4.5.3 l.8440, claim E-1105)."
+  external: []
+  covers: [l.5259-5261, l.8205-8209]
+- id: A-11.4.4.1-TR84
+  clause: "11.4.4.1"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "ELAPSED on an array element (a numeric-variable) in INPUT #0, LINE INPUT #0, MAT INPUT #0 and MAT LINE INPUT #0 works as in the statements without a channel: the element receives a positive time after the last reply, also with a variable subscript, in two dimensions and for an element of a formal array."
+  tests: [PRT-0261]
+  note: "11.4.4.1 l.8110-8114 and 11.4.4.6 l.8205-8209 give channel zero the controls of 10.2; 10.2.4.1 l.5166-5176 assigns the time to the numeric-variable."
+  external: []
+  covers: [l.8110-8114, l.5166-5176]
+- id: A-11.4.4.8-01
+  clause: "11.4.4.8"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "When end of file arrives while a READ of a STREAM file still has variables to fill, the unfilled ones keep their old values, the pointer rests at end of file and the exception 8011 results."
+  tests: [FIL-0141]
+  external: []
+  covers: [l.8233, l.8234, l.8235, l.8236, l.8448-8449]
+- id: A-11.4.4.9-01
+  clause: "11.4.4.9"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "String data is retrieved from a DISPLAY record the way section 10 reads input replies."
+  tests: [FIL-0142]
+  external: []
+  covers: [l.8241]
+- id: A-11.4.4.9-02
+  clause: "11.4.4.9"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "Numeric data from a DISPLAY record is read with the accuracy of assigning a numeric constant to a numeric variable."
+  tests: [FIL-0143]
+  external: []
+  covers: [l.8247]
+- id: A-11.4.4.10-01
+  clause: "11.4.4.10"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "Values of an INTERNAL element must be fetched into a variable of the same type, otherwise an exception results."
+  tests: [FIL-0144]
+  external: []
+  covers: [l.8265, l.8266]
+- id: A-11.4.4.10-02
+  clause: "11.4.4.10"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "String values retrieved from an INTERNAL file keep their length and content, and numeric values are preserved within the precision limits of the arithmetic option in effect."
+  tests: [FIL-0145]
+  external: []
+  covers: [l.8272, l.8273]
+- id: A-11.4.4.11-01
+  clause: "11.4.4.11"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: syntax
+  claim: "Reading a NATIVE record always needs a TEMPLATE, and no other record type may use one."
+  tests: [FIL-0146]
+  external: []
+  covers: [l.8281]
+- id: A-11.4.4.11-02
+  clause: "11.4.4.11"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "A native read needs at least as many specifiers as variables; surplus specifiers are ignored."
+  tests: [FIL-0147]
+  external: []
+  covers: [l.8304]
+- id: A-11.4.4.11-03
+  clause: "11.4.4.11"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "All field specifiers of a native record must be compatible with those that created the record, otherwise the results are implementation-defined."
+  tests: [FIL-0148]
+  external: []
+  covers: [l.8310]
+- id: A-11.4.4.11-04
+  clause: "11.4.4.11"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: syntax
+  claim: "Compatibility of specifiers means both string with equal field sizes, both numeric with size E, or both numeric with equal integer and fraction sizes."
+  tests: [FIL-0149]
+  external: []
+  covers: [l.8313]
+
+# 11.5.3 Examples
+- id: A-11.5.3-EX
+  clause: "11.5.3"
+  ecma: "11.5.3"
+  ecma_level: BASIC-2
+  module: files
+  kind: syntax
+  claim: "Every REWRITE, MAT REWRITE and DELETE form shown in the examples of section 11.5.3 is accepted."
+  tests: [FIL-0150]
+  external: []
+  covers: [l.8510-8517]
+
+# 11.4.5.3 redim exceptions whose E- claims live in ansi-07.yaml (E-5001, E-6005)
+- id: A-11.4.5.3-EXC
+  clause: "11.4.5.3"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "A redim error while retrieving from a file is a fatal exception: inverted bounds in a redim-bounds (MAT INPUT #2: A(2 TO 1)) raise exactly 6005, as does a single index below the default lower bound; growth beyond the reserved size raises 5001 (the E- claims live in ansi-07.yaml)."
+  tests: [FIL-0151]
+  external: []
+  covers: [l.8406-8407, l.8410, l.8414]
+
+# --- Exception codes cited by chapter 11 (sections 11.1.5-11.5.5.3 and Table 9)
+- id: E-7001
+  clause: "11.1.5"
+  ecma: "11.1.5"
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "A channel expression outside the range zero to the maximum raises the fatal exception 7001."
+  tests: [FIL-0076, FIL-0569, FIL-0570, FIL-0571]
+  external: []
+  covers: [l.7059, l.12904]
+- id: E-7002
+  clause: "11.1.5"
+  ecma: "11.1.5"
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "OPEN, CLOSE or ERASE on channel zero, and any record-setter used with channel zero, raise the nonfatal exception 7002: nothing happens and execution continues."
+  tests: [FIL-0077]
+  external: []
+  covers: [l.6586, l.6931, l.6932, l.7062, l.7303, l.12905-12906]
+- id: E-7003
+  clause: "11.1.5"
+  ecma: "11.1.5"
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "OPEN on a nonzero channel that is already active raises the fatal exception 7003."
+  tests: [FIL-0078]
+  external: []
+  covers: [l.7066, l.12907]
+- id: E-7004
+  clause: "11.1.5"
+  ecma: "11.1.5"
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "Any file statement other than OPEN or ASK executed on an inactive channel raises the fatal exception 7004."
+  tests: [FIL-0079]
+  external: []
+  covers: [l.7084, l.7301, l.7860, l.7878, l.8369, l.8589, l.12909-12910]
+- id: E-7050
+  clause: "11.1.5"
+  ecma: "11.1.5"
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "Reopening a KEYED file with a collate sequence different from an earlier open raises the fatal exception 7050."
+  tests: [FIL-0080]
+  external: []
+  covers: [l.7077, l.12911]
+- id: E-7051
+  clause: "11.1.5"
+  ecma: "11.1.5"
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "A LENGTH index not greater than zero in an OPEN raises the fatal exception 7051."
+  tests: [FIL-0081]
+  external: []
+  covers: [l.6854, l.7079, l.12912]
+- id: E-7052
+  clause: "11.1.5"
+  ecma: "11.1.5"
+  ecma_level: BASIC-2
+  module: files
+  kind: not-applicable
+  claim: "Opening a device as a RELATIVE or KEYED file raises the fatal exception 7052."
+  reason: "The portable suite has a single device, the console on channel zero; OPEN on channel zero with any organization yields nonfatal 7002 (E-7002, FIL-0077) and NAME 'CONSOLE' creates a true file, so no device can be opened as RELATIVE/KEYED. Mandated at Table 9 l.12913. On POSIX hosts this interpreter also treats a file that is not regular (for example /dev/null) as a device and raises 7052; that is tested in FullBasicCoreXCTests/ComplianceFIOla2AXCTests."
+  tests: []
+  external: []
+  covers: [l.7081, l.12913]
+- id: E-7100
+  clause: "11.1.5"
+  ecma: "11.1.5"
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "A string used as a file attribute in OPEN whose value is not a recognized keyword raises the fatal exception 7100."
+  tests: [FIL-0082, FIL-0563]
+  external: []
+  covers: [l.7069, l.12915-12917]
+- id: E-71xx
+  clause: "11.1.5"
+  ecma: "11.1.5"
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "When a file cannot be given the access the requested or default attributes demand, a fatal 71xx exception is raised whose exact value and meaning are implementation-defined."
+  tests: [FIL-0083]
+  external: []
+  covers: [l.7072]
+- id: E-7202
+  clause: "11.2.5"
+  ecma: "11.2.5"
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "The RECORD record-setter on a file whose organization is not RELATIVE raises the fatal exception 7202 and leaves the pointer unchanged."
+  tests: [FIL-0071]
+  external: []
+  covers: [l.7321, l.12919]
+- id: E-7203
+  clause: "11.2.5"
+  ecma: "11.2.5"
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "The KEY record-setter on a file whose organization is not KEYED raises the fatal exception 7203 and leaves the pointer unchanged."
+  tests: [FIL-0072]
+  external: []
+  covers: [l.7324, l.12920]
+- id: E-7204
+  clause: "11.2.5"
+  ecma: "11.2.5"
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "SAME raises the fatal exception 7204 when the last operation on the channel was a DELETE, when it raised an exception before moving the pointer, or when no record operation has run on the channel since the OPEN."
+  tests: [FIL-0073]
+  external: []
+  covers: [l.7310, l.7315, l.7318, l.12921-12922]
+- id: E-7205
+  clause: "11.2.5"
+  ecma: "11.2.5"
+  ecma_level: BASIC-2
+  module: files
+  kind: not-applicable
+  claim: "A record-setter on a device without that capability raises the nonfatal exception 7205: the pointer does not move and execution continues."
+  reason: "The only device is the console on channel zero, and any record-setter on channel zero yields nonfatal 7002 (E-7002, FIL-0077); no other device exists, so 7205 cannot occur. Mandated at Table 9 l.12919."
+  tests: []
+  external: []
+  covers: [l.7307, l.12923-12924]
+- id: E-7206
+  clause: "11.2.5"
+  ecma: "11.2.5"
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "A RECORD index that rounds to an integer below one raises the fatal exception 7206."
+  tests: [FIL-0074]
+  external: []
+  covers: [l.7327, l.12925]
+- id: E-7207
+  clause: "11.2.5"
+  ecma: "11.2.5"
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "An exact key search whose key expression is the null string raises the fatal exception 7207."
+  tests: [FIL-0075]
+  external: []
+  covers: [l.7330, l.12926]
+- id: E-7301
+  clause: "11.1.5"
+  ecma: "11.1.5"
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "ERASE on a file not opened as OUTIN raises the fatal exception 7301 and has no effect on the file."
+  tests: [FIL-0084]
+  external: []
+  covers: [l.7087, l.12928]
+- id: E-7302
+  clause: "11.3.5.1"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "A data creation statement on a file opened as INPUT raises the fatal exception 7302."
+  tests: [FIL-0085]
+  external: []
+  covers: [l.7888, l.12929]
+- id: E-7303
+  clause: "11.4.5.1"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "A data retrieval statement on a file opened as OUTPUT raises the fatal exception 7303."
+  tests: [FIL-0086]
+  external: []
+  covers: [l.8380, l.12930]
+- id: E-7305
+  clause: "11.4.5.2"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "When data-found is false and no missing-recovery was specified, a data retrieval or data modification statement raises the fatal exception 7305."
+  tests: [FIL-0087]
+  external: []
+  covers: [l.8398, l.8614, l.12931-12932]
+- id: E-7311
+  clause: "11.1.5"
+  ecma: "11.1.5"
+  ecma_level: BASIC-2
+  module: files
+  kind: not-applicable
+  claim: "ERASE on an OUTIN device without erase capability raises the nonfatal exception 7311: nothing is erased and execution continues."
+  reason: "The only device in the portable suite is the console on channel zero; ERASE on channel zero yields nonfatal 7002 (E-7002, FIL-0077), so 7311 cannot occur. Mandated at Table 9 l.12934. On POSIX hosts ERASE on a non-regular file opened with OUTIN (for example /dev/null) raises 7311, and ASK ERASABLE gives NO; that is tested in FullBasicCoreXCTests/ComplianceFIOla2AXCTests."
+  tests: []
+  external: []
+  covers: [l.7090, l.12934]
+- id: E-7312
+  clause: "11.3.5"
+  ecma: "11.3.5"
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "SET MARGIN or SET ZONEWIDTH on a file not opened as DISPLAY raises the fatal exception 7312."
+  tests: [FIL-0088, FIL-0561]
+  external: []
+  covers: [l.7863, l.12935]
+- id: E-7313
+  clause: "11.3.5"
+  ecma: "11.3.5"
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "SET MARGIN or SET ZONEWIDTH on a file opened as INPUT raises the fatal exception 7313."
+  tests: [FIL-0089, FIL-0562]
+  external: []
+  covers: [l.7866, l.12936]
+- id: E-7314
+  clause: "11.3.5.1"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "A WRITE or MAT WRITE to a KEYED file whose record setter has no exact search raises the fatal exception 7314."
+  tests: [FIL-0090]
+  external: []
+  covers: [l.7892, l.12937]
+- id: E-7315
+  clause: "11.3.5.1"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "Using a template identifier with a file whose record type is DISPLAY or INTERNAL raises the fatal exception 7315."
+  tests: [FIL-0091]
+  external: []
+  covers: [l.7898, l.8386, l.8605, l.12938-12939]
+- id: E-7316
+  clause: "11.3.5.1"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "Accessing a NATIVE file with a WRITE, READ, REWRITE or DELETE that has no template identifier raises the fatal exception 7316."
+  tests: [FIL-0092]
+  external: []
+  covers: [l.7902, l.8390, l.8609, l.12940-12941]
+- id: E-7317
+  clause: "11.3.5.1"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "PRINT or MAT PRINT on a file opened as INTERNAL or NATIVE raises the fatal exception 7317."
+  tests: [FIL-0093]
+  external: []
+  covers: [l.7881, l.12942]
+- id: E-7318
+  clause: "11.4.5.1"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "INPUT, MAT INPUT, LINE INPUT or MAT LINE INPUT on a file opened as INTERNAL or NATIVE raises the fatal exception 7318."
+  tests: [FIL-0094]
+  external: []
+  covers: [l.8373, l.12943]
+- id: E-7321
+  clause: "11.4.5.1"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "The SKIP REST option on a file opened as STREAM raises the fatal exception 7321."
+  tests: [FIL-0095]
+  external: []
+  covers: [l.8393, l.12945]
+- id: E-4006
+  clause: "11.3.5"
+  ecma: "11.3.5"
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "A SET MARGIN whose index is below the current zone width of the file raises the fatal exception 4006."
+  tests: [FIL-0096]
+  external: []
+  covers: [l.7853, l.12857]
+- id: E-4007
+  clause: "11.3.5"
+  ecma: "11.3.5"
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "A SET ZONEWIDTH whose index is below one or above the current margin of the file raises the fatal exception 4007."
+  tests: [FIL-0097]
+  external: []
+  covers: [l.7857, l.12858]
+- id: E-8011
+  clause: "11.4.5.3"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "Reaching end of file while a data retrieval statement still needs more data raises the fatal exception 8011."
+  tests: [FIL-0098]
+  external: []
+  covers: [l.8449, l.12957]
+- id: E-8012
+  clause: "11.4.5.3"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "A non-STREAM record holding too few data, values or fields for the operands of a data retrieval statement raises the fatal exception 8012."
+  tests: [FIL-0099, FIL-0605]
+  external: []
+  covers: [l.8446, l.12958]
+- id: E-8013
+  clause: "11.4.5.3"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "A record holding more data than the operands of a data retrieval statement need, with no SKIP REST, raises the fatal exception 8013."
+  tests: [FIL-0100, FIL-0608]
+  external: []
+  covers: [l.8452, l.8457, l.12959]
+- id: E-8101
+  clause: "11.4.5.3"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "A datum of a DISPLAY record that is not a numeric constant but is assigned to a numeric variable raises the fatal exception 8101."
+  tests: [FIL-0101]
+  external: []
+  covers: [l.8431, l.12961-12962]
+- id: E-8105
+  clause: "11.4.5.3"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "Reading, by any statement except LINE INPUT, a DISPLAY record whose contents are not a valid input reply raises the fatal exception 8105."
+  tests: [FIL-0102, FIL-0606, FIL-0607]
+  external: []
+  covers: [l.8428, l.12967]
+- id: E-8120
+  clause: "11.4.5.3"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "A value of an INTERNAL record whose type differs from the variable it is assigned to raises the fatal exception 8120."
+  tests: [FIL-0103]
+  external: []
+  covers: [l.8435, l.12968]
+- id: E-8251
+  clause: "11.3.5.1"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "A template identifier whose string expression is not a syntactically correct template element list raises the fatal exception 8251."
+  tests: [FIL-0104]
+  external: []
+  covers: [l.7895, l.8383, l.8602, l.12976]
+- id: E-8252
+  clause: "11.3.5.3"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "An expression, variable or array element whose type disagrees with its associated template specifier raises the fatal exception 8252."
+  tests: [FIL-0105]
+  external: []
+  covers: [l.7917, l.8417, l.8623, l.12977]
+- id: E-8253
+  clause: "11.3.5.3"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "A variable field count that does not start at an array's first element raises the fatal exception 8253."
+  tests: [FIL-0106]
+  external: []
+  covers: [l.7920, l.8420, l.8627, l.12978-12979]
+- id: E-8254
+  clause: "11.3.5.3"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "Fewer template specifiers than expressions, variables or array elements raises the fatal exception 8254."
+  tests: [FIL-0107]
+  external: []
+  covers: [l.7923, l.8423, l.8630, l.12980]
+- id: E-8255
+  clause: "11.3.5.3"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "A numeric value with significant digits left of the available digit places of its template field raises the fatal exception 8255."
+  tests: [FIL-0108]
+  external: []
+  covers: [l.7927, l.8633, l.12981]
+- id: E-8256
+  clause: "11.3.5.3"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "A string value longer than its template field raises the fatal exception 8256."
+  tests: [FIL-0109]
+  external: []
+  covers: [l.7930, l.8636, l.12982]
+- id: E-8301
+  clause: "11.3.5.3"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "Creating or rewriting a record larger than the RECSIZE of the file raises the fatal exception 8301."
+  tests: [FIL-0110, FIL-0300, FIL-0301, FIL-0302]
+  external: []
+  covers: [l.7913, l.8620, l.12984]
+- id: E-1008
+  clause: "11.4.5.3"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "A value, datum or field from a file that overflows numerically when assigned to a variable raises the fatal exception 1008."
+  tests: [FIL-0111]
+  external: []
+  covers: [l.8438, l.12791]
+- id: E-1105
+  clause: "11.4.5.3"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "A value, datum or field from a file that overflows a string when assigned to a variable raises the fatal exception 1105, also when the target is a substring (11.4.4 l.8045-8050) or a by-reference string parameter whose argument has a smaller length-max (9.2.4.1 l.4679-4682), or an element of a string array with a length-max (also in the MAT forms)."
+  tests: [FIL-0112, FIL-0230, FIL-0231, FIL-0240, FIL-0250]
+  external: []
+  covers: [l.8441, l.12801]
+- id: E-1508
+  clause: "11.4"
+  ecma: "11.4"
+  ecma_level: BASIC-2
+  module: files
+  kind: not-applicable
+  claim: "Treating a numeric underflow during file input as the nonfatal exception 1508 (supply zero and continue) is only recommended, not mandated, so no behaviour is required."
+  reason: "Table 9 l.12823 marks 1508 as recommended, not mandated ('I 1508'), and 11.4 l.8462 says 'is recommended'; the interpreter supplies zero without raising 1508."
+  tests: []
+  external: []
+  covers: [l.12823]
+
+# --- Implementation-defined features of chapter 11 (Appendix C)
+- id: D-11-1
+  clause: "11"
+  ecma: "11"
+  ecma_level: BASIC-2
+  module: files
+  kind: implementation-defined
+  claim: "The effect of file-organization and record-type combinations beyond those of the core and enhanced modules is implementation-defined."
+  value: "Unlisted organization/record-type combinations are accepted and processed according to the record type. STREAM+DISPLAY: PRINT # writes one line per statement, as for SEQUENTIAL+DISPLAY (so PRINT #n: 1, 2, 3 writes ONE line with print zones, 10.3.4.3, and reading it back with READ #n: X into a numeric variable raises 8101, 11.4.5.3 l.8430-8431, because the zone-padded text is not a single numeric-constant), but reading follows the stream rule of 11.4.4.8 (l.8224-8235): INPUT #, READ # and MAT INPUT # take their data from the sequence of data in the file, line boundaries are not significant (a line with too few data does not raise 8012: the next line supplies the rest; only the end of the file raises 8011) and the data left over from the current line are the next file elements; LINE INPUT # and MAT LINE INPUT # return the unread rest of the current line as it is, spaces included, when data are pending, and the next line otherwise; MAT INPUT X(?) takes the pending data of the current line or, if none, the data of the next line that has any. STREAM+NATIVE needs a TEMPLATE like any NATIVE file and follows the same stream rule: there are no records, so READ # takes the next fields of the file whatever the previous statement read, a template longer than the data left raises 8011 at the end of the file, and 8012/8013 never occur. Files written by builds before 2026-11-09 are not read: no released version wrote them."
+  tests: [FIL-0152, FIL-0601]
+  external: []
+  covers: [l.6664-6668]
+- id: D-11.1-1
+  clause: "11.1"
+  ecma: "11.1"
+  ecma_level: BASIC-2
+  module: files
+  kind: implementation-defined
+  claim: "The maximum channel number is implementation-defined (the standard only requires it to be at least 99)."
+  value: "255 (channels 0..255; channel 256 raises 7001)."
+  tests: [FIL-0153]
+  external: []
+  covers: [l.6579]
+- id: D-11.1-2
+  clause: "11.1"
+  ecma: "11.1"
+  ecma_level: BASIC-2
+  module: files
+  kind: implementation-defined
+  claim: "Whether file names differing only in letter case denote the same file or different files is implementation-defined."
+  value: "Case-insensitive on the host filesystem: names differing only in letter case denote the same file."
+  tests: [FIL-0154]
+  external: []
+  covers: [l.6601-6604]
+- id: D-11.1-3
+  clause: "11.1"
+  ecma: "11.1"
+  ecma_level: BASIC-2
+  module: files
+  kind: implementation-defined
+  claim: "Opening a file that is already open has implementation-defined consequences."
+  value: "Opening an already-open file on another channel succeeds; both channels then share the file."
+  tests: [FIL-0155]
+  external: []
+  covers: [l.6604-6606]
+- id: D-11.1-4
+  clause: "11.1"
+  ecma: "11.1"
+  ecma_level: BASIC-2
+  module: files
+  kind: implementation-defined
+  claim: "How many nonzero channels beyond the required minimum may be active simultaneously is implementation-defined."
+  value: "At least 10 nonzero channels may be active simultaneously (observed 10 of 10)."
+  tests: [FIL-0156]
+  external: []
+  covers: [l.6607-6609]
+- id: D-11.1-5
+  clause: "11.1"
+  ecma: "11.1"
+  ecma_level: BASIC-2
+  module: files
+  kind: implementation-defined
+  claim: "Whether a file closed and later reopened with different organization, record type or record size remains accessible is implementation-defined."
+  value: "The file remains accessible when reopened with a different organization or record type (observed RELATIVE and INTERNAL reopens of a SEQUENTIAL DISPLAY file)."
+  tests: [FIL-0157]
+  external: []
+  covers: [l.6638-6648]
+- id: D-11.1-6
+  clause: "11.1"
+  ecma: "11.1"
+  ecma_level: BASIC-2
+  module: files
+  kind: implementation-defined
+  claim: "For INTERNAL and NATIVE files, whether a reopen under a different ARITHMETIC option keeps the file accessible is implementation-defined."
+  value: "An INTERNAL file reopened under OPTION ARITHMETIC NATIVE remains accessible with its contents preserved (observed 1.5 read back unchanged)."
+  tests: [FIL-0158]
+  external: []
+  covers: [l.6641-6648]
+- id: D-11.1-7
+  clause: "11.1"
+  ecma: "11.1"
+  ecma_level: BASIC-2
+  module: files
+  kind: implementation-defined
+  claim: "Accessing an INTERNAL or NATIVE file from another program unit under a different ARITHMETIC option has implementation-defined results."
+  value: "Access under a different ARITHMETIC option works (observed reopen of an INTERNAL file under OPTION ARITHMETIC NATIVE, contents preserved)."
+  tests: [FIL-0158]
+  external: []
+  covers: [l.6648-6657]
+- id: D-11.1-8
+  clause: "11.1"
+  ecma: "11.1"
+  ecma_level: BASIC-2
+  module: files
+  kind: implementation-defined
+  claim: "The means a user employs to keep file contents unchanged between runs of a program is implementation-defined."
+  value: "Ordinary files in the working directory persist between runs of the program; no special means is needed."
+  tests: [FIL-0159]
+  external: []
+  covers: [l.6183, l.6645-6648]
+- id: D-11.1-9
+  clause: "11.1"
+  ecma: "11.1"
+  ecma_level: BASIC-2
+  module: files
+  kind: implementation-defined
+  claim: "The effect of organization and record-type combinations not listed for any conforming module is implementation-defined."
+  value: "Same as D-11-1: unlisted combinations are accepted and processed according to the record type."
+  tests: [FIL-0152]
+  external: []
+  covers: [l.6664-6668]
+- id: D-11.1-10
+  clause: "11.1"
+  ecma: "11.1"
+  ecma_level: BASIC-2
+  module: files
+  kind: implementation-defined
+  claim: "The length of records of type INTERNAL and NATIVE is implementation-defined."
+  value: "INTERNAL records are stored as typed tag+payload values (tag u8: 0x01 double LE, 0x02 FIXED scaled, 0x03 string u32len+bytes, 0x04 exact DECIMAL); NATIVE records as fixed template fields; record length varies with the values."
+  tests: [FIL-0160]
+  external: []
+  covers: [l.6850]
+- id: D-11.1-11
+  clause: "11.1"
+  ecma: "11.1"
+  ecma_level: BASIC-2
+  module: files
+  kind: implementation-defined
+  claim: "When RECSIZE omits the LENGTH index, the maximum record length of the file is implementation-defined."
+  value: "MAXNUM: no effective limit on record length (ASK RECSIZE reports VARIABLE)."
+  tests: [FIL-0055]
+  external: []
+  covers: [l.6860-6861]
+- id: D-11.1-12
+  clause: "11.1"
+  ecma: "11.1"
+  ecma_level: BASIC-2
+  module: files
+  kind: implementation-defined
+  claim: "The DATUM ask-value for file organizations other than STREAM INTERNAL is implementation-defined."
+  value: "'UNKNOWN' for a SEQUENTIAL DISPLAY file (null string on an inactive channel); DATUM is only well-defined for STREAM INTERNAL files."
+  tests: [FIL-0161]
+  external: []
+  covers: [l.7005-7046]
+- id: D-11.1-13
+  clause: "11.1"
+  ecma: "11.1"
+  ecma_level: BASIC-2
+  module: files
+  kind: implementation-defined
+  claim: "The NAME ask-value returned for channel zero is implementation-defined."
+  value: "The null string."
+  tests: [FIL-0162]
+  external: []
+  covers: [l.7005-7046]
+- id: D-11.1-14
+  clause: "11.1"
+  ecma: "11.1"
+  ecma_level: BASIC-2
+  module: files
+  kind: implementation-defined
+  claim: "The meaning of the implementation-defined file-access failure codes 7101 through 7199 is implementation-defined."
+  value: "7107 = file does not exist; 7108 = invalid file name, raised by an OPEN whose NAME is the empty string (a name of spaces is not empty), for every ACCESS and ORGANIZATION (11.1.5 l.7069-7072)."
+  tests: [FIL-0163, FIL-0564]
+  external: []
+  covers: [l.7072-7074]
+- id: D-11.1-15
+  clause: "11.1"
+  ecma: "11.1"
+  ecma_level: BASIC-2
+  module: files
+  kind: implementation-defined
+  claim: "The maximum length of a key in a KEYED file is implementation-defined."
+  value: "At least 10000 characters; no limit observed."
+  tests: [FIL-0164]
+  external: []
+  covers: [l.7132]
+- id: D-11.2-1
+  clause: "11.2"
+  ecma: "11.2"
+  ecma_level: BASIC-2
+  module: files
+  kind: implementation-defined
+  claim: "What condition on a non-file device channel makes the data-found condition false is implementation-defined."
+  value: "On channel zero (the only device) the data-found condition is true whenever input data is available and false when the standard input is at its end (D-11.2-2)."
+  tests: [FIL-0165]
+  external: []
+  covers: [l.7271-7289]
+- id: D-11.2-2
+  clause: "11.2"
+  ecma: "11.2"
+  ecma_level: BASIC-2
+  module: files
+  kind: implementation-defined
+  claim: "Whether the end of the standard input is the implementation-defined condition of a device signifying that no data is available for input, so that the missing-recovery of INPUT #0 and LINE INPUT #0 takes effect, is implementation-defined."
+  value: "It is: with the standard input at its end, INPUT #0 and LINE INPUT #0 take their IF MISSING recovery (a line number or EXIT DO); without IF MISSING they raise the fatal exception 8011."
+  tests: [FIL-0600]
+  external: []
+  covers: [l.7288-7296]
+- id: D-11.2-3
+  clause: "11.2"
+  ecma: "11.2"
+  ecma_level: BASIC-2
+  module: files
+  kind: implementation-defined
+  claim: "The largest record number of a RELATIVE file, and the exception raised when a larger one is requested, are implementation-defined."
+  value: "Record numbers go from 1 to 4294967295 (the file format keeps them in 32 bits). A RECORD index above that, and a WRITE or PRINT without record-setter in the area after record 4294967295, raise the fatal exception 7206, the only code of the exception table for an invalid RECORD index, and change nothing in the file."
+  tests: [FIL-0602]
+  external: []
+  covers: [l.6752-6766, l.7320-7321]
+- id: D-11.3-1
+  clause: "11.3"
+  ecma: "11.3"
+  ecma_level: BASIC-2
+  module: files
+  kind: implementation-defined
+  claim: "The means by which the end of a stored file element is signalled is implementation-defined."
+  value: "DISPLAY records are stored as newline-terminated lines."
+  tests: [FIL-0166]
+  external: []
+  covers: [l.7551-7592]
+- id: D-11.3-2
+  clause: "11.3"
+  ecma: "11.3"
+  ecma_level: BASIC-2
+  module: files
+  kind: implementation-defined
+  claim: "The default margin and the default zone width of a DISPLAY file are implementation-defined."
+  value: "Default zone width 17 = d+e+6 (d = 8, e = 3; STD 11.3.4.4 l.7618-7621) for a DISPLAY file; margin unlimited for files (ASK #n: MARGIN reports MAXNUM, Table 5 l.6993-6995), 132 for channel zero."
+  tests: [FIL-0167]
+  external: []
+  covers: [l.7602-7620]
+- id: D-11.3-3
+  clause: "11.3"
+  ecma: "11.3"
+  ecma_level: BASIC-2
+  module: files
+  kind: implementation-defined
+  claim: "The largest margin and the largest zone width a file supports are implementation-defined."
+  value: "At least 1000000 for both the margin and the zone width."
+  tests: [FIL-0168]
+  external: []
+  covers: [l.7613-7650]
+- id: D-11.3-4
+  clause: "11.3"
+  ecma: "11.3"
+  ecma_level: BASIC-2
+  module: files
+  kind: implementation-defined
+  claim: "The accuracy of numeric values printed into DISPLAY records is implementation-defined."
+  value: "8 significant digits (d = 8, D-10.3-2; 1/3 prints as .33333333, 123456789012345678 as 1.2345679E+17)."
+  tests: [FIL-0169]
+  external: []
+  covers: [l.7637-7650, l.7723-7753]
+- id: D-11.4-1
+  clause: "11.4"
+  ecma: "11.4"
+  ecma_level: BASIC-2
+  module: files
+  kind: implementation-defined
+  claim: "How many significant digits a value received from a numeric field of a NATIVE record keeps is implementation-defined."
+  value: "A NUMERIC*i.f field stores fixed-point decimal text of that size: 1/3 in NUMERIC*15.10 reads back as .3333333333 (lossy beyond the 10 fraction digits)."
+  tests: [FIL-0170]
+  external: []
+  covers: [l.8310-8327]
+- id: D-11.4-2
+  clause: "11.4"
+  ecma: "11.4"
+  ecma_level: BASIC-2
+  module: files
+  kind: implementation-defined
+  claim: "The effect of the prompt, timeout and time-inquiry controls on true files and nonterminal devices is implementation-defined."
+  value: "PROMPT, TIMEOUT and ELAPSED are accepted on true files and ignored (no prompt is shown, no timeout applies)."
+  tests: [FIL-0171, FIL-0181]
+  external: []
+  covers: [l.8114-8125]
+- id: D-11.4-3
+  clause: "11.4"
+  ecma: "11.4"
+  ecma_level: BASIC-2
+  module: files
+  kind: implementation-defined
+  claim: "The precision of numeric constants received back from DISPLAY files is implementation-defined."
+  value: "Numeric constants are retrieved with full numeric-constant accuracy (0.1 reads back exactly as 0.1)."
+  tests: [FIL-0172]
+  external: []
+  covers: [l.8247-8252]
+- id: D-11.4-4
+  clause: "11.4"
+  ecma: "11.4"
+  ecma_level: BASIC-2
+  module: files
+  kind: implementation-defined
+  claim: "The precision with which numeric values can be retrieved without loss from a NATIVE file is implementation-defined."
+  value: "Same storage as D-11.4-1: fixed-point decimal fields of the template size, exact only within those digits."
+  tests: [FIL-0170]
+  external: []
+  covers: [l.8310-8327]
+- id: D-11.4-5
+  clause: "11.4"
+  ecma: "11.4"
+  ecma_level: BASIC-2
+  module: files
+  kind: implementation-defined
+  claim: "Retrieving a NATIVE record whose contents are incompatible with the TEMPLATE used has implementation-defined results."
+  value: "Reading a NATIVE record with an incompatible TEMPLATE raises 8012 (record too short for the TEMPLATE)."
+  tests: [FIL-0173]
+  external: []
+  covers: [l.8304-8311]
+- id: D-11.4-6
+  clause: "11.4"
+  ecma: "11.4"
+  ecma_level: BASIC-2
+  module: files
+  kind: implementation-defined
+  claim: "Whether an illegal input reply on a device is treated with the fatal section 11 procedure or the nonfatal section 10 recovery is implementation-defined."
+  value: "On channel zero an illegal input reply raises the nonfatal 8103 (section 10 device recovery), not the fatal 8105."
+  tests: [FIL-0174]
+  external: []
+  covers: [l.6305-6310]
+- id: D-11.5-1
+  clause: "11.5"
+  ecma: "11.5"
+  ecma_level: BASIC-2
+  module: files
+  kind: implementation-defined
+  claim: "The effect of REWRITE and DELETE on files whose organization is not RELATIVE or KEYED is implementation-defined."
+  value: "REWRITE and DELETE on a SEQUENTIAL or STREAM file raise the local code -7500 (organization not supported), whatever the record type (DISPLAY, INTERNAL or NATIVE); the code is negative because the effect is outside the standard ranges."
+  tests: [FIL-0175, FIL-0567]
+  external: []
+  covers: [l.8501-8526]
+- id: D-11.5-2
+  clause: "11.5"
+  ecma: "11.5"
+  ecma_level: BASIC-2
+  module: files
+  kind: implementation-defined
+  claim: "Using an incompatible TEMPLATE that contains SKIP in a REWRITE has implementation-defined results."
+  value: "REWRITE with a template without SKIP over a SKIP-created NATIVE record succeeds and replaces the record."
+  tests: [FIL-0176]
+  external: []
+  covers: [l.8510-8537]
+- id: A-11.5.4.1-02
+  clause: "11.5.4.1"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  status: claimed
+  claim: "In a KEYED file, a REWRITE replaces the record pointed to by the file pointer, leaves its key unchanged and advances the pointer to the next file-element, with a KEY record-setter and without one: ASK KEY gives the next key, a READ # without record-setter reads the next record, and rewriting the last key leaves the pointer at end of file."
+  tests: [FIL-0217]
+  external: []
+  covers: [l.8548-8556, l.6987-6992]
+
+- id: A-11.5.4.1-01
+  clause: "11.5.4.1"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  status: claimed
+  claim: "In a RELATIVE file, a REWRITE replaces the record pointed to by the file pointer and advances the pointer to the next file-element, also when a RECORD record-setter was present (ASK RECORD reports n+1 afterwards and a READ # without record-setter reads record n+1); since a preceding WRITE #1, RECORD n leaves the pointer at the (possibly empty) area n+1, a REWRITE without record-setter there raises 7305 when that area is empty."
+  tests: [FIL-0199]
+  external: []
+  covers: [l.8552-8557, l.7536-7541]
+- id: A-11.5.4-TR72
+  clause: "11.5.4"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  status: claimed
+  claim: "In a KEYED file, REWRITE, MAT REWRITE and DELETE with a KEY record-setter whose key does not exist leave the pointer at the first key greater than the given one, or at end of file if there is none, both with an IF MISSING recovery and when exception 7305 results: ASK KEY then gives that key (the null string at end of file) and a READ # without record-setter reads that record, exactly as after READ # or SET # with the same missing key."
+  tests: [FIL-0270]
+  external: []
+  covers: [l.8527-8534, l.8029-8036, l.7256-7260]
+
+# --- Record-setter KEY on KEYED files, MAT LINE INPUT #.
+- id: A-11.2.4.1-G01
+  clause: "11.2.4.1"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "SET # with an exact KEY search on a KEYED file sets the pointer to the record whose key equals the string."
+  tests: [FIL-0177]
+  external: []
+  covers: [l.7166-7170, l.7255-7258]
+- id: A-11.2.4.1-G02
+  clause: "11.2.4.1"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "SET # with an inexact KEY search sets the pointer to the first record with a strictly greater key, and an exact miss leaves data-found false."
+  tests: [FIL-0178]
+  external: []
+  covers: [l.7169-7170, l.7259-7262, l.7276-7280]
+- id: A-11.4.4.5-G01
+  clause: "11.4.4.5"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "MAT LINE INPUT # reads one record per element of each array in the list."
+  tests: [FIL-0180]
+  external: []
+  covers: [l.7968, l.8007, l.8189-8199]
+- id: A-11.3.4-TR83A
+  clause: "11.3.4"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  status: claimed
+  claim: "On RELATIVE and KEYED files (INTERNAL, NATIVE and DISPLAY), a WRITE or REWRITE stopped by exception 7308 or by an exception while evaluating an operand (the first, a middle one or the last) adds or changes no file-element and leaves no values behind: the next correct WRITE or REWRITE of the channel stores exactly its own values, and the record that failed does not exist (WRITE) or is unchanged (REWRITE)."
+  tests: [FIL-0310, FIL-0311, FIL-0312]
+  external: []
+  covers: [l.7516-7541, l.7659-7660, l.7671-7675, l.8548-8555]
+- id: A-11.3.4-TR83B
+  clause: "11.3.4"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  status: claimed
+  claim: "A WRITE with IF THERE (or a REWRITE with IF MISSING) takes the io-recovery-action when data-found is true (false for REWRITE) whatever the number of values: on a RELATIVE INTERNAL file the recovery was lost after the first value; the file is not changed and the next statement of the channel works."
+  tests: [FIL-0313]
+  external: []
+  covers: [l.7516-7524, l.8527-8533]
+- id: A-11.3.4-TR87A
+  clause: "11.3.4"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  status: claimed
+  claim: "A data creation statement (WRITE, PRINT #) evaluates its operands only in phase 3, after phase 2 has decided that no record exists: when the record is found and the statement carries an IF THERE clause its recovery action is taken without evaluating any operand, so an operand that raises an exception or a function with side effects is not executed; the same holds for a REWRITE with IF MISSING when the record does not exist. When data-found is false the operands are evaluated once, in order."
+  tests: [FIL-0340]
+  external: []
+  covers: [l.7507-7514, l.7516-7524, l.7525-7528, l.8527-8533]
+- id: A-11.3.4-TR87B
+  clause: "11.3.4"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  status: claimed
+  claim: "The exceptions of phases 1 and 2 of a WRITE or PRINT # come before the evaluation of the operands: a WRITE on a file opened INPUT is 7302 (also when it carries IF THERE) and a data creation on an existing record without recovery is 7308, whatever the operands are, and in both cases no operand is evaluated and the file does not change."
+  tests: [FIL-0341]
+  external: []
+  covers: [l.7507-7514, l.7516-7524, l.7525-7528, l.7885-7886, l.7907-7909]
+- id: A-11.5.4-TR87
+  clause: "11.5.4"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  status: claimed
+  claim: "REWRITE (and MAT REWRITE) obtains its record like a data retrieval statement: attribute exceptions (7322 on a file not opened OUTIN) come first, then a missing record is IF MISSING or 7305, and only when the record exists are the operands evaluated; a failing operand or a function with side effects is not executed when the statement ends in phase 1 or 2."
+  tests: [FIL-0342]
+  external: []
+  covers: [l.8527-8533, l.7525-7528]
+- id: A-11.3.4-TR87C
+  clause: "11.3.4"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  status: claimed
+  claim: "The io-recovery-action declared by a WRITE or REWRITE is taken or ignored by that statement only: when the statement stops with an exception (in an operand of phase 3, with 7302 in phase 1, or with 8301 in MAT WRITE) a later statement on the channel does not take the old recovery, so a WRITE on an existing record gives 7308, a READ of a missing record gives 7305 and a SET that finds a record continues normally."
+  tests: [FIL-0343]
+  external: []
+  covers: [l.7516-7524, l.8527-8533, l.7274-7277]
+- id: A-11.3.4.1-TR96
+  clause: "11.3.4.1"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  status: claimed
+  claim: "A tab-call in a PRINT # on a DISPLAY file acts as in 10.3.4.3 on the record being built: the argument is rounded to n, n above the margin of the channel is reduced to MOD(n-1,m)+1, spaces are generated up to column n when the current column is not past it, otherwise an end-of-record and n-1 spaces; the column carries over a partial record of a previous PRINT #, and an index below one is the nonfatal exception 4005 (supply 1 and continue)."
+  tests: [FIL-0384]
+  external: []
+  covers: [l.7543-7547, l.5452-5466, l.5532-5533, l.7557-7561]
+- id: A-11.3.4.6-TR96
+  clause: "11.3.4.6"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  status: claimed
+  claim: "PRINT #0 with a tab-call behaves as PRINT without a channel: TAB positions the column of the console line, a column already past n starts a new line, and an index below one is 4005."
+  tests: [PRT-0304]
+  external: []
+  covers: [l.7643-7648, l.5452-5466]
+- id: A-11.2.4.1-TR105
+  clause: "11.2.4.1"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  status: claimed
+  claim: "On a STREAM file, SAME after a READ resets the pointer to the file element the pointer had at the beginning of that READ: after READ #1: A and READ #1: B on a file holding 1, 2, 3, SET #1: POINTER SAME followed by READ #1: C gives C = 2 (not 1), and after three READs a SAME followed by READ gives the third value."
+  tests: [FIL-0385]
+  external: []
+  covers: [l.7234-7240]
+- id: A-11.3.2-TR106
+  clause: "11.3.2"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: syntax
+  claim: "A WITH <line> template-identifier in WRITE, REWRITE, READ, MAT WRITE, MAT READ or MAT REWRITE whose line is not a TEMPLATE statement of the same program unit (a plain statement, a missing line, or a TEMPLATE of another unit) is rejected before the program runs, independently of the order of the lines."
+  tests: [FIL-0388, FIL-0386, FIL-0387]
+  external: []
+  covers: [l.7457-7458, l.7990-7991]
+- id: A-11.5.4.3-TR110
+  clause: "11.5.4.3"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  status: claimed
+  claim: "After a delete-statement on a RELATIVE file the file pointer is at the next record-area: with areas 1 to 3 holding 10, 20 and 30, DELETE #1, RECORD 1 followed by READ #1 reads 20 and ASK #1: RECORD gives 2 before that READ, and SET #1: RECORD 2 followed by DELETE #1 and READ #1 reads 30."
+  tests: [FIL-0389]
+  external: []
+  covers: [l.8571-8573]
+
+- id: A-11.3.2-TR113
+  clause: "11.3.2"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: syntax
+  claim: "Two record-setters, even different ones (BEGIN and END, NEXT and KEY, SAME and RECORD), in the control of one PRINT #, INPUT #, READ #, WRITE #, REWRITE # or DELETE # make the program invalid and it is rejected before it runs."
+  tests: [FIL-0400, FIL-0401, FIL-0402, FIL-0403, FIL-0404, FIL-0405]
+  external: []
+  covers: [l.7471-7472, l.7993-7994, l.7996-7997, l.8504-8507]
+- id: A-11.2.4.1-TR114
+  clause: "11.2.4.1"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "On a RELATIVE file, the NEXT record-setter puts the pointer at the next existing record at or beyond the current position: if the pointer is already on an existing record it is unchanged (SET POINTER BEGIN then READ NEXT reads the first record), on an empty area it moves to the next existing record, and at or beyond the last record it stays."
+  tests: [FIL-0406, FIL-0407, FIL-0408, FIL-0409]
+  external: []
+  covers: [l.7200-7208, l.7356]
+- id: A-11.2.4.2-TR115
+  clause: "11.2.4.2"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "The io-recovery of a file statement applies only to that statement: a missing-recovery or there-recovery that did not fire is not applied to later statements of the channel that carry none (a SET, or a READ of a missing record, which is then 7305)."
+  tests: [FIL-0410, FIL-0411, FIL-0412]
+  external: []
+  covers: [l.7270-7279, l.8397-8399]
+- id: A-11.2.4.1-TR123
+  clause: "11.2.4.1"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "On a KEYED file the NEXT record-setter leaves the pointer unchanged wherever it is: after SET POINTER BEGIN a READ NEXT reads the first record and the current key does not change, successive READ NEXT visit every record without skipping any, and NEXT after a READ, after a DELETE or at end of file does not move the pointer."
+  tests: [FIL-0413, FIL-0414]
+  external: []
+  covers: [l.7205-7208, l.7356]
+- id: A-11.1.4-TR124
+  clause: "11.1.4"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "In a STREAM INTERNAL file a multi-value WRITE is still a sequence of individual values: after reading some of them ASK POINTER is MIDDLE (not END) and ERASE REST deletes the values at or beyond the pointer while keeping the preceding ones."
+  tests: [FIL-0415, FIL-0416]
+  external: []
+  covers: [l.6743-6752, l.6922-6925, l.7003-7010]
+
+- id: A-11.2.2-TR155
+  clause: "11.2.2"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: syntax
+  claim: "The line-number of the io-recovery of the pointer-items of a SET (SET #n: POINTER ..., IF MISSING THEN n; IF THERE THEN n; KEY ..., IF MISSING THEN n) is the line of a control-transfer (8.2.2 prod. 1): it must exist in the program unit (4.2.2) and obeys the same scope rules as GOTO, so from outside it may not name a line inside an if-block branch, select-block case, for-body, do-body, protection-block, exception-handler or the header line of its own external subprogram, nor may it jump between sibling branches or leave an internal routine; jumps within the same branch or to the end-if-line stay valid."
+  tests: [FIL-0492, FIL-0493, FIL-0494, FIL-0495, FIL-0496, FIL-0497, FIL-0498, FIL-0499, FIL-0500]
+  covers: [l.3628-3632, l.7149-7157, l.7270-7291]
+  external: []
+
+- id: A-11.1.2-TR176
+  clause: "11.1.2"
+  ecma: "11.1.2"
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "A channel-expression is a number-sign followed by an index, so a channel number that is not an integer is rounded with INT(X+.5) in OPEN, CLOSE, PRINT, LINE INPUT, ASK, SET and the other file statements: #1.4 and #0.6 are channel 1. The rounded value is then checked against the range of channels: #255.4 is channel 255 and is valid, #255.6 is channel 256 (7001), #0.4 is channel zero (7002) and #-.6 is channel -1 (7001)."
+  tests: [FIL-0501, FIL-0502]
+  covers: [l.1700-1702, l.6488]
+  external: []
+
+- id: A-11.2.4.1-TR177
+  clause: "11.2.4.1"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "The index of a RECORD record-setter is evaluated by rounding to an integer and only then compared with one: RECORD .7 is record 1 and RECORD 1.6 is record 2, while RECORD .4 evaluates to 0 and gives the exception 7206."
+  tests: [FIL-0503]
+  covers: [l.1700-1702, l.7247-7251, l.7326-7327]
+  external: []
+
+- id: A-11.1.4.5-TR177
+  clause: "11.1.4.5"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "The index of RECSIZE VARIABLE LENGTH is rounded to an integer and only then must be greater than zero: LENGTH .4 evaluates to 0 and gives the exception 7051, while LENGTH .5 evaluates to 1 and is a valid maximum record length (the margin of the file)."
+  tests: [FIL-0504]
+  covers: [l.1700-1702, l.6853-6854, l.7079]
+  external: []
+- id: A-11.2.4.1-05
+  clause: "11.2.4.1"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "SAME is valid after a MAT WRITE and after a WRITE or MAT WRITE with a template (NATIVE file) on a SEQUENTIAL file, exactly as after a scalar WRITE: it points at the first file element created by that operation, so a read after SET # POINTER SAME returns the values just written and the exception 7204 does not occur."
+  tests: [FIL-0505]
+  covers: [l.7240, l.7241, l.7242]
+  external: []
+- id: A-11.2.4.1-CL02
+  clause: "11.2.4.1"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  claim: "REWRITE, MAT REWRITE and DELETE on a KEYED file set the pointer from the KEY record-setter exactly as the data retrieval statements do: with KEY >= s (not-less) they act on the record whose key equals s or else on the first record whose key is greater, and with KEY > s on the first record whose key is strictly greater; only when no such record exists (pointer at end of file) or an exact search finds no equal key is data-found false and the exception 7305 given with the file unchanged."
+  tests: [FIL-0560]
+  covers: [l.7255-7267, l.7279-7283, l.8527-8533, l.8614]
+  external: []
+
+- id: A-11.1.5-CL05
+  clause: "11.1.5"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "An OPEN whose NAME evaluates to the empty string, whether given as a literal, a variable or an empty substring, raises an exception in the 71xx range, since access to the file is not possible, and not a code outside the standard ranges."
+  tests: [FIL-0564]
+  covers: [l.7069-7072]
+  external: []
+
+- id: A-11.3.4.11-CL06
+  clause: "11.3.4.11"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "In a template, a NUMERIC field whose integer-size is omitted is treated as having integer-size zero: a value that still has a nonzero integer part after rounding to the fraction-size has no available position to the left of the point and gives exception 8255, while a value below one in magnitude is stored and read back, and digits beyond the fraction-size are rounded (possibly to zero)."
+  tests: [FIL-0565]
+  covers: [l.7752-7761, l.7924-7925, l.8312-8317]
+  external: []
+
+- id: A-11.2.5-CL07
+  clause: "11.2.5"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: exception
+  claim: "A record-setter used with channel zero gives the nonfatal exception 7002 in every statement that accepts one, INPUT and LINE INPUT included. With an active handler of the program the exception is delivered to the handler, EXTYPE is 7002 and the statement reads nothing; with no handler it is reported as a warning, execution continues and the statement is carried out with the record-setter ignored."
+  tests: [FIL-0566]
+  covers: [l.7303-7304]
+  external: []
+
+- id: A-11.1.4.7-CL39
+  clause: "11.1.4.7"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  status: claimed
+  claim: "On exit from an external SUB, FUNCTION or PICTURE, the files that procedure opened on channels that are not formal parameters are closed, and a partial record left by a PRINT # with a trailing print-separator is completed with an end-of-record; a later PRINT # to that channel gives exception 7004 and a later opening of the file starts a new record."
+  tests: [FIL-0572]
+  external: []
+  covers: [l.6902-6906, l.7573-7578]
+
+- id: A-11.1.4.7-CL42
+  clause: "11.1.4.7"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  status: claimed
+  claim: "On exit from an external unit, and on program termination, the closing of a RELATIVE DISPLAY file completes the partial record left by a PRINT # with a trailing print-separator, exactly as an explicit CLOSE does, so a later reading by record number finds the record."
+  tests: [FIL-0573]
+  external: []
+  covers: [l.6902-6909, l.7573-7578]
+
+- id: A-11.4.4.8-FI13
+  clause: "11.4.4.8"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  status: claimed
+  claim: "In a SEQUENTIAL file with native records each record operation handles exactly one record: after a read the pointer is at the next record, and SKIP REST ignores the rest of the record."
+  tests: [FIL-0574]
+  external: []
+  covers: [l.6740-6747, l.8065-8070, l.8224-8229]
+
+- id: A-11.4.5.3-FI13
+  clause: "11.4.5.3"
+  ecma: null
+  ecma_level: BASIC-2
+  module: files
+  kind: semantics
+  status: claimed
+  claim: "A record of a file that is not STREAM must hold just enough data for the variable-list of a data retrieval statement: with native records, data left over without SKIP REST raise 8013, too few data raise 8012, and template specifiers beyond the variables are ignored even when the record is shorter than the template."
+  tests: [FIL-0575]
+  external: []
+  covers: [l.8226-8229, l.8302-8305, l.8443-8446, l.8451-8453]

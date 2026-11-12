@@ -1,0 +1,14 @@
+1 REM FBCS ARR-0385
+2 REM CLAIM A-7.1.2-TR139
+3 REM TYPE REJECT
+4 REM STD 7.1.2 l.2995-3002: an internal SUB dimensions Z at its top level and again inside an
+5 REM IF: rejected.
+6 PRINT "EXECUTED"
+10 SUB S
+20 DIM Z(3)
+30 IF 1 = 0 THEN
+40 DIM Z(3)
+50 END IF
+60 END SUB
+70 CALL S
+80 END

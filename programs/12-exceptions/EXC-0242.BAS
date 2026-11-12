@@ -1,0 +1,15 @@
+1 REM FBCS EXC-0242
+2 REM CLAIM A-12.2.4-TR161
+3 REM TYPE OUTPUT
+4 REM 12.2.4 l.9119-9142: the traced unit shows its own line texts, not those of a later unit with the same line numbers.
+10 DECLARE EXTERNAL SUB E
+20 CALL E
+70 END
+6 EXTERNAL SUB E
+10 DEBUG ON
+20 TRACE ON
+30 LET X = 5
+70 END SUB
+7 EXTERNAL SUB F
+30 LET ZZ = 9
+70 END SUB

@@ -1,0 +1,16 @@
+1 REM FBCS SEG-0583
+2 REM CLAIM A-9.2.4.2-TR147A
+3 REM TYPE OUTPUT
+4 REM 9.2.4.2 l.4718-4738: internal SUB called from an internal FUNCTION with a homonymous formal array.
+10 DIM V(2), W(2)
+20 LET V(1) = 1
+30 LET W(1) = 9
+40 SUB R
+50   PRINT V(1)
+60 END SUB
+70 FUNCTION F(V())
+80   CALL R
+90   LET F = 0
+100 END FUNCTION
+110 LET Q = F(W)
+120 END

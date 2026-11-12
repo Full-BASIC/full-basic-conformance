@@ -1,0 +1,18 @@
+1 REM FBCS CTL-0037
+2 REM CLAIM A-8.3.4-04
+3 REM TYPE SELF
+100 REM hidden limit/increment belong to each loop alone (l.3867)
+110 LET S = 0
+120 FOR I = 1 TO 3
+130   FOR J = 1 TO I
+140     LET S = S + 1
+150   NEXT J
+160 NEXT I
+170 LET P = 1
+180 FOR I = 1 TO 3
+190   FOR J = 1 TO 2
+200     LET P = P * 10
+210   NEXT J
+220 NEXT I
+230 IF S = 6 AND P = 1000000 AND I = 4 AND J = 3 THEN PRINT "*** TEST PASSED ***" ELSE PRINT "*** TEST FAILED ***"
+240 END

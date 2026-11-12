@@ -1,0 +1,8 @@
+1 REM FBCS EXC-0261
+2 REM CLAIM A-12.1.4-08
+3 REM TYPE FATAL
+4 REM EXPECT 1000000000000 110
+5 REM 12.1.4 l.8869-8871: a cause-statement with an index beyond 32 bits reports its rounded value.
+100 PRINT "before"
+110 CAUSE EXCEPTION 1E12
+120 END

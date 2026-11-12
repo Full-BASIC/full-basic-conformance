@@ -1,0 +1,13 @@
+1 REM FBCS STR-0056
+2 REM CLAIM D-6.4-1
+3 REM TYPE SELF
+100 REM CHR$ for the native character set (implementation-defined): on this
+110 REM host the native set is ASCII/UTF-8, so CHR$(M) is the ASCII character M.
+120 OPTION COLLATE NATIVE
+130 LET FAIL = 0
+140 IF CHR$(65) <> "A" THEN LET FAIL = FAIL + 1
+150 IF CHR$(48) <> "0" THEN LET FAIL = FAIL + 1
+160 IF CHR$(97) <> "a" THEN LET FAIL = FAIL + 1
+170 IF ORD(CHR$(32)) <> 32 THEN LET FAIL = FAIL + 1
+180 IF FAIL = 0 THEN PRINT "*** TEST PASSED ***" ELSE PRINT "*** TEST FAILED ***"
+190 END

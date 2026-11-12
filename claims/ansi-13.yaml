@@ -1,0 +1,1824 @@
+- id: A-13.4.2-01
+  clause: "13.4.2"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: syntax
+  claim: "In MAT LOCATE, a two-dimensional array can be given as the numeric-variable-matrix form: the array name followed by a question mark, a comma and a closing parenthesis."
+  tests: [GFX-0001]
+  external: []
+- id: A-13.4.2-02
+  clause: "13.4.2"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: syntax
+  claim: "In MAT LOCATE, a pair of one-dimensional arrays can be given as numeric-variable-vectors: each array name followed by a question mark in parentheses."
+  tests: [GFX-0002]
+  external: []
+- id: A-13.4.2-03
+  clause: "13.4.2"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: syntax
+  claim: "A matrix written with two question marks in parentheses is not an array-locate-object of MAT LOCATE and the program is rejected."
+  tests: [GFX-0003]
+  external: []
+- id: A-13.4.5-01
+  clause: "13.4.5"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: exception
+  claim: "A graphic input statement whose initial-point falls beyond the device viewport, once the window-to-viewport mapping and the device mapping are applied, causes a fatal exception, code 11152."
+  tests: [GFX-0004]
+  external: []
+- id: A-13.4.5-02
+  clause: "13.4.5"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: exception
+  claim: "A redimensioned array in MAT LOCATE that needs more elements than the original dimensions reserve is a fatal exception, code 5001."
+  tests: [GFX-0005]
+  external: []
+- id: A-13.4.5-03
+  clause: "13.4.5"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: exception
+  claim: "A device-select naming a graphic input device that is not present is a fatal exception, code 11140, in MAT LOCATE as in the scalar locate statements."
+  tests: [GFX-0006]
+  external: []
+- id: A-13.5.4.2-01
+  clause: "13.5.4.2"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "A graphic-output statement other than PLOT LINES, including the MAT forms, turns the beam off, so a later PLOT LINES starts a new line instead of continuing from the previous end point."
+  tests: [GFX-0007]
+  external: []
+- id: A-13.5.4-01
+  clause: "13.5.4"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "PLOT TEXT inside a picture-def is drawn at the point transformed by the transform of the draw-statement (shift, scale, rotate, shear, products read left to right, and a nested picture applying its own transform first), while GRAPH TEXT and a PLOT TEXT outside any picture are not transformed."
+  tests: [GFX-0008]
+  external: []
+
+- id: A-13.5.2-01
+  clause: "13.5.2"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: syntax
+  claim: "A control transfer inside an internal picture definition may not name the header line of that picture, even if it would never be executed; the program is rejected before it runs."
+  tests: [GFX-0009]
+  external: []
+  covers: [l.10495-10499]
+
+- id: A-13.5.2-02
+  clause: "13.5.2"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "A control transfer outside an internal picture definition may name the header line of that picture; reaching it has no effect and execution continues at the line after the END PICTURE."
+  tests: [GFX-0010]
+  external: []
+  covers: [l.10495-10497]
+
+- id: A-13.1.4-01
+  clause: "13.1.4"
+  ecma: "13.1.4"
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "ASK WINDOW, ASK VIEWPORT, ASK DEVICE WINDOW and ASK DEVICE VIEWPORT give the left, right, bottom and top values, in that order, to the variables of the list, whether or not each of those variables was used earlier in the program."
+  tests: [GFX-0011, GFX-0012]
+  covers: [l.9360-9366]
+  external: []
+
+- id: A-13.1.4-02
+  clause: "13.1.4"
+  ecma: "13.1.4"
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "ASK DEVICE SIZE gives the horizontal and vertical sizes to its first two numeric variables and the unit text to its string variable, whether or not those variables were used earlier in the program."
+  tests: [GFX-0013]
+  covers: [l.9368-9371]
+  external: []
+
+
+- id: A-13.1.3-EX
+  clause: "13.1.3"
+  ecma: "13.1.3"
+  ecma_level: Graphics
+  module: graphics
+  kind: syntax
+  claim: "Every example of section 13.1.3 (set and ask of window, viewport, device window, device viewport, device size and clip) is accepted and behaves as written."
+  tests: [GFX-0014]
+  external: []
+  covers: [l.9244-9259]
+
+- id: A-13.2.3-EX
+  clause: "13.2.3"
+  ecma: "13.2.3"
+  ecma_level: Graphics
+  module: graphics
+  kind: syntax
+  claim: "Every example of section 13.2.3 (the set and ask objects for styles, colors, color mix and text) is accepted and behaves as written."
+  tests: [GFX-0015]
+  external: []
+  covers: [l.9517-9529]
+
+- id: A-13.3.3-EX
+  clause: "13.3.3"
+  ecma: "13.3.3"
+  ecma_level: Graphics
+  module: graphics
+  kind: syntax
+  claim: "Every graphic-output example of section 13.3.3 (GRAPH LINES, MAT GRAPH POINTS and AREA, GRAPH TEXT, MAT GRAPH CELLS) is accepted and behaves as written."
+  tests: [GFX-0016]
+  external: []
+  covers: [l.9860-9871]
+
+- id: A-13.4.3-EX
+  clause: "13.4.3"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: syntax
+  claim: "The graphic-input examples of section 13.4.3 are accepted and behave as written (GFX-0017): the LOCATE POINT / LOCATE POINT AT / LOCATE VALUE / LOCATE CHOICE examples, the four MAT LOCATE POINT forms, and the MAX device asks with PIXEL SIZE / PIXEL ARRAY / PIXEL VALUE. The final example of the section (OPTION BASE 1, DIM Pix(30,30), ASK PIXEL SIZE(0,0;1,1), MAT PIX = ZER(ONE,TWO), ASK PIXEL ARRAY(0,L) PIX) is not included."
+  tests: [GFX-0017]
+  external: []
+  covers: [l.10163-10189]
+
+- id: A-13.5.3-EX
+  clause: "13.5.3"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: syntax
+  claim: "Every picture example of section 13.5.3 (DRAW with transforms, EXIT PICTURE, transform-assignment and PLOT LINES inside a picture) is accepted and behaves as written."
+  tests: [GFX-0018]
+  external: []
+  covers: [l.10570-10594]
+
+- id: A-13.1.4-03
+  clause: "13.1.4"
+  ecma: "13.1.4"
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "SET WINDOW sets the window edges: the four parameters give the edges in problem coordinates, left first, then right, then bottom, then top, and the window starts as (0,1,0,1)."
+  tests: [GFX-0019]
+  external: []
+  covers: [l.9272]
+
+- id: A-13.1.4-04
+  clause: "13.1.4"
+  ecma: "13.1.4"
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "SET VIEWPORT sets the viewport edges in normalized device coordinates, left, right, bottom, top in that order; each lies in [0,1] with left below right and bottom below top, and the viewport starts as (0,1,0,1)."
+  tests: [GFX-0020]
+  external: []
+  covers: [l.9278, l.9282-9283]
+
+- id: A-13.1.4-05
+  clause: "13.1.4"
+  ecma: "13.1.4"
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "SET CLIP turns clipping to the viewport boundary on or off according to whether the string is ON or OFF in any letter case; clipping starts enabled."
+  tests: [GFX-0021]
+  external: []
+  covers: [l.9289, l.9293]
+
+- id: A-13.1.4-06
+  clause: "13.1.4"
+  ecma: "13.1.4"
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  status: pending
+  claim: "The mapping from device window to device viewport uses one positive scale factor for both axes, picking the largest rectangle that keeps the aspect ratio and aligns the lower-left corners."
+  tests: []
+  note: "The mapping from the device window to the device viewport is not observable through the draw log, which records problem coordinates; no test."
+  external: []
+  covers: [l.9298]
+
+- id: A-13.1.4-07
+  clause: "13.1.4"
+  ecma: "13.1.4"
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "SET DEVICE WINDOW sets the device window edges in normalized device coordinates, left, right, bottom, top, each within [0,1] with left below right and bottom below top, starting as (0,1,0,1); output outside it is always clipped and the display is cleared when it is not already clear."
+  tests: [GFX-0022, GFX-0280, GFX-0281]
+  external: []
+  covers: [l.9306, l.9309-9310, l.9317]
+
+- id: A-13.1.4-08
+  clause: "13.1.4"
+  ecma: "13.1.4"
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "SET DEVICE VIEWPORT sets the device viewport rectangle, in meters on devices with exactly scaled output and in device-dependent units otherwise, with the left and bottom edges of the surface at zero; it starts as the whole screen and clears the display when needed."
+  tests: [GFX-0024, GFX-0280, GFX-0281]
+  external: []
+  covers: [l.9321, l.9324, l.9330]
+
+- id: A-13.1.4-09
+  clause: "13.1.4"
+  ecma: "13.1.4"
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "An ask-statement with a status-clause stores zero in the status variable when the ask-object got meaningful values, otherwise the nonzero value defined for that ask-object; ask-objects that always succeed always store zero."
+  tests: [GFX-0025]
+  external: []
+  covers: [l.9349, l.9351, l.9354, l.9358]
+
+- id: A-13.1.4-10
+  clause: "13.1.4"
+  ecma: "13.1.4"
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "ASK DEVICE SIZE stores the horizontal then vertical size of the available display surface in its two numeric variables and stores METERS or OTHER, in upper case, in its string variable."
+  tests: [GFX-0026]
+  external: []
+  covers: [l.9372, l.9375]
+
+- id: A-13.1.4-11
+  clause: "13.1.4"
+  ecma: "13.1.4"
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "ASK CLIP stores ON or OFF, in upper case, in its string variable according to the current clipping state."
+  tests: [GFX-0027]
+  external: []
+  covers: [l.9377, l.9380]
+
+- id: A-13.1.6-01
+  clause: "13.1.6"
+  ecma: "13.1.6"
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "When an ask-object cannot return meaningful values, its status-clause receives 11000 plus the GKS error-indicator parameter value."
+  tests: [GFX-0028]
+  external: []
+  covers: [l.9454]
+
+- id: A-13.2.4-01
+  clause: "13.2.4"
+  ecma: "13.2.4"
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "CLEAR resets the graphic display when it is not already clear: erasing the screen on soft-copy devices and advancing the medium on hard-copy ones."
+  tests: [GFX-0029, GFX-0289]
+  external: []
+  covers: [l.9532-9534]
+
+- id: A-13.2.4-02
+  clause: "13.2.4"
+  ecma: "13.2.4"
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "SET LINE STYLE or SET POINT STYLE rounds the index to an integer N and makes the Nth of the available styles current for later lines or points."
+  tests: [GFX-0030]
+  external: []
+  covers: [l.9538-9539]
+
+- id: A-13.2.4-03
+  clause: "13.2.4"
+  ecma: "13.2.4"
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "At least four line styles exist: 1 solid, 2 dashed, 3 dotted, 4 dashed-dotted; the line style starts as one."
+  tests: [GFX-0031]
+  external: []
+  covers: [l.9541-9542, l.9546]
+
+- id: A-13.2.4-04
+  clause: "13.2.4"
+  ecma: "13.2.4"
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "At least five point styles exist: 1 dot, 2 plus, 3 asterisk, 4 circle, 5 x; the point style starts as three."
+  tests: [GFX-0032]
+  external: []
+  covers: [l.9549-9550, l.9555]
+
+- id: A-13.2.4-05
+  clause: "13.2.4"
+  ecma: "13.2.4"
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "ASK LINE STYLE or ASK POINT STYLE stores the number of the current line or point style."
+  tests: [GFX-0033]
+  external: []
+  covers: [l.9558]
+
+- id: A-13.2.4-06
+  clause: "13.2.4"
+  ecma: "13.2.4"
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "ASK MAX LINE STYLE or ASK MAX POINT STYLE stores the largest line or point style value available."
+  tests: [GFX-0034]
+  external: []
+  covers: [l.9562]
+
+- id: A-13.2.4-07
+  clause: "13.2.4"
+  ecma: "13.2.4"
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "Every style value from one up to the matching ASK MAX result is valid."
+  tests: [GFX-0035]
+  external: []
+  covers: [l.9566]
+
+- id: A-13.2.4-08
+  clause: "13.2.4"
+  ecma: "13.2.4"
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "SET POINT, LINE, TEXT or AREA COLOR rounds the index to an integer N and makes the Nth color the foreground for later points, lines, text or filled areas; all foreground indices start as one."
+  tests: [GFX-0036]
+  external: []
+  covers: [l.9570, l.9572, l.9577]
+
+- id: A-13.2.4-09
+  clause: "13.2.4"
+  ecma: "13.2.4"
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "ASK POINT, LINE, TEXT or AREA COLOR stores the current color index of that primitive."
+  tests: [GFX-0037]
+  external: []
+  covers: [l.9580]
+
+- id: A-13.2.4-10
+  clause: "13.2.4"
+  ecma: "13.2.4"
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "SET COLOR MIX rounds the index and sets the red, green and blue intensities of that index, each within [0,1]; index zero is the background color where meaningful."
+  tests: [GFX-0038]
+  external: []
+  covers: [l.9585-9587, l.9590, l.9593]
+
+- id: A-13.2.4-11
+  clause: "13.2.4"
+  ecma: "13.2.4"
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "ASK COLOR MIX rounds the index and stores the red, green and blue intensities last set for it, or those actually in force; with a status-clause it stores 11086 for an out-of-range index and 11087 when no mix was set, returning zero intensities in both cases."
+  tests: [GFX-0039]
+  external: []
+  covers: [l.9599-9600, l.9602, l.9606-9607, l.9610-9611, l.9613]
+
+- id: A-13.2.4-12
+  clause: "13.2.4"
+  ecma: "13.2.4"
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "ASK MAX COLOR stores the largest distinct color index usable by the color set-statements; every index from zero to it should be valid."
+  tests: [GFX-0040]
+  external: []
+  covers: [l.9617]
+
+- id: A-13.2.4.1-01
+  clause: "13.2.4.1"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "SET TEXT HEIGHT fixes the nominal character height in problem coordinates for later graphic text; after the viewing transform the largest hardware size that fits is chosen, else the smallest set, else software characters; it starts at 0.01 and is measured on upper-case letters."
+  tests: [GFX-0041]
+  external: []
+  covers: [l.9631, l.9633]
+
+- id: A-13.2.4.1-02
+  clause: "13.2.4.1"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "ASK TEXT HEIGHT stores the current text height, returning the actual height when it differs from the last SET."
+  tests: [GFX-0042]
+  external: []
+  covers: [l.9638, l.9641]
+
+- id: A-13.2.4.1-03
+  clause: "13.2.4.1"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "SET TEXT ANGLE sets the angle, in degrees or radians per OPTION ANGLE, at which later text is rotated counterclockwise about the justify point; zero is the normal horizontal orientation, multiples of 180 stay horizontal, odd multiples of 90 vertical, odd multiples of 45 diagonal; it starts at 0."
+  tests: [GFX-0043]
+  external: []
+  covers: [l.9643-9644, l.9651, l.9655, l.9660]
+
+- id: A-13.2.4.1-04
+  clause: "13.2.4.1"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "ASK TEXT ANGLE stores the current text angle, returning the actual angle when it differs from the last SET."
+  tests: [GFX-0044]
+  external: []
+  covers: [l.9663, l.9666]
+
+- id: A-13.2.4.1-05
+  clause: "13.2.4.1"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "SET TEXT JUSTIFY sets the horizontal part (LEFT, CENTER or RIGHT) and the vertical part (TOP, CAP, HALF, BASE or BOTTOM) of the text rectangle relative to the text position, in any letter case: LEFT puts the rectangle left side through the position, CENTER its midpoint, RIGHT its right side."
+  tests: [GFX-0045]
+  external: []
+  covers: [l.9669, l.9678-9679, l.9682]
+
+- id: A-13.2.4.1-06
+  clause: "13.2.4.1"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "Text justification starts as LEFT and BASE; ASK TEXT JUSTIFY stores the current horizontal and vertical parts, in upper case, in its two string variables."
+  tests: [GFX-0046]
+  external: []
+  covers: [l.9693, l.9704, l.9706]
+
+- id: A-13.3.2-01
+  clause: "13.3.2"
+  ecma: "13.3.2"
+  ecma_level: Graphics
+  module: graphics
+  kind: syntax
+  claim: "In an array-point-list two arrays must both be one-dimensional and a lone array two-dimensional; GRAPH LINES needs at least two coordinate-pairs and GRAPH AREA at least three."
+  tests: [GFX-0047, GFX-0048]
+  external: []
+  covers: [l.9849, l.9853-9854]
+
+- id: A-13.3.2-02
+  clause: "13.3.2"
+  ecma: "13.3.2"
+  ecma_level: Graphics
+  module: graphics
+  kind: syntax
+  claim: "The numeric-array of an array-cells-statement must be two-dimensional."
+  tests: [GFX-0049]
+  external: []
+  covers: [l.9857]
+
+- id: A-13.3.2-TR89
+  clause: "13.3.2"
+  ecma: "13.3.2"
+  ecma_level: Graphics
+  module: graphics
+  kind: syntax
+  claim: "When the dimensionality of the arrays is known at load, an array-point-list with two arrays whose arrays are not both one-dimensional, or with a lone array that is not two-dimensional (MAT GRAPH and MAT PLOT alike), and an array-cells-statement whose array is not two-dimensional, are rejected before the program runs; a lone two-dimensional array whose second dimension is not 2 is still the run-time exception 6401 (13.3.5)."
+  tests: [GFX-0175, GFX-0176, GFX-0178]
+  external: []
+  covers: [l.9848-9851, l.9856-9857]
+
+- id: A-13.5.2-TR89
+  clause: "13.5.2"
+  ecma: "13.5.2"
+  ecma_level: Graphics
+  module: graphics
+  kind: syntax
+  claim: "The array that receives a transform-assignment (MAT V = SHIFT(1, 2)) is one of the numeric-arrays of the transform-assignment and must be two-dimensional; a one-dimensional receiving array is rejected before the program runs (it was the run-time exception 5002)."
+  tests: [GFX-0177]
+  external: []
+  covers: [l.10564-10565]
+
+- id: A-13.3.2-03
+  clause: "13.3.2"
+  ecma: "13.3.2"
+  ecma_level: Graphics
+  module: graphics
+  kind: syntax
+  claim: "GRAPH LINES must list at least two coordinate-pairs and GRAPH AREA at least three; a program that violates this is reported at load (STD 2.3 l.580-584), even when the statement sits in a branch that is never executed."
+  tests: [GFX-0152]
+  external: []
+  covers: [l.9852-9855]
+
+- id: A-13.3.4.1-01
+  clause: "13.3.4.1"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "Output from print, input and trace statements never changes what graphic-output statements draw."
+  tests: [GFX-0050]
+  external: []
+  covers: [l.9886]
+
+- id: A-13.3.4.2-01
+  clause: "13.3.4.2"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "A geometric-statement takes its point sequence from the point-list; an array-geometric-statement takes it from the size-select, rounded to a count, or else from the vector lengths or the matrix first dimension, x from the first vector or lower-subscript column and y from the second, in order from the first row or elements."
+  tests: [GFX-0051]
+  external: []
+  covers: [l.9898, l.9905, l.9908, l.9911-9912]
+
+- id: A-13.3.4.2-02
+  clause: "13.3.4.2"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "GRAPH POINTS marks each point with the current point style and color; GRAPH LINES connects each successive pair, drawing one segment fewer than points, with the current line style and color; GRAPH AREA fills the polygon, closed by the last segment when needed, with the current area color, solid where the device allows."
+  tests: [GFX-0052]
+  external: []
+  covers: [l.9919-9920, l.9923, l.9935]
+
+- id: A-13.3.4.3-01
+  clause: "13.3.4.3"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "GRAPH TEXT draws the label built from its string or USING image and obeys the current text height, justification and angle."
+  tests: [GFX-0053]
+  external: []
+  covers: [l.9948-9949, l.9953]
+
+- id: A-13.3.4.4-01
+  clause: "13.3.4.4"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "MAT GRAPH CELLS fills the rectangle of the point-pair with equal cells, first array dimension horizontal and second vertical, each cell in the color of the rounded array element, the first point matching the lowest subscripts and the second the highest; non-pixel devices simulate at least the transformed boundary."
+  tests: [GFX-0054]
+  external: []
+  covers: [l.9965, l.9969, l.9994]
+
+- id: A-13.4.2-04
+  clause: "13.4.2"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: syntax
+  status: claimed
+  claim: "A lone redim array as array-locate-object must be two-dimensional and a pair of them one-dimensional each."
+  tests: [GFX-0055, GFX-0056]
+  external: []
+  covers: [l.10152-10153]
+
+- id: A-13.4.2-05
+  clause: "13.4.2"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: syntax
+  claim: "The array of ASK PIXEL ARRAY must be two-dimensional, one used as numeric-variable-vector one-dimensional and one used as numeric-variable-matrix two-dimensional."
+  tests: [GFX-0057]
+  external: []
+  covers: [l.10157, l.10159, l.10161]
+
+- id: A-13.4.4-01
+  clause: "13.4.4"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "When the workstation has no device of some device-type, device number one of that type is simulated through the keyboard or similar."
+  tests: [GFX-0058]
+  external: []
+  covers: [l.10199]
+
+- id: A-13.4.4-02
+  clause: "13.4.4"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "An initial-point in a graphic-input-statement places the indicator at that problem-coordinate point before the operator supplies input."
+  tests: [GFX-0059]
+  external: []
+  covers: [l.10203, l.10209]
+
+- id: A-13.4.4-03
+  clause: "13.4.4"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "LOCATE POINT stores the problem coordinates of the single point, x first and y second; the point always lies inside the current window."
+  tests: [GFX-0060]
+  external: []
+  covers: [l.10220]
+
+- id: A-13.4.4-04
+  clause: "13.4.4"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "MAT LOCATE stores point coordinates into its object, x into the first of two one-dimensional arrays or the lower column of a two-dimensional one and y into the second; redim arrays are redimensioned before input as in array input, a pair of vectors ends the same length, a lone redim array gets second dimension 2, and variable-length vector or matrix objects are redimensioned to the last point received."
+  tests: [GFX-0061]
+  external: []
+  covers: [l.10229, l.10232, l.10235, l.10243]
+
+- id: A-13.4.4-05
+  clause: "13.4.4"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "LOCATE CHOICE stores a positive integer for the choice device response, with the maximum equal to the number of choices and zero when the operator makes no choice; where possible the indicator is placed at the start-value."
+  tests: [GFX-0062]
+  external: []
+  covers: [l.10259-10261, l.10264, l.10266]
+
+- id: A-13.4.4-06
+  clause: "13.4.4"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "LOCATE VALUE stores a real scaled so the device extremes map to the range-select bounds, reusing the last range of the same device when no range is given and [0,1] otherwise; where possible the indicator is placed at the start-value."
+  tests: [GFX-0063, GFX-0286]
+  external: []
+  covers: [l.10269, l.10271, l.10280-10281, l.10283, l.10287]
+
+- id: A-13.4.4-07
+  clause: "13.4.4"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "A device-select rounds to an integer N and picks the Nth device of that class, defaulting to one; each class numbers its devices from one and picking a missing device raises an exception."
+  tests: [GFX-0064, GFX-0282, GFX-0287]
+  external: []
+  covers: [l.10288, l.10290, l.10293]
+
+- id: A-13.4.4-08
+  clause: "13.4.4"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "ASK MAX POINT, MULTIPOINT, CHOICE or VALUE DEVICE stores how many devices of that class are available for use."
+  tests: [GFX-0065]
+  external: []
+  covers: [l.10297, l.10301, l.10305, l.10309]
+
+- id: A-13.4.4-09
+  clause: "13.4.4"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "ASK PIXEL SIZE stores the horizontal then vertical pixel count inside the given rectangle, zeroes when it cannot be determined, and always zero in its status-clause."
+  tests: [GFX-0066]
+  external: []
+  covers: [l.10314, l.10318-10319]
+
+- id: A-13.4.4-10
+  clause: "13.4.4"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "ASK PIXEL ARRAY fills the array with the color indices of the pixel rectangle whose upper-left corner is the given point, sized by the array dimensions, storing -1 for undeterminable pixels, and stores PRESENT or ABSENT in upper case in the string variable according to whether any pixel was undeterminable. The string variable may be a simple variable, an array element or a substring, assigned as by LET."
+  tests: [GFX-0067, GFX-0288]
+  external: []
+  covers: [l.10323, l.10334, l.10336]
+
+- id: A-13.4.4-11
+  clause: "13.4.4"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "ASK PIXEL VALUE stores the color index of the pixel at the given point, or -1 when it cannot be determined."
+  tests: [GFX-0068]
+  external: []
+  covers: [l.10339, l.10341]
+
+- id: A-13.4.4-12
+  clause: "13.4.4"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "ASK PIXEL ARRAY or ASK PIXEL VALUE with a status-clause stores 11040 when the device has no pixel readback."
+  tests: [GFX-0069]
+  external: []
+  covers: [l.10345]
+
+- id: A-13.4.5-EXC
+  clause: "13.4.5"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: exception
+  claim: "A redimensioned array in MAT LOCATE that needs more elements than the original dimensions reserved raises the fatal exception 5001 (Table 9 entry already covered by E-5001)."
+  tests: [GFX-0070]
+  external: []
+  covers: [l.10353]
+
+- id: A-13.5.2-03
+  clause: "13.5.2"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: syntax
+  status: claimed
+  claim: "A control transfer inside an external picture-def may not target that picture own external-picture-line."
+  tests: [GFX-0071]
+  external: []
+  covers: [l.10503]
+
+- id: A-13.5.2-04
+  clause: "13.5.2"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: syntax
+  status: claimed
+  claim: "A picture-name defined by an external picture-def is defined at most once in the whole program, and one defined internally at most once in its program-unit."
+  tests: [GFX-0072]
+  external: []
+  covers: [l.10507-10508]
+
+- id: A-13.5.2-05
+  clause: "13.5.2"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: syntax
+  status: claimed
+  claim: "Within a program-unit, at most one picture of a given name, internal or external, is declared or defined."
+  tests: [GFX-0073]
+  external: []
+  covers: [l.10512]
+
+- id: A-13.5.2-06
+  clause: "13.5.2"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: syntax
+  status: claimed
+  claim: "For an external picture the EXTERNAL PICTURE declaration sits on a lower-numbered line than the first DRAW of that name in the unit; for an internal one, the def or its declaration does."
+  tests: [GFX-0074]
+  external: []
+  covers: [l.10516, l.10522]
+
+- id: A-13.5.2-07
+  clause: "13.5.2"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: syntax
+  claim: "EXIT PICTURE may appear only inside a picture-def."
+  tests: [GFX-0075]
+  external: []
+  covers: [l.10532]
+
+- id: A-13.5.2-08
+  clause: "13.5.2"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: syntax
+  claim: "A DRAW argument count and types match the picture-def parameters as for subprograms, and an actual array has as many dimensions as its formal, that is one more than the commas in the formal-array."
+  tests: [GFX-0076]
+  external: []
+  covers: [l.10536, l.10540]
+
+- id: A-13.5.2-09
+  clause: "13.5.2"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: syntax
+  status: claimed
+  claim: "Passing a numeric argument to a numeric parameter in another program-unit requires the same ARITHMETIC options in both."
+  tests: [GFX-0078]
+  external: []
+  covers: [l.10547]
+
+- id: A-13.5.2-10
+  clause: "13.5.2"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: syntax
+  status: claimed
+  claim: "Each procedure-parameter appears once in the parm-list and is not declared or dimensioned inside the picture-def."
+  tests: [GFX-0079]
+  external: []
+  covers: [l.10549-10550]
+
+- id: A-13.5.2-11
+  clause: "13.5.2"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: syntax
+  claim: "Channel #0 may not be used as a procedure-parameter."
+  tests: [GFX-0080]
+  external: []
+  covers: [l.10554]
+
+- id: A-13.5.2-12
+  clause: "13.5.2"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: syntax
+  status: claimed
+  claim: "A picture-name in an internal picture-type must be defined by an internal picture-def in the same program-unit."
+  tests: [GFX-0081]
+  external: []
+  covers: [l.10557]
+
+- id: A-13.5.2-13
+  clause: "13.5.2"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: syntax
+  claim: "A picture-name in an external picture-type must be defined by an external picture-def somewhere in the program."
+  tests: [GFX-0082]
+  external: []
+  covers: [l.10561]
+
+- id: A-13.5.2-14
+  clause: "13.5.2"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: syntax
+  claim: "Every numeric-array in a transform or transform-assignment is two-dimensional, and transform-function arguments match the semantics below; both are reported at load when statically known (STD 2.3 l.580-584)."
+  tests: [GFX-0083, GFX-0153, GFX-0154]
+  external: []
+  covers: [l.10565, l.10568]
+
+- id: A-13.5.4-02
+  clause: "13.5.4"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "DRAW runs the picture-def of that name, passing parameters and recursing as for subprograms."
+  tests: [GFX-0084]
+  external: []
+  covers: [l.10597]
+
+- id: A-13.5.4-03
+  clause: "13.5.4"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "Inside a picture-def, set-statements for WINDOW, VIEWPORT, DEVICE WINDOW, DEVICE VIEWPORT or CLIP may not execute; every PLOT output there (LINES, POINTS, AREA, TEXT) is transformed as specified while GRAPH output is unaffected by the picture transforms."
+  tests: [GFX-0085, GFX-0160]
+  external: []
+  covers: [l.10608, l.10610-10614]
+
+- id: A-13.5.4-04
+  clause: "13.5.4"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "A two-dimensional problem point is transformed by post-multiplying its homogeneous row vector (cx,cy,0,c), c nonzero, by the 4x4 matrix of the draw-statement transform."
+  tests: [GFX-0086]
+  external: []
+  covers: [l.10621, l.10623, l.10631]
+
+- id: A-13.5.4-05
+  clause: "13.5.4"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "TRANSFORM returns the accumulated current transform as a 4x4 matrix, the identity in a unit never invoked through DRAW."
+  tests: [GFX-0087]
+  external: []
+  covers: [l.10688, l.10691]
+
+- id: A-13.5.4-06
+  clause: "13.5.4"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "Numeric-array transform-terms must be 4x4 matrices; the terms apply left to right, and a nested picture invocation applies its own draw transform first, then the enclosing ones."
+  tests: [GFX-0088]
+  external: []
+  covers: [l.10694, l.10705]
+
+- id: A-13.5.4-07
+  clause: "13.5.4"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "END PICTURE and EXIT PICTURE end the picture-def and resume after the invoking DRAW; STOP inside a picture-def ends the whole program."
+  tests: [GFX-0089, GFX-0090]
+  external: []
+  covers: [l.10712, l.10714, l.10718]
+
+- id: A-13.5.4-08
+  clause: "13.5.4"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "A transform-assignment copies the 4x4 matrix value of the transform into the left-hand array, redimensioning it as in 7.2."
+  tests: [GFX-0091]
+  external: []
+  covers: [l.10722]
+
+- id: A-13.5.4.2-02
+  clause: "13.5.4.2"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "PLOT LINES moves the beam through each listed point, switching it on at every move; the beam stays on after the statement exactly when the list ends with a semicolon, and is off with undefined position after a list without trailing semicolon, before any non-PLOT graphic output, at program start, before graphic input, before coordinate-changing set-statements, and on entering or leaving a picture."
+  tests: [GFX-0092]
+  external: []
+  covers: [l.10760-10762]
+
+- id: E-4101
+  clause: "13.1.5"
+  ecma: "13.1.5"
+  ecma_level: Graphics
+  module: graphics
+  kind: exception
+  claim: "A SET CLIP whose string is neither ON nor OFF after upper-casing raises the nonfatal exception 4101 and keeps the current clipping value."
+  tests: [GFX-0093]
+  external: []
+  covers: [l.9404, l.12863]
+
+- id: E-4102
+  clause: "13.2.5"
+  ecma: "13.2.5"
+  ecma_level: Graphics
+  module: graphics
+  kind: exception
+  claim: "A SET TEXT JUSTIFY string outside the listed values raises the nonfatal exception 4102 and keeps the current justification."
+  tests: [GFX-0094]
+  external: []
+  covers: [l.9732, l.12864]
+
+- id: E-5002
+  clause: "13.5.5"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: exception
+  claim: "A transform-assignment whose target array cannot be redimensioned to 4x4 raises the fatal exception 5002."
+  tests: [GFX-0095]
+  external: []
+  covers: [l.10795, l.12883]
+
+- id: E-6201
+  clause: "13.5.5"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: exception
+  claim: "A transform in a DRAW that is not a 4x4 matrix raises the fatal exception 6201."
+  tests: [GFX-0096]
+  external: []
+  covers: [l.10791, l.12895]
+
+- id: E-6401
+  clause: "13.3.5"
+  ecma: "13.3.5"
+  ecma_level: Graphics
+  module: graphics
+  kind: exception
+  claim: "Mismatched array shapes inside an array point list or array locate object raise the fatal exception 6401."
+  tests: [GFX-0097, GFX-0098]
+  external: []
+  covers: [l.10001, l.10005, l.10356, l.10363, l.12898-12899]
+
+- id: E-6402
+  clause: "13.3.5"
+  ecma: "13.3.5"
+  ecma_level: Graphics
+  module: graphics
+  kind: exception
+  claim: "A size-select index outside the available points raises the fatal exception 6402."
+  tests: [GFX-0099]
+  external: []
+  covers: [l.10010, l.12900]
+
+- id: E-8106
+  clause: "13.4.6"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: not-applicable
+  claim: "Graphic input supplied outside the active window, the device window or the device viewport corresponds to exception code 8106."
+  reason: "Table 9 l.12993-12995 lists 8106 as 'recommended in the Remarks Section, and is not mandated', and 13.4.6 l.10383-10386 says 'It is recommended that...'; the interpreter accepts outside input (implementation-defined D-13.4-2), so no behaviour is required."
+  tests: [GFX-0100]
+  external: []
+  covers: [l.12994-12995]
+
+- id: E-11004
+  clause: "13.5.5"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: exception
+  claim: "Executing a set-statement that redefines coordinates or clipping inside a picture-def raises the fatal exception 11004."
+  tests: [GFX-0101, GFX-0102]
+  external: []
+  covers: [l.10787, l.13011-13012]
+
+- id: E-11051
+  clause: "13.1.5"
+  ecma: "13.1.5"
+  ecma_level: Graphics
+  module: graphics
+  kind: exception
+  claim: "Set-statement boundaries giving a rectangle of zero or negative width or height raise the nonfatal exception 11051 and keep the current values."
+  tests: [GFX-0103]
+  external: []
+  covers: [l.9385, l.9390, l.13014-13015]
+
+- id: E-11052
+  clause: "13.1.5"
+  ecma: "13.1.5"
+  ecma_level: Graphics
+  module: graphics
+  kind: exception
+  claim: "A viewport boundary outside [0,1] raises the nonfatal exception 11052 and keeps the current viewport."
+  tests: [GFX-0104]
+  external: []
+  covers: [l.9393, l.13016]
+
+- id: E-11053
+  clause: "13.1.5"
+  ecma: "13.1.5"
+  ecma_level: Graphics
+  module: graphics
+  kind: exception
+  claim: "A device window boundary outside [0,1] raises the nonfatal exception 11053 and keeps the current device window."
+  tests: [GFX-0105]
+  external: []
+  covers: [l.9397, l.13017]
+
+- id: E-11054
+  clause: "13.1.5"
+  ecma: "13.1.5"
+  ecma_level: Graphics
+  module: graphics
+  kind: exception
+  claim: "A device viewport boundary outside the display space raises the nonfatal exception 11054 and keeps the current device viewport."
+  tests: [GFX-0106]
+  external: []
+  covers: [l.9400, l.13018]
+
+- id: E-11056
+  clause: "13.2.5"
+  ecma: "13.2.5"
+  ecma_level: Graphics
+  module: graphics
+  kind: exception
+  claim: "A point style of zero or less, or above the available maximum, raises the nonfatal exception 11056 and uses style three."
+  tests: [GFX-0107]
+  external: []
+  covers: [l.9723, l.13019]
+
+- id: E-11062
+  clause: "13.2.5"
+  ecma: "13.2.5"
+  ecma_level: Graphics
+  module: graphics
+  kind: exception
+  claim: "A line style of zero or less, or above the available maximum, raises the nonfatal exception 11062 and uses style one."
+  tests: [GFX-0108]
+  external: []
+  covers: [l.9718, l.13020]
+
+- id: E-11073
+  clause: "13.2.5"
+  ecma: "13.2.5"
+  ecma_level: Graphics
+  module: graphics
+  kind: exception
+  claim: "A text height of zero or less raises the nonfatal exception 11073 and keeps the current height."
+  tests: [GFX-0109]
+  external: []
+  covers: [l.9727, l.13021-13022]
+
+- id: E-11085
+  clause: "13.2.5"
+  ecma: "13.2.5"
+  ecma_level: Graphics
+  module: graphics
+  kind: exception
+  claim: "A color index below zero or above the implementation maximum in a color set-statement or array-cells-statement raises the nonfatal exception 11085 and uses the implementation default."
+  tests: [GFX-0110, GFX-0137]
+  external: []
+  covers: [l.9714, l.10019, l.13023-13024]
+
+- id: E-11088
+  clause: "13.2.5"
+  ecma: "13.2.5"
+  ecma_level: Graphics
+  module: graphics
+  kind: exception
+  claim: "A COLOR MIX component below zero or above one raises the nonfatal exception 11088 and keeps the current values."
+  tests: [GFX-0111]
+  external: []
+  covers: [l.9737, l.13025]
+
+- id: E-11100
+  clause: "13.3.5"
+  ecma: "13.3.5"
+  ecma_level: Graphics
+  module: graphics
+  kind: exception
+  claim: "MAT GRAPH LINES with fewer than two points, or MAT GRAPH AREA with fewer than three, raises the fatal exception 11100 (array sizes are dynamic). The point-list forms (GRAPH LINES/AREA with too few coordinate-pairs) are reported at load per 13.3.2 l.9852-9855, not with 11100."
+  tests: [GFX-0112, GFX-0113]
+  external: []
+  covers: [l.10013, l.10016, l.13027-13028]
+
+- id: E-11140
+  clause: "13.4.5"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: exception
+  claim: "A device-select naming a graphic input device that is not present raises the fatal exception 11140."
+  tests: [GFX-0114, GFX-0283]
+  external: []
+  covers: [l.10359, l.13029]
+
+- id: E-11152
+  clause: "13.4.5"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: exception
+  claim: "A CHOICE start-value outside the device choice range, a VALUE start-value outside its range, or an initial-point outside the device viewport after the transformations, raises the fatal exception 11152."
+  tests: [GFX-0115, GFX-0116, GFX-0142, GFX-0278, GFX-0279]
+  external: []
+  covers: [l.10367, l.10370, l.10374, l.13030-13031]
+
+- id: D-13.1-1
+  clause: "13.1.6"
+  ecma: "13.1.6"
+  ecma_level: Graphics
+  module: graphics
+  kind: implementation-defined
+  claim: "How the program selects a particular graphic display device is left to the implementation (Appendix C, subsection 13.1)."
+  tests: [GFX-0117]
+  value: "One implicit graphics workstation (channel #0); per input class device numbers start at 1 (ASK MAX POINT/MULTIPOINT/CHOICE/VALUE DEVICE = 1,2,3,4); no statement selects a display device. ASK DEVICE SIZE gives 1 1 OTHER and the initial device viewport is 0 1 0 1; there is no pixel reading, so ASK PIXEL SIZE gives 0 0 and ASK PIXEL VALUE -1 (measured with the CLI)."
+  external: []
+  covers: [l.9409]
+
+- id: D-13.1-2
+  clause: "13.1.6"
+  ecma: "13.1.6"
+  ecma_level: Graphics
+  module: graphics
+  kind: implementation-defined
+  claim: "The effect of a window whose left edge exceeds its right, or whose bottom exceeds its top, is left to the implementation (Appendix C, subsection 13.1)."
+  tests: [GFX-0118]
+  value: "Inverted window (left>right or bottom>top) accepted without exception; ASK WINDOW returns the values as set (e.g. 2,1,0,1); visual inversion left to the host renderer."
+  external: []
+  covers: [l.9411-9412]
+
+- id: D-13.2-1
+  clause: "13.2.4"
+  ecma: "13.2.4"
+  ecma_level: Graphics
+  module: graphics
+  kind: implementation-defined
+  claim: "How many line styles exist is left to the implementation (Appendix C, subsection 13.2)."
+  tests: [GFX-0119]
+  value: "4 line styles (ASK MAX LINE STYLE = 4)."
+  external: []
+  covers: [l.9541]
+
+- id: D-13.2-2
+  clause: "13.2.4"
+  ecma: "13.2.4"
+  ecma_level: Graphics
+  module: graphics
+  kind: implementation-defined
+  claim: "What line styles other than 1, 2, 3 and 4 draw is left to the implementation (Appendix C, subsection 13.2)."
+  tests: [GFX-0120]
+  value: "None beyond style 4: SET LINE STYLE 5 raises nonfatal 11062 and style stays 1."
+  external: []
+  covers: [l.9545]
+
+- id: D-13.2-3
+  clause: "13.2.4"
+  ecma: "13.2.4"
+  ecma_level: Graphics
+  module: graphics
+  kind: implementation-defined
+  claim: "How many point styles exist is left to the implementation (Appendix C, subsection 13.2)."
+  tests: [GFX-0121]
+  value: "5 point styles (ASK MAX POINT STYLE = 5)."
+  external: []
+  covers: [l.9549]
+
+- id: D-13.2-4
+  clause: "13.2.4"
+  ecma: "13.2.4"
+  ecma_level: Graphics
+  module: graphics
+  kind: implementation-defined
+  claim: "What point styles other than 1 through 5 draw is left to the implementation (Appendix C, subsection 13.2)."
+  tests: [GFX-0122]
+  value: "None beyond style 5: SET POINT STYLE 6 raises nonfatal 11056."
+  external: []
+  covers: [l.9554]
+
+- id: D-13.2-5
+  clause: "13.2.4"
+  ecma: "13.2.4"
+  ecma_level: Graphics
+  module: graphics
+  kind: implementation-defined
+  claim: "How many color values exist is left to the implementation (Appendix C, subsection 13.2)."
+  tests: [GFX-0123]
+  value: "16 color indices, 0..15 (ASK MAX COLOR = 15)."
+  external: []
+  covers: [l.9617]
+
+- id: D-13.2-6
+  clause: "13.2.4"
+  ecma: "13.2.4"
+  ecma_level: Graphics
+  module: graphics
+  kind: implementation-defined
+  claim: "Which color each index holds at the start is left to the implementation (Appendix C, subsection 13.2)."
+  tests: [GFX-0124]
+  value: "No color mix is established at start: ASK COLOR MIX(i) returns 0,0,0 with status 11087 for every index 0..15."
+  external: []
+  covers: [l.9576]
+
+- id: D-13.2-7
+  clause: "13.2.4"
+  ecma: "13.2.4"
+  ecma_level: Graphics
+  module: graphics
+  kind: implementation-defined
+  claim: "Whether SET COLOR MIX recolors what is already on screen is left to the implementation (Appendix C, subsection 13.2)."
+  tests: [GFX-0125]
+  value: "SET COLOR MIX affects only subsequently drawn primitives; the draw log records SET_COLOR_MIX and never recolors logged primitives."
+  external: []
+  covers: [l.9593-9594]
+
+- id: D-13.2-8
+  clause: "13.2.4"
+  ecma: "13.2.4"
+  ecma_level: Graphics
+  module: graphics
+  kind: implementation-defined
+  claim: "The color mix values in force at the start of execution are left to the implementation (Appendix C, subsection 13.2)."
+  tests: [GFX-0126]
+  value: "Initial mixes are unset (as D-13.2-6): every index 0..15 reports status 11087 and zeros."
+  external: []
+  covers: [l.9607-9608]
+
+- id: D-13.2-9
+  clause: "13.2.4.1"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: implementation-defined
+  claim: "Which text orientations beyond the mandated ones are available is left to the implementation (Appendix C, subsection 13.2)."
+  tests: [GFX-0127]
+  value: "Every requested angle is realized (the draw log records it), so ASK TEXT ANGLE returns the angle set (STD §13.2.4.1 l.9663-9666: actual equals set)."
+  external: []
+  covers: [l.9658]
+
+- id: D-13.2-10
+  clause: "13.2.4.1"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: implementation-defined
+  claim: "How the individual characters of a rotated label are oriented is left to the implementation (Appendix C, subsection 13.2)."
+  tests: [GFX-0128]
+  value: "Characters of a rotated label are not individually rotated by the log host: DRAW_TEXT records only the anchor point and the string."
+  external: []
+  covers: [l.9659]
+
+- id: D-13.3-1
+  clause: "13.3.4.2"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: implementation-defined
+  claim: "What plotting from an array whose second dimension exceeds two does is left to the implementation (Appendix C, subsection 13.3)."
+  tests: [GFX-0129]
+  value: "An array-point-list matrix whose second dimension exceeds 2 raises fatal 6401 (the option allowed by 13.3.6)."
+  external: []
+  covers: [l.9940]
+
+- id: D-13.3-2
+  clause: "13.3.4.3"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: implementation-defined
+  claim: "The size, style and orientation of label characters are left to the implementation (Appendix C, subsection 13.3)."
+  tests: [GFX-0130]
+  value: "Label size, style and orientation are the host renderer's; the draw log records only anchor and string."
+  external: []
+  covers: [l.9949]
+
+- id: D-13.3-3
+  clause: "13.3.4.3"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: implementation-defined
+  claim: "How characters partly inside and partly outside the viewport are clipped is left to the implementation (Appendix C, subsection 13.3)."
+  tests: [GFX-0131]
+  value: "Partly-outside labels are clipped by the host renderer; the draw log records problem coordinates unclipped."
+  external: []
+  covers: [l.9950-9951]
+
+- id: D-13.4-1
+  clause: "13.4.4"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: implementation-defined
+  claim: "How the operator is told that graphic input is needed is left to the implementation (Appendix C, subsection 13.4)."
+  tests: [GFX-0132]
+  value: "Graphic input is simulated through the keyboard (stdin); with EOF the indicator position is returned. For the variable-length forms (?) of MAT LOCATE POINT and MAT GET POINT the simulated operator of the CLI supplies exactly as many points as the arrays reserve, so it never triggers the 5001 of an over-long reply; the virtual machine asks the host for one point more than the capacity and raises 5001 when a host returns it."
+  external: []
+  covers: [l.10197-10198]
+
+- id: D-13.4-2
+  clause: "13.4.4"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: implementation-defined
+  claim: "What happens when graphic input is supplied outside the active window, the device window or the device viewport is left to the implementation (Appendix C, subsection 13.4)."
+  tests: [GFX-0133]
+  value: "Input outside the window is accepted without exception (8106 is only recommended); the CLI returns the indicator position (window center)."
+  external: []
+  covers: [l.10218, l.10255-10256]
+
+- id: D-13.4-3
+  clause: "13.4.4"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: implementation-defined
+  claim: "Where indicators sit when no initial-point is given is left to the implementation (Appendix C, subsection 13.4)."
+  tests: [GFX-0134]
+  value: "With no initial-point the indicator sits at the center of the current window (LOCATE POINT returns 0.5,0.5 in the default window)."
+  external: []
+  covers: [l.10206-10207]
+
+- id: D-13.4-4
+  clause: "13.4.6"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: implementation-defined
+  claim: "What an array-locate-object array whose second dimension exceeds two means is left to the implementation (Appendix C, subsection 13.4)."
+  tests: [GFX-0135]
+  value: "An array-locate-object whose second dimension exceeds 2 raises fatal 6401."
+  external: []
+  covers: [l.10381]
+
+- id: D-13.4-5
+  clause: "13.4.5"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: implementation-defined
+  claim: "The maximum choice number of a CHOICE input device, above which a CHOICE start-value raises 11152, depends on the device."
+  tests: [GFX-0142]
+  value: "The host supplies it (ILHost::getMaxChoice) and the core sets no limit of its own (default 2147483647). The CLI with --draw-log reports 3, so LOCATE CHOICE, AT 99 raises 11152 (GFX-0142); the CLI without --draw-log and the macOS application keep the default, so with them only a negative start-value raises 11152 for CHOICE."
+  external: []
+  covers: [l.10365-10367]
+
+- id: D-13.5.4.1-1
+  clause: "13.5.4.1"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: implementation-defined
+  claim: "What a GET statement does when the current transform is singular and cannot be inverted is left to the implementation (Appendix C, subsection 13.4)."
+  tests: [GFX-0136]
+  value: "With a singular current transform (e.g. SCALE(0)) GET POINT returns the raw indicator point (0.5,0.5); no exception."
+  external: []
+  covers: [l.10737]
+
+# --- DECLARE EXTERNAL PICTURE.
+- id: A-13.5.2-15
+  clause: "13.5.2"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "An external picture is a program unit, so a control transfer in its body, outside an internal routine defined inside it, may name the header line of that routine."
+  tests: [GFX-0144]
+  covers: [l.10495-10499]
+  external: []
+
+- id: A-13.5.2-16
+  clause: "13.5.2"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: syntax
+  claim: "Every array named inside a transform (DRAW … WITH, MAT … = transform) must be two-dimensional; one declared with a different number of dimensions is reported at load (STD 2.3 l.580-584), even in a branch never executed. A 2-D array that is not 4x4 still raises 6201 when executed (13.5.5)."
+  tests: [GFX-0153]
+  external: []
+  covers: [l.10564-10565]
+
+- id: A-13.5.2-17
+  clause: "13.5.2"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: syntax
+  claim: "Each transform-function must receive the arguments its 13.5.4 semantics prescribe (SHIFT two, SCALE one or two, ROTATE one, SHEAR one; all numeric); a mismatch is reported at load (STD 2.3 l.580-584), even in a branch never executed, instead of the non-ANSI -11103 at execution."
+  tests: [GFX-0154]
+  external: []
+  covers: [l.10567-10568]
+
+- id: A-13.5.2-G01
+  clause: "13.5.2"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: syntax
+  claim: "DECLARE EXTERNAL PICTURE declares a picture-name that an external picture-def defines elsewhere in the program."
+  tests: [GFX-0138]
+  external: []
+  covers: [l.10483, l.10561]
+
+# --- Appendix C 13.2 item (6), the color associated with each color value.
+- id: D-13.2-11
+  clause: "13.2.4"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: implementation-defined
+  claim: "The color associated with each color value, a point Appendix C subsection 13.2 leaves to each implementation."
+  tests: [GFX-0123, GFX-0124, GFX-0126]
+  value: "Each color value 0..15 denotes an entry of the host renderer's palette; no RGB mix is predefined at start (ASK COLOR MIX(i) returns 0,0,0 with status 11087 for every index 0..15, GFX-0124/GFX-0126) and the concrete RGB shown for an index is chosen by the host renderer (the draw log records only the index). Measured: ASK COLOR MIX(i) R,G,B prints 0,0,0 for all i = 0..15."
+  external: []
+  covers: [l.9616-9621]
+
+- id: D-13.2-12
+  clause: "13.2.4"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: implementation-defined
+  claim: "The actual text height realized by the host when it differs from the value set by the most recent SET TEXT HEIGHT (13.2.4 l.9638-9641: ASK returns the actual value)."
+  tests: [GFX-0041]
+  value: "Every host realizes exactly the value fixed by SET TEXT HEIGHT (decision of the project owner, 2026-11-02): the base ILHost stores it, so the CLI with and without --draw-log, the XCTest hosts and the app host (GraphicConsoleLogic, default 0.01 per l.9637) all return the set value from ASK TEXT HEIGHT; default 0.01. GFX-0041: ASK gives .01 at start and .5 after SET TEXT HEIGHT 0.5."
+  external: []
+  covers: [l.9637-9641]
+
+- id: A-13.5.4-09
+  clause: "13.5.4"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "The actual parameters of a draw-statement are passed by the same rules as those of a subprogram invocation: a variable or an array element written as actual parameter is passed by reference, so the picture-def can change it."
+  tests: [GFX-0140, GFX-0141]
+  external: []
+  covers: [l.10597-10601]
+
+- id: A-13.5.4-10
+  clause: "13.5.4"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "A picture-def takes formal-array parameters like a subprogram: the array given in the draw-statement is passed by reference, with the dimensions of the actual array (numeric, string and multi-dimensional arrays; internal and external picture-defs)."
+  tests: [GFX-0145, GFX-0146, GFX-0147, GFX-0149]
+  external: []
+  covers: [l.10597-10601, l.4648-4708, l.2993-2996]
+
+- id: A-13.5.4-11
+  clause: "13.5.4"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "A picture-def takes a channel-number parameter like a subprogram: DRAW P(#N) passes the channel, and the picture-def writes to the file open on it."
+  tests: [GFX-0148, GFX-0149]
+  external: []
+  covers: [l.10597-10601, l.4648-4708]
+
+- id: A-13.5.4-12
+  clause: "13.5.4"
+  ecma: null
+  ecma_level: Graphics
+  module: fixed
+  kind: semantics
+  claim: "A picture-def takes numeric-fixed-parameters like a subprogram (with ARITHMETIC FIXED): the parameter has the stated size and an assignment whose integer part exceeds its integer-size is exception 1011 (fatal)."
+  tests: [GFX-0150, GFX-0151]
+  external: []
+  covers: [l.10597-10601, l.12422-12423]
+- id: A-13.1.4-12
+  clause: "13.1.4"
+  ecma: "13.1.4"
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "ASK WINDOW returns the values established by the last SET WINDOW, in the order left, right, bottom, top."
+  tests: [GFX-0143]
+  external: []
+  covers: [l.9360-9366]
+
+- id: A-13.1.4-13
+  clause: "13.1.4"
+  ecma: "13.1.4"
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "ASK CLIP stores ON or OFF, in upper case, according to the clipping state established by the last executed SET CLIP; every host stores it, including the command-line interpreter without --draw-log."
+  tests: [GFX-0156]
+  external: []
+  covers: [l.9289, l.9293, l.9377-9380]
+
+- id: A-13.2.4-13
+  clause: "13.2.4"
+  ecma: "13.2.4"
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "ASK POINT, LINE, TEXT or AREA COLOR stores the color index established by the last SET for that primitive (the index rounded to an integer); every host stores it, including the command-line interpreter without --draw-log."
+  tests: [GFX-0157]
+  external: []
+  covers: [l.9570, l.9575-9577, l.9580-9582]
+
+- id: A-13.2.4-14
+  clause: "13.2.4"
+  ecma: "13.2.4"
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "ASK COLOR MIX stores the red, green and blue intensities established by the last executed SET COLOR MIX with the same index; every host stores them, including the command-line interpreter without --draw-log."
+  tests: [GFX-0158]
+  external: []
+  covers: [l.9599-9600, l.9602-9604]
+
+- id: A-13.2.4.1-07
+  clause: "13.2.4.1"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "ASK TEXT JUSTIFY stores, in upper case, the horizontal and vertical components established by the last executed SET TEXT JUSTIFY; every host stores them, including the command-line interpreter without --draw-log."
+  tests: [GFX-0159]
+  external: []
+  covers: [l.9693, l.9704-9706]
+
+- id: A-13.5.4-13
+  clause: "13.5.4"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "The scope of the variables and arrays within a picture-def is that of a subprogram-def: those of an internal picture-def are global to the containing program-unit and keep their values and changes when the picture returns (scalars, strings and arrays, also as the source of a MAT PLOT)."
+  tests: [GFX-0161, GFX-0162]
+  external: []
+  covers: [l.10600-10603, l.4733-4738]
+
+- id: A-13.5.4-14
+  clause: "13.5.4"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "An external picture-def is a program-unit with its own OPTION statements: an OPTION ANGLE in its body sets the angle unit for its functions and for the ROTATE and SHEAR transformations it applies, and does not change the unit of the caller."
+  tests: [GFX-0164, GFX-0165]
+  external: []
+  covers: [l.10662-10664, l.2212-2233]
+
+- id: A-13.5.2-18
+  clause: "13.5.2"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "A draw-statement may appear in any program-unit, including an external SUB and an external picture-def, when that unit has a DECLARE EXTERNAL PICTURE for an external picture-def, or an internal picture-def (or its declaration) on an earlier line of the unit."
+  tests: [GFX-0163]
+  external: []
+  covers: [l.10508-10521]
+
+- id: A-13.5.4-15
+  clause: "13.5.4"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: semantics
+  claim: "With OPTION ANGLE DEGREES the matrices of ROTATE(A) and SHEAR(A) carry the exact cos(A), sin(A) and tan(A) when the true value is a decimal number (0, 1, -1 at multiples of 90 degrees for the cosine and the sine, 0 at multiples of 180 degrees for the tangent), so the coordinates of a transformed picture, nested pictures included, and the matrix read back by TRANSFORM show no rounding residue."
+  tests: [GFX-0086, GFX-0170, GFX-0171, GFX-0172]
+  external: []
+  covers: [l.10662-10683, l.10686-10692, l.2252-2257, l.2278-2283]
+
+- id: A-13.5.5-01
+  clause: "13.5.5"
+  ecma: null
+  ecma_level: Graphics
+  module: graphics
+  kind: exception
+  claim: "With OPTION ANGLE DEGREES, SHEAR(A) at an odd multiple of 90 degrees (tan A is mathematical infinity) raises the fatal exception 1003, in a transform-assignment and in a DRAW transform alike, as TAN does."
+  tests: [GFX-0173, GFX-0174]
+  external: []
+  covers: [l.10673-10683, l.2084-2085]
+
+- id: A-13.4.2-TR94
+  clause: "13.4.2"
+  ecma: "13.4.2"
+  ecma_level: Graphics
+  module: graphics
+  kind: syntax
+  claim: "When the dimensionality of the array is known at load, a MAT LOCATE or MAT GET with a single array-locate-object (including a numeric-variable-matrix V(?,)) over an array that is not two-dimensional, and an ASK PIXEL ARRAY over an array that is not two-dimensional, are rejected before the program runs."
+  tests: [GFX-0179, GFX-0180, GFX-0181, GFX-0182]
+  external: []
+  covers: [l.10153-10162]
+
+- id: A-13.3.2-TR94
+  clause: "13.3.2"
+  ecma: "13.3.2"
+  ecma_level: Graphics
+  module: graphics
+  kind: syntax
+  claim: "The dimensionality rule of an array-point-list also holds for MAT PLOT inside an internal picture whose arrays are declared by the containing program: it is rejected before the program runs."
+  tests: [GFX-0183, GFX-0184]
+  external: []
+  covers: [l.9848-9851]
+
+- id: A-13.4.2-TR106
+  clause: "13.4.2"
+  ecma: "13.4.2"
+  ecma_level: Graphics
+  module: graphics
+  kind: syntax
+  claim: "A redim-numeric-array in a MAT LOCATE or MAT GET array-locate-object has as many bounds as the dimensions of its array when these are known at load; otherwise (P(3) on a two-dimensional P, P(3,3) on a vector) the program is rejected before it runs."
+  tests: [GFX-0185, GFX-0186]
+  external: []
+  covers: [l.10152-10155, l.5911-5912]
+
+- id: A-13.5.2-TR134
+  clause: "13.5.2"
+  ecma: "13.5.2"
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "A DRAW of an external picture in the detached-handler of an EXTERNAL unit, or of an internal SUB of such a unit, needs a DECLARE EXTERNAL PICTURE of the picture in a lower-numbered line of the same program-unit; the declare-statements of the main program do not count. The program is rejected when only the main program declares the picture. The picture that owns the handler is exempt from this declaration when it draws itself (self-recursion, l.10527-10530; A-13.5.2-TR136)."
+  tests: [GFX-0189, GFX-0190, GFX-0191]
+  covers: [l.10514-10518, l.8805-8807]
+  external: []
+
+- id: A-13.5.2-TR136
+  clause: "13.5.2"
+  ecma: "13.5.2"
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "A picture may DRAW itself from its detached-handler, whether it is an internal picture of the main program or an EXTERNAL picture, without a DECLARE EXTERNAL PICTURE of itself (self-recursive pictures need not declare themselves); the arguments are checked against the parameters of the picture."
+  tests: [GFX-0192, GFX-0193, GFX-0194]
+  covers: [l.10527-10530, l.8805-8807]
+  external: []
+
+- id: A-13.5.2-TR136B
+  clause: "13.5.2"
+  ecma: "13.5.2"
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "When two EXTERNAL units declare the same external picture, the DRAW in the detached-handler of the earlier one is accepted if its own unit declares the picture in a lower-numbered line; the declare-statement of the other unit does not matter."
+  tests: [GFX-0195]
+  covers: [l.10514-10518, l.8805-8807]
+  external: []
+
+- id: A-13.5.4-TR141
+  clause: "13.5.4"
+  ecma: "13.5.4"
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "A recursive internal picture first drawn with a variable passes its parameters as an internal SUB does: the nested DRAW with an expression argument evaluates it on each entry and the invocation reads its own parameter, not the variable bound by the first DRAW."
+  tests: [GFX-0240]
+  covers: [l.4718-4721, l.4660-4668]
+  external: []
+
+- id: A-13.5.4-TR142
+  clause: "13.5.4"
+  ecma: "13.5.4"
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "In DRAW, a variable argument that precedes an argument calling a user function stays bound by reference: the picture reads the variable and an assignment to its parameter reaches the variable."
+  tests: [GFX-0250]
+  covers: [l.10597-10600, l.4660-4668]
+  external: []
+
+- id: A-13.5.4-TR146
+  clause: "13.5.4"
+  ecma: "13.5.4"
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "A DRAW made inside a GOSUB subroutine passes its by-value arguments to the picture as outside it: the picture reads the value of the argument."
+  tests: [GFX-0260]
+  covers: [l.3678-3716, l.4660-4668]
+  external: []
+
+- id: A-13.5.4-TR146B
+  clause: "13.5.4"
+  ecma: "13.5.4"
+  ecma_level: BASIC-2
+  module: core
+  kind: semantics
+  claim: "An array is passed by reference to an internal or EXTERNAL picture whose name contains an underline: the picture reads the elements of the actual array."
+  tests: [GFX-0261]
+  covers: [l.1450-1454, l.4670-4677]
+  external: []
+
+- id: A-13.5.2-TR159
+  clause: "13.5.2"
+  ecma: "13.5.2"
+  ecma_level: Graphics
+  module: core
+  kind: semantics
+  claim: "An internal-picture-def of a program-unit takes precedence, for the DRAW statements of that unit, over an external-picture-def of the same name in the program: the unit needs no DECLARE EXTERNAL PICTURE for it, and the DRAW draws the internal picture (the main program included; a DECLARE PICTURE of the internal picture also selects it). The DRAW of the external picture from a unit that does not define its own picture of that name still needs its DECLARE EXTERNAL PICTURE, and a unit that both declares the external picture and defines an internal one of the same name is rejected (no more than one picture of a name per program-unit)."
+  tests: [GFX-0270, GFX-0271, GFX-0272, GFX-0273, GFX-0274, GFX-0275]
+  covers: [l.10506-10512, l.10516, l.10520-10525]
+  external: []
+
+- id: E-11085-02
+  clause: "13.3.5"
+  ecma: "13.3.5"
+  ecma_level: Graphics
+  module: graphics
+  kind: exception
+  claim: "An array-cells-statement with an unavailable color index that no user exception-handler handles raises the nonfatal exception 11085 and still draws the whole array, using the default color for the affected cells."
+  tests: [GFX-0284]
+  external: []
+  covers: [l.10018-10019]
+
+- id: E-11085-03
+  clause: "13.3.5"
+  ecma: "13.3.5"
+  ecma_level: Graphics
+  module: graphics
+  kind: exception
+  claim: "When a user exception-handler handles the nonfatal exception 11085, the statement does not complete: an array-cells-statement draws nothing and a set-statement with an unavailable color index leaves the current color unchanged, and the handler receives the exception."
+  tests: [GFX-0285]
+  external: []
+  covers: [l.9711-9714]

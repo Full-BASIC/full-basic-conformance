@@ -1,0 +1,13 @@
+1 REM FBCS PRG-0052
+2 REM CLAIM A-4.4.3-EX
+3 REM TYPE SELF
+10 SUB Invert
+20 PRINT "INV"
+30 END SUB
+40 LET X = 1
+50 LET Sum = 2
+60 LET A$ = "s"
+70 LET Last__name$ = "n"
+80 CALL Invert
+90 IF X = 1 AND Sum = 2 AND A$ = "s" AND Last__name$ = "n" THEN PRINT "*** TEST PASSED ***" ELSE PRINT "*** TEST FAILED ***"
+100 END

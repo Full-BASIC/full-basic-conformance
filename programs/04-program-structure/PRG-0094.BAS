@@ -1,0 +1,14 @@
+1 REM FBCS PRG-0094
+2 REM CLAIM A-4.2.2-TR153
+3 REM TYPE REJECT
+4 REM 4.2.2 l.1312-1320: line numbers ascend and are unique over the whole program (duplicate in an if of an external function).
+100 PRINT "EXECUTED"
+110 DECLARE EXTERNAL FUNCTION F
+120 PRINT F(1)
+130 END
+140 EXTERNAL FUNCTION F(X)
+150 IF X = 1 THEN
+160 LET F = 1
+160 LET F = 2
+170 END IF
+180 END FUNCTION

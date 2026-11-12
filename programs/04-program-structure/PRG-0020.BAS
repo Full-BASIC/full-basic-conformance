@@ -1,0 +1,24 @@
+1 REM FBCS PRG-0020
+2 REM CLAIM A-4.1.4-01
+3 REM TYPE SELF
+100 LET OK = 1
+110 LET S$ = ""
+120 FOR I = 48 TO 57
+130 LET S$ = S$ & CHR$(I)
+140 NEXT I
+150 IF S$ <> "0123456789" THEN LET OK = 0
+160 LET S$ = ""
+170 FOR I = 65 TO 90
+180 LET S$ = S$ & CHR$(I)
+190 NEXT I
+200 IF S$ <> "ABCDEFGHIJKLMNOPQRSTUVWXYZ" THEN LET OK = 0
+210 LET S$ = ""
+220 FOR I = 97 TO 122
+230 LET S$ = S$ & CHR$(I)
+240 NEXT I
+250 IF S$ <> "abcdefghijklmnopqrstuvwxyz" THEN LET OK = 0
+260 IF CHR$(33)<>"!" OR CHR$(36)<>"$" OR CHR$(37)<>"%" OR CHR$(38)<>"&" OR CHR$(42)<>"*" OR CHR$(43)<>"+" OR CHR$(45)<>"-" OR &
+&CHR$(46)<>"." OR CHR$(47)<>"/" OR CHR$(58)<>":" OR CHR$(60)<>"<" OR CHR$(61)<>"=" OR CHR$(62)<>">" OR CHR$(63)<>"?" OR &
+&CHR$(64)<>"@" OR CHR$(94)<>"^" OR CHR$(95)<>"_" THEN LET OK = 0
+270 IF OK = 1 THEN PRINT "*** TEST PASSED ***" ELSE PRINT "*** TEST FAILED ***"
+280 END

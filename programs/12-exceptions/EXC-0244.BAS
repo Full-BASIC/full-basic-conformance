@@ -1,0 +1,15 @@
+1 REM FBCS EXC-0244
+2 REM CLAIM A-12.1.4-CL13
+3 REM TYPE SELF
+10 REM STD 12.1.4 l.8877-8905: a GOSUB subroutine is part of the same block, not a
+20 REM procedure-part: no propagation, no 100000. EXLINE = line whose execution caused it (l.8812-8813).
+100 WHEN EXCEPTION IN
+110   GOSUB 300
+120 USE
+130   IF EXTYPE = 3001 AND EXLINE = 310 THEN PRINT "*** TEST PASSED ***" ELSE PRINT "*** TEST FAILED ***"; EXTYPE; EXLINE
+140 END WHEN
+150 STOP
+300 PRINT "in gosub"
+310 LET A = 1/0
+320 RETURN
+330 END

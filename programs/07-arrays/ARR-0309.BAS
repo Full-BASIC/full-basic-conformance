@@ -1,0 +1,11 @@
+1 REM FBCS ARR-0309
+2 REM CLAIM A-7.1.2-TR109
+3 REM TYPE REJECT
+4 REM STD 7.1.2 l.3004-3005: the same array dimensioned in the main and in an internal PICTURE is rejected.
+100 PRINT "EXECUTED"
+110 DIM B(3)
+120 PICTURE P
+130   DIM B(2)
+140 END PICTURE
+150 DRAW P
+160 END

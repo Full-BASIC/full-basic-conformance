@@ -1,0 +1,13 @@
+1 REM FBCS ARR-0360
+2 REM CLAIM A-7.1.2-TR139
+3 REM TYPE OUTPUT
+4 REM STD 9.2.4.2 l.4726-4739, 7.1.2 l.2995-3002: a DIM in a FOR of an internal SUB belongs to the containing unit.
+10 SUB S
+20 FOR I = 1 TO 3
+30 DIM Z(3)
+40 LET Z(I) = I * I
+50 NEXT I
+60 END SUB
+70 CALL S
+80 PRINT Z(1); Z(2); Z(3)
+90 END

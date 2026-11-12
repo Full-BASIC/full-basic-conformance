@@ -1,0 +1,10 @@
+1 REM FBCS SEG-0618
+2 REM CLAIM A-9.2.2-TR164
+3 REM TYPE REJECT
+4 REM 13.5.2 l.10443, l.10514-10525: a DRAW names a picture; an internal SUB of the main is not one.
+6 PRINT "EXECUTED"
+10 SUB Q
+20 PRINT "S"
+30 END SUB
+40 DRAW Q
+90 END

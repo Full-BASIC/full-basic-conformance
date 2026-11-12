@@ -1,0 +1,8 @@
+1 REM FBCS ARR-0240
+2 REM CLAIM A-7.3.2-TR94
+3 REM TYPE REJECT
+4 REM STD 7.3.2 l.3373-3375: MAT A$ = NUL$(4) on a two-dimensional A$ is rejected at load.
+100 PRINT "EXECUTED"
+110 DIM A$(2,2)
+120 MAT A$ = NUL$(4)
+130 END

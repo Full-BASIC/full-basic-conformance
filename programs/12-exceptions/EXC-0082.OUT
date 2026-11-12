@@ -1,0 +1,6 @@
+Trace mode ON
+[TRACE] 130 LET A = 42
+[TRACE] 130 A=42
+[TRACE] 140 TRACE OFF
+Trace mode OFF
+END

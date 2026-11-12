@@ -1,0 +1,42 @@
+1 REM FBCS FIL-0217
+2 REM CLAIM A-11.5.4.1-02
+3 REM TYPE SELF
+4 REM STD 11.5.4.1 l.8548-8552: in a KEYED file, REWRITE replaces the record
+5 REM pointed to by the pointer and advances the pointer to the next file-element
+6 REM (the key is not changed), both with KEY record-setter and without one.
+7 REM STD 11.5.4.3 l.8569-8575: DELETE also advances (control).
+10 LET OK = 1
+20 OPEN #1: NAME "FIL0217.DAT", ACCESS OUTIN, ORGANIZATION KEYED, RECTYPE INTERNAL
+30 WRITE #1, KEY "A": 1
+40 WRITE #1, KEY "B": 2
+50 WRITE #1, KEY "C": 3
+60 REWRITE #1, KEY "A": 10
+70 READ #1: Y
+80 IF Y <> 2 THEN LET OK = 0
+90 IF Y <> 2 THEN PRINT "FALLO-REWRITE-KEY"; Y
+100 SET #1: POINTER BEGIN
+110 READ #1: X
+120 REWRITE #1: 20
+130 ASK #1: KEY K$
+140 IF K$ <> "C" THEN LET OK = 0
+150 IF K$ <> "C" THEN PRINT "FALLO-ASK-KEY"; K$
+160 READ #1: Z
+170 IF X <> 10 OR Z <> 3 THEN LET OK = 0
+180 IF X <> 10 OR Z <> 3 THEN PRINT "FALLO-SIN-SETTER"; X; Z
+190 SET #1: KEY "B"
+200 READ #1: W
+210 IF W <> 20 THEN LET OK = 0
+220 IF W <> 20 THEN PRINT "FALLO-VALOR"; W
+230 REM the last key rewritten leaves the pointer at end of file
+240 REWRITE #1, KEY "C": 30
+250 ASK #1: POINTER P$
+260 IF P$ <> "END" THEN LET OK = 0
+270 IF P$ <> "END" THEN PRINT "FALLO-EOF"; P$
+280 REM control: DELETE avanza
+290 DELETE #1, KEY "A"
+300 READ #1: V
+310 IF V <> 20 THEN LET OK = 0
+320 IF V <> 20 THEN PRINT "FALLO-DELETE"; V
+330 CLOSE #1
+340 IF OK = 1 THEN PRINT "*** TEST PASSED ***" ELSE PRINT "*** TEST FAILED ***"
+350 END

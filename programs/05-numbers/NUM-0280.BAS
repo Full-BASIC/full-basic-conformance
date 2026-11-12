@@ -1,0 +1,10 @@
+1 REM FBCS NUM-0280
+2 REM CLAIM A-5.6.2-CL31
+3 REM TYPE SELF
+4 REM STD 5.6.2 l.2208-2212: OPTION ARITHMETIC after a DIM of string arrays only is conforming.
+100 DIM A$(3), B$(1 TO 2, 0 TO 1)
+110 OPTION ARITHMETIC NATIVE
+120 LET A$(2) = "ok"
+130 LET B$(2, 1) = "yes"
+140 IF A$(2) = "ok" AND B$(2, 1) = "yes" THEN PRINT "*** TEST PASSED ***" ELSE PRINT "*** TEST FAILED ***"
+150 END

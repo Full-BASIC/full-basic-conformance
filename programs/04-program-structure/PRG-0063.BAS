@@ -1,0 +1,14 @@
+1 REM FBCS PRG-0063
+2 REM CLAIM A-4.4.4-06
+3 REM TYPE OUTPUT
+100 REM The DIM SIN(2) of the main unit does not reach EXTERNAL SUB E (4.4.1: scope is
+110 REM the program-unit): inside E, SIN is still the supplied function
+120 DECLARE EXTERNAL SUB E
+130 DIM SIN(2)
+140 LET SIN(1) = 7
+150 PRINT SIN(1)
+160 CALL E
+170 END
+180 EXTERNAL SUB E
+190 PRINT COS(0); SIN(0)
+200 END SUB

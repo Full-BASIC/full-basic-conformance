@@ -1,0 +1,31 @@
+1 REM FBCS FIL-0197
+2 REM CLAIM A-11.3.4-02
+3 REM TYPE SELF
+4 REM STD 11.3.4 l.7536-7541: WRITE #1, RECORD 1: 10 leaves the file pointer at
+5 REM the next file-element beyond the one created (record-area 2). STD 11.1.4.3
+6 REM l.6762-6766 + Tabla 5 l.7003-7015: EOF is record-area 2, so ASK gives
+7 REM RECORD=2 POINTER=END. STD 11.2.4.2 l.7285-7288: READ #1 without record-setter
+8 REM finds the empty area 2 and takes the missing-recovery (IF MISSING).
+10 LET OK = 1
+20 OPEN #1: NAME "FIL0197.DAT", ACCESS OUTIN, ORGANIZATION RELATIVE, RECTYPE INTERNAL
+30 WRITE #1, RECORD 1: 10
+40 ASK #1: RECORD R, POINTER P$
+50 IF R <> 2 OR P$ <> "END" THEN LET OK = 0
+60 IF R <> 2 OR P$ <> "END" THEN PRINT "FALLO-ASK"; R; P$
+70 READ #1, IF MISSING THEN 100: X
+80 LET OK = 0
+90 PRINT "FALLO-READ"; X
+100 REM MISSING is expected: the pointer was left at area 2, which is empty
+110 OPEN #2: NAME "FIL0197B.DAT", ACCESS OUTIN, ORGANIZATION RELATIVE, RECTYPE INTERNAL
+120 WRITE #2: 7
+130 ASK #2: RECORD R2, POINTER P2$
+140 IF R2 <> 2 OR P2$ <> "END" THEN LET OK = 0
+150 IF R2 <> 2 OR P2$ <> "END" THEN PRINT "FALLO-CTL"; R2; P2$
+160 READ #2, IF MISSING THEN 190: Y
+170 LET OK = 0
+180 PRINT "FALLO-CTL-READ"; Y
+190 REM control: without a record-setter WRITE also advances and READ gives MISSING
+200 CLOSE #1
+210 CLOSE #2
+220 IF OK = 1 THEN PRINT "*** TEST PASSED ***" ELSE PRINT "*** TEST FAILED ***"
+230 END

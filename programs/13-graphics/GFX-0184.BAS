@@ -1,0 +1,11 @@
+1 REM FBCS GFX-0184
+2 REM CLAIM A-13.3.2-TR94
+3 REM TYPE REJECT
+4 REM STD 13.3.2 l.9848-9851: MAT PLOT LINES with a pair of two-dimensional arrays inside an internal picture is rejected at load.
+100 PRINT "EXECUTED"
+110 DIM M(2,2), N(2,2)
+120 PICTURE P
+130 MAT PLOT LINES: M, N
+140 END PICTURE
+150 DRAW P
+160 END

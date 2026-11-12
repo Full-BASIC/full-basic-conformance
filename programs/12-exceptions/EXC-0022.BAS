@@ -1,0 +1,12 @@
+1 REM FBCS EXC-0022
+2 REM CLAIM A-12.1.3-EX
+3 REM TYPE INPUT
+100 WHEN EXCEPTION IN
+110   PRINT "Enter your age and weight"
+120   INPUT a, w
+130 USE
+140   PRINT "Please enter numbers only"
+150   RETRY
+160 END WHEN
+170 IF a = 25 AND w = 70 THEN PRINT "*** TEST PASSED ***" ELSE PRINT "*** TEST FAILED ***"; a; w
+180 END

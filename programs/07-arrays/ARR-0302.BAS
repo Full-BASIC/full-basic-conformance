@@ -1,0 +1,8 @@
+1 REM FBCS ARR-0302
+2 REM CLAIM A-7.2.2-TR106
+3 REM TYPE REJECT
+4 REM STD 7.2.2 l.3166-3168, 7.2.4.3 l.3274-3275: MAT V = IDN(3) on a one-dimensional V is rejected at load (IDN(n) is a matrix).
+100 PRINT "EXECUTED"
+110 DIM V(3)
+120 MAT V = IDN(3)
+130 END

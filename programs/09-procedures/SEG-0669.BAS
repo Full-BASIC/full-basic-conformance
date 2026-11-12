@@ -1,0 +1,10 @@
+1 REM FBCS SEG-0669
+2 REM CLAIM A-9.2.2-TR171
+3 REM TYPE REJECT
+4 REM 9.2.2 l.4554-4562: the same for an internal SUB with a channel-number parameter.
+6 PRINT "EXECUTED"
+10 SUB W(#2)
+20 PRINT "W"
+30 END SUB
+40 CALL W(1)
+90 END

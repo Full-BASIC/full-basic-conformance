@@ -1,0 +1,14 @@
+1 REM FBCS ARR-0354
+2 REM CLAIM A-7.1.4-TR135
+3 REM TYPE OUTPUT
+4 REM STD 7.1.4 l.3056-3057: reaching a DIM again has no further effect, so the array keeps what was assigned.
+10 HANDLER H
+20 DIM B(2)
+30 LET B(2) = 5
+40 END HANDLER
+50 LET B(1) = 7
+60 WHEN EXCEPTION USE H
+70 CAUSE EXCEPTION 1
+80 END WHEN
+90 PRINT B(1); B(2)
+100 END

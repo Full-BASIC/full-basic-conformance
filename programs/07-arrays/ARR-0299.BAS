@@ -1,0 +1,13 @@
+1 REM FBCS ARR-0299
+2 REM CLAIM A-7.1.2-TR103
+3 REM TYPE REJECT
+4 REM STD 7.1.2 l.3004-3005: the same array dimensioned in two internal routines is rejected.
+100 PRINT "EXECUTED"
+110 SUB A
+120   DIM B(3)
+130 END SUB
+140 SUB C
+150   DIM B(4)
+160 END SUB
+170 CALL A
+180 END

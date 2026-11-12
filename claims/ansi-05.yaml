@@ -1,0 +1,1089 @@
+# Claims for chapter 5 (numbers: constants, variables, expressions, functions, arithmetic and angle).
+# E-1001 and E-2001 already exist (ansi-15.yaml, ansi-06.yaml) and cover the chapter-5
+# Table 9 lines l.12782 and l.12827; the chapter-5 exception sections are covered here
+# by A-5.1.5-EXC and A-5.2.5-EXC.
+
+# --- 5.1 Numeric constants
+- id: A-5.1.3-EX
+  clause: "5.1.3"
+  ecma: "5.1.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "All constant forms exemplified in section 5.1.3 (implicit- and explicit-point forms, scaled forms with an E exponent, with or without a sign) are accepted as numeric constants."
+  tests: [NUM-0001]
+  external: []
+  covers: [l.1603-1615]
+
+- id: A-5.1.4-01
+  clause: "5.1.4"
+  ecma: "5.1.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A numeric constant may carry any number of digits, and the implementation keeps either its exact value or that value rounded to the implementation's own precision."
+  tests: [NUM-0002]
+  external: []
+  covers: [l.1624]
+
+- id: A-5.1.4-02
+  clause: "5.1.4"
+  ecma: "5.1.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "The precision kept for numeric constants is at least ten significant decimal digits while DECIMAL arithmetic is in force (the default; NUM-0003 keeps 1.23456789012345 within 5E-12) and at least six while NATIVE is in force (NUM-0082: 1/3 within 5E-7 under OPTION ARITHMETIC NATIVE)."
+  tests: [NUM-0003, NUM-0082]
+  external: []
+  covers: [l.1626]
+
+- id: A-5.1.4-03
+  clause: "5.1.4"
+  ecma: "5.1.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A nonzero constant whose magnitude falls below the machine infinitesimal is replaced by zero."
+  tests: [NUM-0004]
+  external: []
+  covers: [l.1633]
+
+- id: A-5.1.5-EXC
+  clause: "5.1.5"
+  ecma: "5.1.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "A numeric constant whose magnitude is larger than MAXNUM is reported as the fatal overflow exception 1001 (EXTYPE 1001); the Table 9 entry is covered by E-1001."
+  tests: [NUM-0005]
+  external: []
+  covers: [l.1635, l.1640]
+
+- id: E-1501
+  clause: "5.1"
+  ecma: "5.1"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "A nonzero numeric constant below the machine infinitesimal may additionally be reported as the nonfatal underflow exception 1501 (EXTYPE 1501), with the value set to zero and execution continuing."
+  tests: [NUM-0006]
+  external: []
+  covers: [l.1633, l.1644-1647, l.12815]
+
+- id: D-5.1-1
+  clause: "5.1"
+  ecma: "5.1"
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "The precision and the range kept for numeric constants (Appendix C, subsection 5.1) are chosen by the implementation, within the minimums fixed by section 5.1.4."
+  tests: [NUM-0007]
+  value: "Numeric constants are held as exact decimals up to 18 significant digits (printed with 8 significant digits (d = 8, D-10.3-2) under DECIMAL and NATIVE alike); magnitude range EPS(0)=2.2250738585073E-308 to MAXNUM=1.7976931348623157E+308 under DECIMAL (D-5.4-2)."
+  external: []
+  covers: [l.1626, l.1631]
+
+# --- 5.2 Numeric variables
+- id: A-5.2.2-01
+  clause: "5.2.2"
+  ecma: "5.2.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "A subscript part holds one, two or three subscripts; a numeric array element subscripted with four or more is rejected before the program runs."
+  tests: [NUM-0008]
+  external: []
+  covers: [l.1678]
+
+- id: A-5.2.3-EX
+  clause: "5.2.3"
+  ecma: "5.2.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "The variable forms exemplified in section 5.2.3 (plain names such as X or sum, and array elements such as V(4) or table(i,j+1)) are all valid numeric-variable references."
+  tests: [NUM-0009]
+  external: []
+  covers: [l.1681-1687]
+
+- id: A-5.2.4-01
+  clause: "5.2.4"
+  ecma: "5.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A numeric variable belongs to the program-unit in which it appears; only a parameter of an internal function definition escapes that rule."
+  tests: [NUM-0010]
+  external: []
+  covers: [l.1697]
+
+- id: A-5.2.4-02
+  clause: "5.2.4"
+  ecma: "5.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Before an array element is selected, the subscript value is rounded to the nearest integer, defined as INT(X+0.5)."
+  tests: [NUM-0011]
+  external: []
+  covers: [l.1700]
+
+- id: A-5.2.4-03
+  clause: "5.2.4"
+  ecma: "5.2.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "The bounds an array element must stay within are exactly those written in the array's DIM or DECLARE declaration."
+  tests: [NUM-0012]
+  external: []
+  covers: [l.1707]
+
+- id: A-5.2.5-EXC
+  clause: "5.2.5"
+  ecma: "5.2.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "Using a subscript outside the declared bounds of its array is reported as the fatal exception 2001 (EXTYPE 2001); the Table 9 entry is covered by E-2001."
+  tests: [NUM-0013]
+  external: []
+  covers: [l.1708, l.1717]
+
+- id: D-5.2-1
+  clause: "5.2"
+  ecma: "5.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "The value every numeric variable holds when execution starts (Appendix C, subsection 5.2) is chosen by the implementation."
+  tests: [NUM-0014, ARR-0210, ARR-0211, ARR-0212, ARR-0213, ARR-0214]
+  value: "Every numeric variable starts at 0; a read before any assignment also raises the nonfatal exception 3101 (EXTYPE 3101) and supplies 0. The same holds for an array element read by MAT PRINT, MAT PRINT USING, MAT WRITE or MAT GRAPH: the statement supplies 0, completes, and raises 3101 once (3102 for a string array)."
+  external: []
+  covers: [l.1712]
+
+- id: E-3101
+  clause: "5.2"
+  ecma: "5.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "Reading a numeric variable before any value has been assigned to it may be reported as the nonfatal exception 3101 (EXTYPE 3101), supplying an implementation-defined value and continuing."
+  tests: [NUM-0015]
+  external: []
+  covers: [l.1712, l.1730-1733, l.12847]
+
+# --- 5.3 Numeric expressions
+- id: A-5.3.2-01
+  clause: "5.3.2"
+  ecma: "5.3.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "A call to a numeric function, whether defined by the program (DEF) or supplied by the implementation (ABS, SIN, MOD, MAX, LEN, POS, VAL, ...), must pass as many arguments, of the same types, as the function's definition or description declares; a mismatch in number or in type (a string where a number is required, or the reverse) is rejected before the program runs, even in a statement that would never execute."
+  tests: [NUM-0016, NUM-0017, NUM-0117, NUM-0118, NUM-0119, NUM-0122]
+  external: []
+  covers: [l.1776]
+
+- id: A-5.3.2-02
+  clause: "5.3.2"
+  ecma: "5.3.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "An array passed as an actual argument must have as many dimensions as the matching formal parameter."
+  tests: [NUM-0018]
+  external: []
+  covers: [l.1777]
+
+- id: A-5.3.2-03
+  clause: "5.3.2"
+  ecma: "5.3.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "Invoking an external function while the invoking program-unit has a different ARITHMETIC option in force than the function's own definition is rejected."
+  tests: [NUM-0019]
+  external: []
+  covers: [l.1783]
+
+- id: A-5.3.2-04
+  clause: "5.3.2"
+  ecma: "5.3.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "A numeric function referenced in a program-unit must be either built in, or defined by an internal function definition or a DECLARE placed in an earlier line of the same program-unit before its first reference; otherwise the program is rejected before running."
+  tests: [NUM-0020, NUM-0021]
+  external: []
+  covers: [l.1786]
+
+- id: A-5.3.3-EX
+  clause: "5.3.3"
+  ecma: "5.3.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "Every numeric expression exemplified in section 5.3.3 (the operators ~ * / + -, parentheses, function calls and array arguments) is accepted and evaluates with the precedence rules of section 5.3.4."
+  tests: [NUM-0022]
+  external: []
+  covers: [l.1791-1803]
+
+- id: A-5.3.4-01
+  clause: "5.3.4"
+  ecma: "5.3.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "In an expression, exponentiation (~) is applied before multiplication and division (* /), which are applied before addition, subtraction and unary negation (+ -)."
+  tests: [NUM-0023]
+  external: []
+  covers: [l.1811]
+
+- id: A-5.3.4-02
+  clause: "5.3.4"
+  ecma: "5.3.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Operators of equal precedence group from the left: A-B-C means (A-B)-C, A~B~C means (A~B)~C and A/B/C means (A/B)/C; unary minus binds less tightly than ~ but more tightly than +, so -A~B means -(A~B) while -A+B means (-A)+B."
+  tests: [NUM-0024]
+  external: []
+  covers: [l.1814-1815]
+
+- id: A-5.3.4-03
+  clause: "5.3.4"
+  ecma: "5.3.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "When an operation inside a numeric expression underflows, the value produced by that operation becomes zero."
+  tests: [NUM-0025]
+  external: []
+  covers: [l.1826]
+
+- id: A-5.3.4-04
+  clause: "5.3.4"
+  ecma: "5.3.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Calling a numeric function substitutes the actual argument values for the parameters of its definition."
+  tests: [NUM-0026]
+  external: []
+  covers: [l.1832]
+
+- id: A-5.3.4-05
+  clause: "5.3.4"
+  ecma: "5.3.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "The result of a numeric function call is a single scalar number that takes the place of the call within the surrounding expression."
+  tests: [NUM-0027]
+  external: []
+  covers: [l.1835]
+
+- id: E-3001
+  clause: "5.3.5"
+  ecma: "5.3.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "A division by zero occurring while a numeric expression is evaluated raises the fatal exception 3001 (EXTYPE 3001), which a handler can intercept."
+  tests: [NUM-0028]
+  external: []
+  covers: [l.1841, l.12831]
+
+- id: E-1002
+  clause: "5.3.5"
+  ecma: "5.3.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "An overflow occurring while a numeric expression is evaluated raises the fatal exception 1002 (EXTYPE 1002), which a handler can intercept."
+  tests: [NUM-0029]
+  external: []
+  covers: [l.1844, l.12783]
+
+- id: E-3002
+  clause: "5.3.5"
+  ecma: "5.3.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "Computing a negative base raised to a non-integer exponent raises the fatal exception 3002 (EXTYPE 3002), which a handler can intercept."
+  tests: [NUM-0030]
+  external: []
+  covers: [l.1847, l.12832]
+
+- id: E-3003
+  clause: "5.3.5"
+  ecma: "5.3.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "Computing zero raised to a negative exponent raises the fatal exception 3003 (EXTYPE 3003), which a handler can intercept."
+  tests: [NUM-0031]
+  external: []
+  covers: [l.1851, l.12833]
+
+- id: E-1502
+  clause: "5.3"
+  ecma: "5.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "An underflow during expression evaluation may additionally be reported as the nonfatal exception 1502 (EXTYPE 1502), replacing the produced value by zero and continuing."
+  tests: [NUM-0032]
+  external: []
+  covers: [l.1826, l.1859-1861, l.12816]
+
+- id: D-5.3-1
+  clause: "5.3"
+  ecma: "5.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "Beyond the fixed precedence and left-to-right grouping rules, the order in which the parts of a numeric expression are evaluated (Appendix C, subsection 5.3) is chosen by the implementation."
+  tests: [NUM-0033]
+  value: "Operands of an operator are evaluated right-to-left in source order (with a side-effecting internal FUNCTION INC, INC(0)*10+INC(0) yields 21, i.e. the right call is evaluated first); grouping itself stays left-to-right per 5.3.4."
+  external: []
+  covers: [l.1817-1820]
+
+# --- 5.4 Numeric-supplied functions
+- id: A-5.4.3-EX
+  clause: "5.4.3"
+  ecma: "5.4.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "The example of section 5.4.3, the RANDOMIZE statement, is accepted as written."
+  tests: [NUM-0034]
+  external: []
+  covers: [l.1896-1899]
+
+- id: A-5.4.4-01
+  clause: "5.4.4"
+  ecma: "5.4.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Every built-in numeric function returns the value documented for it in section 5.4.4 and takes exactly the number of arguments documented there."
+  tests: [NUM-0035, NUM-0036]
+  external: []
+  covers: [l.1903]
+
+- id: A-5.4.4-DJ1
+  clause: "5.4.4"
+  ecma: "5.4.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "MAX and MIN take exactly two numeric arguments: MAX(1, 2, 3), MIN(5) and the like are rejected before the program runs. Agreed interpretation of 5.4.4 (interpretations.yaml)."
+  tests: [NUM-0120, NUM-0121]
+  external: []
+  covers: [l.1990-1994]
+
+- id: A-5.4.4-02
+  clause: "5.4.4"
+  ecma: "5.4.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "The angle-valued functions ACOS, ANGLE, ASIN and ATN return radians by default, or degrees while OPTION ANGLE DEGREES is in force; the phrase 'in radians or degrees' attached to the trigonometric functions follows the same option."
+  tests: [NUM-0037, NUM-0038]
+  external: []
+  covers: [l.1910-1911, l.2056-2058]
+
+- id: A-5.4.4-03
+  clause: "5.4.4"
+  ecma: "5.4.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "ANGLE(X,Y) returns the counterclockwise angle from the positive x-axis to the point (X,Y), lying strictly between -pi and pi, and X and Y may not both be zero."
+  tests: [NUM-0039]
+  external: []
+  covers: [l.1926]
+
+- id: A-5.4.4-04
+  clause: "5.4.4"
+  ecma: "5.4.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "ASIN(X) returns a value between -pi/2 and pi/2 and needs an argument in the open interval from -1 to 1."
+  tests: [NUM-0040]
+  external: []
+  covers: [l.1931]
+
+- id: A-5.4.4-05
+  clause: "5.4.4"
+  ecma: "5.4.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "When the system has no calendar, DATE yields -1."
+  tests: [NUM-0041]
+  external: []
+  covers: [l.1956]
+
+- id: A-5.4.4-06
+  clause: "5.4.4"
+  ecma: "5.4.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "When EXP(X) comes out smaller than the machine infinitesimal, its value is replaced by zero."
+  tests: [NUM-0042]
+  external: []
+  covers: [l.1973]
+
+- id: A-5.4.4-07
+  clause: "5.4.4"
+  ecma: "5.4.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "LOG, LOG10 and LOG2 each need a strictly positive argument."
+  tests: [NUM-0043]
+  external: []
+  covers: [l.1982, l.1985, l.1988]
+
+- id: A-5.4.4-08
+  clause: "5.4.4"
+  ecma: "5.4.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "MOD(X,Y) computes X-Y*INT(X/Y)."
+  tests: [NUM-0044]
+  external: []
+  covers: [l.2000]
+
+- id: A-5.4.4-09
+  clause: "5.4.4"
+  ecma: "5.4.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "SQR(X) is the nonnegative square root and needs a nonnegative argument."
+  tests: [NUM-0045]
+  external: []
+  covers: [l.2033]
+
+- id: A-5.4.4-10
+  clause: "5.4.4"
+  ecma: "5.4.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "TIME counts seconds since the previous midnight (zero exactly at midnight, not 86400) and yields -1 when no clock is available."
+  tests: [NUM-0046]
+  external: []
+  covers: [l.2046-2047]
+
+- id: A-5.4.4-11
+  clause: "5.4.4"
+  ecma: "5.4.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "For arguments within plus or minus 2*pi, SIN, COS, TAN, SEC, CSC and COT are fully accurate to m+1 decimal digits; outside that range only the error of the range reduction is allowed."
+  tests: [NUM-0047]
+  external: []
+  covers: [l.2058]
+
+- id: A-5.4.4-12
+  clause: "5.4.4"
+  ecma: "5.4.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "If the program never executes RANDOMIZE, RND produces the same sequence of values on every run; executing RANDOMIZE starts a new, unpredictable sequence from that point on."
+  tests: [NUM-0048, NUM-0049]
+  external: []
+  covers: [l.2068-2069]
+
+- id: A-5.4.4-13
+  clause: "5.4.4"
+  ecma: "5.4.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "The pseudorandom sequence behind RND is shared across the whole program rather than restarted per program-unit."
+  tests: [NUM-0050]
+  external: []
+  covers: [l.2073]
+
+- id: E-3004
+  clause: "5.4.5"
+  ecma: "5.4.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "LOG, LOG10 or LOG2 called with zero or a negative argument raises the fatal exception 3004 (EXTYPE 3004), which a handler can intercept."
+  tests: [NUM-0051, NUM-0084]
+  external: []
+  covers: [l.2079, l.12834]
+
+- id: E-3005
+  clause: "5.4.5"
+  ecma: "5.4.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "SQR called with a negative argument raises the fatal exception 3005 (EXTYPE 3005), which a handler can intercept."
+  tests: [NUM-0052]
+  external: []
+  covers: [l.2033, l.2082, l.12835]
+
+- id: E-1003
+  clause: "5.4.5"
+  ecma: "5.4.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "A built-in numeric function whose result is larger than MAXNUM, or is mathematically infinite, raises the fatal overflow exception 1003 (EXTYPE 1003), which a handler can intercept."
+  tests: [NUM-0053, NUM-0088]
+  external: []
+  covers: [l.2085, l.12784-12785]
+
+- id: E-3006
+  clause: "5.4.5"
+  ecma: "5.4.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "MOD or REMAINDER called with a zero second argument raises the fatal exception 3006 (EXTYPE 3006), which a handler can intercept."
+  tests: [NUM-0054]
+  external: []
+  covers: [l.2000, l.2009, l.2088, l.12836]
+
+- id: E-3007
+  clause: "5.4.5"
+  ecma: "5.4.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "ACOS or ASIN called with an argument below -1 or above 1 raises the fatal exception 3007 (EXTYPE 3007), which a handler can intercept."
+  tests: [NUM-0055, NUM-0086]
+  external: []
+  covers: [l.1921, l.1931, l.2091, l.12837]
+
+- id: E-3008
+  clause: "5.4.5"
+  ecma: "5.4.5"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "Evaluating ANGLE(0,0) raises the fatal exception 3008 (EXTYPE 3008), which a handler can intercept."
+  tests: [NUM-0056]
+  external: []
+  covers: [l.1926, l.2093, l.12838]
+
+- id: A-5.4.6-01
+  clause: "5.4.6"
+  ecma: "5.4.6"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Exceptions arising inside the evaluation of a built-in numeric function need not be reported, but the implementation must still act so that the function's final value stays accurate."
+  tests: [NUM-0057]
+  external: []
+  covers: [l.2105]
+
+- id: E-1503
+  clause: "5.4"
+  ecma: "5.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: exception
+  claim: "A built-in function result that is nonzero but below the machine infinitesimal may additionally be reported as the nonfatal underflow exception 1503 (EXTYPE 1503), returning zero and continuing."
+  tests: [NUM-0058]
+  external: []
+  covers: [l.1973, l.2110-2114, l.12818]
+
+- id: D-5.4-1
+  clause: "5.4"
+  ecma: "5.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "The accuracy with which built-in numeric functions are evaluated (Appendix C, subsection 5.4) is chosen by the implementation."
+  tests: [NUM-0059]
+  value: "Under DECIMAL every numeric function (SQR, EXP, LOG, LOG10, LOG2, SIN, COS, TAN, SEC, CSC, COT, ATN, ANGLE, ASIN, ACOS, SINH, COSH, TANH) and the power operator are computed in decimal with 34 working digits and rounded once to the 18-digit result, so each is the true value rounded to 18 digits (error at most 5 units in the 19th digit, the 5.6.4 bound for m = 17; measured on 2026-11-08); under NATIVE they are computed in binary64 and quantized to 8 significant digits; values print with 8 significant digits (d = 8, D-10.3-2)."
+  external: []
+  covers: [l.2058]
+
+- id: D-5.4-2
+  clause: "5.4"
+  ecma: "5.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "The values of MAXNUM and of EPS (Appendix C, subsection 5.4) are chosen by the implementation."
+  tests: [NUM-0060]
+  value: "MAXNUM = 1.7976931348623157E+308 and EPS(0) = sigma = 2.2250738585073E-308 under DECIMAL (the IEEE-754 binary64 limits; DBL_MIN kept with 14 digits); under NATIVE MAXNUM = 1.7976931E+308 and EPS(0) = 2.2250739E-308 (DBL_MAX and DBL_MIN quantized to 8 digits); under FIXED *i.f, MAXNUM is the largest value of P digits and EPS(0) = 10^-f (.001 under *8.3), the smallest positive value representable in the mode."
+  external: []
+  covers: [l.1966, l.1993-1995]
+
+- id: D-5.4-3
+  clause: "5.4"
+  ecma: "5.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "The pseudorandom sequence from which RND draws its values (Appendix C, subsection 5.4) is chosen by the implementation."
+  tests: [NUM-0061]
+  value: "RND draws from the C library rand() sequence seeded with 1 when RANDOMIZE is not executed (first values .417022, .99718481, .72032449, .93255736, 1.1438108E-4, printed to d = 8 digits, D-10.3-2); RANDOMIZE reseeds from the system clock."
+  external: []
+  covers: [l.2066-2070]
+
+- id: D-5.4-4
+  clause: "5.4"
+  ecma: "5.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "Whether a calendar and a clock are available to DATE and TIME (Appendix C, subsection 5.4) is chosen by the implementation."
+  tests: [NUM-0062]
+  value: "A calendar and a clock are available: DATE returns the YYDDD of the local date (26305 on 2026-11-01) and TIME returns seconds since local midnight (0 <= TIME < 86400); neither yields -1 on this host."
+  external: []
+  covers: [l.1956, l.2046-2047]
+
+- id: D-5.4-5
+  clause: "5.4"
+  ecma: "5.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "The time zone used by DATE and TIME (Appendix C, subsection 5.4) is chosen by the implementation."
+  tests: [NUM-0063]
+  value: "The host local time zone (Europe/Madrid: CET UTC+1 in winter, CEST UTC+2 in summer) is used for DATE and TIME."
+  external: []
+  covers: [l.2118-2119]
+
+- id: D-5.4-6
+  clause: "5.4"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "Tie-break of rounding to the nearest when the discarded portion is exactly half (the text fixes ROUND(X,N) = INT(X*10^N+.5)/10^N at 5.4.4 l.2015-2017 and suggests INT(X+0.5) at 3.2 l.1012-1017, but does not fix the tie of the i/f/e-format output of 10.4.4.3 l.5722/l.5725-5727)."
+  tests: [NUM-0103, PRT-0156]
+  value: "Half-up, unique everywhere (decision of the project owner, 2026-11-02): ROUND and the i/f/e-format items of PRINT USING round the magnitude half-up over the exact decimal value (1.25 -> 1.3 at one decimal, .125 -> .13, 1.005 -> 1.01, 2.5 -> 3). ROUND on negative values follows the normative formula INT(X*10^N+.5)/10^N (ROUND(-1.25,1) = -1.2)."
+  external: []
+  covers: [l.1012-1017, l.2015-2017, l.5722, l.5725-5727, l.5737-5745]
+
+# --- 5.5 Numeric assignment statements
+- id: A-5.5.3-EX
+  clause: "5.5.3"
+  ecma: "5.5.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "The LET examples of section 5.5.3 (a scalar target, subscripted targets, and multi-variable target lists) are all accepted."
+  tests: [NUM-0064]
+  external: []
+  covers: [l.2143-2149]
+
+- id: A-5.5.4-01
+  clause: "5.5.4"
+  ecma: "5.5.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "In a numeric LET, the subscripts of the target variables are evaluated first from left to right, then the right-hand expression is evaluated, and finally the resulting value (rounded if a variable cannot hold it exactly) is stored into the targets from left to right."
+  tests: [NUM-0065]
+  external: []
+  covers: [l.2153-2154, l.2157]
+
+# --- 5.6 Numeric arithmetic and angle
+- id: A-5.6.1-01
+  clause: "5.6.1"
+  ecma: "5.6.1"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Unless an option says otherwise, every numeric variable behaves as a decimal floating-point value carrying at least ten digits of precision."
+  tests: [NUM-0066]
+  external: []
+  covers: [l.2182]
+
+- id: A-5.6.2-01
+  clause: "5.6.2"
+  ecma: "5.6.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "An ARITHMETIC option must be written in an earlier line than any numeric expression, array DIM or DECLARE, or fixed declaration of the same program-unit."
+  tests: [NUM-0067, NUM-0068]
+  external: []
+  covers: [l.2209]
+
+- id: A-5.6.2-02
+  clause: "5.6.2"
+  ecma: "5.6.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "A program-unit may contain only one ARITHMETIC option."
+  tests: [NUM-0069]
+  external: []
+  covers: [l.2214]
+
+- id: A-5.6.2-03
+  clause: "5.6.2"
+  ecma: "5.6.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "An ANGLE option must precede, in line order, any use of a built-in numeric or transform function in the same program-unit."
+  tests: [NUM-0070]
+  external: []
+  covers: [l.2216]
+
+- id: A-5.6.2-04
+  clause: "5.6.2"
+  ecma: "5.6.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "A program-unit may contain only one ANGLE option."
+  tests: [NUM-0071]
+  external: []
+  covers: [l.2220]
+
+- id: A-5.6.2-05
+  clause: "5.6.2"
+  ecma: "5.6.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  status: claimed
+  claim: "A DECLARE statement must be written in an earlier line than any reference to the variables it declares."
+  tests: [NUM-0072]
+  external: []
+  covers: [l.2222]
+
+- id: A-5.6.3-EX
+  clause: "5.6.3"
+  ecma: "5.6.3"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "The option example of section 5.6.3, OPTION ARITHMETIC DECIMAL, ANGLE DEGREES, is accepted as written."
+  tests: [NUM-0073]
+  external: []
+  covers: [l.2226-2229]
+
+- id: A-5.6.4-01
+  clause: "5.6.4"
+  ecma: "5.6.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "With DECIMAL arithmetic (also the default when no ARITHMETIC option is given) numbers behave as decimal floating-point values with a precision m of at least ten significant digits and a range of at least 1E-38 to 1E+38."
+  tests: [NUM-0074]
+  external: []
+  covers: [l.2237]
+
+- id: A-5.6.4-02
+  clause: "5.6.4"
+  ecma: "5.6.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Under DECIMAL arithmetic, stored variable values count as exact and the tested operations are exact: 0.1+0.2 = 0.3 and 0.1*10 = 1 (NUM-0075); SIN(1) is computed within 5E-16 (NUM-0083); the m+1-digit accuracy of the functions for the documented m = 17 is claimed in A-5.6.4-FN1 (NUM-0281 to NUM-0283)."
+  tests: [NUM-0075, NUM-0083]
+  external: []
+  covers: [l.2246-2252]
+
+- id: A-5.6.4-03
+  clause: "5.6.4"
+  ecma: "5.6.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "When the true result of a function is expressible with m+1 digits the computed result is exact, as SIN, COS, TAN, COT, SEC and CSC at multiples of 90 degrees (0, 1, -1), and where it is mathematical infinity the exception is 1003; the sampled SIN(1), EXP(1) and 0.1+0.2 stay within 5E-14. The general error bound of 5 units in the (m+2)nd digit is met by constants, operations and every supplied function and power (A-5.6.4-FN1, NUM-0281 to NUM-0283)."
+  tests: [NUM-0076, NUM-0110, NUM-0111, NUM-0112, NUM-0113, NUM-0114, NUM-0115, NUM-0116]
+  external: []
+  covers: [l.2252-2257]
+
+- id: A-5.6.4-04
+  clause: "5.6.4"
+  ecma: "5.6.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "With NATIVE arithmetic, numbers use an implementation-chosen representation with at least six digits of precision and magnitudes spanning at least 2E-38 up to 1E+38; decimal values need not be stored exactly."
+  tests: [NUM-0077]
+  external: []
+  covers: [l.2265]
+
+- id: A-5.6.4-05
+  clause: "5.6.4"
+  ecma: "5.6.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Reaching an OPTION or DECLARE line at run time only moves execution to the next line; the statement itself has no further effect."
+  tests: [NUM-0078]
+  external: []
+  covers: [l.2288, l.2295]
+
+- id: A-5.6.4-06
+  clause: "5.6.4"
+  ecma: "5.6.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Naming a simple numeric variable in DECLARE NUMERIC establishes that name as a simple numeric variable."
+  tests: [NUM-0079]
+  external: []
+  covers: [l.2292]
+
+- id: D-5.6-1
+  clause: "5.6"
+  ecma: "5.6"
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "The precision and range of numeric values in general (Appendix C, subsection 5.6) are chosen by the implementation."
+  tests: [NUM-0080]
+  value: "Default arithmetic is decimal floating point with a documented precision m = 17 significant digits (what the operations + - * / and the constants meet, error at most 5 units in the 19th digit); values are held with an 18-digit mantissa and EPS reflects that representation (EPS(1) = 1E-17); range EPS(0)=2.2250738585073E-308 .. MAXNUM=1.7976931348623157E+308, printed with 8 significant digits (d = 8, D-10.3-2). The supplied functions and the power operator meet this precision too (A-5.6.4-FN1)."
+  external: []
+  covers: [l.2182-2183, l.2237-2238]
+
+- id: D-5.6-2
+  clause: "5.6"
+  ecma: "5.6"
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "The precision and range of the decimal floating-point arithmetic (Appendix C, subsection 5.6) are chosen by the implementation."
+  tests: [NUM-0081]
+  value: "OPTION ARITHMETIC DECIMAL: exact decimal floating point, documented precision m = 17, 18-digit mantissa in variables and intermediates (EPS(1) = 1E-17), range 2.2250738585073E-308 .. 1.7976931348623157E+308; 0.1+0.2 = 0.3 exactly."
+  external: []
+  covers: [l.2237-2244]
+
+- id: D-5.6-3
+  clause: "5.6"
+  ecma: "5.6"
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "The precision and range of native arithmetic (Appendix C, subsection 5.6) are chosen by the implementation."
+  tests: [NUM-0082, NUM-0243]
+  value: "OPTION ARITHMETIC NATIVE: same binary64-backed values quantized to 8 significant digits (fpScale 8); range 2.2250739E-308 .. 1.7976931E+308; observed precision 8 digits (at least 6 required)."
+  external: []
+  covers: [l.2265-2268]
+
+- id: D-5.6-4
+  clause: "5.6"
+  ecma: "5.6"
+  ecma_level: BASIC-1
+  module: core
+  kind: implementation-defined
+  claim: "The accuracy of numeric expression evaluation (Appendix C, subsection 5.6) is chosen by the implementation."
+  tests: [NUM-0083, NUM-0281]
+  value: "With m = 17: constants, the operations + - * / and every numeric function and power err at most 5 units in the 19th significant digit and are exact when the true result fits in 18 digits (0.1+0.2 = 0.3). The transcendental functions are computed in decimal with 34 working digits and rounded once to 18 digits; the measurement of 2026-11-08 gives m = 17 for all of them, in radians and degrees, including the ill-conditioned zones."
+  external: []
+  covers: [l.2248-2256]
+
+- id: A-5.6.4-FN1
+  clause: "5.6.4"
+  ecma: "5.6.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "Under DECIMAL arithmetic with the documented m = 17, every supplied function and every power errs by at most 5 units in the 19th significant digit (the result is the true value rounded to 18 digits) and is exact when the true result fits in 18 digits; the domain of ACOS, ASIN and LOG is checked on the exact decimal argument."
+  tests: [NUM-0281, NUM-0282, NUM-0283]
+  external: []
+  covers: [l.2246-2257]
+
+# --- Border values of numeric supplied functions.
+- id: A-5.4-G01
+  clause: "5.4"
+  ecma: "5.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "ACOS and ASIN accept the border arguments -1 and 1, returning 0, pi, pi/2 and -pi/2."
+  tests: [NUM-0085]
+  external: []
+  covers: [l.1919-1920, l.1930-1931]
+- id: A-5.4-G02
+  clause: "5.4"
+  ecma: "5.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "CEIL of zero is zero, and of a negative non-integer is the next integer toward zero."
+  tests: [NUM-0087]
+  external: []
+  covers: [l.1938]
+- id: A-5.4-G03
+  clause: "5.4"
+  ecma: "5.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "EPS of zero is a positive number (the smallest positive value representable)."
+  tests: [NUM-0089]
+  external: []
+  covers: [l.1960-1965]
+- id: A-5.4-G04
+  clause: "5.4"
+  ecma: "5.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "TRUNCATE with a negative digit count truncates to the left of the decimal point, toward zero."
+  tests: [NUM-0090]
+  external: []
+  covers: [l.2051-2053]
+
+- id: A-5.6.2-06
+  clause: "5.6.2"
+  ecma: "5.6.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "An ARITHMETIC option inside a block or internal routine is rejected at load whenever a lower-numbered line of the same program-unit holds a numeric-expression — including the header line of a for-loop, if-block, select-case or do-while, and lines of the main program when the option sits in an internal routine."
+  tests: [NUM-0091, NUM-0092, NUM-0093, NUM-0094, NUM-0095]
+  external: []
+  covers: [l.2208-2212]
+
+- id: A-5.6.2-07
+  clause: "5.6.2"
+  ecma: "5.6.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "An ANGLE, BASE or COLLATE option inside a block is rejected at load when the program-unit already has, in a lower-numbered line, what its rule enumerates: a trigonometric/supplied-function reference (ANGLE), a DIM/DECLARE/MAT with numeric-array (BASE), or a string-expression / string DIM or DECLARE (COLLATE)."
+  tests: [NUM-0096, NUM-0097, NUM-0098]
+  external: []
+  covers: [l.2216-2218, l.2856-2859, l.3015-3018]
+
+- id: A-5.6.2-08
+  clause: "5.6.2"
+  ecma: "5.6.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "A DECLARE statement inside an internal routine is rejected at load when a lower-numbered line of the same program-unit already references a variable it declares."
+  tests: [NUM-0099]
+  external: []
+  covers: [l.2222-2224]
+
+- id: A-5.6.2-09
+  clause: "5.6.2"
+  ecma: "5.6.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: syntax
+  claim: "At most one option of each type (ARITHMETIC, ANGLE, BASE, COLLATE) is allowed per program-unit, counting together the main program and its internal routines."
+  tests: [NUM-0100]
+  external: []
+  covers: [l.2214, l.2220, l.2859, l.3019]
+
+- id: A-5.6.2-10
+  clause: "5.6.2"
+  ecma: "5.6.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "An OPTION or DECLARE inside a block or internal routine is conforming when nothing it enumerates precedes it in the program-unit, and it takes effect on the unit (a DECLARE NUMERIC *4.2 inside an internal SUB limits the variable; OPTION ARITHMETIC in a plain do-loop body is allowed because the do-line has no numeric-expression)."
+  tests: [NUM-0101, NUM-0102]
+  external: []
+  covers: [l.2208-2224, l.4733-4737]
+
+- id: A-5.6.2-CL31
+  clause: "5.6.2"
+  ecma: "5.6.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "An OPTION ARITHMETIC that follows a DIM of string arrays only (one or several dimensions, with bounds ranges) is conforming: the bounds of a DIM are signed integers, not numeric-expressions, and a string array is not a numeric-array. A DIM of a numeric array still precedes the option illegally."
+  tests: [NUM-0280]
+  external: []
+  covers: [l.2208-2212, l.2966-2971]
+
+- id: A-5.6.4-TR138
+  clause: "5.6.4"
+  ecma: "5.6.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A line that contains only a declare-statement (DECLARE NUMERIC, STRING, DEF, EXTERNAL SUB or FUNCTION, scalar or array) is a line of the program: a GOTO, GOSUB or IF ... THEN line-number may refer to it, in the main program and in the body of an EXTERNAL SUB or FUNCTION, and execution carries on from the line after it, as if the declaration were not there."
+  tests: [NUM-0244, NUM-0245, NUM-0246, NUM-0247, NUM-0248, NUM-0249]
+  external: []
+  covers: [l.2294-2295, l.3742-3747]
+
+- id: A-5.6.4-TR144
+  clause: "5.6.4"
+  ecma: "5.6.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A line that contains only a declare-statement or an option-statement is a line of the program in every program-unit and routine (internal SUB, FUNCTION and PICTURE; EXTERNAL PICTURE; and, for an option-statement, EXTERNAL SUB and FUNCTION): a GOTO, GOSUB, IF ... THEN line-number or ON ... GOTO may refer to it, and execution carries on from the line after it, with no further effect."
+  tests: [NUM-0250, NUM-0251, NUM-0252, NUM-0253, NUM-0254, NUM-0255, NUM-0256, NUM-0257, NUM-0258, NUM-0259]
+  external: []
+  covers: [l.2287-2289, l.2294-2295, l.3742-3747]
+
+- id: A-5.6.4-TR148
+  clause: "5.6.4"
+  ecma: "5.6.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A line that contains only a declare-statement or an option-statement is a line of the program wherever a block may appear: inside a FOR, IF, DO, WHEN (protected part or USE part) or SELECT CASE block and inside an exception-handler (inline or separate). A GOTO, GOSUB or IF ... THEN line-number within the same block or handler may refer to it, and execution carries on from the next line of that block or handler, not after the structure."
+  tests: [NUM-0260, NUM-0261, NUM-0262, NUM-0263, NUM-0264, NUM-0265, NUM-0266, NUM-0267, NUM-0268, NUM-0269]
+  external: []
+  covers: [l.2294-2295, l.3742-3747]
+
+- id: A-5.6.2-TR173
+  clause: "5.6.2"
+  ecma: "5.6.2"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "An OPTION ANGLE in a line after a reference to any numeric-supplied-function of the program-unit (ABS, INT, RND, LEN, PI, MAX and the others, not only the trigonometric ones) or after a transform-function (ROTATE, SHEAR, SHIFT, SCALE in a DRAW or a MAT assignment) is rejected with 9000. String functions and the array inquiries do not count, and an OPTION ANGLE before any such reference is accepted."
+  tests: [NUM-0270, NUM-0271, NUM-0272, NUM-0273, NUM-0274, NUM-0275, NUM-0276, NUM-0277]
+  covers: [l.2216-2218]
+  external: []
+
+- id: A-5.4.4-CL16
+  clause: "5.4.4"
+  ecma: "5.4.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "EPS(X) is the maximum of X-X', X''-X and sigma for the predecessor X' and the successor X'' in the representation actually used: in DECIMAL (18 significant digits) EPS(1) = 1E-17, EPS(123.456) = 1E-15 and EPS(1E10) = 1E-7, so X+EPS(X) differs from X and X+EPS(X)/4 equals X; in FIXED it is the unit of the last fixed decimal digit and EPS(0) is the smallest positive value representable."
+  tests: [NUM-0278]
+  covers: [l.1960-1968]
+  external: []
+
+- id: A-5.4.4-CL30
+  clause: "5.4.4"
+  ecma: "5.4.4"
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "MOD(X,Y) and REMAINDER(X,Y) are exact in DECIMAL, NATIVE and FIXED even when X/Y has far more digits than the arithmetic holds: in DECIMAL MOD(1E40,7) = 4, MOD(-1E40,7) = 3, REMAINDER(-1E40,7) = -4, REMAINDER(1E30,3) = 1 and MOD(999999999999999999,7) = 0."
+  tests: [NUM-0279]
+  external: []
+  covers: [l.2001-2002, l.2014-2015]
+
+- id: A-5.2.5-CL15
+  clause: "5.2.5"
+  ecma: null
+  ecma_level: BASIC-1
+  module: core
+  kind: semantics
+  claim: "A subscript outside the declared bounds of an array is 2001 whatever its magnitude, in a read and in an assignment, for numeric and string arrays of one or two dimensions: 1E19, -1E19, 9.3E18 and 1E300 give 2001 like 1E18, not the overflow 1001. A redim of an absurd size (MAT V = ZER(1E19)) is 5001, the exception of the table for a redimensioned array that is too large."
+  tests: [ARR-0399]
+  covers: [l.1698-1716, l.12881-12882]
+  external: []
