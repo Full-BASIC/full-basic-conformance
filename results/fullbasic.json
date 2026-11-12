@@ -1,5 +1,5 @@
 {
-  "commit": "2898e678a4d065e138cb8f1f96c1a69bccb9606c",
+  "commit": "58c1b709998c499cab54e48f6f22f41be5cb2a4b",
   "date": "2026-11-12",
   "format": 1,
   "interpreter": "FullBASIC v4",
@@ -1668,7 +1668,7 @@
     "ECMA-0071": {
       "detail": "",
       "status": "pass",
-      "type": "REJECT"
+      "type": "SELF"
     },
     "ECMA-0072": {
       "detail": "",
@@ -1823,17 +1823,17 @@
     "ECMA-0102": {
       "detail": "",
       "status": "pass",
-      "type": "REJECT"
+      "type": "SELF"
     },
     "ECMA-0103": {
       "detail": "",
       "status": "pass",
-      "type": "REJECT"
+      "type": "SELF"
     },
     "ECMA-0104": {
       "detail": "",
       "status": "pass",
-      "type": "REJECT"
+      "type": "SELF"
     },
     "ECMA-0105": {
       "detail": "",
@@ -1951,6 +1951,11 @@
       "type": "SELF"
     },
     "ECMA-0248": {
+      "detail": "",
+      "status": "pass",
+      "type": "SELF"
+    },
+    "ECMA-0249": {
       "detail": "",
       "status": "pass",
       "type": "SELF"
@@ -10428,7 +10433,7 @@
   },
   "summary": {
     "fail": 0,
-    "pass": 2084,
+    "pass": 2085,
     "unsupported": 0
   },
   "version": "1.0"

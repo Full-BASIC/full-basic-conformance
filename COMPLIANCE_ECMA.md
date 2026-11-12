@@ -22,10 +22,10 @@ There is no separate ECMA mode: the body of ECMA-116 gives every exception the s
 |---|---|
 | Interpreter | FullBASIC v4 |
 | Version | 1.0 |
-| Interpreter commit (recorded in the results file) | `2898e678a4d065e138cb8f1f96c1a69bccb9606c` |
+| Interpreter commit (recorded in the results file) | `58c1b709998c499cab54e48f6f22f41be5cb2a4b` |
 | Date (UTC) | 2026-11-12 |
 | Platform | macOS arm64 |
-| Results | `results/fullbasic.json`: 2084 programs — 2084 pass, 0 fail, 0 unsupported (interpreter label "FullBASIC v4") |
+| Results | `results/fullbasic.json`: 2085 programs — 2085 pass, 0 fail, 0 unsupported (interpreter label "FullBASIC v4") |
 
 Run from the root of the suite (the `Compliance` directory of the FullBASIC repository), the exact commands that produced the results file and then this document are:
 
@@ -49,13 +49,13 @@ python3 tools/gen_compliance.py
 | 8 | 45 | 94 | 94 |
 | 9 | 66 | 118 | 118 |
 | 10 | 67 | 135 | 135 |
-| 11 | 59 | 85 | 85 |
+| 11 | 59 | 86 | 86 |
 | 12 | 69 | 172 | 172 |
 | 13 | 66 | 93 | 93 |
 | 15 | 32 | 56 | 56 |
 | Implementation-defined | 93 | 121 | 121 |
 | Enhancements | 0 | 0 | 0 |
-| **Total** | **787** | **1399** | **1399** |
+| **Total** | **787** | **1400** | **1400** |
 
 ## 4. Claims
 
@@ -465,7 +465,7 @@ python3 tools/gen_compliance.py
 | 10.1.2 | A-10.1.2-TR118 | semantics | core | The body of a detached-handler is part of the program unit that contains it, and RESTORE is not a control-transfer: RESTORE n may name a DATA line inside a detached-handler of the unit (from the main program, from the when-block that uses the handler, from an internal routine or from the body of an EXTERNAL unit); a RESTORE n that names a DATA line inside a handler of another program unit is still rejected before the program runs. | PRT-0309, PRT-0311 |
 | 10.1.2 | A-10.1.2-TR154 | syntax | core | The line-number of an io-recovery (IF MISSING THEN n, IF THERE THEN n) is the line of a control-transfer (8.2.2 prod. 1) and obeys the same scope rules as GOTO: from outside it may not name a line inside an if-block branch, select-block case, for-body, do-body, protection-block (other than its when-line), exception-handler or the header line of its own external subprogram, nor may it jump between sibling branches; jumps within the same branch, out of a structure or to a line of the top level of the same program unit stay valid. | PRT-0390, PRT-0391, PRT-0392, PRT-0393, PRT-0394, PRT-0395, PRT-0396, FIL-0490, FIL-0491 |
 | 10.1.3 | A-10.1.3-EX | semantics | core | Every READ, IF MISSING and RESTORE form shown in the examples of section 10.1.3 is accepted and behaves as written. | PRT-0010 |
-| 10.1.3 | A-ECMA-25 | semantics | core | READ with IF MISSING, RESTORE and RESTORE to a line, and DATA with numeric and quoted-string items behave as written; an elided READ item is rejected (known deviation). | ECMA-0050, ECMA-0051, ECMA-0052, ECMA-0053, ECMA-0054 |
+| 10.1.3 | A-ECMA-25 | semantics | core | READ with IF MISSING, RESTORE and RESTORE to a line, and DATA with numeric and quoted-string items behave as written. Example 1 reads READ X, Y, Z in ANSI X3.113-1987 (10.1.3); the transcription lost the Y, and a READ with an empty item is not valid syntax and is rejected. | ECMA-0050, ECMA-0051, ECMA-0052, ECMA-0053, ECMA-0054 |
 | 10.1.4 | A-10.1.4-01 | semantics | core | All DATA statements of a program unit form a single data sequence in textual order, and reaching a DATA line at run time just moves execution to the next line. | PRT-0011 |
 | 10.1.4 | A-10.1.4-02 | semantics | core | A READ assigns the listed variables, left to right, from the data sequence of its unit through a pointer that starts at the first datum and steps past each datum consumed. | PRT-0012 |
 | 10.1.4 | A-10.1.4-03 | semantics | core | Reading past the end of the data sequence raises an exception unless the READ carries IF MISSING; then the chosen action runs: EXIT DO or EXIT FOR behaves normally, and a line number transfers execution to that line. | PRT-0013, PRT-0014, PRT-0015 |
@@ -535,7 +535,7 @@ python3 tools/gen_compliance.py
 | 11.1.2 | A-11.1.2-03 | syntax | files | The variables of an ask item must agree in number and type with the value of that ask attribute. | FIL-0034 |
 | 11.1.2 | A-11.1.2-TR176 | semantics | files | A channel-expression is a number-sign followed by an index, so a channel number that is not an integer is rounded with INT(X+.5) in OPEN, CLOSE, PRINT, LINE INPUT, ASK, SET and the other file statements: #1.4 and #0.6 are channel 1. The rounded value is then checked against the range of channels: #255.4 is channel 255 and is valid, #255.6 is channel 256 (7001), #0.4 is channel zero (7002) and #-.6 is channel -1 (7001). | FIL-0501, FIL-0502 |
 | 11.1.3 | A-11.1.3-EX | syntax | files | Every OPEN, CLOSE, ERASE and ASK form shown in the examples of section 11.1.3 is accepted. | FIL-0035 |
-| 11.1.3 | A-ECMA-30 | semantics | files | OPEN with channel and name expressions, CLOSE, ERASE and ERASE REST, and ASK of file attributes including KEY work as written; ASK NUMCHARS is rejected (known deviation). | ECMA-0067, ECMA-0068, ECMA-0069, ECMA-0070, ECMA-0071 |
+| 11.1.3 | A-ECMA-30 | semantics | files | OPEN with channel and name expressions, CLOSE, ERASE and ERASE REST, and ASK of file attributes including KEY work as written; in example 18 NUMCHARS is the numeric variable of RECSIZE RS$ NUMCHARS. | ECMA-0067, ECMA-0068, ECMA-0069, ECMA-0070, ECMA-0071 |
 | 11.1.4 | A-11.1.4-01 | semantics | files | Channel numbers run from zero up to an implementation-defined maximum that is at least 99. | FIL-0036 |
 | 11.1.4 | A-11.1.4-02 | semantics | files | When a program starts, every channel except channel zero is inactive, and channel zero is always active. | FIL-0037 |
 | 11.1.4 | A-11.1.4-03 | semantics | files | Channel zero sends and receives exactly where the plain INPUT and PRINT statements do, and acts as a sequential, display, outin device with no record-setter and no erase capability. | FIL-0038 |
@@ -550,7 +550,7 @@ python3 tools/gen_compliance.py
 | 11.1.5 | E-71xx | exception | files | When a file cannot be given the access the requested or default attributes demand, a fatal 71xx exception is raised whose exact value and meaning are implementation-defined. | FIL-0083 |
 | 11.1.5 | E-7301 | exception | files | ERASE on a file not opened as OUTIN raises the fatal exception 7301 and has no effect on the file. | FIL-0084 |
 | 11.2.3 | A-11.2.3-EX | syntax | files | Every SET with pointer items form shown in the examples of section 11.2.3 is accepted. | FIL-0065 |
-| 11.2.3 | A-ECMA-31 | semantics | files | SET # with POINTER BEGIN, RECORD and KEY (with IF MISSING / IF THERE) positions the pointer as written; the channel must be a literal here (known deviation). | ECMA-0072 |
+| 11.2.3 | A-ECMA-31 | semantics | files | SET # with a channel expression and POINTER BEGIN, RECORD and KEY (with IF MISSING / IF THERE) positions the pointer as written. | ECMA-0072 |
 | 11.2.4 | A-11.2.4-01 | semantics | files | A SET statement with pointer items moves the file pointer of the file on the given channel. | FIL-0066 |
 | 11.2.5 | E-7202 | exception | files | The RECORD record-setter on a file whose organization is not RELATIVE raises the fatal exception 7202 and leaves the pointer unchanged. | FIL-0071 |
 | 11.2.5 | E-7203 | exception | files | The KEY record-setter on a file whose organization is not KEYED raises the fatal exception 7203 and leaves the pointer unchanged. | FIL-0072 |
@@ -580,7 +580,7 @@ python3 tools/gen_compliance.py
 | 11.4.3 | A-11.4.3-EX | syntax | files | Every INPUT, MAT INPUT, LINE INPUT, MAT LINE INPUT, READ and MAT READ form shown in the examples of section 11.4.3 is accepted. | FIL-0134 |
 | 11.4.3 | A-ECMA-33 | semantics | files | INPUT #, MAT INPUT # with BEGIN and IF MISSING, LINE INPUT # with NEXT, MAT LINE INPUT with redims, READ # with SAME, WITH and SKIP REST, and MAT READ # with RECORD and WITH work as written. | ECMA-0079, ECMA-0080, ECMA-0081, ECMA-0082, ECMA-0083 |
 | 11.5.3 | A-11.5.3-EX | syntax | files | Every REWRITE, MAT REWRITE and DELETE form shown in the examples of section 11.5.3 is accepted. | FIL-0150 |
-| 11.5.3 | A-ECMA-34 | semantics | files | REWRITE with a KEY expression and IF MISSING, MAT REWRITE with RECORD and WITH, and DELETE with KEY work as written. | ECMA-0084, ECMA-0085, ECMA-0086 |
+| 11.5.3 | A-ECMA-34 | semantics | files | REWRITE with a KEY expression and IF MISSING, MAT REWRITE with RECORD and WITH, and DELETE with KEY work as written. | ECMA-0084, ECMA-0085, ECMA-0086, ECMA-0249 |
 | 12.1.2 | A-12.1.2-01 | syntax | core | RETRY, CONTINUE and EXIT HANDLER are only valid inside an exception handler (the USE part of a WHEN block or a detached handler), so a program that uses one elsewhere, including in the protected part of a WHEN block, is rejected before it runs. | EXC-0001, EXC-0002, EXC-0003, EXC-0004 |
 | 12.1.2 | A-12.1.2-02 | syntax | core | EXTYPE and EXLINE used in program text that is neither inside an exception handler nor inside a routine, including the protected part of a WHEN block, are rejected before the program runs, even if the statement would never be executed. | EXC-0005, EXC-0006, EXC-0007 |
 | 12.1.2 | A-12.1.2-03 | syntax | core | A line-number named by a control transfer from outside a protection block may only target that block's WHEN line; from inside an exception handler only lines of that same handler or its own END HANDLER / END WHEN line may be named; and from outside a handler no line inside that handler may be named. Programs breaking these rules are rejected before they run. | EXC-0008, EXC-0009, EXC-0010, EXC-0011, EXC-0012, EXC-0013, EXC-0014 |
@@ -650,7 +650,7 @@ python3 tools/gen_compliance.py
 | 12.2.5 | E-10007 | exception | core | Executing BREAK while debugging is active raises the nonfatal exception 10007; its recovery reports the BREAK line number and permits interaction with the debugging system. | EXC-0055, EXC-0056 |
 | 12.2.5 | E-7401 | exception | core | Directing a trace report to an inactive channel raises the fatal exception 7401. | EXC-0057 |
 | 12.2.5 | E-7402 | exception | core | Sending trace output to a channel whose file is not in display format and was not opened for OUTPUT or OUTIN access raises the fatal exception 7402. | EXC-0058, EXC-0059 |
-| 13.1.3, 13.2.3 | A-ECMA-42 | syntax | graphics | The bare ECMA keyword forms WINDOW, VIEWPORT, CLIP, LINE STYLE and TEXT COLOR (without SET) are rejected by this ANSI interpreter (known deviation). | ECMA-0125 |
+| 13.1.3, 13.2.3 | A-ECMA-42 | syntax | graphics | The examples WINDOW, VIEWPORT, CLIP, LINE STYLE and TEXT COLOR of 13.1.3 and 13.2.3 are set-objects; written without SET they are not statements and are rejected. | ECMA-0125 |
 | 13.1.3 | A-13.1.3-EX | syntax | graphics | Every example of section 13.1.3 (set and ask of window, viewport, device window, device viewport, device size and clip) is accepted and behaves as written. | GFX-0014 |
 | 13.1.3 | A-ECMA-37 | semantics | graphics | Window, viewport, device window, device viewport and clip settings (SET forms) and the corresponding ASK inquiries return the values set. | ECMA-0095, ECMA-0096 |
 | 13.1.4 | A-13.1.4-01 | semantics | graphics | ASK WINDOW, ASK VIEWPORT, ASK DEVICE WINDOW and ASK DEVICE VIEWPORT give the left, right, bottom and top values, in that order, to the variables of the list, whether or not each of those variables was used earlier in the program. | GFX-0011, GFX-0012 |
@@ -724,7 +724,7 @@ python3 tools/gen_compliance.py
 | 15.1.2 | A-15.1.2-06 | semantics | fixed | In a fixed-point-size, an omitted fraction-size means zero fraction digits, and an omitted or explicitly zero integer-size means zero integer digits; the size is valid in OPTION, DECLARE and fixed parameters whenever integer-size plus fraction-size does not exceed P. | FIX-0035, FIX-0036, FIX-0037, FIX-0038, FIX-0040, FIX-0042, FIX-0043 |
 | 15.1.2 | A-15.1.2-07 | exception | fixed | A variable, fixed parameter or fixed defined function whose fixed-point-size has zero integer digits cannot hold a value with a nonzero integer part; assigning one raises fatal exception 1011. | FIX-0039, FIX-0041, FIX-0044 |
 | 15.1.3 | A-15.1.3-EX | syntax | fixed | Every declaration form shown in the examples of section 15.1.3, an ARITHMETIC FIXED option followed by NUMERIC fixed-declarations, is accepted and behaves as written. | FIX-0006 |
-| 15.1.3 | A-ECMA-40 | syntax | fixed | OPTION ARITHMETIC FIXED*8.2 is accepted and rounds assignments to the declared size; NUMERIC* declarations are rejected (known deviation). | ECMA-0101, ECMA-0102 |
+| 15.1.3 | A-ECMA-40 | syntax | fixed | OPTION ARITHMETIC FIXED*8.2 is accepted and rounds assignments to the declared size; the declarations of example 3 are the numeric-type of a DECLARE statement and are accepted in that form, with each variable rounded to its own fixed-point-size. | ECMA-0101, ECMA-0102 |
 | 15.1.4 | A-15.1.4-01 | semantics | fixed | When ARITHMETIC FIXED is selected, the values of numeric constants, variables and expressions behave as fixed-point decimal numbers; a variable can hold exactly the values expressible with its integer-size digits left of the point and fraction-size digits right of it, plus the sign, and the sign does not count toward the size. | FIX-0007 |
 | 15.1.4 | A-15.1.4-02 | semantics | fixed | Numeric constants keep the semantics of section 5.1 except that each constant carries a precision attribute equal to its number of significant digits, and a constant written in scaled notation is read as the equivalent unscaled one. | FIX-0009 |
 | 15.1.4 | A-15.1.4-03 | semantics | fixed | A numeric constant carrying more significant digits than P is rounded to no fewer than P digits; if the digits left of the point alone exceed P, an overflow exception results. | FIX-0011 |
@@ -744,7 +744,7 @@ python3 tools/gen_compliance.py
 | 15.2.2 | A-15.2.2-03 | syntax | fixed | A fixed-point-type on an internal function line or DEF statement, and a numeric-fixed-parameter, may be used only when the program unit has selected ARITHMETIC FIXED. | FIX-0028, FIX-0029 |
 | 15.2.2 | A-15.2.2-04 | syntax | fixed | If a function type declares a fixed defined function, the fixed-point sizes stated, whether explicit or by default, in the declaration and in the matching definition must agree. | FIX-0030 |
 | 15.2.3 | A-15.2.3-EX | syntax | fixed | Every parameter and function form shown in the examples of section 15.2.3, fixed formal arrays, fixed defined functions and external functions, is accepted and behaves as written. | FIX-0031 |
-| 15.2.3 | A-ECMA-41 | syntax | fixed | Fixed-decimal sizes on arrays and function signatures (A()*8.2, DEF F*10.3(...)) are rejected at load time (known deviation). | ECMA-0103, ECMA-0104 |
+| 15.2.3 | A-ECMA-41 | syntax | fixed | The fixed-point-sizes of the examples of 15.2.3, on formal arrays, on simple parameters and on internal, external and def functions, are accepted when the program-unit specifies ARITHMETIC FIXED (15.2.2), and values are rounded to them. | ECMA-0103, ECMA-0104 |
 | 15.2.4 | A-15.2.4-01 | semantics | fixed | Under ARITHMETIC FIXED, numeric procedure parameters, function parameters and defined functions hold fixed-point decimal values; one whose fixed-point-size is not written takes the default of the ARITHMETIC FIXED option, and a formal array's size applies to each element. | FIX-0032 |
 | 15.2.4 | A-15.2.4-02 | semantics | fixed | Arguments of a function reference are bound to the function parameters as in 9.1, except that when the argument's fixed-point-size differs from the parameter's the fixed-point assignment rules of 15.1.4 are used. | FIX-0033 |
 | 15.2.4 | A-15.2.4-03 | semantics | fixed | Arguments of a CALL are associated with the subprogram parameters as in 9.2, except that a numeric-expression argument, other than a plain variable, whose fixed-point-size differs from the parameter's is converted using the 15.1.4 assignment rules. | FIX-0034 |

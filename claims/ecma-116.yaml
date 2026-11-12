@@ -190,7 +190,7 @@
   claim: "Logical expressions with NOT, AND, OR and comparisons evaluate with the standard precedence; NOT also works at the start of an IF condition."
   tests: [ECMA-0024]
   covers: [l.3131-3137]
-  note: "Known deviation: a leading NOT on the right side of LET is a syntax error here; the IF form is used instead."
+  note: "The examples of 8.1.3 are relational-expressions, which occur only as conditions; there is no logical value to assign, so NOT on the right side of LET is not valid in ECMA-116 or ANSI X3.113-1987."
 
 - id: A-ECMA-19
   clause: "8.2.2"
@@ -259,7 +259,7 @@
   ecma_level: BASIC-1
   module: core
   kind: semantics
-  claim: "READ with IF MISSING, RESTORE and RESTORE to a line, and DATA with numeric and quoted-string items behave as written; an elided READ item is rejected (known deviation)."
+  claim: "READ with IF MISSING, RESTORE and RESTORE to a line, and DATA with numeric and quoted-string items behave as written. Example 1 reads READ X, Y, Z in ANSI X3.113-1987 (10.1.3); the transcription lost the Y, and a READ with an empty item is not valid syntax and is rejected."
   tests: [ECMA-0050, ECMA-0051, ECMA-0052, ECMA-0053, ECMA-0054]
   covers: [l.4955-4979, l.4996-5051]
 
@@ -310,7 +310,7 @@
   ecma_level: BASIC-2
   module: files
   kind: semantics
-  claim: "OPEN with channel and name expressions, CLOSE, ERASE and ERASE REST, and ASK of file attributes including KEY work as written; ASK NUMCHARS is rejected (known deviation)."
+  claim: "OPEN with channel and name expressions, CLOSE, ERASE and ERASE REST, and ASK of file attributes including KEY work as written; in example 18 NUMCHARS is the numeric variable of RECSIZE RS$ NUMCHARS."
   tests: [ECMA-0067, ECMA-0068, ECMA-0069, ECMA-0070, ECMA-0071]
   covers: [l.6551-6568, l.6598-6604, l.6902-6905, l.6913-6925, l.6940-6947, l.6953-7023]
 
@@ -320,10 +320,9 @@
   ecma_level: BASIC-2
   module: files
   kind: semantics
-  claim: "SET # with POINTER BEGIN, RECORD and KEY (with IF MISSING / IF THERE) positions the pointer as written; the channel must be a literal here (known deviation)."
+  claim: "SET # with a channel expression and POINTER BEGIN, RECORD and KEY (with IF MISSING / IF THERE) positions the pointer as written."
   tests: [ECMA-0072]
   covers: [l.6660-6665]
-  note: "Known deviation: SET #N with a variable channel is rejected (channel must be a numeric literal); the test uses #1."
 
 - id: A-ECMA-32
   clause: "11.3.2"
@@ -352,9 +351,9 @@
   module: files
   kind: semantics
   claim: "REWRITE with a KEY expression and IF MISSING, MAT REWRITE with RECORD and WITH, and DELETE with KEY work as written."
-  tests: [ECMA-0084, ECMA-0085, ECMA-0086]
+  tests: [ECMA-0084, ECMA-0085, ECMA-0086, ECMA-0249]
   covers: [l.7817-7822]
-  note: "MAT REWRITE is tested with a single array: several arrays under one TEMPLATE raise 8252 here (known deviation)."
+  note: "Example 3 (MAT REWRITE of X, Y, Z WITH 111) does not give template 111. Several arrays work when each one has its own template-element (ECMA-0249); one ? OF element for several arrays is the 8254 of 11.3.5 (11.3.4.12: the next array uses the next template-element)."
 
 - id: A-ECMA-35
   clause: "12.1.2"
@@ -413,10 +412,9 @@
   ecma_level: BASIC-2
   module: fixed
   kind: syntax
-  claim: "OPTION ARITHMETIC FIXED*8.2 is accepted and rounds assignments to the declared size; NUMERIC* declarations are rejected (known deviation)."
+  claim: "OPTION ARITHMETIC FIXED*8.2 is accepted and rounds assignments to the declared size; the declarations of example 3 are the numeric-type of a DECLARE statement and are accepted in that form, with each variable rounded to its own fixed-point-size."
   tests: [ECMA-0101, ECMA-0102]
   covers: [l.8972-8977]
-  note: "Known deviation: NUMERIC*5.2 A, ... is a syntax error here; REJECT pins it."
 
 - id: A-ECMA-41
   clause: "15.2.2"
@@ -424,10 +422,9 @@
   ecma_level: BASIC-2
   module: fixed
   kind: syntax
-  claim: "Fixed-decimal sizes on arrays and function signatures (A()*8.2, DEF F*10.3(...)) are rejected at load time (known deviation)."
+  claim: "The fixed-point-sizes of the examples of 15.2.3, on formal arrays, on simple parameters and on internal, external and def functions, are accepted when the program-unit specifies ARITHMETIC FIXED (15.2.2), and values are rounded to them."
   tests: [ECMA-0103, ECMA-0104]
   covers: [l.9169-9176]
-  note: "Known deviation: the *ii.ff suffixes of ECMA 15.2 are not accepted; REJECT pins it."
 
 # --- Erratum: the ECMA-116 Appendix (syntax summary, l.12142-12144) defines
 # print-control-item with enhanced-record-setter; the body of 11.3.2
@@ -465,14 +462,14 @@
   tests: [ECMA-0124]
   covers: [l.890-920]
 
-# --- ECMA writes the graphics set-statements without SET; the ANSI interpreter
-# requires SET (known deviation).
+# --- The examples of 13.1.3 and 13.2.3 are set-objects: with SET they are accepted
+# (ECMA-0095, ECMA-0097); without SET they are not statements.
 - id: A-ECMA-42
   clause: "13.1.2"
   ecma: "13.1.3, 13.2.3"
   ecma_level: Graphics
   module: graphics
   kind: syntax
-  claim: "The bare ECMA keyword forms WINDOW, VIEWPORT, CLIP, LINE STYLE and TEXT COLOR (without SET) are rejected by this ANSI interpreter (known deviation)."
+  claim: "The examples WINDOW, VIEWPORT, CLIP, LINE STYLE and TEXT COLOR of 13.1.3 and 13.2.3 are set-objects; written without SET they are not statements and are rejected."
   tests: [ECMA-0125]
   covers: [l.8486-8490, l.8707-8708]
